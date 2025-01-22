@@ -1,0 +1,12 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.background {
+    background-image: url('../public/images/page_images/background.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+

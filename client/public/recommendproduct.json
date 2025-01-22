@@ -1,0 +1,193 @@
+[
+    {
+        "id":1,
+        "image": "1_ARC200T.jpg",
+        "name": "ARC200T" 
+    },
+    {
+        "id":2,
+        "image": "2_ARC300.jpg",
+        "name": "ARC300" 
+    },
+    {
+        "id":3,
+        "image": "3_ARC315GS.jpg",
+        "name": "ARC315GS" 
+    },
+    {
+        "id":4,
+        "image": "4_ARC315GTS.jpg",
+        "name": "ARC315GTS" 
+    },
+    {
+        "id":5,
+        "image": "5_ARC400GT.jpg",
+        "name": "ARC400GT" 
+    },
+    {
+        "id":6,
+        "image": "6_ARC500GT.jpg",
+        "name": "ARC500GT" 
+    },
+    {
+        "id":7,
+        "image": "7_ARC630I.jpg",
+        "name": "ARC630I" 
+    },
+    {
+        "id":8,
+        "image": "8_ARC200.jpg",
+        "name": "ARC200" 
+    },
+    {
+        "id":9,
+        "image": "9_ARC200CT.jpg",
+        "name": "ARC200CT" 
+    },
+    {
+        "id":10,
+        "image": "10_CUT60_PILOTARC.jpg",
+        "name": "CUT60_PILOTARC" 
+    },
+    {
+        "id":11,
+        "image": "11_CUT80GT.jpg",
+        "name": "CUT80GT" 
+    },
+    {
+        "id":12,
+        "image": "12_CUT100GT.jpg",
+        "name": "CUT100GT" 
+    },
+    {
+        "id":13,
+        "image": "13_CUT165I.jpg",
+        "name": "CUT165I" 
+    },
+    {
+        "id":14,
+        "image": "14_CUT40.jpg",
+        "name": "CUT40" 
+    },
+    {
+        "id":15,
+        "image": "15_MIG250S.jpg",
+        "name": "MIG250S" 
+    },
+    {
+        "id":16,
+        "image": "16_MIG270.jpg",
+        "name": "MIG270" 
+    },
+    {
+        "id":17,
+        "image": "17_MIG271GF.jpg",
+        "name": "MIG271GF" 
+    },
+    {
+        "id":18,
+        "image": "18_MIG300GF.jpg",
+        "name": "MIG300GF" 
+    },
+    {
+        "id":19,
+        "image": "19_MIG300GN.jpg",
+        "name": "MIG300GN" 
+    },
+    {
+        "id":20,
+        "image": "20_MIG300GS.jpg",
+        "name": "MIG300GS" 
+    },
+    {
+        "id":21,
+        "image": "21_MIG350GF.jpg",
+        "name": "MIG350GF" 
+    },
+    {
+        "id":22,
+        "image": "22_MIG500GF.jpg",
+        "name": "MIG500GF" 
+    },
+    {
+        "id":23,
+        "image": "23_MIG500I.jpg",
+        "name": "MIG500I" 
+    },
+    {
+        "id":24,
+        "image": "24_MIG180PGDM.jpg",
+        "name": "MIG180PGDM" 
+    },
+    {
+        "id":25,
+        "image": "25_MIG200CT.jpg",
+        "name": "MIG200CT" 
+    },
+    {
+        "id":26,
+        "image": "26_MIG200GW.jpg",
+        "name": "MIG200GW" 
+    },
+    {
+        "id":27,
+        "image": "27_MIG250GS.jpg",
+        "name": "MIG250GS" 
+    },
+    {
+        "id":28,
+        "image": "28_TIG200P.jpg",
+        "name": "TIG200P" 
+    },
+    {
+        "id":29,
+        "image": "29_TIG200S.jpg",
+        "name": "TIG200S" 
+    },
+    {
+        "id":30,
+        "image": "30_TIG250P.jpg",
+        "name": "TIG250P" 
+    },
+    {
+        "id":31,
+        "image": "31_TIG300A.jpg",
+        "name": "TIG300A" 
+    },
+    {
+        "id":32,
+        "image": "32_TIG300A_380V.jpg",
+        "name": "TIG300A_380V" 
+    },
+    {
+        "id":33,
+        "image": "33_TIG300A_Down-Slope.jpg",
+        "name": "TIG300A_Down-Slope" 
+    },
+    {
+        "id":34,
+        "image": "34_TIG400GT.jpg",
+        "name": "TIG400GT" 
+    },
+    {
+        "id":35,
+        "image": "35_TIG500P.jpg",
+        "name": "TIG500P" 
+    },
+    {
+        "id":36,
+        "image": "36_TIG315PG.jpg",
+        "name": "TIG315PG" 
+    },
+    {
+        "id":37,
+        "image": "37_TIG200M.jpg",
+        "name": "TIG200M" 
+    }
+    ,
+    {
+        "id":38,
+        "image": "38_TIG200P.jpg",
+        "name": "TIG200P" 
+    }
+]
