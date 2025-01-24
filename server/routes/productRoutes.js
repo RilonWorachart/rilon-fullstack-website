@@ -4,14 +4,12 @@ import { createProduct, deleteProduct, editProduct, getproductbyId, getproductby
 import { authen } from '../controllers/authController.js';
 
 
-
 router.get('/getallproduct', getallProduct);
 router.get('/getproductbyid', getproductbyId);
 router.get('/getproductbycategory', getproductbyCategory);
-
-router.post('/create', createProduct);
-router.put('/edit', editProduct);
-router.delete('/delete', authen, deleteProduct);
+router.post('/createproduct', authen, createProduct);
+router.put('/editproduct', authen, editProduct);
+router.delete('/deleteproduct', authen, deleteProduct);
 
 // Using export default in ES Modules
 export default router;

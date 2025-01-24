@@ -53,8 +53,8 @@ export const getallProduct = async (req, res, next) => {
 
 export const createProduct = async (req, res, next) => {
     const {
-        picture_1, picture_2, name_th, description_th, category_th, search_word_th,
-        brand_th, other_th, name_en, description_en, category_en, search_word_en,
+        rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
+        brand_th, other_th, name_en, description_en, search_word_en,
         brand_en, other_en, category_id
     } = req.body;
 
@@ -71,10 +71,10 @@ export const createProduct = async (req, res, next) => {
     try {
         // Insert the product into the products table
         await promisePool.execute(
-            "INSERT INTO products (picture_1, picture_2, name_th, description_th, category_th, search_word_th, brand_th, other_th, name_en, description_en, category_en, search_word_en, brand_en, other_en, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO products (rilon_id, picture_1, picture_2, name_th, description_th, search_word_th, brand_th, other_th, name_en, description_en, search_word_en, brand_en, other_en, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
-                picture_1, picture_2, name_th, description_th, category_th, search_word_th,
-                brand_th, other_th, name_en, description_en, category_en, search_word_en,
+                rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
+                brand_th, other_th, name_en, description_en, search_word_en,
                 brand_en, other_en, category_id
             ]
         );
@@ -88,16 +88,16 @@ export const createProduct = async (req, res, next) => {
 };
 
 export const editProduct = async (req, res, next) => {
-    const { picture_1, picture_2, name_th, description_th, category_th, search_word_th,
-        brand_th, other_th, name_en, description_en, category_en, search_word_en,
+    const { rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
+        brand_th, other_th, name_en, description_en, search_word_en,
         brand_en, other_en, category_id, ID } = req.body;
 
     try {
         // Update the existing product
         await promisePool.execute(
-            "UPDATE products SET picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, category_th = ?, search_word_th = ?,brand_th = ?, other_th = ?, name_en = ?, description_en = ?, category_en = ?, search_word_en = ?,brand_en = ?, other_en = ?, category_id = ? WHERE ID = ?",
-                [picture_1, picture_2, name_th, description_th, category_th, search_word_th,
-                brand_th, other_th, name_en, description_en, category_en, search_word_en,
+            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, search_word_th = ?,brand_th = ?, other_th = ?, name_en = ?, description_en = ?, search_word_en = ?,brand_en = ?, other_en = ?, category_id = ? WHERE ID = ?",
+                [rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
+                brand_th, other_th, name_en, description_en, search_word_en,
                 brand_en, other_en, category_id, ID]
         );
 
