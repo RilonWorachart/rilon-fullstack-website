@@ -7,7 +7,7 @@ import { Link, useParams } from 'react-router-dom'
 import { CgMenuGridR } from "react-icons/cg";
 import { TfiMenuAlt } from "react-icons/tfi"
 import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
+import axios from 'axios';
 
 
 function CatalogKeywordPage() {
@@ -16,33 +16,31 @@ function CatalogKeywordPage() {
   const [itemType, setItemType] = useState("type1")
   const { t } = useTranslation();
 
+  
+  const fetchAllProductByfilter = async () => {
+    try {
+      // Use Axios to send the GET request
+      const response = await axios.get(`${process.env.REACT_APP_API}/getallproduct`);
+      const result = response.data;
+      const productsArray = result.data || [];
+
+      const foundProducts = key
+        ? productsArray.filter(item =>
+            (item.search_word_th && item.search_word_th.toLowerCase().includes(key.toLowerCase())) ||
+            (item.brand_th && item.brand_th.toLowerCase().includes(key.toLowerCase())) ||
+            (item.category_th && item.category_th.some(category => category.toLowerCase().includes(key.toLowerCase())))
+          )
+        : productsArray; // If no key, return all products
+
+      setProductData(foundProducts); // Update state with filtered products
+    } catch (error) {
+      console.error("Error fetching product data:", error);
+    }
+  };
 
   useEffect(() => {
-    // Every time the language changes, re-translate the key into the new language
-
-    fetch(`/locales/${i18next.language}/products.json`)  // Fetch products based on current language
-      .then((response) => response.json())
-      .then((result) => {
-        // Convert the object to an array of products
-        const productsArray = Object.values(result);
-
-        // If translatedKey exists, filter products based on the translated key
-        const foundProducts = key
-          ? productsArray.filter(item =>
-            // Match `translatedKey` with searchword, brand, or categories (case-insensitive)
-            item.searchword_filter.toLowerCase().includes(key.toLowerCase()) ||
-            item.brand_filter.toLowerCase().includes(key.toLowerCase()) ||
-            item.category_filter.some(category =>
-              category.toLowerCase().includes(key.toLowerCase())
-            )
-          )
-          : productsArray;  // If no key, return all products
-
-        setProductData(foundProducts);  // Update state with filtered products
-        console.log("Translated Key:", key);  // Log the translated key for debugging
-      })
-      .catch((error) => console.error('Error fetching data:', error));  // Handle errors
-  }, [key, t]);  // Dependency on `key`, language change (`i18next.language`), and `t`
+    fetchAllProductByfilter(); // Fetch products whenever 'key' or language changes
+  }, [key, t]);
 
 
   return (
@@ -72,8 +70,8 @@ function CatalogKeywordPage() {
         <div className={`mb-[40px] mx-[80px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
           {productData.map((item) => {
             return (
-              <ItemCard key={item.id} image={item.image} id={item.id} name={item.name} category={item.category}
-                description={item.description} searchword={item.searchword} brand={item.brand} itemType={itemType}
+              <ItemCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} category_id={item.category_id}
+                description_th={item.description_th} search_word_th={item.search_word_th} brand={item.brand_th} name_en={item.name_en}  description_en={item.description_en} search_word_en={item.search_word_en} itemType={itemType}
               />
             )
           })}

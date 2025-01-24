@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import ItemCard from './ItemCard'
+import ItemCard from '../ItemCard'
 import { CgMenuGridR } from "react-icons/cg";
 import { TfiMenuAlt } from "react-icons/tfi";
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 
-function AllProduct() {
+function ItemListbyCategory() {
   const { t } = useTranslation();
-
+  const { id } = useParams();
   const [productData, setProductData] = useState([])
 
 
+  const fetchAllProductByCategory = async () => {
+    try {
+      // Use Axios to send the GET request
+      const response = await axios.get(`${process.env.REACT_APP_API}/getproductbycategory/?category_id=${id}`);
+      const result = response.data;
+      setProductData(result.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+
   useEffect(() => {
-    fetch(`/locales/${i18next.language}/products.json`)
-      .then((response) => response.json())
-      .then((result) => {
-        // Convert the object into an array of products
-        const productsArray = Object.values(result);
-        setProductData(productsArray);
-      })
-      .catch((error) => {
-        console.error('Error fetching product data:', error);
-      });
+    fetchAllProductByCategory()
   }, [t]); // Empty dependency array means this runs once when the component mounts
 
 
   const [itemType, setItemType] = useState("type1")
-
 
   return (
     <>
@@ -38,8 +41,9 @@ function AllProduct() {
       <div className={`mb-[40px] mx-[80px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
         {productData.map((item) => {
           return (
-            <ItemCard key={item.id} image={item.image} id={item.id} name={item.name} category={item.category}
-              description={item.description} searchword={item.searchword} brand={item.brand}
+            <ItemCard key={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} ID={item.ID} name_th={item.name_th} 
+              description_th={item.description_th} search_word_th={item.search_word_th} brand_th={item.brand_th} 
+              name_en={item.name_en} description_en={item.description_en} search_word_en={item.search_word_en} brand_en={item.brand_en}
               itemType={itemType}
             />
           )
@@ -49,4 +53,4 @@ function AllProduct() {
   )
 }
 
-export default AllProduct
+export default ItemListbyCategory

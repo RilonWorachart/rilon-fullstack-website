@@ -18,6 +18,27 @@ export const getallCategory = async (req, res, next) => {
   }
 };
 
+export const getCategorybyID = async (req, res, next) => {
+  const id = req.query.id; // Getting the id from query parameters
+
+  try {
+      // Query to get the product by ID
+      const [rows] = await promisePool.execute(
+          "SELECT * FROM categories WHERE ID = ?",
+          [id]
+      );
+
+      if (rows.length === 0) {
+          return res.json({ status: "error", message: "Category not found" });
+      }
+
+      res.json({ status: "ok", data: rows });
+  } catch (err) {
+      res.json({ status: "error", message: err.message });
+  }
+};
+
+
 
 export const deleteCategory = async (req, res, next) => {
   const id = req.query.id; // Getting the id from query parameters

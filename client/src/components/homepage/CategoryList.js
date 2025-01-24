@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import ItemCard from './ItemCard'
+import CategoryCard from './CategoryCard.js';
 import { CgMenuGridR } from "react-icons/cg";
 import { TfiMenuAlt } from "react-icons/tfi";
-import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 
-function AllProduct() {
+function CategoryList() {
   const { t } = useTranslation();
 
-  const [productData, setProductData] = useState([])
+  const [categoryData, setCategoryData] = useState([])
+
+
+  const fetchAllCategory = async () => {
+    try {
+      // Use Axios to send the GET request
+      const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`, {
+      });
+  
+      const result = response.data;
+      setCategoryData(result.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
 
   useEffect(() => {
-    fetch(`/locales/${i18next.language}/products.json`)
-      .then((response) => response.json())
-      .then((result) => {
-        // Convert the object into an array of products
-        const productsArray = Object.values(result);
-        setProductData(productsArray);
-      })
-      .catch((error) => {
-        console.error('Error fetching product data:', error);
-      });
+    fetchAllCategory()
   }, [t]); // Empty dependency array means this runs once when the component mounts
 
 
@@ -36,12 +40,9 @@ function AllProduct() {
         <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")}/>
       </div>
       <div className={`mb-[40px] mx-[80px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
-        {productData.map((item) => {
+        {categoryData.map((item) => {
           return (
-            <ItemCard key={item.id} image={item.image} id={item.id} name={item.name} category={item.category}
-              description={item.description} searchword={item.searchword} brand={item.brand}
-              itemType={itemType}
-            />
+            <CategoryCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} description_th={item.description_th} name_en={item.name_en} description_en={item.description_en} itemType={itemType}/>
           )
         })}
       </div>
@@ -49,4 +50,4 @@ function AllProduct() {
   )
 }
 
-export default AllProduct
+export default CategoryList

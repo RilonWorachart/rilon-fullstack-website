@@ -2,9 +2,9 @@ import {
   BrowserRouter, Routes, Route
 } from "react-router-dom";
 import HomePage from "./pages/HomePage.js";
-import CatalogPage from "./pages/CatalogPage.js";
 import ItemPage from "./pages/ItemPage.js";
 import FormPage from "./pages/FormPage.js";
+import CategoryPage from './pages/CategoryPage.js'
 import CatalogKeywordPage from "./pages/CatalogKeywordPage.js";
 import FixedButton from "./components/FixedButton.js";
 import Header from "./components/header/Header.js";
@@ -16,23 +16,24 @@ import i18n from './i18n'; // Import your i18n configuration
 function App() {
   return (
     <I18nextProvider i18n={i18n}>
-       <BrowserRouter>
-      <ScrollProvider>
-        <ScrollToTop />
-        <FixedButton />
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/catalog/keyword/:key" element={<CatalogKeywordPage />} />
-          <Route path="/catalog/item/:id" element={<ItemPage />} />
-          <Route path="/catalog/item/:id/request-form" element={<FormPage />} />
-        </Routes>
-      </ScrollProvider>
-    </BrowserRouter>
+      <BrowserRouter>
+        <ScrollProvider>
+          <ScrollToTop />
+          <FixedButton />
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/item/:id" element={<ItemPage />} />
+            <Route path="/request-form" element={<FormPage />} />
+            <Route path="/catalog/keyword/:key" element={<CatalogKeywordPage />} />
+            <Route path="/category/:id" element={<CategoryPage />} />
+            <Route path="/request-form-detail" elemant={<FormPage />} />
+          </Routes>
+        </ScrollProvider>
+      </BrowserRouter>
 
     </I18nextProvider>
-   
+
   );
 }
 

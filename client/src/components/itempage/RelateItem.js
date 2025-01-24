@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ItemCard from '../ItemCard';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
+import axios from 'axios'
 
 function RelateItem() {
   const { id } = useParams();
@@ -12,19 +13,24 @@ function RelateItem() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(getSlidesPerView());
 
-  useEffect(() => {
-    fetch(`/locales/${i18next.language}/products.json`)
-      .then((response) => response.json())
-      .then((result) => {
-        const productsArray = Object.values(result);
-        const filteredProducts = productsArray.filter((item) => item.id !== parseInt(id));
 
-        setProductData(filteredProducts);
-      })
-      .catch((error) => {
-        console.error('Error fetching product data:', error);
-      });
-  }, [id, t]);
+  const fetchAllProductByCategory = async () => {
+    try {
+      // Use Axios to send the GET request
+      const response = await axios.get(`${process.env.REACT_APP_API}/getproductbycategory/?category_id=${1}`);
+      const result = response.data;
+      setProductData(result.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+
+  useEffect(() => {
+    fetchAllProductByCategory()
+  }, [t]); // Empty dependency array means this runs once when the component mounts
+
+
 
   // Memoize nextSlide to avoid unnecessary re-renders
   const nextSlide = useCallback(() => {
@@ -89,18 +95,22 @@ function RelateItem() {
         >
           {productData.map((item) => (
             <div
-              key={item.id}
+              key={item.ID}
               className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4"
               style={{ flexBasis: `${100 / slidesPerView}%` }}
             >
               <ItemCard
-                image={item.image}
-                id={item.id}
-                name={item.name}
-                category={item.category}
-                description={item.description}
-                searchword={item.searchword}
-                brand={item.brand}
+                picture_1={item.picture_1}
+                ID={item.ID}
+                name_th={item.name_th}
+                category_id={item.category_id}
+                description_th={item.description_th}
+                search_word_th={item.search_word_th}
+                brand_th={item.brand_th}
+                name_en={item.name_en}
+                description_en={item.description_en}
+                search_word_en={item.search_word_en}
+                brand_en={item.brand_en}
                 itemType={'type1'}
                 className="max-h-[500px]"
               />

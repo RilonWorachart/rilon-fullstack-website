@@ -5,7 +5,7 @@ import RecommendProductList from '../components/homepage/RecommendProductList'
 import YouTubeEmbed from '../components/homepage/YoutubeEmbed'
 import Contact from '../components/Contact'
 import QRcodeComponent from '../components/QRcodeComponent'
-import ItemList from '../components/ItemList'
+import CategoryList from '../components/homepage/CategoryList'
 import { useScroll } from '../components/header/ScrollContext';
 import { FaFacebookF, FaGlobe, FaInstagram, FaLine, FaPhoneAlt, FaYoutube, FaMapMarkerAlt } from "react-icons/fa";
 import { MdBusinessCenter, MdMail } from "react-icons/md";
@@ -244,7 +244,7 @@ function HomePage() {
                 </div>
 
                 <div ref={section2Ref}></div>
-                <ItemList />
+                <CategoryList />
 
                 <CategorySearch />
 

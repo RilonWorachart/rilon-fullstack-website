@@ -5,39 +5,41 @@ import { MdOutlineEmail } from "react-icons/md";
 import QRcodeComponent from '../QRcodeComponent'
 import SearchKeyButton from '../SearchKeyButton';
 import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
+import axios from 'axios';
 
 function ItemDetail() {
     const { id } = useParams();
     const [productData, setProductData] = useState([])
+    const [categoryData, setCategoryData] = useState([])
     const { t } = useTranslation();
 
+
+    const fetchProductById = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API}/getproductbyid?id=${id}`);
+            const result = response.data;
+            setProductData(result.data);
+        } catch (error) {
+            console.error("Error fetching product data:", error);
+        }
+    };
+
+    // Fetch category by ID
+    const fetchCategoryDetailById = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${1}`);
+            const result = response.data;
+            setCategoryData(result.data);
+        } catch (error) {
+            console.error("Error fetching category data:", error);
+        }
+    };
+
     useEffect(() => {
-        // Fetch product data (products.json)
-        fetch(`/locales/${i18next.language}/products.json`)
-          .then((response) => response.json())
-          .then((result) => {
-            // Find the product based on the 'id' prop
-            const foundProduct = result[`product${id}`]; // Assuming the key format is 'product1', 'product2', etc.
-    
-            if (foundProduct) {
-              // Translate product fields using i18next
-              const translatedProduct = {
-                ...foundProduct,
-                name: t(foundProduct.name), // Translate name
-                description: t(foundProduct.description), // Translate description
-                category: foundProduct.category.map(cat => t(cat)), // Translate each category
-                searchword: t(foundProduct.searchword), // Translate searchword
-                brand: t(foundProduct.brand), // Translate brand
-                html: foundProduct.html, // HTML can be directly inserted
-              };
-              setProductData(translatedProduct);
-            }
-          })
-          .catch((error) => {
-            console.error('Error fetching product data:', error);
-          });
-      }, [id, t]); 
+        fetchProductById();  // Fetch product data when the id or language changes
+        fetchCategoryDetailById()
+    }, []);
+
 
 
     return (
@@ -48,11 +50,11 @@ function ItemDetail() {
                         <span className="hover:text-[#00007E]">{t('itempage.p2')}</span>
                     </Link>
                     <span> » </span>
-                    <Link to="/catalog">
-                        <span className="hover:text-[#00007E]">{t('itempage.p3')}</span>
+                    <Link to={`/category/${productData.category_id}`}>
+                        <span className="hover:text-[#00007E]">{categoryData[0].name_th}</span>
                     </Link>
                     <span> » </span>
-                    <span className="">{productData.name}</span>
+                    <span className="">{productData.name_th}</span>
                 </p>
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>
             </div>
@@ -62,13 +64,13 @@ function ItemDetail() {
             </div>
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
-                <img className=" w-[100%] md:w-[35%] md:h-[100%]  border rounded-md md:mr-[40px]" src={`/images/products/${productData.image}`} alt={productData.name} />
+                <img className=" w-[100%] md:w-[35%] md:h-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${productData.picture_1}`} alt={productData.name_th} />
                 <div className="lg:w-[70%]">
-                    <p className="text-[32px] pt-4">{productData.name}</p>
+                    <p className="text-[32px] pt-4">{productData.name_th}</p>
                     <p className="py-1">
                         <span>{t('itempage.p5')} </span>
-                        <Link to={`/catalog/keyword/${productData.brand}`}>
-                            <span className="text-[#E2B22C]">{productData.brand}</span>
+                        <Link to={`/catalog/keyword/${productData.brand_th}`}>
+                            <span className="text-[#E2B22C]">{productData.brand_th}</span>
                         </Link>
                     </p>
                     <hr></hr>
@@ -83,25 +85,15 @@ function ItemDetail() {
                     <hr></hr>
                     <p className="py-2">{t('itempage.p6')}</p>
                     <div className="flex">
-                        {
-                            productData?.category_filter?.length > 0 ? (
-                                productData.category_filter.map((filterData, index) => {                                   
-                                    return (
-                                        <Link key={index} to={`/catalog/keyword/${filterData}`}>
-                                            <button className="bg-[#E2B22C] border text-white text-[13px] py-1 px-4 mr-2 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
-                                                {productData.category[index]} {/* Display category name */}
-                                            </button>
-                                        </Link>
-                                    );
-                                })
-                            ) : (
-                                <p>{t('itempage.p7')}</p>  // Fallback if no categories are available
-                            )
-                        }
+                        <Link to={`/category/${productData.category_id}`}>
+                            <button className="bg-[#E2B22C] border text-white text-[13px] py-1 px-4 mr-2 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
+                                {categoryData[0].name_th} {/* Display category name */}
+                            </button>
+                        </Link>
                     </div>
                     <p className="py-2">{t('itempage.p12')}</p>
-                    <Link to={`/catalog/keyword/${productData.searchword_filter}`}>
-                        <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{productData.searchword}</button>
+                    <Link to={`/catalog/keyword/${productData.search_word_th}`}>
+                        <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{productData.search_word_th}</button>
                     </Link>
                     <div>
 
@@ -136,9 +128,7 @@ function ItemDetail() {
                             </div>
                         </a>
                     </div>
-
                 </div>
-
             </div>
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[20px] py-[10px] border-[1px] border-lightgray rounded-md">
@@ -149,8 +139,10 @@ function ItemDetail() {
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
                 </div>
                 <div>
-                    <h1 className="text-[32px] pt-4 pb-2 text-center">{productData.name}</h1>
-                    <div dangerouslySetInnerHTML={{ __html: productData.html }} className="py-4" />
+                    <p className="pt-6 pb-2">{productData.description_th}</p>
+                </div>
+                <div className="pb-[50px] pt-[20px]">
+                    <img className="mx-[auto] w-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${productData.picture_2}`} alt={productData.name_th} ></img>
                 </div>
                 <QRcodeComponent />
                 <div className="text-center">
