@@ -6,6 +6,10 @@ import ItemPage from "./pages/ItemPage.js";
 import FormPage from "./pages/FormPage.js";
 import CategoryPage from './pages/CategoryPage.js'
 import CatalogKeywordPage from "./pages/CatalogKeywordPage.js";
+import AdminLoginPage from './adminpages/AdminLoginPage.js'
+import AdminItemPage from './adminpages/AdminItemPage.js';
+import AdminEditItemPage from './adminpages/AdminEditItemPage.js'
+import AdminCreateItemPage from './adminpages/AdminCreateItemPage.js'
 import FixedButton from "./components/FixedButton.js";
 import Header from "./components/header/Header.js";
 import ScrollToTop from "./utils/ScrollToTop.js";
@@ -24,10 +28,13 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/item/:id" element={<ItemPage />} />
-            <Route path="/request-form" element={<FormPage />} />
             <Route path="/catalog/keyword/:key" element={<CatalogKeywordPage />} />
             <Route path="/category/:id" element={<CategoryPage />} />
-            <Route path="/request-form-detail" elemant={<FormPage />} />
+            <Route path="/requestform" elemant={<FormPage />} />
+            <Route path="/adminlogin" element={<AdminLoginPage />} />
+            <Route path="/adminitem" element={<AdminItemPage />} />
+            <Route path="/admincreate" element={<AdminCreateItemPage />} />
+            <Route path="/adminedit/:id" element={<AdminEditItemPage />} />
           </Routes>
         </ScrollProvider>
       </BrowserRouter>

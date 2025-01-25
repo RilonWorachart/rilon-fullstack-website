@@ -9,10 +9,15 @@ import axios from 'axios';
 
 function ItemDetail() {
     const { id } = useParams();
-    const [productData, setProductData] = useState([])
-    const [categoryData, setCategoryData] = useState([])
+    const [productData, setProductData] = useState(null);  // Initially null to check if data is fetched
+    const [categoryData, setCategoryData] = useState([]);
     const { t } = useTranslation();
 
+    const Categories = [
+        { id: 1, name_th: 'เครื่องเชื่อมอาร์กอน', name_en: 'An argon welding machine' },
+        { id: 2, name_th: 'แท็บเล็ต', name_en: 'Tablet' },
+        { id: 3, name_th: 'กล้อง', name_en: 'Camera' },
+    ];
 
     const fetchProductById = async () => {
         try {
@@ -24,12 +29,12 @@ function ItemDetail() {
         }
     };
 
-    // Fetch category by ID
-    const fetchCategoryDetailById = async () => {
+    // Fetch category data (optional - you may already have the categories hardcoded as in your Categories array)
+    const fetchCategoryData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${1}`);
+            const response = await axios.get(`${process.env.REACT_APP_API}/getcategories`);
             const result = response.data;
-            setCategoryData(result.data);
+            setCategoryData(result.data); // Populate category data
         } catch (error) {
             console.error("Error fetching category data:", error);
         }
@@ -37,10 +42,16 @@ function ItemDetail() {
 
     useEffect(() => {
         fetchProductById();  // Fetch product data when the id or language changes
-        fetchCategoryDetailById()
-    }, []);
+        fetchCategoryData();  // Fetch category data if needed
+    }, [id]);
 
+    // If productData is still null, show loading state
+    if (!productData) {
+        return <div>Loading...</div>;
+    }
 
+    // Find the category name based on productData.category_id
+    const category = Categories.find(category => category.id === productData.category_id);
 
     return (
         <>
@@ -51,7 +62,7 @@ function ItemDetail() {
                     </Link>
                     <span> » </span>
                     <Link to={`/category/${productData.category_id}`}>
-                        <span className="hover:text-[#00007E]">{categoryData[0].name_th}</span>
+                        <span className="hover:text-[#00007E]">{category ? category.name_th : "Category"}</span>
                     </Link>
                     <span> » </span>
                     <span className="">{productData.name_th}</span>
@@ -59,12 +70,12 @@ function ItemDetail() {
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>
             </div>
 
-            <div className="flex justify-end ">
+            <div className="flex justify-end">
                 <SearchKeyButton />
             </div>
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
-                <img className=" w-[100%] md:w-[35%] md:h-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${productData.picture_1}`} alt={productData.name_th} />
+                <img className="w-[100%] md:w-[35%] md:h-[100%] border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${productData.picture_1}`} alt={productData.name_th} />
                 <div className="lg:w-[70%]">
                     <p className="text-[32px] pt-4">{productData.name_th}</p>
                     <p className="py-1">
@@ -73,21 +84,18 @@ function ItemDetail() {
                             <span className="text-[#E2B22C]">{productData.brand_th}</span>
                         </Link>
                     </p>
-                    <hr></hr>
+                    <hr />
                     <div className="flex py-6">
-                        <Link to={`/catalog/item/${id}/request-form`}>
+                        <Link to={`/form`}>
                             <button className="bg-[#E2B22C] border text-white py-2 px-6 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{t('itempage.p13')}</button>
                         </Link>
-                        <Link to={`/catalog/item/${id}/request-form`}>
-                            <button className="bg-[#E2B22C] border text-white py-2 px-6 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{t('itempage.p14')}</button>
-                        </Link>
                     </div>
-                    <hr></hr>
+                    <hr />
                     <p className="py-2">{t('itempage.p6')}</p>
                     <div className="flex">
                         <Link to={`/category/${productData.category_id}`}>
                             <button className="bg-[#E2B22C] border text-white text-[13px] py-1 px-4 mr-2 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
-                                {categoryData[0].name_th} {/* Display category name */}
+                                {category ? category.name_th : "Category"}
                             </button>
                         </Link>
                     </div>
@@ -95,10 +103,8 @@ function ItemDetail() {
                     <Link to={`/catalog/keyword/${productData.search_word_th}`}>
                         <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{productData.search_word_th}</button>
                     </Link>
-                    <div>
-
-                    </div>
-                    <hr></hr>
+                    <div></div>
+                    <hr />
                     <p className="py-2">{t('itempage.p8')}</p>
 
                     <div className="flex">
@@ -142,7 +148,7 @@ function ItemDetail() {
                     <p className="pt-6 pb-2">{productData.description_th}</p>
                 </div>
                 <div className="pb-[50px] pt-[20px]">
-                    <img className="mx-[auto] w-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${productData.picture_2}`} alt={productData.name_th} ></img>
+                    <img className="mx-[auto] w-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${productData.picture_2}`} alt={productData.name_th} />
                 </div>
                 <QRcodeComponent />
                 <div className="text-center">
@@ -155,9 +161,8 @@ function ItemDetail() {
                     </div>
                 </div>
             </div>
-
         </>
-    )
+    );
 }
 
-export default ItemDetail
+export default ItemDetail;

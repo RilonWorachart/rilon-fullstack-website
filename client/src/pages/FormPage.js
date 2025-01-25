@@ -7,38 +7,11 @@ import i18next from 'i18next';
 import Swal from 'sweetalert2'
 
 function FormPage() {
-  const { id } = useParams();
   const [productData, setProductData] = useState({});
   const [provinceOptions, setProvinceOptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    // Fetch product data
-    fetch(`/locales/${i18next.language}/products.json`)
-    .then((response) => response.json())
-    .then((result) => {
-      // Find the product based on the 'id' prop
-      const foundProduct = result[`product${id}`]; // Assuming the key format is 'product1', 'product2', etc.
-
-      if (foundProduct) {
-        // Translate product fields using i18next
-        const translatedProduct = {
-          ...foundProduct,
-          name: t(foundProduct.name), // Translate name
-          description: t(foundProduct.description), // Translate description
-          category: foundProduct.category.map(cat => t(cat)), // Translate each category
-          searchword: t(foundProduct.searchword), // Translate searchword
-          brand: t(foundProduct.brand), // Translate brand
-          html: foundProduct.html, // HTML can be directly inserted
-        };
-        setProductData(translatedProduct);
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching product data:', error);
-    });
-}, [id, t]); 
 
   // Fetch province options
   useEffect(() => {
@@ -77,15 +50,6 @@ function FormPage() {
     },
   });
 
-
-  useEffect(() => {
-    if (productData.name) {
-      setFormData(prevData => ({
-        ...prevData,
-        product: productData.name, // Update product field when productData is fetched
-      }));
-    }
-  }, [productData]); // This effect runs when productData changes
 
   // Handle form data changes
   const handleChange = (e) => {
@@ -192,7 +156,6 @@ function FormPage() {
         <p className="py-1">
           <Link to="/" className="hover:text-[#00007E]">{t('formpage.p1')}</Link> <span> » </span>
           <Link to="/catalog" className="hover:text-[#00007E]">{t('formpage.p2')}</Link> <span> » </span>
-          <Link to={`/catalog/item/${id}`} className="hover:text-[#00007E]">{productData.name}</Link>
           <span>{t('formpage.p3')}</span>
         </p>
         <h2 className="py-1 text-[20px]">{t('formpage.p4')}</h2>
@@ -403,7 +366,7 @@ function FormPage() {
 
             {/* Submit Button */}
             <div className="flex justify-center pt-5">
-              <Link to={`/catalog/item/${id}`}>
+              <Link to={`/`}>
                 <button type="button" className="py-1 px-2 mx-2 text-[#DC3545] border border-[#DC3545] hover:text-white hover:bg-[#DC3545]  transition duration-300">{t('formpage.p39')}</button>
               </Link>
               <input type="submit" value={t('formpage.p40')} className="py-1 px-2 text-[#28A745] border border-[#28A745] hover:text-white hover:bg-[#28A745]  transition duration-300" />
