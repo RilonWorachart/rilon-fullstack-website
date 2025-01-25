@@ -3,9 +3,44 @@ import axios from 'axios';
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Swal from 'sweetalert2';
 
 const AdminCreateItemPage = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios
+        .post(
+          `${process.env.REACT_APP_API}/authen`,
+          {}, // Empty body, since it's a POST request with only Authorization header
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data.status === "ok") {
+            // If token is valid, do nothing or perform any necessary actions
+            fetchCategories();
+          } else {
+            localStorage.removeItem("token");
+            window.location = "/adminlogin"; // Redirect to login if token is invalid
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          // Optional: handle error (e.g., show error message)
+          localStorage.removeItem("token");
+          window.location = "/adminlogin"; // Redirect to login if error occurs
+        });
+    } else {
+      window.location = "/adminlogin"; // Redirect to login if no token
+    }
+  }, []);
 
 
   const [formData, setFormData] = useState({
@@ -37,9 +72,6 @@ const AdminCreateItemPage = () => {
     setCategories(fetchedCategories);
   };
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,7 +87,17 @@ const AdminCreateItemPage = () => {
   };
 
   const handleLogout = () => {
-
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    Swal.fire({
+      title: 'Success!',
+      text: 'Logout successfully!',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    })
+    setTimeout(() => {
+      window.location = "/adminlogin"; // Redirect to the admin item page after successful login
+    }, 1000);
   }
 
   return (
@@ -68,15 +110,15 @@ const AdminCreateItemPage = () => {
           <span>Create Form</span>
         </p>
         <div className="flex className=">
-            <Link to="/adminitem" w>
-              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px]">
-                Back
-              </button>
-            </Link>
-            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px] ml-[10px]">
-              Log out
+          <Link to="/adminitem" w>
+            <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px]">
+              Back
             </button>
-          </div>
+          </Link>
+          <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px] ml-[10px]">
+            Log out
+          </button>
+        </div>
       </div>
 
       <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] pt-4 pb-10">

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Footer from '../components/Footer'
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Swal from 'sweetalert2';
 
 function AdminEditItemPage() {
     const { t } = useTranslation();
@@ -10,19 +11,51 @@ function AdminEditItemPage() {
     const [productData, setProductData] = useState(null);  // Initialize with null
     const [categoryData, setCategoryData] = useState([]);
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            axios
+                .post(
+                    `${process.env.REACT_APP_API}/authen`,
+                    {}, // Empty body, since it's a POST request with only Authorization header
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer " + token,
+                        },
+                    }
+                )
+                .then((response) => {
+                    if (response.data.status === "ok") {
+                        // If token is valid, do nothing or perform any necessary actions
+                        fetchCategories();
+                    } else {
+                        localStorage.removeItem("token");
+                        window.location = "/adminlogin"; // Redirect to login if token is invalid
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    // Optional: handle error (e.g., show error message)
+                    localStorage.removeItem("token");
+                    window.location = "/adminlogin"; // Redirect to login if error occurs
+                });
+        } else {
+            window.location = "/adminlogin"; // Redirect to login if no token
+        }
+    }, []);
+
+
+
     const fetchCategories = () => {
         const fetchedCategories = [
-          { id: 1, th: 'สมาร์ทโฟน', en: 'Smartphone' },
-          { id: 2, th: 'แท็บเล็ต', en: 'Tablet' },
-          { id: 3, th: 'กล้อง', en: 'Camera' },
+            { id: 1, th: 'สมาร์ทโฟน', en: 'Smartphone' },
+            { id: 2, th: 'แท็บเล็ต', en: 'Tablet' },
+            { id: 3, th: 'กล้อง', en: 'Camera' },
         ];
         setCategoryData(fetchedCategories);
-      };
-
-
-      useEffect(() => {
-        fetchCategories();
-      }, []);
+    };
 
 
     const fetchProductById = async () => {
@@ -94,9 +127,18 @@ function AdminEditItemPage() {
     };
 
     const handleLogout = () => {
-
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        Swal.fire({
+            title: 'Success!',
+            text: 'Logout successfully!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        })
+        setTimeout(() => {
+            window.location = "/adminlogin"; // Redirect to the admin item page after successful login
+        }, 1000);
     }
-
 
     return (
         <>

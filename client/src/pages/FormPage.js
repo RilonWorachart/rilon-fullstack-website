@@ -154,23 +154,17 @@ function FormPage() {
     <div className="min-h-screen font-plex-sans-thai">
       <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
         <p className="py-1">
-          <Link to="/" className="hover:text-[#00007E]">{t('formpage.p1')}</Link> <span> » </span>
-          <Link to="/catalog" className="hover:text-[#00007E]">{t('formpage.p2')}</Link> <span> » </span>
+          <Link to="/" className="hover:text-[#00007E]">{t('formpage.p1')}</Link>
           <span>{t('formpage.p3')}</span>
         </p>
         <h2 className="py-1 text-[20px]">{t('formpage.p4')}</h2>
       </div>
 
       <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] pt-4 pb-10">
-        <div>
+        <div className="mb-[30px]">
           <h1 className="text-[30px]">{t('formpage.p5')}</h1>
           <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
         </div>
-
-        <p className="text-[28px] pt-[28px]">
-          <span>{t('formpage.p6')}</span>
-          <span>{productData.name}</span>
-        </p>
 
         <div className="my-[10px] px-[20px] py-[10px] border-[1px] border-lightgray rounded-md">
           <div className="text-center">

@@ -34,15 +34,21 @@ function ItemListbyCategory() {
 
   return (
     <>
-      <div className="mx-[80px] my-[20px] text-[#E2B22C] text-[30px] flex justify-end items-center">
-        <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={() => setItemType("type1")}/>
-        <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")}/>
+      <div className="mx-[20px] ">
+        <h1 className="text-[30px]">
+          รายการสินค้า
+        </h1>
+        <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
       </div>
-      <div className={`mb-[40px] mx-[80px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
+      <div className="mx-[20px] mb-[20px] text-[#E2B22C] text-[30px] flex justify-end items-center">
+        <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={() => setItemType("type1")} />
+        <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")} />
+      </div>
+      <div className={`mb-[40px] mx-[20px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
         {productData.map((item) => {
           return (
-            <ItemCard key={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} ID={item.ID} name_th={item.name_th} 
-              description_th={item.description_th} search_word_th={item.search_word_th} brand_th={item.brand_th} 
+            <ItemCard key={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} ID={item.ID} name_th={item.name_th}
+              description_th={item.description_th} search_word_th={item.search_word_th} brand_th={item.brand_th}
               name_en={item.name_en} description_en={item.description_en} search_word_en={item.search_word_en} brand_en={item.brand_en}
               itemType={itemType}
             />

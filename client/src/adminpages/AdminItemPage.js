@@ -7,12 +7,55 @@ import { CgMenuGridR } from "react-icons/cg";
 import { TfiMenuAlt } from "react-icons/tfi"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 function AdminItemPage() {
   const [productData, setProductData] = useState([])
   const [itemType, setItemType] = useState("type1")
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      axios
+        .post(
+          `${process.env.REACT_APP_API}/authen`,
+          {}, // Empty body, since it's a POST request with only Authorization header
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data.status === "ok") {
+            // If token is valid, do nothing or perform any necessary actions
+            fetchAllProduct()
+          } else {
+            localStorage.removeItem("token");
+            window.location = "/adminlogin"; // Redirect to login if token is invalid
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          // Optional: handle error (e.g., show error message)
+          localStorage.removeItem("token");
+          window.location = "/adminlogin"; // Redirect to login if error occurs
+          Swal.fire({
+            title: 'Oops!',
+            text: 'Please login again.',
+            icon: 'error',   // Error icon
+            confirmButtonText: 'Okay'
+          });
+          console.log(token)
+        });
+    } else {
+      window.location = "/adminlogin"; // Redirect to login if no token
+    }
+  }, [t]);
 
 
   const fetchAllProduct = async () => {
@@ -28,29 +71,52 @@ function AdminItemPage() {
   };
 
 
-  useEffect(() => {
-    fetchAllProduct(); // Fetch products whenever 'key' or language changes
-  }, [t]);
-
 
   const handleLogout = () => {
-
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    Swal.fire({
+      title: 'Success!',
+      text: 'Logout successfully!',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    })
+    setTimeout(() => {
+      window.location = "/adminlogin"; // Redirect to the admin item page after successful login
+    }, 1000);
   }
 
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [brand, setBrand] = useState('')
+  const [category, setCategory] = useState('')
 
   const handleInputChange = (e) => {
-      setSearchTerm(e.target.value);
-    };
-  
-  
-    const handleSearch = (e) => {
-      e.preventDefault();
-    }
+    setSearchTerm(e.target.value);
+  };
 
-  
-    const linkPath = searchTerm === "" ? "/catalog" : `/catalog/keyword/${searchTerm}`;
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+  }
+
+  const categories = [
+    { category_id: 1, category_name: 'เครื่องเชื่อมอาร์กอน' },
+    { category_id: 2, category_name: 'เครื่องเชื่อมไฟฟ้า' },
+    { category_id: 3, category_name: 'เครื่องเชื่อมซีโอทู' },
+    { category_id: 4, category_name: 'เครื่องเชื่อมเลเซอร์' },
+    { category_id: 5, category_name: 'เครื่องเชื่อมซับเมริก์' },
+    { category_id: 6, category_name: 'เครื่องตัดพลาสม่า' },
+    { category_id: 7, category_name: 'เครื่องตัดตามแบบ' },
+    { category_id: 8, category_name: 'เครื่องตัดตามราง' },
+    { category_id: 9, category_name: 'เครื่องป้อนลวดเชื่อม' },
+    { category_id: 10, category_name: 'เครื่องหมุนชิ้นงานอัตโนมัติ' },
+    { category_id: 11, category_name: 'อุปกรณ์สายเชื่อมซีโอทู' },
+    { category_id: 12, category_name: 'อุปกรณ์สายเชื่อมอาร์กอน' },
+    { category_id: 13, category_name: 'อุปกรณ์สายเชื่อมไฟฟ้า' },
+    { category_id: 14, category_name: 'อุปกรณ์สายตัดพลาสม่า' },
+    { category_id: 15, category_name: 'อุปกรณ์อื่นๆ' },
+  ];
 
 
   return (
@@ -65,7 +131,7 @@ function AdminItemPage() {
             <span className="">Admin</span>
           </p>
           <div className="flex className=">
-            <Link to="/admincreate" w>
+            <Link to="/admincreate">
               <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px]">
                 Create
               </button>
@@ -83,18 +149,15 @@ function AdminItemPage() {
               type="text"
               placeholder={t('categorypage.p4')}
               className="flex-grow p-1 border-none outline-none rounded-l-full"
-              onChange={handleInputChange}
-              value={searchTerm}
+              onChange={(event) => setSearchTerm(event)}
               required
             />
-            <Link to={linkPath}>
-              <button
-                type="submit"
-                className="bg-transparent border-none text-[#6C757D]  rounded-r-full"
-              >
-                <FaSearch />
-              </button>
-            </Link>
+            <button
+              type="submit"
+              className="bg-transparent border-none text-[#6C757D]  rounded-r-full"
+            >
+              <FaSearch />
+            </button>
           </form>
         </div>
 
@@ -107,20 +170,18 @@ function AdminItemPage() {
               <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
             </div>
             <div className="flex flex-wrap justify-center items-center mx-[auto] py-10" >
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{t('search.p2')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p3')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p4')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p5')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p6')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p7')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p8')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p9')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p10')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p11')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p12')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p13')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p14')}</button>
-                <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p15')}</button>
+              {categories.map((category, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCategory(categories[index].category_id)}
+                  className={`bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${category === categories[index].category_id
+                    ? 'bg-white text-[#42189F] border border-[#42189F]'
+                    : ''
+                    }`}
+                >
+                  {categories[index].category_name}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -132,8 +193,9 @@ function AdminItemPage() {
               <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
             </div>
             <div className="flex flex-wrap justify-center items-center mx-[auto] py-10" >
-              <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p17')}</button>
-              <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{t('search.p18')}</button>
+              <button onClick={() => setBrand('rilon')} className={`bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "rilon" ? 'bg-white text-[#42189F] border border-[#42189F]' : ''}`}>RILON</button>
+              <button onClick={() => setBrand('jw')} className={`bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "jw" ? 'bg-white text-[#42189F] border border-[#42189F]' : ''}`}>JW</button>
+              <button onClick={() => setBrand('jingweitip')} className={`bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "jingweitip" ? 'bg-white text-[#42189F] border border-[#42189F]' : ''}`}>JINGWEITIP</button>
             </div>
           </div>
         </div>
@@ -144,7 +206,27 @@ function AdminItemPage() {
         </div>
 
         <div className={`mb-[40px] mx-[80px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
-          {productData.map((item) => {
+          {productData .filter((item) => {
+          if (searchTerm == "") {
+            return item;
+          } else if (item.name_th.includes(searchTerm)) {
+            return item;
+          }
+        })
+        .filter((item) => {
+          if (category === "") {
+            return item;
+          } else if (item.category_id === category) {
+            return item;
+          }
+        })
+        .filter((item) => {
+          if (brand === "") {
+            return item;
+          } else if (item.brand_th.toLowerCase() === brand) {
+            return item;
+          }
+        }).map((item) => {
             return (
               <AdminItemCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} category_id={item.category_id}
                 description_th={item.description_th} search_word_th={item.search_word_th} brand={item.brand_th} name_en={item.name_en} description_en={item.description_en} search_word_en={item.search_word_en} itemType={itemType}

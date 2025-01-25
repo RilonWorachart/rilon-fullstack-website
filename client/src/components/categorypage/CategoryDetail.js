@@ -15,22 +15,22 @@ function CategoryDetail() {
 
     const fetchCategoryById = async () => {
         try {
-          // Use Axios to send the GET request
-          const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${id}`)
-      
-          const result = response.data;
-          console.log(result)
-          console.log(process.env.REACT_APP_API)
-          setProductData(result.data[0]);
+            // Use Axios to send the GET request
+            const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${id}`)
+
+            const result = response.data;
+            console.log(result)
+            console.log(process.env.REACT_APP_API)
+            setProductData(result.data[0]);
         } catch (error) {
-          console.error("Error fetching user data:", error);
+            console.error("Error fetching user data:", error);
         }
-      };
-    
-    
-      useEffect(() => {
+    };
+
+
+    useEffect(() => {
         fetchCategoryById()
-      }, []); // Empty dependency array means this runs once when the component mounts
+    }, []); // Empty dependency array means this runs once when the component mounts
 
 
     return (
@@ -62,8 +62,8 @@ function CategoryDetail() {
                         <span className="text-[#E2B22C]">{categoryData.description_th}</span>
                     </p>
                     <hr></hr>
-                    
-                   
+
+
                     <p className="py-2">{t('itempage.p8')}</p>
 
                     <div className="flex">
@@ -96,17 +96,18 @@ function CategoryDetail() {
                 </div>
             </div>
 
-            <ItemListbyCategory />
-
-            <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[20px] pt-[50px] pb-[10px] border-[1px] border-lightgray rounded-md">
-                <QRcodeComponent />
-                <div className="text-center">
-                    <p className="pt-10 pb-2 font-bold text-[16px] text-[#FF0000]">{t('itempage.p10')}</p>
-                    <div className="pb-8 text-[17px] font-semibold">
-                        <p className="py-2">08-1694-5000 , 098-426-6953 </p>
-                        <p className="py-2">095-961-9901 , 089-660-9609</p>
-                        <p className="py-2">094-695-5599</p>
-                        <p className="py-2">081-697-7000 office</p>
+            <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] pt-[20px] pb-[10px] border-[1px] border-lightgray rounded-md">
+                <ItemListbyCategory />
+                <div className="pt-[20px]">
+                    <QRcodeComponent />
+                    <div className="text-center">
+                        <p className="pt-10 pb-2 font-bold text-[16px] text-[#FF0000]">{t('itempage.p10')}</p>
+                        <div className="pb-8 text-[17px] font-semibold">
+                            <p className="py-2">08-1694-5000 , 098-426-6953 </p>
+                            <p className="py-2">095-961-9901 , 089-660-9609</p>
+                            <p className="py-2">094-695-5599</p>
+                            <p className="py-2">081-697-7000 office</p>
+                        </div>
                     </div>
                 </div>
             </div>

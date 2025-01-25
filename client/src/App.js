@@ -30,7 +30,7 @@ function App() {
             <Route path="/item/:id" element={<ItemPage />} />
             <Route path="/catalog/keyword/:key" element={<CatalogKeywordPage />} />
             <Route path="/category/:id" element={<CategoryPage />} />
-            <Route path="/requestform" elemant={<FormPage />} />
+            <Route path="/requestform" element={<FormPage />} />
             <Route path="/adminlogin" element={<AdminLoginPage />} />
             <Route path="/adminitem" element={<AdminItemPage />} />
             <Route path="/admincreate" element={<AdminCreateItemPage />} />
@@ -38,10 +38,9 @@ function App() {
           </Routes>
         </ScrollProvider>
       </BrowserRouter>
-
     </I18nextProvider>
-
   );
 }
+
 
 export default App;

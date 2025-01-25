@@ -25,7 +25,6 @@ function CategoryPage() {
                         <Contact />
                     </div>
                 </div>
-                <RelateItem/>
                 <CategorySearch />
                 <Footer />
             </div>

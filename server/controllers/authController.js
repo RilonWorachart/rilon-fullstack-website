@@ -53,6 +53,52 @@ export const authen = async (req, res, next) => {
     // Extract the token from the Authorization header
     const token = authHeader.split(" ")[1];
 
+    if (!token) {
+      return res.status(400).json({
+        status: "error",
+        message: "Token missing in Authorization header"
+      });
+    }
+
+    // Verify the token using the secret key
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+
+    // Attach the decoded data (user info) to the request for use in subsequent handlers
+    req.user = decoded;
+
+    // Respond with success and the decoded user info
+    return res.status(200).json({
+      status: "ok",
+      message: "Authentication successful",
+      user: req.user
+    });
+
+  } catch (err) {
+    console.log("Auth error: ", err); // Log error for debugging
+
+    // Send error response if the token verification fails
+    return res.status(401).json({
+      status: "error",
+      message: err.message
+    });
+  }
+};
+
+
+export const authenmiddleware = async (req, res, next) => {
+  try {
+    // Check if the Authorization header is present
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+      return res.status(400).json({
+        status: "error",
+        message: "Authorization header missing"
+      });
+    }
+
+    // Extract the token from the Authorization header
+    const token = authHeader.split(" ")[1];
+
     // If the token is missing in the header
     if (!token) {
       return res.status(400).json({
@@ -77,6 +123,7 @@ export const authen = async (req, res, next) => {
     });
   }
 };
+
 
 
 // Get user function using async/await with pool

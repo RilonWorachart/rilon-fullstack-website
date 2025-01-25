@@ -1,28 +1,62 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 function AdminLoginPage() {
-
   const [formData, setFormData] = useState({
     fname: '',
     password: '',
   });
 
-  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle the login logic here (e.g., authentication request)
-    console.log('Form submitted', formData);
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior.
 
+    // Extract form data from formData state
+    const jsonData = {
+      fname: formData.fname,
+      password: formData.password,
+    };
+
+    try {
+      // Send data to the server using axios
+      const response = await axios.post(
+        `${process.env.REACT_APP_API}/login`,
+        jsonData, // Send the jsonData directly (axios automatically sets Content-Type to application/json)
+      );
+
+      // Handle response data
+      if (response.data.status === "ok") {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("id", response.data.id);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Login successfully!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+        setTimeout(() => {
+          window.location = "/adminitem"; // Redirect to the admin item page after successful login
+        }, 1000);
+      } else {
+        Swal.fire({
+          title: 'Oops!',
+          text: 'Wrong username or password.',
+          icon: 'error',   // Error icon
+          confirmButtonText: 'Okay'
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <>
@@ -73,8 +107,7 @@ function AdminLoginPage() {
         </div>
       </div>
     </>
-
-  )
+  );
 }
 
-export default AdminLoginPage
+export default AdminLoginPage;

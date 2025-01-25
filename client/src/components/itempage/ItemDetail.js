@@ -86,7 +86,7 @@ function ItemDetail() {
                     </p>
                     <hr />
                     <div className="flex py-6">
-                        <Link to={`/form`}>
+                        <Link to={`/requestform`}>
                             <button className="bg-[#E2B22C] border text-white py-2 px-6 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{t('itempage.p13')}</button>
                         </Link>
                     </div>
