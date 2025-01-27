@@ -27,7 +27,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
       <div className={`px-5 py-5 ${itemType === "type2" ? "w-[70%]" : ""}`}>
         <div className="pb-[50px]">
           <p className="text-[28px] text-[#E5B22C] truncate">{name_th}</p>
-          <p className="text-[18px] py-2 truncate">{brand_th}</p>
+          <p className="text-[14px] line-clamp-2 uppercase  pb-[15px]">{brand_th}</p>
 
           {/* Sliding effect only for type1 */}
           <div

@@ -41,10 +41,6 @@ function CategoryDetail() {
                         <span className="hover:text-[#00007E]">{t('itempage.p2')}</span>
                     </Link>
                     <span> » </span>
-                    <Link to="/catalog">
-                        <span className="hover:text-[#00007E]">{t('itempage.p3')}</span>
-                    </Link>
-                    <span> » </span>
                     <span className="">{categoryData.name_th}</span>
                 </p>
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>

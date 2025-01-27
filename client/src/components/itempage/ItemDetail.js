@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { FaFacebook, FaLine, FaYoutube, FaInstagram } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import QRcodeComponent from '../QRcodeComponent'
+import QRcodeComponent from '../QRcodeComponent';
 import SearchKeyButton from '../SearchKeyButton';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -10,15 +10,10 @@ import axios from 'axios';
 function ItemDetail() {
     const { id } = useParams();
     const [productData, setProductData] = useState(null);  // Initially null to check if data is fetched
-    const [categoryData, setCategoryData] = useState([]);
+    const [categoryData, setCategoryData] = useState(null); // Start with null to avoid error
     const { t } = useTranslation();
 
-    const Categories = [
-        { id: 1, name_th: 'เครื่องเชื่อมอาร์กอน', name_en: 'An argon welding machine' },
-        { id: 2, name_th: 'แท็บเล็ต', name_en: 'Tablet' },
-        { id: 3, name_th: 'กล้อง', name_en: 'Camera' },
-    ];
-
+    // Fetch product data by ID
     const fetchProductById = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API}/getproductbyid?id=${id}`);
@@ -29,29 +24,34 @@ function ItemDetail() {
         }
     };
 
-    // Fetch category data (optional - you may already have the categories hardcoded as in your Categories array)
+    // Fetch category data using product's category_id
     const fetchCategoryData = async () => {
-        try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getcategories`);
-            const result = response.data;
-            setCategoryData(result.data); // Populate category data
-        } catch (error) {
-            console.error("Error fetching category data:", error);
+        if (productData && productData.category_id) {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${productData.category_id}`);
+                const result = response.data;
+                setCategoryData(result.data[0]); // Set category data
+            } catch (error) {
+                console.error("Error fetching category data:", error);
+            }
         }
     };
 
     useEffect(() => {
-        fetchProductById();  // Fetch product data when the id or language changes
-        fetchCategoryData();  // Fetch category data if needed
-    }, [id]);
+        fetchProductById();  // Fetch product data when component mounts or `id` changes
+    }, [id]);  // Depend on `id` to refetch if `id` changes
 
-    // If productData is still null, show loading state
-    if (!productData) {
-        return <div>Loading...</div>;
+    // Fetch category data when productData is available
+    useEffect(() => {
+        if (productData && productData.category_id) {
+            fetchCategoryData();  // Fetch category data after product data is available
+        }
+    }, [productData]);  // Depend on `productData` to trigger category data fetch
+
+    // Conditional rendering based on productData and categoryData availability
+    if (!productData || !categoryData) {
+        return <div>Loading...</div>; // Show loading state until data is ready
     }
-
-    // Find the category name based on productData.category_id
-    const category = Categories.find(category => category.id === productData.category_id);
 
     return (
         <>
@@ -62,7 +62,7 @@ function ItemDetail() {
                     </Link>
                     <span> » </span>
                     <Link to={`/category/${productData.category_id}`}>
-                        <span className="hover:text-[#00007E]">{category ? category.name_th : "Category"}</span>
+                        <span className="hover:text-[#00007E]">{categoryData.name_th}</span>
                     </Link>
                     <span> » </span>
                     <span className="">{productData.name_th}</span>
@@ -81,7 +81,7 @@ function ItemDetail() {
                     <p className="py-1">
                         <span>{t('itempage.p5')} </span>
                         <Link to={`/catalog/keyword/${productData.brand_th}`}>
-                            <span className="text-[#E2B22C]">{productData.brand_th}</span>
+                            <span className="text-[#E2B22C] uppercase">{productData.brand_th}</span>
                         </Link>
                     </p>
                     <hr />
@@ -95,7 +95,7 @@ function ItemDetail() {
                     <div className="flex">
                         <Link to={`/category/${productData.category_id}`}>
                             <button className="bg-[#E2B22C] border text-white text-[13px] py-1 px-4 mr-2 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
-                                {category ? category.name_th : "Category"}
+                                {categoryData.name_th}
                             </button>
                         </Link>
                     </div>

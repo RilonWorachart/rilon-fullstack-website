@@ -26,9 +26,12 @@ function CatalogKeywordPage() {
 
       const foundProducts = key
         ? productsArray.filter(item =>
+            (item.name_th && item.name_th.toLowerCase().includes(key.toLowerCase())) ||
+            (item.name_en && item.name_en.toLowerCase().includes(key.toLowerCase())) ||
             (item.search_word_th && item.search_word_th.toLowerCase().includes(key.toLowerCase())) ||
+            (item.search_word_en && item.search_word_en.toLowerCase().includes(key.toLowerCase())) ||
             (item.brand_th && item.brand_th.toLowerCase().includes(key.toLowerCase())) ||
-            (item.category_th && item.category_th.some(category => category.toLowerCase().includes(key.toLowerCase())))
+            (item.brand_en && item.brand_en.toLowerCase().includes(key.toLowerCase()))
           )
         : productsArray; // If no key, return all products
 
@@ -71,7 +74,7 @@ function CatalogKeywordPage() {
           {productData.map((item) => {
             return (
               <ItemCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} category_id={item.category_id}
-                description_th={item.description_th} search_word_th={item.search_word_th} brand={item.brand_th} name_en={item.name_en}  description_en={item.description_en} search_word_en={item.search_word_en} itemType={itemType}
+                description_th={item.description_th} search_word_th={item.search_word_th} brand_th={item.brand_th} brand_en={item.brand_en} name_en={item.name_en}  description_en={item.description_en} search_word_en={item.search_word_en} itemType={itemType}
               />
             )
           })}

@@ -17,7 +17,7 @@ function SearchKeyButton() {
       }
 
     
-      const linkPath = searchTerm === "" ? "/catalog" : `/catalog/keyword/${searchTerm}`;
+      const linkPath = searchTerm === "" ? "/" : `/catalog/keyword/${searchTerm}`;
 
     return (
         <>

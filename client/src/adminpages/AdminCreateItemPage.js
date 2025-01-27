@@ -7,6 +7,9 @@ import Swal from 'sweetalert2';
 
 const AdminCreateItemPage = () => {
   const { t } = useTranslation();
+  const [categories, setCategories] = useState([]);
+  const [brand, setBrand] = useState([]);
+  const [searchWord, setSearchword] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -60,16 +63,69 @@ const AdminCreateItemPage = () => {
     category_id: '', // For category ID
   });
 
-  const [categories, setCategories] = useState([]); // Categories from the backend
 
   // Example to fetch categories
   const fetchCategories = () => {
-    const fetchedCategories = [
-      { id: 1, th: 'สมาร์ทโฟน', en: 'Smartphone' },
-      { id: 2, th: 'แท็บเล็ต', en: 'Tablet' },
-      { id: 3, th: 'กล้อง', en: 'Camera' },
+    const categories = [
+      { category_id: 1, name_th: 'เครื่องเชื่อมอาร์กอน', name_en: 'Argon Welding Machine' },
+      { category_id: 2, name_th: 'เครื่องเชื่อมไฟฟ้า', name_en: 'Electric Welding Machine' },
+      { category_id: 3, name_th: 'เครื่องเชื่อมซีโอทู', name_en: 'CO2 Welding Machine' },
+      { category_id: 4, name_th: 'เครื่องเชื่อมเลเซอร์', name_en: 'Laser Welding Machine' },
+      { category_id: 5, name_th: 'เครื่องเชื่อมซับเมริก์', name_en: 'Submerged Arc Welding Machine' },
+      { category_id: 6, name_th: 'เครื่องตัดพลาสม่า', name_en: 'Plasma Cutting Machine' },
+      { category_id: 7, name_th: 'เครื่องตัดตามแบบ', name_en: 'Custom Cutting Machine' },
+      { category_id: 8, name_th: 'เครื่องตัดตามราง', name_en: 'Rail Cutting Machine' },
+      { category_id: 9, name_th: 'เครื่องป้อนลวดเชื่อม', name_en: 'Welding Wire Feeder' },
+      { category_id: 10, name_th: 'เครื่องหมุนชิ้นงานอัตโนมัติ', name_en: 'Automatic Workpiece Rotator' },
+      { category_id: 11, name_th: 'อุปกรณ์สายเชื่อมซีโอทู', name_en: 'CO2 Welding Cable Accessories' },
+      { category_id: 12, name_th: 'อุปกรณ์สายเชื่อมอาร์กอน', name_en: 'Argon Welding Cable Accessories' },
+      { category_id: 13, name_th: 'อุปกรณ์สายเชื่อมไฟฟ้า', name_en: 'Electric Welding Cable Accessories' },
+      { category_id: 14, name_th: 'อุปกรณ์สายตัดพลาสม่า', name_en: 'Plasma Cutting Cable Accessories' },
+      { category_id: 15, name_th: 'อุปกรณ์อื่นๆ', name_en: 'Other Accessories' }
     ];
-    setCategories(fetchedCategories);
+    setCategories(categories);
+  };
+
+
+  const fetchBrand = () => {
+    const BrandData = [
+      { id: 1, th: 'ไรล่อน', en: 'RILON' },
+      { id: 2, th: 'JW', en: 'JW' },
+      { id: 3, th: 'JINGWEITIP', en: 'JINGWEITIP' },
+    ];
+    setBrand(BrandData);
+  };
+
+
+  const fetchSearchWord = () => {
+    const searchwords = [
+      { id: 1, name_th: 'เครื่องเชื่อมอินวอเตอร์ราคาถูก', name_en: 'Cheap Inverter Welding Machine' },
+      { id: 2, name_th: 'เครื่องเชื่อมอินวอเตอร์คุณภาพดี', name_en: 'High-Quality Inverter Welding Machine' },
+      { id: 3, name_th: 'เครื่องเชื่อมไฟฟ้าราคาถูก', name_en: 'Cheap Electric Welding Machine' },
+      { id: 4, name_th: 'เครื่องเชื่อมไฟฟ้าคุณภาพดี', name_en: 'High-Quality Electric Welding Machine' },
+      { id: 5, name_th: 'เครื่องเชื่อมทิกราคาถูก', name_en: 'Cheap TIG Welding Machine' },
+      { id: 6, name_th: 'เครื่องเชื่อมทิกคุณภาพดี', name_en: 'High-Quality TIG Welding Machine' },
+      { id: 7, name_th: 'เครื่องเชื่อมอาร์กอนราคาถูก', name_en: 'Cheap Argon Welding Machine' },
+      { id: 8, name_th: 'เครื่องเชื่อมอาร์กอนคุณภาพดี', name_en: 'High-Quality Argon Welding Machine' },
+      { id: 9, name_th: 'เครื่องเชื่อมอลูมีเนียมสแตนเลสราคาถูก', name_en: 'Cheap Aluminum Stainless Steel Welding Machine' },
+      { id: 10, name_th: 'เครื่องเชื่อมอลูมีเนียมสแตนเลสคุณภาพดี', name_en: 'High-Quality Aluminum Stainless Steel Welding Machine' },
+      { id: 11, name_th: 'เครื่องเชื่อมมิกราคาถูก', name_en: 'Cheap MIG Welding Machine' },
+      { id: 12, name_th: 'เครื่องเชื่อมมิกคุณภาพดี', name_en: 'High-Quality MIG Welding Machine' },
+      { id: 13, name_th: 'เครื่องเชื่อมซีโอทูราคาถูก', name_en: 'Cheap CO2 Welding Machine' },
+      { id: 14, name_th: 'เครื่องเชื่อมซีโอทูคุณภาพดี', name_en: 'High-Quality CO2 Welding Machine' },
+      { id: 15, name_th: 'เครื่องตัดพลาสม่าราคาถูก', name_en: 'Cheap Plasma Cutting Machine' },
+      { id: 16, name_th: 'เครื่องตัดพลาสม่าคุณภาพดี', name_en: 'High-Quality Plasma Cutting Machine' },
+      { id: 17, name_th: 'อุปกรณ์งานเชื่อมราคาถูก', name_en: 'Cheap Welding Equipment' },
+      { id: 18, name_th: 'อุปกรณ์งานเชื่อมคุณภาพดี', name_en: 'High-Quality Welding Equipment' },
+      { id: 19, name_th: 'อะไหล่เครื่องเชื่อมราคาถูก', name_en: 'Cheap Welding Machine Spare Parts' },
+      { id: 20, name_th: 'อะไหล่เครื่องเชื่อมคุณภาพดี', name_en: 'High-Quality Welding Machine Spare Parts' },
+      { id: 21, name_th: 'สายเชื่อมตู้เชื่อมราคาถูก', name_en: 'Cheap Welding Machine Cables' },
+      { id: 22, name_th: 'สายเชื่อมตู้เชื่อมคุณภาพดี', name_en: 'High-Quality Welding Machine Cables' },
+      { id: 23, name_th: 'สายเชื่อมอาร์กอนราคาถูก', name_en: 'Cheap Argon Welding Cables' },
+      { id: 24, name_th: 'สายเชื่อมอาร์กอนคุณภาพดี', name_en: 'High-Quality Argon Welding Cables' }
+    ];
+    
+    setSearchword(searchwords);
   };
 
 
@@ -81,9 +137,32 @@ const AdminCreateItemPage = () => {
     }));
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted with data:', formData);
+    axios.post(`${process.env.REACT_APP_API}/createproduct`, formData)
+      .then((response) => {
+        console.log(response);
+        if (response.data.Status === 'ok') {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Create product successfully!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          })
+          setTimeout(() => {
+            window.location = "/adminitem"; // Redirect to the admin item page after successful login
+          }, 1000);
+        } else {
+          Swal.fire({
+            title: 'Fail!',
+            text: 'Create product failed!',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          })
+        }
+      })
+      .catch(er => console.log(er))
   };
 
   const handleLogout = () => {
@@ -193,9 +272,9 @@ const AdminCreateItemPage = () => {
                   className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 >
                   <option value="">Select a category</option>
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.th} / {category.en}
+                  {categories.map((result) => (
+                    <option key={result.category_id} value={result.category_id}>
+                      {result.name_th} / {result.name_en}
                     </option>
                   ))}
                 </select>
