@@ -7,7 +7,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    console.log(`${process.env.REACT_APP_API}/uploads/${picture_1}`)
+    // console.log(`${process.env.REACT_APP_API}/uploads/${picture_1}`)
   })
 
 
