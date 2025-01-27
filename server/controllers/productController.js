@@ -94,9 +94,6 @@ export const deleteProduct = async (req, res, next) => {
 
 
 
-
-
-
 export const createProduct = async (req, res, next) => {
     const {
         rilon_id, name_th, description_th, search_word_th,
@@ -104,9 +101,9 @@ export const createProduct = async (req, res, next) => {
         brand_en, other_en, category_id
     } = req.body;
 
-    const {
-        picture_1, picture_2
-    } = req.file
+    // Access the uploaded files using req.files
+    const picture_1 = req.files && req.files.picture_1 ? `/uploads/${req.files.picture_1[0].filename}` : null;
+    const picture_2 = req.files && req.files.picture_2 ? `/uploads/${req.files.picture_2[0].filename}` : null;
 
     // Check if the category_id exists in the categories table
     const [category] = await promisePool.execute("SELECT * FROM categories WHERE id = ?", [category_id]);
@@ -131,8 +128,8 @@ export const createProduct = async (req, res, next) => {
 
         res.json({ status: "ok", message: "Product has been created successfully" });
     } catch (err) {
-        // Handle error and return a message
         console.error(err);
         res.status(500).json({ status: "error", message: "Failed to create product" });
     }
 };
+

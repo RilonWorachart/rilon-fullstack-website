@@ -26,5 +26,4 @@ app.use('/api/uploads', express.static(uploadsPath));
 
 app.listen(3001, function () {
   console.log("Server listening on port 3001");
-  // console.log("Serving images from:", path.join(__dirname, 'public', 'uploads'));
 });

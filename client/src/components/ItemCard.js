@@ -9,7 +9,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
 
   return (
     <div
-      className={`shadow-md relative z-0 ${itemType === "type2" ? "flex my-2" : ""}`}
+      className={`shadow-md relative z-0 ${itemType === "type2" ? "md:flex my-2" : ""}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
@@ -18,13 +18,13 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
           <img
             className={`h-[100%] w-[100%] transition-transform duration-300 transform ${itemType === "type2" ? "" : ""
               } ${isActive ? 'scale-110 opacity-75' : ''}`}
-            src={`${process.env.REACT_APP_API}/uploads/${picture_1}`}
+            src={`${process.env.REACT_APP_API}${picture_1}`}
             alt={name_th}
           />
         </div>
       </Link>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "w-[70%]" : ""}`}>
+      <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[70%] md:my-[auto]" : ""}`}>
         <div className="pb-[50px]">
           <p className="text-[28px] text-[#E5B22C] truncate">{name_th}</p>
           <p className="text-[14px] line-clamp-2 uppercase  pb-[15px]">{brand_th}</p>

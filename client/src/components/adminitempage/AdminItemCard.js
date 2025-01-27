@@ -33,8 +33,6 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
   };
 
   useEffect(() => {
-    // Log category_id to debug if it's being passed correctly
-    console.log("category_id:", category_id);
     if (category_id) {
       fetchCategoryData();  // Fetch category data after product data is available
     } else {
@@ -90,28 +88,28 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
 
   return (
     <div
-      className={`shadow-md relative z-0 ${itemType === "type2" ? "flex my-2" : ""}`}
+      className={`shadow-md relative z-0 ${itemType === "type2" ? "md:flex my-2" : ""}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <div className="bg-black overflow-hidden justify-center">
+      <div className={`bg-black overflow-hidden justify-center ${itemType === "type2" ? "md:w-[35%]" : ""}`}>
         <img
           className={`h-[100%] w-[100%] transition-transform duration-300 transform ${itemType === "type2" ? "" : ""
             } ${isActive ? 'scale-110 opacity-75' : ''}`}
-          src={`${process.env.REACT_APP_API}/uploads/${picture_1}`}
+          src={`${process.env.REACT_APP_API}${picture_1}`}
           alt={name_th}
         />
       </div>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "w-[70%]" : ""}`}>
+      <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[65%] my-[auto]" : ""}`}>
         <div className="pb-[50px]">
           <p className="text-[28px] text-[#E5B22C] truncate">{name_th}</p>
           <p className={`text-[14px] text-[#E5B22C] line-clamp-2 uppercase ${itemType === "type2" ? "w-[100%]" : ""}`}>{brand_th}</p>
           <p className={`text-[14px] text-[#E5B22C] line-clamp-2 py-[15px] ${itemType === "type2" ? "w-[100%]" : ""}`}>{description_th}</p>
           <img
-            className={`h-[175px] w-[175px] ${itemType === "type2" ? "" : "hidden"
+            className={`h-[40%] w-[40%] mx-[auto] ${itemType === "type2" ? "" : "hidden"
               }`}
-            src={`${process.env.REACT_APP_API}/uploads/${picture_2}`}
+            src={`${process.env.REACT_APP_API}${picture_2}`}
             alt={name_th}
           />
         </div>

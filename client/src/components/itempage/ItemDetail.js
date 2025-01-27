@@ -17,8 +17,13 @@ function ItemDetail() {
     const fetchProductById = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API}/getproductbyid?id=${id}`);
+            console.log("Product Response:", response.data);  // Log the full response data
             const result = response.data;
-            setProductData(result.data);
+            if (result && result.data && result.data[0]) {
+                setProductData(result.data[0]);
+            } else {
+                console.error("Invalid product data:", result);
+            }
         } catch (error) {
             console.error("Error fetching product data:", error);
         }
@@ -48,9 +53,9 @@ function ItemDetail() {
         }
     }, [productData]);  // Depend on `productData` to trigger category data fetch
 
-    // Conditional rendering based on productData and categoryData availability
     if (!productData || !categoryData) {
-        return <div>Loading...</div>; // Show loading state until data is ready
+        console.log("Loading data:", productData, categoryData); // Log to check the state
+        return <div>Loading...</div>;
     }
 
     return (
@@ -75,7 +80,7 @@ function ItemDetail() {
             </div>
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
-                <img className="w-[100%] md:w-[35%] md:h-[100%] border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${productData.picture_1}`} alt={productData.name_th} />
+                <img className="w-[100%] md:w-[35%] md:h-[100%] border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${productData.picture_1}`} alt={productData.name_th} />
                 <div className="lg:w-[70%]">
                     <p className="text-[32px] pt-4">{productData.name_th}</p>
                     <p className="py-1">
@@ -148,7 +153,7 @@ function ItemDetail() {
                     <p className="pt-6 pb-2">{productData.description_th}</p>
                 </div>
                 <div className="pb-[50px] pt-[20px]">
-                    <img className="mx-[auto] w-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${productData.picture_2}`} alt={productData.name_th} />
+                    <img className="mx-[auto] w-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${productData.picture_2}`} alt={productData.name_th} />
                 </div>
                 <QRcodeComponent />
                 <div className="text-center">

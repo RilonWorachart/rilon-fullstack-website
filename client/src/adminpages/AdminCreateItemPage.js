@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Footer from '../components/Footer'
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
 
 const AdminCreateItemPage = () => {
   const { t } = useTranslation();
-  const [categories, setCategories] = useState([]);
-  const [brand, setBrand] = useState([]);
-  const [searchWord, setSearchword] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -27,8 +25,8 @@ const AdminCreateItemPage = () => {
         )
         .then((response) => {
           if (response.data.status === "ok") {
-            // If token is valid, do nothing or perform any necessary actions
-            fetchCategories();
+            // If token is valid, fetch all category data
+            fetchAllCategoryData();
           } else {
             localStorage.removeItem("token");
             window.location = "/adminlogin"; // Redirect to login if token is invalid
@@ -36,7 +34,7 @@ const AdminCreateItemPage = () => {
         })
         .catch((error) => {
           console.error("Error:", error);
-          // Optional: handle error (e.g., show error message)
+          // Handle error (e.g., show error message)
           localStorage.removeItem("token");
           window.location = "/adminlogin"; // Redirect to login if error occurs
         });
@@ -45,9 +43,8 @@ const AdminCreateItemPage = () => {
     }
   }, []);
 
-
   const [formData, setFormData] = useState({
-    rilon_id: 'P001',
+    rilon_id: '',
     picture_1: null,
     picture_2: null,
     name_th: '',
@@ -63,106 +60,117 @@ const AdminCreateItemPage = () => {
     category_id: '', // For category ID
   });
 
-
-  // Example to fetch categories
-  const fetchCategories = () => {
-    const categories = [
-      { category_id: 1, name_th: 'เครื่องเชื่อมอาร์กอน', name_en: 'Argon Welding Machine' },
-      { category_id: 2, name_th: 'เครื่องเชื่อมไฟฟ้า', name_en: 'Electric Welding Machine' },
-      { category_id: 3, name_th: 'เครื่องเชื่อมซีโอทู', name_en: 'CO2 Welding Machine' },
-      { category_id: 4, name_th: 'เครื่องเชื่อมเลเซอร์', name_en: 'Laser Welding Machine' },
-      { category_id: 5, name_th: 'เครื่องเชื่อมซับเมริก์', name_en: 'Submerged Arc Welding Machine' },
-      { category_id: 6, name_th: 'เครื่องตัดพลาสม่า', name_en: 'Plasma Cutting Machine' },
-      { category_id: 7, name_th: 'เครื่องตัดตามแบบ', name_en: 'Custom Cutting Machine' },
-      { category_id: 8, name_th: 'เครื่องตัดตามราง', name_en: 'Rail Cutting Machine' },
-      { category_id: 9, name_th: 'เครื่องป้อนลวดเชื่อม', name_en: 'Welding Wire Feeder' },
-      { category_id: 10, name_th: 'เครื่องหมุนชิ้นงานอัตโนมัติ', name_en: 'Automatic Workpiece Rotator' },
-      { category_id: 11, name_th: 'อุปกรณ์สายเชื่อมซีโอทู', name_en: 'CO2 Welding Cable Accessories' },
-      { category_id: 12, name_th: 'อุปกรณ์สายเชื่อมอาร์กอน', name_en: 'Argon Welding Cable Accessories' },
-      { category_id: 13, name_th: 'อุปกรณ์สายเชื่อมไฟฟ้า', name_en: 'Electric Welding Cable Accessories' },
-      { category_id: 14, name_th: 'อุปกรณ์สายตัดพลาสม่า', name_en: 'Plasma Cutting Cable Accessories' },
-      { category_id: 15, name_th: 'อุปกรณ์อื่นๆ', name_en: 'Other Accessories' }
-    ];
-    setCategories(categories);
+  const fetchAllCategoryData = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
+      const result = response.data;
+      setCategoryData(result.data); // Set category data as an array
+    } catch (error) {
+      console.error("Error fetching category data:", error);
+    }
   };
 
+  const BrandData = [
+    { id: 1, name_th: 'ไรล่อน', name_en: 'RILON' },
+    { id: 2, name_th: 'JW', name_en: 'JW' },
+    { id: 3, name_th: 'JINGWEITIP', name_en: 'JINGWEITIP' },
+  ];
 
-  const fetchBrand = () => {
-    const BrandData = [
-      { id: 1, th: 'ไรล่อน', en: 'RILON' },
-      { id: 2, th: 'JW', en: 'JW' },
-      { id: 3, th: 'JINGWEITIP', en: 'JINGWEITIP' },
-    ];
-    setBrand(BrandData);
-  };
-
-
-  const fetchSearchWord = () => {
-    const searchwords = [
-      { id: 1, name_th: 'เครื่องเชื่อมอินวอเตอร์ราคาถูก', name_en: 'Cheap Inverter Welding Machine' },
-      { id: 2, name_th: 'เครื่องเชื่อมอินวอเตอร์คุณภาพดี', name_en: 'High-Quality Inverter Welding Machine' },
-      { id: 3, name_th: 'เครื่องเชื่อมไฟฟ้าราคาถูก', name_en: 'Cheap Electric Welding Machine' },
-      { id: 4, name_th: 'เครื่องเชื่อมไฟฟ้าคุณภาพดี', name_en: 'High-Quality Electric Welding Machine' },
-      { id: 5, name_th: 'เครื่องเชื่อมทิกราคาถูก', name_en: 'Cheap TIG Welding Machine' },
-      { id: 6, name_th: 'เครื่องเชื่อมทิกคุณภาพดี', name_en: 'High-Quality TIG Welding Machine' },
-      { id: 7, name_th: 'เครื่องเชื่อมอาร์กอนราคาถูก', name_en: 'Cheap Argon Welding Machine' },
-      { id: 8, name_th: 'เครื่องเชื่อมอาร์กอนคุณภาพดี', name_en: 'High-Quality Argon Welding Machine' },
-      { id: 9, name_th: 'เครื่องเชื่อมอลูมีเนียมสแตนเลสราคาถูก', name_en: 'Cheap Aluminum Stainless Steel Welding Machine' },
-      { id: 10, name_th: 'เครื่องเชื่อมอลูมีเนียมสแตนเลสคุณภาพดี', name_en: 'High-Quality Aluminum Stainless Steel Welding Machine' },
-      { id: 11, name_th: 'เครื่องเชื่อมมิกราคาถูก', name_en: 'Cheap MIG Welding Machine' },
-      { id: 12, name_th: 'เครื่องเชื่อมมิกคุณภาพดี', name_en: 'High-Quality MIG Welding Machine' },
-      { id: 13, name_th: 'เครื่องเชื่อมซีโอทูราคาถูก', name_en: 'Cheap CO2 Welding Machine' },
-      { id: 14, name_th: 'เครื่องเชื่อมซีโอทูคุณภาพดี', name_en: 'High-Quality CO2 Welding Machine' },
-      { id: 15, name_th: 'เครื่องตัดพลาสม่าราคาถูก', name_en: 'Cheap Plasma Cutting Machine' },
-      { id: 16, name_th: 'เครื่องตัดพลาสม่าคุณภาพดี', name_en: 'High-Quality Plasma Cutting Machine' },
-      { id: 17, name_th: 'อุปกรณ์งานเชื่อมราคาถูก', name_en: 'Cheap Welding Equipment' },
-      { id: 18, name_th: 'อุปกรณ์งานเชื่อมคุณภาพดี', name_en: 'High-Quality Welding Equipment' },
-      { id: 19, name_th: 'อะไหล่เครื่องเชื่อมราคาถูก', name_en: 'Cheap Welding Machine Spare Parts' },
-      { id: 20, name_th: 'อะไหล่เครื่องเชื่อมคุณภาพดี', name_en: 'High-Quality Welding Machine Spare Parts' },
-      { id: 21, name_th: 'สายเชื่อมตู้เชื่อมราคาถูก', name_en: 'Cheap Welding Machine Cables' },
-      { id: 22, name_th: 'สายเชื่อมตู้เชื่อมคุณภาพดี', name_en: 'High-Quality Welding Machine Cables' },
-      { id: 23, name_th: 'สายเชื่อมอาร์กอนราคาถูก', name_en: 'Cheap Argon Welding Cables' },
-      { id: 24, name_th: 'สายเชื่อมอาร์กอนคุณภาพดี', name_en: 'High-Quality Argon Welding Cables' }
-    ];
-    
-    setSearchword(searchwords);
-  };
-
+  const searchwords = [
+    { id: 1, name_th: 'เครื่องเชื่อมอินวอเตอร์ราคาถูก', name_en: 'Cheap Inverter Welding Machine' },
+    { id: 2, name_th: 'เครื่องเชื่อมอินวอเตอร์คุณภาพดี', name_en: 'High-Quality Inverter Welding Machine' },
+    { id: 3, name_th: 'เครื่องเชื่อมไฟฟ้าราคาถูก', name_en: 'Cheap Electric Welding Machine' },
+    { id: 4, name_th: 'เครื่องเชื่อมไฟฟ้าคุณภาพดี', name_en: 'High-Quality Electric Welding Machine' },
+    // Add the rest of the search words here
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
+    // Handle search word and brand to update both languages
+    if (name === 'search_word_th') {
+      const selectedSearchWord = searchwords.find(word => word.name_th === value);
+      setFormData({
+        ...formData,
+        search_word_th: selectedSearchWord.name_th,
+        search_word_en: selectedSearchWord.name_en,
+      });
+    } else if (name === 'brand_th') {
+      const selectedBrand = BrandData.find(brand => brand.name_th === value);
+      setFormData({
+        ...formData,
+        brand_th: selectedBrand.name_th,
+        brand_en: selectedBrand.name_en,
+      });
+    } else if (name === 'picture_1' || name === 'picture_2') {
+      // Handle file inputs
+      setFormData({
+        ...formData,
+        [name]: e.target.files[0], // Store the file itself
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_API}/createproduct`, formData)
+
+    // Create FormData object to handle file uploads
+    const formDataToSend = new FormData();
+    formDataToSend.append('rilon_id', formData.rilon_id);
+    formDataToSend.append('name_th', formData.name_th);
+    formDataToSend.append('description_th', formData.description_th);
+    formDataToSend.append('search_word_th', formData.search_word_th);
+    formDataToSend.append('search_word_en', formData.search_word_en);
+    formDataToSend.append('brand_th', formData.brand_th);
+    formDataToSend.append('brand_en', formData.brand_en);
+    formDataToSend.append('other_th', formData.other_th);
+    formDataToSend.append('other_en', formData.other_en);
+    formDataToSend.append('name_en', formData.name_en);
+    formDataToSend.append('description_en', formData.description_en);
+    formDataToSend.append('category_id', formData.category_id);
+
+    // Append the pictures if they exist
+    if (formData.picture_1) {
+      formDataToSend.append('picture_1', formData.picture_1);
+    }
+    if (formData.picture_2) {
+      formDataToSend.append('picture_2', formData.picture_2);
+    }
+
+    // Send the request to the backend
+    axios.post(`${process.env.REACT_APP_API}/createproduct`, formDataToSend, {
+      headers: {
+        "Content-Type": "multipart/form-data", // Important for file uploads
+        "Authorization": "Bearer " + localStorage.getItem("token"),
+      }
+    })
       .then((response) => {
-        console.log(response);
-        if (response.data.Status === 'ok') {
+        console.log(response.data);
+        if (response.data.status === 'ok') {
           Swal.fire({
             title: 'Success!',
             text: 'Create product successfully!',
             icon: 'success',
-            confirmButtonText: 'OK'
-          })
+            confirmButtonText: 'OK',
+          });
           setTimeout(() => {
-            window.location = "/adminitem"; // Redirect to the admin item page after successful login
+            window.location = "/adminitem"; // Redirect to the admin item page after success
           }, 1000);
         } else {
           Swal.fire({
             title: 'Fail!',
             text: 'Create product failed!',
             icon: 'error',
-            confirmButtonText: 'OK'
-          })
+            confirmButtonText: 'OK',
+          });
         }
       })
-      .catch(er => console.log(er))
+      .catch((error) => console.error("Error:", error));
   };
 
   const handleLogout = () => {
@@ -172,24 +180,23 @@ const AdminCreateItemPage = () => {
       title: 'Success!',
       text: 'Logout successfully!',
       icon: 'success',
-      confirmButtonText: 'OK'
-    })
+      confirmButtonText: 'OK',
+    });
     setTimeout(() => {
-      window.location = "/adminlogin"; // Redirect to the admin item page after successful login
+      window.location = "/adminlogin"; // Redirect to the login page after logout
     }, 1000);
-  }
+  };
 
   return (
     <div className="min-h-screen font-plex-sans-thai">
       <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
         <p className="py-1">
-          {/* Breadcrumbs */}
           <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
           <a href="/adminitem" className="hover:text-[#00007E]">Admin</a> <span> » </span>
           <span>Create Form</span>
         </p>
-        <div className="flex className=">
-          <Link to="/adminitem" w>
+        <div className="flex">
+          <Link to="/adminitem">
             <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px]">
               Back
             </button>
@@ -209,7 +216,19 @@ const AdminCreateItemPage = () => {
         <form className="py-6" onSubmit={handleSubmit}>
           <div className="md:flex">
             <div className="md:w-[50%] md:pr-[10px]">
-              {/* Name Field (Thai) */}
+            <div className="pt-4">
+                <label htmlFor="rilon_id" className="font-semibold py-1">Rilon ID<span className="text-[#DC3545]">*</span></label><br />
+                <input
+                  type="text"
+                  id="rilon_id"
+                  name="rilon_id"
+                  value={formData.rilon_id}
+                  onChange={handleChange}
+                  required
+                  className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                />
+              </div>
+
               <div className="pt-4">
                 <label htmlFor="name_th" className="font-semibold py-1">Name (Thai)<span className="text-[#DC3545]">*</span></label><br />
                 <input
@@ -223,7 +242,62 @@ const AdminCreateItemPage = () => {
                 />
               </div>
 
-              {/* Name Field (English) */}
+              <div className="pt-4">
+                <label htmlFor="category_id" className="font-semibold py-1">Category<span className="text-[#DC3545]">*</span></label><br />
+                <select
+                  name="category_id"
+                  id="category_id"
+                  value={formData.category_id}
+                  onChange={handleChange}
+                  required
+                  className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                >
+                  <option value="">Select a category</option>
+                  {categoryData.map((result) => (
+                    <option key={result.ID} value={result.ID}>
+                      {result.name_th} / {result.name_en}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="pt-4">
+                <label htmlFor="description_th" className="font-semibold py-1">Description (Thai)<span className="text-[#DC3545]">*</span></label><br />
+                <textarea
+                  id="description_th"
+                  name="description_th"
+                  value={formData.description_th}
+                  onChange={handleChange}
+                  required
+                  className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                />
+              </div>
+
+              <div className="pt-4">
+                <label htmlFor="other_th" className="font-semibold py-1">Other (Thai)</label><br />
+                <textarea
+                  id="other_th"
+                  name="other_th"
+                  value={formData.other_th}
+                  onChange={handleChange}
+                  className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                />
+              </div>
+
+              <div className="pt-4">
+                <label htmlFor="picture_1" className="font-semibold py-1">Picture 1<span className="text-[#DC3545]">*</span></label><br />
+                <input
+                  type="file"
+                  id="picture_1"
+                  name="picture_1"
+                  onChange={handleChange}
+                  required
+                  className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                />
+              </div>
+            </div>
+
+            <div className="md:w-[50%] md:pl-[10px]">
               <div className="pt-4">
                 <label htmlFor="name_en" className="font-semibold py-1">Name (English)<span className="text-[#DC3545]">*</span></label><br />
                 <input
@@ -237,118 +311,92 @@ const AdminCreateItemPage = () => {
                 />
               </div>
 
-              {/* Description Field (Thai) */}
               <div className="pt-4">
-                <label htmlFor="description_th" className="font-semibold py-1">Description (Thai)</label><br />
-                <textarea
-                  id="description_th"
-                  name="description_th"
-                  value={formData.description_th}
-                  onChange={handleChange}
-                  className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
-                />
-              </div>
-
-              {/* Description Field (English) */}
-              <div className="pt-4">
-                <label htmlFor="description_en" className="font-semibold py-1">Description (English)</label><br />
-                <textarea
-                  id="description_en"
-                  name="description_en"
-                  value={formData.description_en}
-                  onChange={handleChange}
-                  className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
-                />
-              </div>
-
-              {/* Category Select */}
-              <div className="pt-4">
-                <label htmlFor="category_id" className="font-semibold py-1">Category</label><br />
+                <label htmlFor="brand_th" className="font-semibold py-1">Brand<span className="text-[#DC3545]">*</span></label><br />
                 <select
-                  name="category_id"
-                  id="category_id"
-                  value={formData.category_id}
+                  name="brand_th"
+                  id="brand_th"
+                  value={formData.brand_th}
                   onChange={handleChange}
+                  required
                   className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 >
-                  <option value="">Select a category</option>
-                  {categories.map((result) => (
-                    <option key={result.category_id} value={result.category_id}>
+                  <option value="">Select a brand</option>
+                  {BrandData.map((result) => (
+                    <option key={result.id} value={result.name_th}>
                       {result.name_th} / {result.name_en}
                     </option>
                   ))}
                 </select>
               </div>
-            </div>
 
-            <div className="md:w-[50%] md:pl-[10px]">
-              {/* Search Word (Thai) */}
               <div className="pt-4">
-                <label htmlFor="search_word_th" className="font-semibold py-1">Search Word (Thai)</label><br />
-                <input
-                  type="text"
-                  id="search_word_th"
+                <label htmlFor="search_word_th" className="font-semibold py-1">Search Word</label><br />
+                <select
                   name="search_word_th"
+                  id="search_word_th"
                   value={formData.search_word_th}
                   onChange={handleChange}
-                  className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
-                />
+                  required
+                  className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                >
+                  <option value="">Select a search word</option>
+                  {searchwords.map((result) => (
+                    <option key={result.id} value={result.name_th}>
+                      {result.name_th} / {result.name_en}
+                    </option>
+                  ))}
+                </select>
               </div>
 
-              {/* Search Word (English) */}
               <div className="pt-4">
-                <label htmlFor="search_word_en" className="font-semibold py-1">Search Word (English)</label><br />
-                <input
-                  type="text"
-                  id="search_word_en"
-                  name="search_word_en"
-                  value={formData.search_word_en}
+                <label htmlFor="description_en" className="font-semibold py-1">Description (English)<span className="text-[#DC3545]">*</span></label><br />
+                <textarea
+                  id="description_en"
+                  name="description_en"
+                  value={formData.description_en}
                   onChange={handleChange}
-                  className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                  required
+                  className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
               </div>
 
-              {/* Brand (Thai) */}
               <div className="pt-4">
-                <label htmlFor="brand_th" className="font-semibold py-1">Brand (Thai)</label><br />
-                <input
-                  type="text"
-                  id="brand_th"
-                  name="brand_th"
-                  value={formData.brand_th}
+                <label htmlFor="other_en" className="font-semibold py-1">Other (English)</label><br />
+                <textarea
+                  id="other_en"
+                  name="other_en"
+                  value={formData.other_en}
                   onChange={handleChange}
-                  className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                  className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
               </div>
 
-              {/* Brand (English) */}
               <div className="pt-4">
-                <label htmlFor="brand_en" className="font-semibold py-1">Brand (English)</label><br />
+                <label htmlFor="picture_2" className="font-semibold py-1">Picture 2</label><br />
                 <input
-                  type="text"
-                  id="brand_en"
-                  name="brand_en"
-                  value={formData.brand_en}
+                  type="file"
+                  id="picture_2"
+                  name="picture_2"
                   onChange={handleChange}
                   className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
               </div>
             </div>
-          </div>
 
-          {/* Submit Button */}
-          <div className="flex justify-center">
-            <Link to="/adminitem">
-              <div className="flex justify-center pt-5">
-                <button type="submit" className="py-1 px-2 mx-2 text-[#EE0003] border border-[#EE0003] hover:text-white hover:bg-[#EE0003] transition duration-300">Back</button>
-              </div>
-            </Link>
-            <div className="flex justify-center pt-5">
-              <button type="submit" className="py-1 px-2 mx-2 text-[#28A745] border border-[#28A745] hover:text-white hover:bg-[#28A745] transition duration-300">Submit</button>
-            </div>
+          
           </div>
+          <div className="pt-8 flex justify-center">
+              <button
+                type="submit"
+                className="text-[14px] overflow-hidden truncate bg-[#5E993E] border border-[#5E993E] text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300"
+              >
+                Submit
+              </button>
+            </div>
         </form>
       </div>
+
       <Footer />
     </div>
   );
