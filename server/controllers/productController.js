@@ -52,26 +52,6 @@ export const getallProduct = async (req, res, next) => {
 };
 
 
-export const editProduct = async (req, res, next) => {
-    const { rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
-        brand_th, other_th, name_en, description_en, search_word_en,
-        brand_en, other_en, category_id, ID } = req.body;
-
-    try {
-        // Update the existing product
-        await promisePool.execute(
-            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, search_word_th = ?,brand_th = ?, other_th = ?, name_en = ?, description_en = ?, search_word_en = ?,brand_en = ?, other_en = ?, category_id = ? WHERE ID = ?",
-            [rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
-                brand_th, other_th, name_en, description_en, search_word_en,
-                brand_en, other_en, category_id, ID]
-        );
-
-        res.json({ status: "ok", message: "Product has been updated successfully" });
-    } catch (err) {
-        res.json({ status: "error", message: err.message });
-    }
-};
-
 export const deleteProduct = async (req, res, next) => {
     const id = req.query.id; // Getting the id from query parameters
 
@@ -133,3 +113,42 @@ export const createProduct = async (req, res, next) => {
     }
 };
 
+
+
+
+export const editProduct = async (req, res, next) => {
+    const {
+        rilon_id, name_th, description_th, search_word_th,
+        brand_th, other_th, name_en, description_en, search_word_en,
+        brand_en, other_en, category_id, ID
+    } = req.body;
+
+    // Access the uploaded files using req.files
+    const picture_1 = req.files && req.files.picture_1 ? `/uploads/${req.files.picture_1[0].filename}` : null;
+    const picture_2 = req.files && req.files.picture_2 ? `/uploads/${req.files.picture_2[0].filename}` : null;
+
+
+    // Check if the category_id exists in the categories table
+    const [category] = await promisePool.execute("SELECT * FROM categories WHERE id = ?", [category_id]);
+
+    if (!category.length) {
+        return res.status(400).json({
+            status: "error",
+            message: "Category with the provided category_id does not exist"
+        });
+    }
+
+    try {
+        // Update the existing product
+        await promisePool.execute(
+            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, search_word_th = ?,brand_th = ?, other_th = ?, name_en = ?, description_en = ?, search_word_en = ?,brand_en = ?, other_en = ?, category_id = ? WHERE ID = ?",
+            [rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
+                brand_th, other_th, name_en, description_en, search_word_en,
+                brand_en, other_en, category_id, ID]
+        );
+
+        res.json({ status: "ok", message: "Product has been updated successfully" });
+    } catch (err) {
+        res.json({ status: "error", message: err.message });
+    }
+};

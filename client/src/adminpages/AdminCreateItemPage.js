@@ -9,6 +9,41 @@ const AdminCreateItemPage = () => {
   const { t } = useTranslation();
   const [categoryData, setCategoryData] = useState([]);
 
+  const BrandData = [
+    { id: 1, name_th: 'ไรล่อน', name_en: 'RILON' },
+    { id: 2, name_th: 'JW', name_en: 'JW' },
+    { id: 3, name_th: 'JINGWEITIP', name_en: 'JINGWEITIP' },
+  ];
+
+  const searchwords = [
+    { id: 1, name_th: 'เครื่องเชื่อมอินวอเตอร์ราคาถูก', name_en: 'Cheap Inverter Welding Machine' },
+    { id: 2, name_th: 'เครื่องเชื่อมอินวอเตอร์คุณภาพดี', name_en: 'High-Quality Inverter Welding Machine' },
+    { id: 3, name_th: 'เครื่องเชื่อมไฟฟ้าราคาถูก', name_en: 'Cheap Electric Welding Machine' },
+    { id: 4, name_th: 'เครื่องเชื่อมไฟฟ้าคุณภาพดี', name_en: 'High-Quality Electric Welding Machine' },
+    { id: 5, name_th: 'เครื่องเชื่อมทิกราคาถูก', name_en: 'Cheap TIG Welding Machine' },
+    { id: 6, name_th: 'เครื่องเชื่อมทิกคุณภาพดี', name_en: 'High-Quality TIG Welding Machine' },
+    { id: 7, name_th: 'เครื่องเชื่อมอาร์กอนราคาถูก', name_en: 'Cheap Argon Welding Machine' },
+    { id: 8, name_th: 'เครื่องเชื่อมอาร์กอนคุณภาพดี', name_en: 'High-Quality Argon Welding Machine' },
+    { id: 9, name_th: 'เครื่องเชื่อมอลูมีเนียมสแตนเลสราคาถูก', name_en: 'Cheap Aluminum Stainless Steel Welding Machine' },
+    { id: 10, name_th: 'เครื่องเชื่อมอลูมีเนียมสแตนเลสคุณภาพดี', name_en: 'High-Quality Aluminum Stainless Steel Welding Machine' },
+    { id: 11, name_th: 'เครื่องเชื่อมมิกราคาถูก', name_en: 'Cheap MIG Welding Machine' },
+    { id: 12, name_th: 'เครื่องเชื่อมมิกคุณภาพดี', name_en: 'High-Quality MIG Welding Machine' },
+    { id: 13, name_th: 'เครื่องเชื่อมซีโอทูราคาถูก', name_en: 'Cheap CO2 Welding Machine' },
+    { id: 14, name_th: 'เครื่องเชื่อมซีโอทูคุณภาพดี', name_en: 'High-Quality CO2 Welding Machine' },
+    { id: 15, name_th: 'เครื่องตัดพลาสม่าราคาถูก', name_en: 'Cheap Plasma Cutting Machine' },
+    { id: 16, name_th: 'เครื่องตัดพลาสม่าคุณภาพดี', name_en: 'High-Quality Plasma Cutting Machine' },
+    { id: 17, name_th: 'อุปกรณ์งานเชื่อมราคาถูก', name_en: 'Cheap Welding Equipment' },
+    { id: 18, name_th: 'อุปกรณ์งานเชื่อมคุณภาพดี', name_en: 'High-Quality Welding Equipment' },
+    { id: 19, name_th: 'อะไหล่เครื่องเชื่อมราคาถูก', name_en: 'Cheap Welding Machine Spare Parts' },
+    { id: 20, name_th: 'อะไหล่เครื่องเชื่อมคุณภาพดี', name_en: 'High-Quality Welding Machine Spare Parts' },
+    { id: 21, name_th: 'สายเชื่อมตู้เชื่อมราคาถูก', name_en: 'Cheap Welding Machine Cables' },
+    { id: 22, name_th: 'สายเชื่อมตู้เชื่อมคุณภาพดี', name_en: 'High-Quality Welding Machine Cables' },
+    { id: 23, name_th: 'สายเชื่อมอาร์กอนราคาถูก', name_en: 'Cheap Argon Welding Cables' },
+    { id: 24, name_th: 'สายเชื่อมอาร์กอนคุณภาพดี', name_en: 'High-Quality Argon Welding Cables' }
+  ];
+
+
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -69,20 +104,6 @@ const AdminCreateItemPage = () => {
       console.error("Error fetching category data:", error);
     }
   };
-
-  const BrandData = [
-    { id: 1, name_th: 'ไรล่อน', name_en: 'RILON' },
-    { id: 2, name_th: 'JW', name_en: 'JW' },
-    { id: 3, name_th: 'JINGWEITIP', name_en: 'JINGWEITIP' },
-  ];
-
-  const searchwords = [
-    { id: 1, name_th: 'เครื่องเชื่อมอินวอเตอร์ราคาถูก', name_en: 'Cheap Inverter Welding Machine' },
-    { id: 2, name_th: 'เครื่องเชื่อมอินวอเตอร์คุณภาพดี', name_en: 'High-Quality Inverter Welding Machine' },
-    { id: 3, name_th: 'เครื่องเชื่อมไฟฟ้าราคาถูก', name_en: 'Cheap Electric Welding Machine' },
-    { id: 4, name_th: 'เครื่องเชื่อมไฟฟ้าคุณภาพดี', name_en: 'High-Quality Electric Welding Machine' },
-    // Add the rest of the search words here
-  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;

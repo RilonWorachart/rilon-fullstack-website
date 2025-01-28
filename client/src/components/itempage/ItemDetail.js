@@ -33,19 +33,19 @@ function ItemDetail() {
     const fetchCategoryData = async () => {
         if (productData.category_id) {
             try {
-              const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${productData.category_id}`);
-              const result = response.data;
-              if (result && result.data && result.data.length > 0) {
-                setCategoryData(result.data[0]);
-              } else {
-                console.error("Category not found");
-              }
+                const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${productData.category_id}`);
+                const result = response.data;
+                if (result && result.data && result.data.length > 0) {
+                    setCategoryData(result.data[0]);
+                } else {
+                    console.error("Category not found");
+                }
             } catch (error) {
-              console.error("Error fetching category data:", error);
+                console.error("Error fetching category data:", error);
             }
-          } else {
+        } else {
             console.error("category_id is missing");
-          }
+        }
     };
 
     useEffect(() => {
@@ -159,7 +159,16 @@ function ItemDetail() {
                     <p className="pt-6 pb-2">{productData.description_th}</p>
                 </div>
                 <div className="pb-[50px] pt-[20px]">
-                    <img className="mx-[auto] w-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${productData.picture_2}`} alt={productData.name_th} />
+                    {productData.picture_2 && (
+                        <img
+                            className="mx-[auto] w-[100%] border rounded-md md:mr-[40px]"
+                            src={`${process.env.REACT_APP_API}${productData.picture_2}`}
+                            alt={productData.name_th}
+                        />
+                    )}
+                </div>
+                <div className="pb-[50px] pt-[20px]">
+                    <p className="className=" pt-6 pb-2>{productData.other_th}</p>
                 </div>
                 <QRcodeComponent />
                 <div className="text-center">

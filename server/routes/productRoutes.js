@@ -29,11 +29,18 @@ router.post('/createproduct', upload.fields([
     { name: 'picture_2', maxCount: 1 }
 ]),authenmiddleware, createProduct);
 
+router.put('/editproduct',upload.fields([
+    { name: 'picture_1', maxCount: 1 },
+    { name: 'picture_2', maxCount: 1 }
+]),authenmiddleware, editProduct);
+
+
+router.delete('/deleteproduct', authenmiddleware, deleteProduct);
+
+
 router.get('/getallproduct', getallProduct);
 router.get('/getproductbyid', getproductbyId);
 router.get('/getproductbycategory', getproductbyCategory);
-router.put('/editproduct', authenmiddleware, editProduct);
-router.delete('/deleteproduct', authenmiddleware, deleteProduct);
 
 // Export the router
 export default router;
