@@ -2,9 +2,7 @@ import Footer from '../components/Footer'
 import CategorySearch from '../components/CategorySearch'
 import CategoryDetail from '../components/categorypage/CategoryDetail'
 import Contact from '../components/Contact'
-import RelateItem from '../components/itempage/RelateItem'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom';
 
 
 function CategoryPage() {

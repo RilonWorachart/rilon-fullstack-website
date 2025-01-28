@@ -1,65 +1,87 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemCard from '../ItemCard';
 import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
-import axios from 'axios'
+import axios from 'axios';
 
 function RelateItem() {
   const { id } = useParams();
-  const [productData, setProductData] = useState([]);
   const { t } = useTranslation();
-
+  const [productData, setProductData] = useState(null);
+  const [allCategoryProductData, setAllCategoryProductData] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(getSlidesPerView());
 
-
-  const fetchAllProductByCategory = async () => {
+  // Fetch product data by ID
+  const fetchProductById = async () => {
     try {
-      // Use Axios to send the GET request
-      const response = await axios.get(`${process.env.REACT_APP_API}/getproductbycategory/?category_id=${1}`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/getproductbyid?id=${id}`);
       const result = response.data;
-      setProductData(result.data);
+      if (result && result.data) {
+        setProductData(result.data);
+      } else {
+        console.error("Invalid product data:", result);
+      }
     } catch (error) {
-      console.error("Error fetching user data:", error);
+      console.error("Error fetching product data:", error);
     }
   };
 
-
-  useEffect(() => {
-    fetchAllProductByCategory()
-  }, [t]); // Empty dependency array means this runs once when the component mounts
-
-
-
-  // Memoize nextSlide to avoid unnecessary re-renders
-  const nextSlide = useCallback(() => {
-    if (currentSlide < productData.length - 1) {
-      setCurrentSlide(currentSlide + 1);
-    } else {
-      setCurrentSlide(0); // Loop back to the first slide
+  // Fetch related products by category
+  const fetchAllProductByCategory = async (categoryId) => {
+    if (!categoryId) return; // Guard clause
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API}/getproductbycategory/?category_id=${categoryId}`);
+      const result = response.data;
+      setAllCategoryProductData(result.data || []);
+    } catch (error) {
+      console.error("Error fetching related products:", error);
     }
-  }, [currentSlide, productData.length]); // Dependencies are currentSlide and productData.length
+  };
+
+  // Load product data and fetch related products when product data is available
+  useEffect(() => {
+    fetchProductById();
+  }, [id, t]);
+
+  // Fetch related products once product data is available
+  useEffect(() => {
+    if (productData && productData.category_id) {
+      fetchAllProductByCategory(productData.category_id);
+    }
+  }, [productData]);
+
+  // Memoized nextSlide function
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) => {
+      if (prevSlide < allCategoryProductData.length - 1) {
+        return prevSlide + 1;
+      } else {
+        return 0; // Loop back to the first slide
+      }
+    });
+  };
 
   const prevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    } else {
-      setCurrentSlide(productData.length - 1); // Loop back to the last slide
-    }
+    setCurrentSlide((prevSlide) => {
+      if (prevSlide > 0) {
+        return prevSlide - 1;
+      } else {
+        return allCategoryProductData.length - 1; // Loop back to the last slide
+      }
+    });
   };
 
-  // Handle auto-slide functionality
+  // Auto-slide functionality
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
     }, 3000); // Slide every 3 seconds
 
-    // Cleanup interval on unmount or when currentSlide changes
     return () => clearInterval(interval);
-  }, [nextSlide]); // Now the effect only runs when nextSlide changes
+  }, [nextSlide]);
 
-  // Function to get the number of slides based on screen size
+  // Function to calculate slides per view based on screen width
   function getSlidesPerView() {
     if (window.innerWidth >= 1440) return 4;
     if (window.innerWidth >= 1024) return 3;
@@ -67,16 +89,19 @@ function RelateItem() {
     return 1;
   }
 
-  // Update slidesPerView when the window is resized
+  // Handle window resize event
   useEffect(() => {
     const handleResize = () => {
       setSlidesPerView(getSlidesPerView());
     };
-
     window.addEventListener('resize', handleResize);
-
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  if (!productData || !allCategoryProductData.length) {
+    // Only return loading here, after hooks have been called.
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="px-[100px] transform transition-all">
@@ -93,7 +118,7 @@ function RelateItem() {
             transform: `translateX(-${(currentSlide * 100) / slidesPerView}%)`,
           }}
         >
-          {productData.map((item) => (
+          {allCategoryProductData.map((item) => (
             <div
               key={item.ID}
               className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4"
@@ -139,6 +164,4 @@ function RelateItem() {
 }
 
 export default RelateItem;
-
-
 

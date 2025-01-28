@@ -24,13 +24,13 @@ function ItemListbyCategory() {
     }
   };
 
-
   useEffect(() => {
     fetchAllProductByCategory()
   }, [t]); // Empty dependency array means this runs once when the component mounts
 
 
   const [itemType, setItemType] = useState("type1")
+
 
   return (
     <>

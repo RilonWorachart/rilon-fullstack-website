@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import Swal from 'sweetalert2'
+import axios from 'axios';
 
 function FormPage() {
   const [productData, setProductData] = useState({});
@@ -28,7 +29,7 @@ function FormPage() {
   }, [t]);
 
   const [formData, setFormData] = useState({
-    product: '', // initially empty, will be updated once productData is fetched
+    product: '',
     name: '',
     email: '',
     company: '',
@@ -54,7 +55,7 @@ function FormPage() {
   // Handle form data changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-  
+
     if (type === 'checkbox') {
       // Handle checkbox values inside 'requirement' object
       setFormData({
@@ -72,7 +73,7 @@ function FormPage() {
       });
     }
   };
-  
+
 
   const requirementLabels = {
     รายละเอียด: 'รายละเอียด',
@@ -85,31 +86,104 @@ function FormPage() {
   };
 
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  
+  //   // Prepare selected data for the requirements field
+  //   const selectedData = Object.keys(formData.requirement)
+  //     .filter((key) => formData.requirement[key]) // Filter only checked options
+  //     .map((key) => requirementLabels[key]); // Map to human-readable labels
+  
+  //   // Join the selected requirements into a comma-separated string
+  //   const selectedDataString = selectedData.join(', ');
+  
+  //   // Create final form data object with selected requirements string
+  //   const finalFormData = {
+  //     ...formData,
+  //     requirement: selectedDataString, // Pass the selected requirements string
+  //   };
+  
+  //   console.log('Final Form Data:', finalFormData); // This will show the updated data with 'requirement'
+  
+  //   // Send form data to the backend (Nodemailer will handle email sending)
+  //   axios
+  //     .post(`${process.env.REACT_APP_API}/send-email`, finalFormData) // Replace with your backend endpoint
+  //     .then((response) => {
+  //       console.log(response.data);
+  
+  //       // Reset form data after successful submission
+  //       setFormData({
+  //         product: '',
+  //         name: '',
+  //         email: '',
+  //         company: '',
+  //         tel: '',
+  //         line: '',
+  //         fax: '',
+  //         position: '',
+  //         province: 'กรุงเทพมหานคร',
+  //         time: '',
+  //         message: '',
+  //         requirement: {
+  //           รายละเอียด: false,
+  //           ใบเสนอราคา: false,
+  //           วิธีแก้ปัญหาการใช้งาน: false,
+  //           ข้อมูลการจัดส่งสินค้า: false,
+  //           ทดสอบใช้สินค้าเเละบริการ: false,
+  //           ต้องการให้พนักงานขายติดต่อกลับ: false,
+  //           ตัวแทนจัดจำหน่าย: false,
+  //         },
+  //       });
+  
+  //       Swal.fire({
+  //         title: 'Success!',
+  //         text: 'Form submitted successfully!',
+  //         icon: 'success',
+  //         confirmButtonText: 'OK',
+  //       });
+  
+  //       setTimeout(() => {
+  //         window.location = "/requestform"; // Redirect after success
+  //       }, 1000);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error submitting form:', error);
+  //       Swal.fire({
+  //         title: 'Error!',
+  //         text: 'There was an issue submitting the form. Please try again.',
+  //         icon: 'error',
+  //         confirmButtonText: 'OK',
+  //       });
+  //     });
+  // };
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Prepare selected data
+
+    // Prepare selected data for the requirements field
     const selectedData = Object.keys(formData.requirement)
       .filter((key) => formData.requirement[key]) // Filter only checked options
       .map((key) => requirementLabels[key]); // Map to human-readable labels
-  
-    // Ensure selectedData is a comma-separated string
+
+    // Join the selected requirements into a comma-separated string
     const selectedDataString = selectedData.join(', ');
-  
+
+    // Create final form data object with selected requirements string
     const finalFormData = {
       ...formData,
       requirement: selectedDataString, // Pass the selected requirements string
     };
-    
+
     console.log('Final Form Data:', finalFormData); // This will show the updated data with 'requirement'
+
     // Send email using EmailJS
     emailjs
       .send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, finalFormData, process.env.REACT_APP_EMAILJS_USER_ID)
       .then(
         (response) => {
-          // Reset the form data but keep the product name as productData.name
           setFormData({
-            product: productData.name, // Keep the product name unchanged
+            product: '',
             name: '',
             email: '',
             company: '',
@@ -130,25 +204,55 @@ function FormPage() {
               ตัวแทนจัดจำหน่าย: false,
             },
           });
-          Swal.fire({
-            title: 'Success!',
-            text: 'Form submitted successfully!',
-            icon: 'success',
-            confirmButtonText: 'OK'
-          });
         },
         (error) => {
           console.error('Error sending email:', error);
+          // You can show an error message to the user if the email failed
           Swal.fire({
-            title: 'Oops!',
-            text: 'Failed to submit the form. Please check your connection or try again later.',
-            icon: 'error',   // Error icon
-            confirmButtonText: 'Okay'
+            title: 'Error!',
+            text: 'There was an issue sending the email. Please try again.',
+            icon: 'error',
+            confirmButtonText: 'OK',
           });
         }
       );
+
+
+
+    // Send the request to the backend
+    axios.post(`${process.env.REACT_APP_API}/createform`, finalFormData, {
+    })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === 'ok') {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Form submit successfully!',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+          setTimeout(() => {
+            window.location = "/requestform"; // Redirect after success
+          }, 1000);
+        } else {
+          Swal.fire({
+            title: 'Fail!',
+            text: 'Submitted form failed!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'There was an issue when submitting a form. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      });
   };
-  
 
   return (
     <div className="min-h-screen font-plex-sans-thai">
@@ -182,7 +286,8 @@ function FormPage() {
                     type="text"
                     id="product"
                     name="product"
-                    value={productData.name}
+                    value={productData.product}
+                    onChange={handleChange}
                     required
                     className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300" />
                 </div>
@@ -236,6 +341,7 @@ function FormPage() {
                       className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                       value={formData.province} // Ensure it binds the value correctly
                       onChange={handleChange}
+                      required
                     >
                       {provinceOptions.map((option, index) => (
                         <option key={index} value={option.value}>
@@ -245,7 +351,6 @@ function FormPage() {
                     </select>
                   )}
                 </div>
-
               </div>
 
               <div className="md:w-[50%] md:pl-[10px]">

@@ -4,9 +4,11 @@ import ItemDetail from '../components/itempage/ItemDetail'
 import Contact from '../components/Contact'
 import RelateItem from '../components/itempage/RelateItem'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
 
 
 function ItemPage() {
+    const { id } = useParams();
     const { t } = useTranslation();
 
     return (
@@ -24,7 +26,7 @@ function ItemPage() {
                         <Contact />
                     </div>
                 </div>
-                <RelateItem/>
+                <RelateItem id={id}/>
                 <CategorySearch />
                 <Footer />
             </div>

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import AdminItemCard from '../components/adminitempage/AdminItemCard';
 import { Link } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
 import { CgMenuGridR } from "react-icons/cg";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { useTranslation } from 'react-i18next';
