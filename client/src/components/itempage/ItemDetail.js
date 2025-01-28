@@ -17,10 +17,10 @@ function ItemDetail() {
     const fetchProductById = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API}/getproductbyid?id=${id}`);
-            console.log("Product Response:", response.data);  // Log the full response data
+            // console.log("Product Response:", response.data);
             const result = response.data;
-            if (result && result.data && result.data[0]) {
-                setProductData(result.data[0]);
+            if (result && result.data) {
+                setProductData(result.data);
             } else {
                 console.error("Invalid product data:", result);
             }
@@ -31,15 +31,21 @@ function ItemDetail() {
 
     // Fetch category data using product's category_id
     const fetchCategoryData = async () => {
-        if (productData && productData.category_id) {
+        if (productData.category_id) {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${productData.category_id}`);
-                const result = response.data;
-                setCategoryData(result.data[0]); // Set category data
+              const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${productData.category_id}`);
+              const result = response.data;
+              if (result && result.data && result.data.length > 0) {
+                setCategoryData(result.data[0]);
+              } else {
+                console.error("Category not found");
+              }
             } catch (error) {
-                console.error("Error fetching category data:", error);
+              console.error("Error fetching category data:", error);
             }
-        }
+          } else {
+            console.error("category_id is missing");
+          }
     };
 
     useEffect(() => {

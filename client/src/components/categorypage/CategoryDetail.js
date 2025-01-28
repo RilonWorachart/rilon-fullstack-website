@@ -51,7 +51,7 @@ function CategoryDetail() {
             </div>
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
-                <img className=" w-[100%] md:w-[35%] md:h-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}/uploads/${categoryData.picture_1}`} alt={categoryData.name_th} />
+                <img className=" w-[100%] md:w-[35%] md:h-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${categoryData.picture_1}`} alt={categoryData.name_th} />
                 <div className="lg:w-[70%]">
                     <p className="text-[32px] pt-4">{categoryData.name_th}</p>
                     <p className="pt-1 pb-3">

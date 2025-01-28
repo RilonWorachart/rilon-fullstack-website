@@ -21,7 +21,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
         <div className="bg-black overflow-hidden justify-center">
           <img
             className={`h-[100%] w-[100%] transition-transform duration-300 transform ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
-            src={`${process.env.REACT_APP_API}/uploads/${picture_1}`}
+            src={`${process.env.REACT_APP_API}${picture_1}`}
             alt={name_th}
           />
         </div>
