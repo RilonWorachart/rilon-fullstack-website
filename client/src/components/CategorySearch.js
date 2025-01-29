@@ -35,7 +35,7 @@ function CategorySearch() {
 
   return (
     <>
-      <div className="px-[100px]">
+      <div className="px-[10%]">
         <div>
           <h1 className="pt-2 text-[30px] text-center">
             {t('search.p1')}
@@ -53,7 +53,7 @@ function CategorySearch() {
         </div>
       </div>
 
-      <div className="px-[100px]">
+      <div className="px-[10%]">
         <div>
           <h1 className="pt-2 text-[30px] text-center">
             {t('search.p16')}

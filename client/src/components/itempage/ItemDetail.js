@@ -155,22 +155,25 @@ function ItemDetail() {
                     </h1>
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
                 </div>
-                <div>
+                <div className="pb-[50px]">
                     <p className="pt-6 pb-2">{productData.description_th}</p>
                 </div>
-                <div className="pb-[50px] pt-[20px]">
-                    {productData.picture_2 && (
+                {productData.picture_2 && (
+                    <div className="mx-[20%]">
                         <img
                             className="mx-[auto] w-[100%] border rounded-md md:mr-[40px]"
                             src={`${process.env.REACT_APP_API}${productData.picture_2}`}
                             alt={productData.name_th}
                         />
-                    )}
-                </div>
-                <div className="pb-[50px] pt-[20px]">
-                    <p className="className=" pt-6 pb-2>{productData.other_th}</p>
-                </div>
-                <QRcodeComponent />
+                    </div>
+                )}
+                {productData.other_th && (
+                    <div className="pt-[50px] ">
+                        <p className="break-words">{productData.other_th}</p>
+                    </div>
+                )}
+                <div className="mt-[50px]"></div>
+                <QRcodeComponent/>
                 <div className="text-center">
                     <p className="pt-10 pb-2 font-bold text-[16px] text-[#FF0000]">{t('itempage.p10')}</p>
                     <div className="pb-8 text-[17px] font-semibold">

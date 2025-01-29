@@ -130,8 +130,8 @@ function AdminItemPage() {
           </div>
         </div>
 
-        <div className="flex justify-end">
-          <div className="flex items-center border-[1px] border-lightgray py-1 px-3 mx-[80px] mt-[30px] rounded-full text-[#6C757D]">
+        <div className="flex justify-end mx-[10%] 2xl:mx-[20%]">
+          <div className="flex items-center border-[1px] border-lightgray py-1 px-3 mt-[30px] rounded-full text-[#6C757D]">
             <input
               type="text"
               placeholder={t('categorypage.p4')}
@@ -142,7 +142,7 @@ function AdminItemPage() {
         </div>
 
         <div>
-          <div className="px-[100px]">
+          <div className="mx-[10%] 2xl:mx-[20%]">
             <div>
               <h1 className="pt-2 text-[30px] text-center">
                 Category
@@ -168,7 +168,7 @@ function AdminItemPage() {
             </div>
           </div>
 
-          <div className="px-[100px]">
+          <div className="mx-[10%] 2xl:mx-[20%]">
             <div>
               <h1 className="pt-2 text-[30px] text-center">
                 {t('search.p16')}
@@ -184,12 +184,12 @@ function AdminItemPage() {
           </div>
         </div>
 
-        <div className="mx-[80px] my-[20px] text-[#E2B22C] text-[30px] flex justify-end items-center">
+        <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#E2B22C] text-[30px] flex justify-end items-center">
           <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={() => setItemType("type1")} />
           <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")} />
         </div>
 
-        <div className={`mb-[40px] mx-[80px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'}`}>
+        <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%]  ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'}`}>
           {productData.filter((item) => {
             if (searchTerm === "") {
               return item;

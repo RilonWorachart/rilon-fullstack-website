@@ -223,7 +223,7 @@ function HomePage() {
                     </div>
                 </div>
 
-                <div className="text-center">
+                <div className="px-[10%] text-center">
                     <a href="https://anyflip.com/uggut/ubmb/" className="text-[30px] text-[#FFFF00]">{t('homepage.h15')}</a>
                     <div className="flex justify-center items-center pb-8">
                         <img src='/images/page_images/Book.png' alt="book" className="w-[350px]"></img>
@@ -237,9 +237,6 @@ function HomePage() {
                     </div>
                     <div className="">
                         <QRcodeComponent />
-                        <p className="text-start py-8 text-black px-[100px]">
-                        {t('homepage.h17')}
-                        </p>
                     </div>
                 </div>
 

@@ -35,11 +35,11 @@ function CategoryList() {
 
   return (
     <>
-      <div className="mx-[80px] my-[20px] text-[#E2B22C] text-[30px] flex justify-end items-center">
+      <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#E2B22C] text-[30px] flex justify-end items-center">
         <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={() => setItemType("type1")}/>
         <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")}/>
       </div>
-      <div className={`mb-[40px] mx-[80px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
+      <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%]  ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
         {categoryData.map((item) => {
           return (
             <CategoryCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} description_th={item.description_th} name_en={item.name_en} description_en={item.description_en} itemType={itemType}/>

@@ -13,23 +13,23 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
   return (
     <div
-      className={`shadow-md relative z-0 ${itemType === "type2" ? "flex my-2" : ""}`}
+      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2" : ""}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/category/${ID}`}>
-        <div className="bg-black overflow-hidden justify-center">
+      <Link to={`/category/${ID}`} className={`flex ${itemType === "type2" ? "" : "h-[60%]"}`}>
+        <div className={`bg-black overflow-hidden flex justify-center my-[auto] mx-[auto] ${itemType === "type2" ? "" : ""}`}>
           <img
-            className={`h-[100%] w-[100%] transition-transform duration-300 transform ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
+            className={`transition-transform duration-300 transform overflow-hidden ${itemType === "type2" ? "" : "max-h-[250px]"} ${isActive ? 'scale-110 opacity-75' : ''}`}
             src={`${process.env.REACT_APP_API}${picture_1}`}
             alt={name_th}
           />
         </div>
       </Link>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "w-[70%]" : ""}`}>
-        <div className="pb-[50px]">
-          <p className="text-[28px] text-[#E5B22C] truncate">{name_th}</p>
+      <div className={`px-5 py-5 my-[auto] ${itemType === "type2" ? "md:min-w-[80%]" : ""}`}>
+        <div className="">
+          <p className="text-[24px] text-[#E5B22C] truncate">{name_th}</p>
           {/* Sliding effect only for type1 */}
           <div
             className="w-full flex items-center transition-all duration-500 overflow-hidden"
@@ -46,7 +46,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
           </div>
         </div>
 
-        <div className={`${itemType === "type2" ? "items-center" : "absolute bottom-[10px] left-0 right-0 px-4"}`}>
+        <div className={`${itemType === "type2" ? "items-center" : "py-2"}`}>
           <div className={`${itemType === "type2" ? "" : "flex justify-between items-center"}`}>
             <Link to={`/category/${ID}`}>
               <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">

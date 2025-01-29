@@ -13,10 +13,10 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/item/${ID}`}>
-        <div className="bg-black overflow-hidden justify-center">
+      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "" : "h-[60%]"}`}>
+        <div className={`bg-black overflow-hidden flex my-[auto] mx-[auto] ${itemType === "type2" ? "" : ""}`}>
           <img
-            className={`h-[100%] w-[100%] transition-transform duration-300 transform ${itemType === "type2" ? "" : ""
+            className={`transition-transform duration-300 transform ${itemType === "type2" ? "" : "max-h-[250px]"
               } ${isActive ? 'scale-110 opacity-75' : ''}`}
             src={`${process.env.REACT_APP_API}${picture_1}`}
             alt={name_th}
@@ -24,9 +24,9 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
         </div>
       </Link>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[70%] md:my-[auto]" : ""}`}>
+      <div className={`px-5 py-5 ${itemType === "type2" ? "md:min-w-[80%] md:my-[auto]" : ""}`}>
         <div className="pb-[50px]">
-          <p className="text-[28px] text-[#E5B22C] truncate">{name_th}</p>
+          <p className="text-[24px] text-[#E5B22C] truncate">{name_th}</p>
           <p className="text-[14px] line-clamp-2 uppercase  pb-[15px]">{brand_th}</p>
 
           {/* Sliding effect only for type1 */}

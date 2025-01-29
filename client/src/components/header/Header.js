@@ -31,7 +31,7 @@ function Header() {
   };
 
   return (
-    <div className="font-plex-sans-thai px-3 md:px-24 py-3 flex items-center justify-between text-[#E2B22C] fixed w-full top-0 left-0 bg-white z-50">
+    <div className="font-plex-sans-thai px-[10%] py-3 flex items-center justify-between text-[#E2B22C] fixed w-full top-0 left-0 bg-white z-50">
       <div className="w-[20%]">
         <Link to="/">
           <img src='/images/page_images/logo-w.png' alt="logo" className="w-[60px] h-[45px]"></img>

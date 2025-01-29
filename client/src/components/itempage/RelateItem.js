@@ -104,7 +104,7 @@ function RelateItem() {
   }
 
   return (
-    <div className="px-[100px] transform transition-all">
+    <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] transform transition-all">
       <div className="">
         <h1 className="pt-2 text-[30px] text-center">{t('itempage.p11')}</h1>
         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-auto bg-[#E2B22C]" />
