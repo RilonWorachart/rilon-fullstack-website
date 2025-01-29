@@ -21,13 +21,34 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage });
+const fileFilter = (req, file, cb) => {
+    // Limit file type: Only accept images (jpg, jpeg, png, gif) and PDF files
+    const fileTypes = /jpeg|jpg|png/;
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = fileTypes.test(file.mimetype);
+
+    if (extname && mimetype) {
+        return cb(null, true); // Accept the file
+    } else {
+        cb(new Error('Invalid file type. Only image files (jpg, jpeg, png, gif) and PDF are allowed.'));
+    }
+};
+
+const upload = multer({ 
+    storage,
+    fileFilter,
+    limits: {
+        fileSize: 1 * 1024 * 1024 // 1MB
+    }
+});
 
 // Define the routes
 router.post('/createproduct', upload.fields([
     { name: 'picture_1', maxCount: 1 },
     { name: 'picture_2', maxCount: 1 }
 ]),authenmiddleware, createProduct);
+
+
 
 router.put('/editproduct',upload.fields([
     { name: 'picture_1', maxCount: 1 },

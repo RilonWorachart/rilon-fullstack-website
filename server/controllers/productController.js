@@ -1,4 +1,7 @@
 import { promisePool } from "../db.js";  // Corrected import
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 export const getproductbyId = async (req, res, next) => {
     const id = req.query.id; // Getting the id from query parameters
@@ -53,9 +56,50 @@ export const getallProduct = async (req, res, next) => {
 
 
 export const deleteProduct = async (req, res, next) => {
-    const id = req.query.id; // Getting the id from query parameters
+    const id = req.query.id;
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
 
     try {
+
+        const [product] = await promisePool.execute(
+            "SELECT * FROM products WHERE ID = ?",
+            [id]
+        );
+
+        if (product.length === 0) {
+            return res.json({ status: "error", message: "Product not found" });
+        }
+
+        const productData = product[0];
+
+
+        if (productData.picture_1) {
+            const picture_1_Path = path.join(__dirname, '..', 'public', productData.picture_1); // Adjust path as needed
+
+            // Check if the image file exists and delete it
+            fs.unlink(picture_1_Path, (err) => {
+                if (err) {
+                    console.error("Error deleting picture_1:", err);
+                } else {
+                    console.log("picture_1 deleted successfully");
+                }
+            });
+        }
+
+        if (productData.picture_2) {
+            const picture_2_Path = path.join(__dirname, '..', 'public', productData.picture_2); // Adjust path as needed
+
+            // Check if the image file exists and delete it
+            fs.unlink(picture_2_Path, (err) => {
+                if (err) {
+                    console.error("Error deleting picture_2:", err);
+                } else {
+                    console.log("picture_2 deleted successfully");
+                }
+            });
+        }
+
         // Query to get the product by ID
         const [rows] = await promisePool.execute(
             "DELETE FROM products WHERE ID = ?",
@@ -116,7 +160,38 @@ export const createProduct = async (req, res, next) => {
 
 
 
+const deleteFileWithRetry = (filePath, retries = 3, delay = 1000) => {
+    return new Promise((resolve, reject) => {
+        const attemptDelete = (retryCount) => {
+            fs.exists(filePath, (exists) => {
+                if (!exists) {
+                    console.log(`File does not exist at ${filePath}. Skipping delete.`);
+                    return resolve();  // File doesn't exist, so resolve immediately
+                }
+
+                fs.unlink(filePath, (err) => {
+                    if (err) {
+                        if (retryCount < retries) {
+                            console.log(`Retrying to delete file at ${filePath}... Attempt #${retryCount + 1}`);
+                            setTimeout(() => attemptDelete(retryCount + 1), delay);
+                        } else {
+                            reject(err);
+                        }
+                    } else {
+                        resolve();
+                    }
+                });
+            });
+        };
+        attemptDelete(0);
+    });
+};
+
+
 export const editProduct = async (req, res, next) => {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
     const {
         rilon_id, name_th, description_th, search_word_th,
         brand_th, other_th, name_en, description_en, search_word_en,
@@ -139,9 +214,48 @@ export const editProduct = async (req, res, next) => {
     }
 
     try {
-        // Update the existing product
+        // Fetch the current pictures from the product before updating
+        const [product] = await promisePool.execute("SELECT picture_1, picture_2 FROM products WHERE ID = ?", [ID]);
+
+        if (product.length > 0) {
+            const oldPicture1 = product[0].picture_1;
+            const oldPicture2 = product[0].picture_2;
+
+            // Log current picture paths to check what's being deleted
+            console.log('Current Picture 1:', oldPicture1);
+            console.log('Current Picture 2:', oldPicture2);
+
+            // Delete old pictures if new ones are provided
+            if (picture_1 && oldPicture1) {
+                // Correct path for deletion (including 'uploads' directory)
+                const oldPicturePath1 = path.join(__dirname, '..', 'public', oldPicture1); // Don't replace /uploads anymore
+                console.log('Attempting to delete old Picture 1 at:', oldPicturePath1);
+
+                try {
+                    await deleteFileWithRetry(oldPicturePath1);
+                    console.log('Old Picture 1 deleted successfully');
+                } catch (err) {
+                    console.log('Failed to delete Old Picture 1:', err.message);
+                }
+            }
+
+            if (picture_2 && oldPicture2) {
+                // Correct path for deletion (including 'uploads' directory)
+                const oldPicturePath2 = path.join(__dirname, '..', 'public', oldPicture2); // Don't replace /uploads anymore
+                console.log('Attempting to delete old Picture 2 at:', oldPicturePath2);
+
+                try {
+                    await deleteFileWithRetry(oldPicturePath2);
+                    console.log('Old Picture 2 deleted successfully');
+                } catch (err) {
+                    console.log('Failed to delete Old Picture 2:', err.message);
+                }
+            }
+        }
+
+        // Update the existing product with new values
         await promisePool.execute(
-            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, search_word_th = ?,brand_th = ?, other_th = ?, name_en = ?, description_en = ?, search_word_en = ?,brand_en = ?, other_en = ?, category_id = ? WHERE ID = ?",
+            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, search_word_th = ?, brand_th = ?, other_th = ?, name_en = ?, description_en = ?, search_word_en = ?, brand_en = ?, other_en = ?, category_id = ? WHERE ID = ?",
             [rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
                 brand_th, other_th, name_en, description_en, search_word_en,
                 brand_en, other_en, category_id, ID]

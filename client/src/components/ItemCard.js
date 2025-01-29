@@ -27,7 +27,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
       <div className={`px-5 py-5 ${itemType === "type2" ? "md:min-w-[80%] md:my-[auto]" : ""}`}>
         <div className="pb-[50px]">
           <p className="text-[24px] text-[#E5B22C] truncate">{name_th}</p>
-          <p className="text-[14px] line-clamp-2 uppercase  pb-[15px]">{brand_th}</p>
+          <p className="text-[14px] uppercase  pb-[15px] ">{brand_th}</p>
 
           {/* Sliding effect only for type1 */}
           <div
@@ -50,7 +50,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
           </div>
         </div>
 
-        <div className={`${itemType === "type2" ? "items-center" : "absolute bottom-[10px] left-0 right-0 px-4"}`}>
+        <div className={`${itemType === "type2" ? "items-center" : "absolute bottom-[5px] left-0 right-0 px-4"}`}>
           <div className={`${itemType === "type2" ? "" : "flex justify-between items-center"}`}>
             <Link
               to={`/catalog/keyword/${search_word_th}`}

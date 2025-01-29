@@ -44,7 +44,7 @@ function ItemListbyCategory() {
         <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={() => setItemType("type1")} />
         <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")} />
       </div>
-      <div className={`mb-[40px] mx-[20px] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
+      <div className={`mb-[40px] mx-[20px] ${itemType === "type2" ? '' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
         {productData.map((item) => {
           return (
             <ItemCard key={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} ID={item.ID} name_th={item.name_th}
