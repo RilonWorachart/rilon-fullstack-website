@@ -14,9 +14,9 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
       onMouseLeave={() => setIsActive(false)}
     >
       <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "" : "h-[60%]"}`}>
-        <div className={`bg-black overflow-hidden flex my-[auto] mx-[auto] ${itemType === "type2" ? "" : ""}`}>
+        <div className={`bg-black overflow-hidden flex my-[auto] mx-[auto] ${itemType === "type2" ? "" : "max-h-[250px] "}`}>
           <img
-            className={`transition-transform duration-300 transform ${itemType === "type2" ? "" : "max-h-[250px]"
+            className={`transition-transform duration-300 transform ${itemType === "type2" ? "" : "w-full h-full object-cover"
               } ${isActive ? 'scale-110 opacity-75' : ''}`}
             src={`${process.env.REACT_APP_API}${picture_1}`}
             alt={name_th}
@@ -50,7 +50,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
           </div>
         </div>
 
-        <div className={`${itemType === "type2" ? "items-center" : "absolute bottom-[5px] left-0 right-0 px-4"}`}>
+        <div className={`${itemType === "type2" ? "items-center" : "absolute bottom-[10px] left-0 right-0 px-4"}`}>
           <div className={`${itemType === "type2" ? "" : "flex justify-between items-center"}`}>
             <Link
               to={`/catalog/keyword/${search_word_th}`}

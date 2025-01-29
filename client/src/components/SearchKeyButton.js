@@ -21,7 +21,7 @@ function SearchKeyButton() {
 
     return (
         <>
-            <form className="flex items-center border-[1px] border-lightgray py-1 px-3 mx-[10%] mt-[30px] rounded-full text-[#6C757D]" onSubmit={handleSearch}>
+            <form className="flex items-center border-[1px] border-lightgray py-1 px-3 mx-[10%] 2xl:mx-[20%] mt-[30px] rounded-full text-[#6C757D]" onSubmit={handleSearch}>
                 <input
                     type="text"
                     placeholder={t('categorypage.p4')}

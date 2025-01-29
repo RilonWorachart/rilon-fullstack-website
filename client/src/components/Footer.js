@@ -19,13 +19,13 @@ function Footer() {
                     <p>{t('footer.p3')}</p>
                 </div>
                 <div className="flex justify-center text-[26px] py-3">
-                    <a href="https://media.yellowpages.co.th/yellowpages/line/th/52336657/672d8afba717d.png?itok=6785dd8b">
+                    <a href="https://page.line.me/156vctty?openQrModal=true">
                         <FaLine className="mr-0.5 hover:text-[#02B92E] " />
                     </a>
-                    <a href="https://www.facebook.com/rilonriland/posts/1013050012170754/">
+                    <a href="https://www.facebook.com/people/%E0%B9%84%E0%B8%A3%E0%B8%A5%E0%B9%88%E0%B8%AD%E0%B8%99-%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%A1-%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B8%AD%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/61555700229121/">
                         <FaFacebookSquare className="mr-0.5 hover:text-[#1773EA]" />
                     </a>
-                    <a href="https://www.instagram.com/rilonthailand/">
+                    <a href="https://www.instagram.com/rilon_thailand/">
                         <FaInstagram className="mr-0.5 hover:text-[#BB5287] " />
                     </a>
                     <a href="https://www.youtube.com/@rilon_thailand">

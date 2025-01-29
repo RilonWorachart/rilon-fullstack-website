@@ -18,9 +18,9 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
       onMouseLeave={() => setIsActive(false)}
     >
       <Link to={`/category/${ID}`} className={`flex ${itemType === "type2" ? "" : "h-[60%]"}`}>
-        <div className={`bg-black overflow-hidden flex justify-center my-[auto] mx-[auto] ${itemType === "type2" ? "" : ""}`}>
+        <div className={`bg-black overflow-hidden flex justify-center my-[auto] mx-[auto] ${itemType === "type2" ? "" : "max-h-[250px]"}`}>
           <img
-            className={`transition-transform duration-300 transform overflow-hidden ${itemType === "type2" ? "" : "max-h-[250px]"} ${isActive ? 'scale-110 opacity-75' : ''}`}
+            className={`transition-transform duration-300 transform overflow-hidden ${itemType === "type2" ? "" : "w-full h-full object-cover"} ${isActive ? 'scale-110 opacity-75' : ''}`}
             src={`${process.env.REACT_APP_API}${picture_1}`}
             alt={name_th}
           />

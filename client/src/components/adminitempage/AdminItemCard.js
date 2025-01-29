@@ -95,7 +95,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
       {/* Image Section */}
       <div className={`overflow-hidden flex ${itemType === "type2" ? "min-w-[30%]" : "h-[45%]"}`}>
         <img
-          className={`transition-transform duration-300 transform my-[auto] mx-[auto] ${itemType === "type2" ? "max-w-[300px]" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
+          className={`transition-transform duration-300 transform my-[auto] mx-[auto] ${itemType === "type2" ? "max-w-[300px]" : "w-full h-full object-cover"} ${isActive ? 'scale-110 opacity-75' : ''}`}
           src={`${process.env.REACT_APP_API}${picture_1}`}
           alt={name_th}
         />

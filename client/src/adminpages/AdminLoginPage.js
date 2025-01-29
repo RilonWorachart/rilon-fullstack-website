@@ -100,7 +100,7 @@ function AdminLoginPage() {
               <input
                 type="submit"
                 value="Login"
-                className="py-2 px-4 text-white bg-[#28A745] border border-[#28A745] rounded-md hover:bg-[#218838] transition duration-300"
+                className="py-2 px-4 text-white bg-[#28A745] border border-[#28A745] rounded-md hover:bg-[#218838] transition duration-300 cursor-pointer"
               />
             </div>
           </form>

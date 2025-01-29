@@ -39,7 +39,7 @@ function CategoryList() {
         <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={() => setItemType("type1")}/>
         <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")}/>
       </div>
-      <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%]  ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
+      <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%]  ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-[20px]'} }`}>
         {categoryData.map((item) => {
           return (
             <CategoryCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} description_th={item.description_th} name_en={item.name_en} description_en={item.description_en} itemType={itemType}/>
