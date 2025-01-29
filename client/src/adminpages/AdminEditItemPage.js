@@ -112,7 +112,7 @@ function AdminEditItemPage() {
         name_en: '',
         description_en: '',
         category_id: '',
-        ID:''
+        ID: ''
     });
 
     useEffect(() => {
@@ -139,13 +139,13 @@ function AdminEditItemPage() {
 
     const fetchAllCategoryData = async () => {
         try {
-          const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
-          const result = response.data;
-          setCategoryData(result.data); // Set category data as an array
+            const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
+            const result = response.data;
+            setCategoryData(result.data); // Set category data as an array
         } catch (error) {
-          console.error("Error fetching category data:", error);
+            console.error("Error fetching category data:", error);
         }
-      };
+    };
 
 
     const handleChange = (e) => {
@@ -235,7 +235,43 @@ function AdminEditItemPage() {
                     });
                 }
             })
-            .catch((error) => console.error("Error:", error));
+            .catch((error) => {
+                if (error.response) {
+                    // The server responded with a status other than 2xx
+                    if (error.response.status === 500) {
+                        Swal.fire({
+                            title: 'Server Error!',
+                            text: 'Invalid file type or file size exceeds the maximum limit. Please try again later.',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    } else {
+                        // Handle other status codes as needed
+                        Swal.fire({
+                            title: 'Error!',
+                            text: `Error: ${error.response.status} - ${error.response.statusText}`,
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                        });
+                    }
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    Swal.fire({
+                        title: 'Network Error!',
+                        text: 'No response from the server. Please check your internet connection.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    // Something went wrong while setting up the request
+                    Swal.fire({
+                        title: 'Error!',
+                        text: `An error occurred: ${error.message}`,
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
     };
 
     const handleLogout = () => {

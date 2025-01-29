@@ -88,45 +88,61 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
 
   return (
     <div
-      className={`shadow-md relative z-0 ${itemType === "type2" ? "md:flex my-2" : ""}`}
+      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2" : ""}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <div className={`overflow-hidden flex ${itemType === "type2" ? "min-w-[30%]" : ""}`}>
+      {/* Image Section */}
+      <div className={`overflow-hidden flex ${itemType === "type2" ? "min-w-[30%]" : "h-[45%]"}`}>
         <img
-          className={`transition-transform duration-300 transform my-[auto] mx-[auto] ${itemType === "type2" ? " max-w-[300px]" : ""
-            } ${isActive ? 'scale-110 opacity-75' : ''}`}
+          className={`transition-transform duration-300 transform my-[auto] mx-[auto] ${itemType === "type2" ? "max-w-[300px]" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
           src={`${process.env.REACT_APP_API}${picture_1}`}
           alt={name_th}
         />
       </div>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "min-w-[65%] my-[auto]" : ""}`}>
-        <div className="pb-[50px]">
+      {/* Content Section */}
+      <div className={`px-5 py-5 my-[auto] ${itemType === "type2" ? "min-w-[65%]" : "flex flex-col space-y-7"}`}>
+        <div className="">
           <p className="text-[28px] text-[#E5B22C] truncate">{name_th}</p>
-          <p className={`text-[14px] text-[#E5B22C] uppercase ${itemType === "type2" ? "w-[100%]" : ""}`}>{brand_th}</p>
-          <p className={`text-[14px] text-[#E5B22C] line-clamp-1 py-[15px] ${itemType === "type2" ? "w-[100%]" : ""}`}>{description_th}</p>
+          <p className={`text-[14px] uppercase ${itemType === "type2" ? "w-full" : ""}`}>
+            {brand_th}
+          </p>
+          <p
+            className={`text-[14px] text-[#E5B22C] line-clamp-2 overflow-hidden pt-2 ${itemType === "type2" ? "w-full" : ""}`}
+          >
+            {description_th}
+          </p>
+
+          {/* Second Image */}
           <img
-            className={`h-[40%] w-[40%] 2xl:h-[25%] 2xl:w-[25%] mx-[auto] mt-[40px] ${itemType === "type2" ? "" : "hidden"
-              }`}
+            className={`h-[40%] w-[40%] 2xl:h-[25%] 2xl:w-[25%] my-[10px] mx-[auto] ${itemType === "type2" ? "" : "hidden"}`}
             src={`${process.env.REACT_APP_API}${picture_2}`}
             alt={name_th}
           />
         </div>
 
+        {/* Additional Info Section */}
         <div className={`${itemType === "type2" ? "items-center" : ""}`}>
-          <p className={`text-[14px] text-[#E5B22C] line-clamp-2 ${itemType === "type2" ? "w-[100%]" : ""}`}>Category: {categoryData.name_th}</p>
-          <div className={`text-[#E5B22C] py-[2px] flex items-center overflow-hidden mb-2 ${itemType === "type2" ? "w-[100%]" : ""}`}>
-            <FaTags className="mr-1 w-[24px]" /> {/* Ensuring consistent size with inline style */}
+          <p className={`text-[14px] text-[#E5B22C] truncate ${itemType === "type2" ? "w-full" : ""}`}>
+            Category: {categoryData.name_th}
+          </p>
+          <div className={`text-[#E5B22C] py-[2px] flex items-center overflow-hidden mb-2 ${itemType === "type2" ? "w-full" : ""}`}>
+            <FaTags className="mr-1 w-[24px]" />
             <span className="text-[14px] truncate mr-1">{search_word_th}</span>
           </div>
+
+          {/* Buttons Section */}
           <div className={`flex justify-center ${itemType === "type2" ? "mx-[auto]" : ""}`}>
             <Link to={`/adminedit/${ID}`} className="w-[45%]">
-              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100%]">
+              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-full">
                 เเก้ไข
               </button>
             </Link>
-            <button onClick={() => handledelete()} className="ml-[2%] text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[45%] ">
+            <button
+              onClick={() => handledelete()}
+              className="ml-[2%] text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[45%]"
+            >
               ลบ
             </button>
           </div>

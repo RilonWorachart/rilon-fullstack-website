@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
+import Swal from 'sweetalert2';
 import { createProduct, deleteProduct, editProduct, getproductbyId, getproductbyCategory, getallProduct } from '../controllers/productController.js';
 import { authenmiddleware } from '../controllers/authController.js';
 import { fileURLToPath } from 'url';
@@ -21,8 +22,8 @@ const storage = multer.diskStorage({
     }
 });
 
+
 const fileFilter = (req, file, cb) => {
-    // Limit file type: Only accept images (jpg, jpeg, png, gif) and PDF files
     const fileTypes = /jpeg|jpg|png/;
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = fileTypes.test(file.mimetype);
@@ -30,7 +31,7 @@ const fileFilter = (req, file, cb) => {
     if (extname && mimetype) {
         return cb(null, true); // Accept the file
     } else {
-        cb(new Error('Invalid file type. Only image files (jpg, jpeg, png, gif) and PDF are allowed.'));
+        return cb(new Error('Invalid file type. Only image files (jpg, jpeg, png) are allowed.'));
     }
 };
 
@@ -42,12 +43,12 @@ const upload = multer({
     }
 });
 
+
 // Define the routes
 router.post('/createproduct', upload.fields([
     { name: 'picture_1', maxCount: 1 },
     { name: 'picture_2', maxCount: 1 }
 ]),authenmiddleware, createProduct);
-
 
 
 router.put('/editproduct',upload.fields([
@@ -57,8 +58,6 @@ router.put('/editproduct',upload.fields([
 
 
 router.delete('/deleteproduct', authenmiddleware, deleteProduct);
-
-
 router.get('/getallproduct', getallProduct);
 router.get('/getproductbyid', getproductbyId);
 router.get('/getproductbycategory', getproductbyCategory);

@@ -191,7 +191,45 @@ const AdminCreateItemPage = () => {
           });
         }
       })
-      .catch((error) => console.error("Error:", error));
+      .catch(
+        (error) => {
+          if (error.response) {
+            // The server responded with a status other than 2xx
+            if (error.response.status === 500) {
+              Swal.fire({
+                title: 'Server Error!',
+                text: 'Invalid file type or file size exceeds the maximum limit. Please try again later.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              });
+            } else {
+              // Handle other status codes as needed
+              Swal.fire({
+                title: 'Error!',
+                text: `Error: ${error.response.status} - ${error.response.statusText}`,
+                icon: 'error',
+                confirmButtonText: 'OK',
+              });
+            }
+          } else if (error.request) {
+            // The request was made but no response was received
+            Swal.fire({
+              title: 'Network Error!',
+              text: 'No response from the server. Please check your internet connection.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          } else {
+            // Something went wrong while setting up the request
+            Swal.fire({
+              title: 'Error!',
+              text: `An error occurred: ${error.message}`,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      );
   };
 
   const handleLogout = () => {
@@ -237,7 +275,7 @@ const AdminCreateItemPage = () => {
         <form className="py-6" onSubmit={handleSubmit}>
           <div className="md:flex">
             <div className="md:w-[50%] md:pr-[10px]">
-            <div className="pt-4">
+              <div className="pt-4">
                 <label htmlFor="rilon_id" className="font-semibold py-1">Rilon ID<span className="text-[#DC3545]">*</span></label><br />
                 <input
                   type="text"
@@ -405,16 +443,16 @@ const AdminCreateItemPage = () => {
               </div>
             </div>
 
-          
+
           </div>
           <div className="pt-8 flex justify-center">
-              <button
-                type="submit"
-                className="text-[14px] overflow-hidden truncate bg-[#5E993E] border border-[#5E993E] text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300"
-              >
-                Submit
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="text-[14px] overflow-hidden truncate bg-[#5E993E] border border-[#5E993E] text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
 
