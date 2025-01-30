@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { FaTags } from "react-icons/fa";
 import { useTranslation } from 'react-i18next'
 
-function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, brand_th,  name_en, description_en, searchword_en, brand_en, itemType }) {
-  const { t } = useTranslation();
+function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, brand_th,  name_en, description_en, search_word_en, brand_en, itemType }) {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -25,8 +26,8 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
 
       <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[70%] md:my-[auto]" : ""}`}>
         <div className="pb-[50px]">
-          <p className="text-[24px] text-[#E5B22C] truncate">{name_th}</p>
-          <p className="text-[14px] uppercase  pb-[15px] ">{brand_th}</p>
+          <p className="text-[24px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
+          <p className="text-[14px] uppercase  pb-[15px] ">{currentLang === 'th' ? brand_th : brand_en}</p>
 
           {/* Sliding effect only for type1 */}
           <div
@@ -44,7 +45,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
               className={`text-[14px] text-[#E5B22C] line-clamp-2 ${itemType === "type2" ? "w-[100%]" : ""
                 }`}
             >
-              {description_th}
+              {currentLang === 'th' ? description_th : description_en}
             </p>
           </div>
         </div>
@@ -56,7 +57,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
               className={`text-[#E5B22C] py-[2px] inline-flex items-center overflow-hidden ${itemType === "type2" ? "w-[100%] my-2" : ""}`}
             >
               <FaTags className="mr-1 w-[24px]"/> {/* Ensuring consistent size with inline style */}
-              <span className="text-[14px] truncate mr-1">{search_word_th}</span>
+              <span className="text-[14px] truncate mr-1">{currentLang === 'th' ? search_word_th: search_word_en}</span>
             </Link>
             <Link to={`/item/${ID}`}>
               <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">

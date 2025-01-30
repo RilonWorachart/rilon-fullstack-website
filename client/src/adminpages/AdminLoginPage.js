@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useTranslation } from 'react-i18next';
 
 function AdminLoginPage() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     fname: '',
     password: '',
@@ -62,14 +64,14 @@ function AdminLoginPage() {
     <>
       <div className="min-h-screen font-plex-sans-thai bg-[#f4f4f4] flex justify-center items-center">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h1 className="text-2xl font-semibold text-center text-[#333]">Admin Login</h1>
+          <h1 className="text-2xl font-semibold text-center text-[#333]">{t('admin.p1')}</h1>
           <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C] mx-auto my-2" />
 
           <form className="space-y-4" onSubmit={handleSubmit}>
 
             {/* First Name Input */}
             <div>
-              <label htmlFor="fname" className="block font-semibold text-[#333]">UserName</label>
+              <label htmlFor="fname" className="block font-semibold text-[#333]">{t('admin.p2')}</label>
               <input
                 type="text"
                 id="fname"
@@ -83,7 +85,7 @@ function AdminLoginPage() {
 
             {/* Password Input */}
             <div>
-              <label htmlFor="password" className="block font-semibold text-[#333]">Password</label>
+              <label htmlFor="password" className="block font-semibold text-[#333]">{t('admin.p3')}</label>
               <input
                 type="password"
                 id="password"
@@ -99,7 +101,7 @@ function AdminLoginPage() {
             <div className="flex justify-center pt-4">
               <input
                 type="submit"
-                value="Login"
+                value={t('admin.p4')}
                 className="py-2 px-4 text-white bg-[#28A745] border border-[#28A745] rounded-md hover:bg-[#218838] transition duration-300 cursor-pointer"
               />
             </div>

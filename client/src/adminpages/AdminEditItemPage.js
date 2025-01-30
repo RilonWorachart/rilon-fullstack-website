@@ -300,24 +300,24 @@ function AdminEditItemPage() {
             <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
                 <p className="py-1">
                     <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
-                    <a href="/adminitem" className="hover:text-[#00007E]">Admin</a> <span> » </span>
-                    <span>Edit Form</span>
+                    <a href="/adminitem" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
+                    <span>{t('admin.p29')}</span>
                 </p>
                 <div className="flex">
                     <Link to="/adminitem">
-                        <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px]">
-                            Back
+                        <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
+                        {t('admin.p24')}
                         </button>
                     </Link>
-                    <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px] ml-[10px]">
-                        Log out
+                    <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+                    {t('admin.p23')}
                     </button>
                 </div>
             </div>
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] pt-4 pb-10">
                 <div>
-                    <h1 className="text-[30px]">Product Information</h1>
+                    <h1 className="text-[30px]">{t('admin.p30')}</h1>
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
                 </div>
 
@@ -325,7 +325,7 @@ function AdminEditItemPage() {
                     <div className="md:flex">
                         <div className="md:w-[50%] md:pr-[10px]">
                             <div className="pt-4">
-                                <label htmlFor="rilon_id" className="font-semibold py-1">Rilon ID<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="rilon_id" className="font-semibold py-1">{t('admin.p31')}<span className="text-[#DC3545]">*</span></label><br />
                                 <input
                                     type="text"
                                     id="rilon_id"
@@ -338,7 +338,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="name_th" className="font-semibold py-1">Name (Thai)<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="name_th" className="font-semibold py-1">{t('admin.p33')}<span className="text-[#DC3545]">*</span></label><br />
                                 <input
                                     type="text"
                                     id="name_th"
@@ -351,7 +351,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="category_id" className="font-semibold py-1">Category<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="category_id" className="font-semibold py-1">{t('admin.p35')}<span className="text-[#DC3545]">*</span></label><br />
                                 <select
                                     name="category_id"
                                     id="category_id"
@@ -370,7 +370,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="description_th" className="font-semibold py-1">Description (Thai)<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="description_th" className="font-semibold py-1">{t('admin.p37')}<span className="text-[#DC3545]">*</span></label><br />
                                 <textarea
                                     id="description_th"
                                     name="description_th"
@@ -382,7 +382,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="other_th" className="font-semibold py-1">Other (Thai)</label><br />
+                                <label htmlFor="other_th" className="font-semibold py-1">{t('admin.p39')}</label><br />
                                 <textarea
                                     id="other_th"
                                     name="other_th"
@@ -393,7 +393,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="picture_1" className="font-semibold py-1">Picture 1<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="picture_1" className="font-semibold py-1">{t('admin.p41')}<span className="text-[#DC3545]">*</span></label><br />
                                 <input
                                     type="file"
                                     id="picture_1"
@@ -406,7 +406,7 @@ function AdminEditItemPage() {
 
                         <div className="md:w-[50%] md:pl-[10px]">
                             <div className="pt-4">
-                                <label htmlFor="name_en" className="font-semibold py-1">Name (English)<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="name_en" className="font-semibold py-1">{t('admin.p32')}<span className="text-[#DC3545]">*</span></label><br />
                                 <input
                                     type="text"
                                     id="name_en"
@@ -419,7 +419,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="brand_th" className="font-semibold py-1">Brand<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="brand_th" className="font-semibold py-1">{t('admin.p34')}<span className="text-[#DC3545]">*</span></label><br />
                                 <select
                                     name="brand_th"
                                     id="brand_th"
@@ -438,7 +438,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="search_word_th" className="font-semibold py-1">Search Word</label><br />
+                                <label htmlFor="search_word_th" className="font-semibold py-1">{t('admin.p36')}</label><br />
                                 <select
                                     name="search_word_th"
                                     id="search_word_th"
@@ -447,7 +447,7 @@ function AdminEditItemPage() {
                                     required
                                     className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 >
-                                    <option value="">Select a search word</option>
+                                    <option value="">{t('admin.p44')}</option>
                                     {searchwords.map((result) => (
                                         <option key={result.id} value={result.name_th}>
                                             {result.name_th} / {result.name_en}
@@ -457,7 +457,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="description_en" className="font-semibold py-1">Description (English)<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="description_en" className="font-semibold py-1">{t('admin.p38')}<span className="text-[#DC3545]">*</span></label><br />
                                 <textarea
                                     id="description_en"
                                     name="description_en"
@@ -469,7 +469,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="other_en" className="font-semibold py-1">Other (English)</label><br />
+                                <label htmlFor="other_en" className="font-semibold py-1">{t('admin.p40')}</label><br />
                                 <textarea
                                     id="other_en"
                                     name="other_en"
@@ -480,7 +480,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="picture_2" className="font-semibold py-1">Picture 2</label><br />
+                                <label htmlFor="picture_2" className="font-semibold py-1">{t('admin.p42')}</label><br />
                                 <input
                                     type="file"
                                     id="picture_2"
@@ -498,7 +498,7 @@ function AdminEditItemPage() {
                             type="submit"
                             className="text-[14px] overflow-hidden truncate bg-[#5E993E] border border-[#5E993E] text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300"
                         >
-                            Submit
+                            {t('admin.p43')}
                         </button>
                     </div>
                 </form>

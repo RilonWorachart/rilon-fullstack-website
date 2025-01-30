@@ -11,7 +11,8 @@ import axios from 'axios';
 function CategoryDetail() {
     const { id } = useParams();
     const [categoryData, setProductData] = useState([])
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const currentLang = i18n.language;
 
     const fetchCategoryById = async () => {
         try {
@@ -41,7 +42,7 @@ function CategoryDetail() {
                         <span className="hover:text-[#00007E]">{t('itempage.p2')}</span>
                     </Link>
                     <span> » </span>
-                    <span className="">{categoryData.name_th}</span>
+                    <span className="">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
                 </p>
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>
             </div>
@@ -53,9 +54,9 @@ function CategoryDetail() {
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
                 <img className=" w-[100%] md:w-[35%] md:h-[100%]  border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${categoryData.picture_1}`} alt={categoryData.name_th} />
                 <div className="lg:w-[70%]">
-                    <p className="text-[32px] pt-4">{categoryData.name_th}</p>
+                    <p className="text-[32px] pt-4">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</p>
                     <p className="pt-1 pb-3">
-                        <span className="text-[#E2B22C]">{categoryData.description_th}</span>
+                        <span className="text-[#E2B22C]">{currentLang === 'th' ? categoryData.description_th : categoryData.description_en}</span>
                     </p>
                     <hr></hr>
 

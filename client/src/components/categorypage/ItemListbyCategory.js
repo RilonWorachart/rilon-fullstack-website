@@ -36,7 +36,7 @@ function ItemListbyCategory() {
     <>
       <div className="mx-[20px] ">
         <h1 className="text-[30px]">
-          รายการสินค้า
+          {t('categorypage.p5')}
         </h1>
         <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
       </div>

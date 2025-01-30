@@ -65,30 +65,30 @@ function AdminPanelPage() {
 
     return (
         <div className="min-h-screen font-plex-sans-thai bg-[#f4f4f4]">
-            <div className="pt-[80px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 flex justify-between">
+            <div className="pt-[80px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
                 <p className="py-1">
                     <Link to="/">
                         <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
                     </Link>
                     <span> » </span>
-                    <span className="">Admin Panel</span>
+                    <span className="">{t('admin.p5')}</span>
                 </p>
                 <div className="flex">
-                    <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px] ml-[10px]">
-                        Log out
+                    <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+                        {t('admin.p23')}
                     </button>
                 </div>
             </div>
             <div className="flex justify-center items-center h-[700px]">
                 <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md my-[auto]">
-                    <h1 className="text-2xl font-semibold text-center text-[#333]">Admin Panel</h1>
+                    <h1 className="text-2xl font-semibold text-center text-[#333]">{t('admin.p5')}</h1>
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C] mx-auto my-2" />
                     <div className="pt-4">
                         <Link to="/adminform">
-                            <div className="mb-3 mx-[auto] w-[100px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">Form</div>
+                            <div className="mb-3 mx-[auto] w-[100px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p6')}</div>
                         </Link>
                         <Link to="/adminitem">
-                            <div className="my-3 mx-[auto] w-[100px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">Products</div>
+                            <div className="my-3 mx-[auto] w-[100px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p7')}</div>
                         </Link>
                     </div>
                 </div>

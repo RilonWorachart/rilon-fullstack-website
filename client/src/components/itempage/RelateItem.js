@@ -137,7 +137,6 @@ function RelateItem() {
                 search_word_en={item.search_word_en}
                 brand_en={item.brand_en}
                 itemType={'type1'}
-                className="max-h-[500px]"
               />
             </div>
           ))}

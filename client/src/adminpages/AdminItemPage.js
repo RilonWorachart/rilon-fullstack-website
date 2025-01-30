@@ -12,7 +12,8 @@ function AdminItemPage() {
   const [productData, setProductData] = useState([]);
   const [categoryData, setCategoryData] = useState([]); // Initialize as empty array
   const [itemType, setItemType] = useState("type1");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -102,24 +103,24 @@ function AdminItemPage() {
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
-        <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 flex justify-between">
+        <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
           <p className="py-1">
             <Link to="/">
               <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
             </Link>
             <span> » </span>
-            <Link to="/adminpanel"><span className="">Admin Panel</span></Link>
+            <Link to="/adminpanel"><span className="">{t('admin.p5')}</span></Link>
             <span> » </span>
-            <span className="">Item</span>
+            <span className="">{t('admin.p9')}</span>
           </p>
           <div className="flex">
             <Link to="/admincreate">
-              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px]">
-                Create
+              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
+                {t('admin.p22')}
               </button>
             </Link>
-            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px] ml-[10px]">
-              Log out
+            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+             {t('admin.p23')}
             </button>
           </div>
         </div>
@@ -139,7 +140,7 @@ function AdminItemPage() {
           <div className="mx-[10%] 2xl:mx-[20%]">
             <div>
               <h1 className="pt-2 text-[30px] text-center">
-                Category
+              {t('itempage.p6')}
               </h1>
               <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
             </div>
@@ -148,7 +149,7 @@ function AdminItemPage() {
                 onClick={() => setCategory('')}
                 className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${category === '' ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}
               >
-                ALL
+                {t('admin.p25')}
               </button>
               {categoryData.map((categoryItem) => (
                 <button
@@ -156,7 +157,7 @@ function AdminItemPage() {
                   onClick={() => setCategory(categoryItem.ID)}
                   className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${category === categoryItem.ID ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}
                 >
-                  {categoryItem.name_th}
+                  {currentLang === 'th' ? categoryItem.name_th : categoryItem.name_en}
                 </button>
               ))}
             </div>
@@ -170,8 +171,8 @@ function AdminItemPage() {
               <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
             </div>
             <div className="flex flex-wrap justify-center items-center mx-[auto] py-10">
-              <button onClick={() => setBrand('')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>ALL</button>
-              <button onClick={() => setBrand('ไรล่อน')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "rilon" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>RILON</button>
+              <button onClick={() => setBrand('')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>{t('admin.p25')}</button>
+              <button onClick={() => setBrand('ไรล่อน')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "rilon" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>{t('admin.p26')}</button>
               <button onClick={() => setBrand('JW')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "jw" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>JW</button>
               <button onClick={() => setBrand('JINGWEITIP')} className={` py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "jingweitip" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>JINGWEITIP</button>
             </div>
@@ -206,7 +207,7 @@ function AdminItemPage() {
               }
             })
             .map((item) => (
-              <AdminItemCard key={item.ID} item={item} category_id={item.category_id} ID={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} name_th={item.name_th} description_th={item.description_th} search_word_th={item.search_word_th} brand_th={item.brand_th} name_en={item.name_en} description_en={item.description_en} searchword_en={item.searchword_en} brand_en={item.brand_en} itemType={itemType} />
+              <AdminItemCard key={item.ID} item={item} category_id={item.category_id} ID={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} name_th={item.name_th} description_th={item.description_th} search_word_th={item.search_word_th} brand_th={item.brand_th} name_en={item.name_en} description_en={item.description_en} search_word_en={item.search_word_en} brand_en={item.brand_en} itemType={itemType} />
             ))}
         </div>
       </div>

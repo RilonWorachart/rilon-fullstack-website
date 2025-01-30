@@ -56,7 +56,8 @@
         "p24": "Worachart Group Co., Ltd.",
         "p25": "110/61, 91/1, Sai Mai Subdistrict, Mueang Nonthaburi District, Nonthaburi 11000",
         "p26": "Monday - Saturday, 08:00 AM - 05:30 PM. Orders can be placed 24/7.",
-        "p27":"Recommended products"
+        "p27": "Recommended products",
+        "p28": "view more product list"
     },
     "contact": {
         "p1": "110/61,91/1 Sai Ma, Mueang Nonthaburi, Nonthaburi 11000",
@@ -98,7 +99,8 @@
         "p1": "Home",
         "p2": "Online Catalog",
         "p3": "Rilon Welding Machines, Worachart Group",
-        "p4":"search"
+        "p4": "search",
+        "p5": "Product List"
     },
     "itempage": {
         "p1": "Contact",
@@ -116,7 +118,7 @@
         "p13": "Request Details",
         "p14": "Request a Quote"
     },
-    "itemcard":{
+    "itemcard": {
         "p1": "view detail"
     },
     "formpage": {
@@ -160,5 +162,53 @@
         "p38": "Others",
         "p39": "Cancel",
         "p40": "Send Request"
+    },
+    "admin": {
+        "p1": "Admin Login",
+        "p2": "Username",
+        "p3": "Password",
+        "p4": "Login",
+        "p5": "Admin",
+        "p6": "Form",
+        "p7": "Products",
+        "p8": "No.",
+        "p9": "Product",
+        "p10": "Name",
+        "p11": "Tel",
+        "p12": "Line",
+        "p13": "Email",
+        "p14": "Fax",
+        "p15": "Company",
+        "p16": "Position",
+        "p17": "Province",
+        "p18": "Urgent",
+        "p19": "Requirement",
+        "p20": "Message",
+        "p21": "Create time",
+        "p22": "Create",
+        "p23": "Log out",
+        "p24": "Back",
+        "p25": "ALL",
+        "p26": "RILON",
+        "p27": "Edit",
+        "p28": "Delete",
+        "p29": "Edit Product",
+        "p30": "Product Information",
+        "p31": "Rilon ID",
+        "p32": "Name (English)",
+        "p33": "Name (Thai)",
+        "p34": "Brand",
+        "p35": "Category",
+        "p36": "Search word",
+        "p37": "Description (Thai)",
+        "p38": "Description (English)",
+        "p39": "Other (thai)",
+        "p40": "Other (English)",
+        "p41": "Picture 1",
+        "p42": "Picture 2",
+        "p43": "Submit",
+        "p44": "Select a search word",
+        "p45": "Select a category",
+        "p46": "Select a brand"
     }
 }

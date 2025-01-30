@@ -11,7 +11,9 @@ function ItemDetail() {
     const { id } = useParams();
     const [productData, setProductData] = useState(null);  // Initially null to check if data is fetched
     const [categoryData, setCategoryData] = useState(null); // Start with null to avoid error
-    const { t } = useTranslation();
+    const { t, i18n} = useTranslation();
+
+    const currentLang = i18n.language;
 
     // Fetch product data by ID
     const fetchProductById = async () => {
@@ -73,10 +75,10 @@ function ItemDetail() {
                     </Link>
                     <span> » </span>
                     <Link to={`/category/${productData.category_id}`}>
-                        <span className="hover:text-[#00007E]">{categoryData.name_th}</span>
+                        <span className="hover:text-[#00007E]">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
                     </Link>
                     <span> » </span>
-                    <span className="">{productData.name_th}</span>
+                    <span className="">{currentLang === 'th' ? productData.name_th: productData.name_en}</span>
                 </p>
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>
             </div>
@@ -88,11 +90,11 @@ function ItemDetail() {
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
                 <img className="w-[100%] md:w-[35%] md:h-[100%] border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${productData.picture_1}`} alt={productData.name_th} />
                 <div className="lg:w-[70%]">
-                    <p className="text-[32px] pt-4">{productData.name_th}</p>
+                    <p className="text-[32px] pt-4">{currentLang === 'th' ? productData.name_th : productData.name_en}</p>
                     <p className="py-1">
                         <span>{t('itempage.p5')} </span>
                         <Link to={`/catalog/keyword/${productData.brand_th}`}>
-                            <span className="text-[#E2B22C] uppercase">{productData.brand_th}</span>
+                            <span className="text-[#E2B22C] uppercase">{currentLang === 'th' ? productData.brand_th : productData.brand_en}</span>
                         </Link>
                     </p>
                     <hr />
@@ -106,13 +108,13 @@ function ItemDetail() {
                     <div className="flex">
                         <Link to={`/category/${productData.category_id}`}>
                             <button className="bg-[#E2B22C] border text-white text-[13px] py-1 px-4 mr-2 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
-                                {categoryData.name_th}
+                                {currentLang === 'th' ? categoryData.name_th: categoryData.name_en}
                             </button>
                         </Link>
                     </div>
                     <p className="py-2">{t('itempage.p12')}</p>
                     <Link to={`/catalog/keyword/${productData.search_word_th}`}>
-                        <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{productData.search_word_th}</button>
+                        <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{currentLang === 'th' ? productData.search_word_th : productData.search_word_en}</button>
                     </Link>
                     <div></div>
                     <hr />
@@ -156,7 +158,7 @@ function ItemDetail() {
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
                 </div>
                 <div className="pb-[50px]">
-                    <p className="pt-6 pb-2">{productData.description_th}</p>
+                    <p className="pt-6 pb-2">{currentLang === 'th' ? productData.description_th : productData.description_en}</p>
                 </div>
                 {productData.picture_2 && (
                     <div className="mx-[20%]">
@@ -169,7 +171,7 @@ function ItemDetail() {
                 )}
                 {productData.other_th && (
                     <div className="pt-[50px] ">
-                        <p className="break-words">{productData.other_th}</p>
+                        <p className="break-words">{currentLang === 'th' ? productData.other_th : productData.other_en}</p>
                     </div>
                 )}
                 <div className="mt-[50px]"></div>

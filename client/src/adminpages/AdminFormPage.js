@@ -105,33 +105,33 @@ function AdminFormPage() {
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
-        <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 flex justify-between">
+        <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
           <p className="py-1">
             <Link to="/">
               <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
             </Link>
             <span> » </span>
             <Link to="/adminpanel">
-              <span className="">Admin Panel</span>
+              <span className="">{t('admin.p5')}</span>
             </Link>
             <span> » </span>
-            <span className="">Form</span>
+            <span className="">{t('admin.p6')}</span>
           </p>
-          <div className="flex">
+          <div className="">
             <Link to="/adminPanel">
-              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px]">
-                Back
+              <button className=" text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
+                {t('admin.p24')}
               </button>
             </Link>
-            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px] ml-[10px]">
-              Log out
+            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+              {t('admin.p23')}
             </button>
           </div>
         </div>
 
         <div className="pb-[40px] pt-[20px]">
           <h1 className="pt-2 text-[30px] text-center">
-            Form Data
+          {t('admin.p6')}
           </h1>
           <div className="text-[#E2B22C] h-[3px] w-[60px] mx-[auto] bg-[#E2B22C]" />
         </div>
@@ -141,26 +141,26 @@ function AdminFormPage() {
           <table class="bg-white border border-gray-300 rounded-lg shadow-lg w-[100%]">
             <thead class="bg-gray-200">
               <tr className="">
-                <th class="py-2 px-4 text-left">No.</th>
-                <th class="py-2 px-4 text-left">Product</th>
-                <th class="py-2 px-4 text-left">Name</th>
-                <th class="py-2 px-4 text-left">Tel</th>
-                <th class="py-2 px-4 text-left">Line</th>
-                <th class="py-2 px-4 text-left">Email</th>
-                <th class="py-2 px-4 text-left">Fax</th>
-                <th class="py-2 px-4 text-left">Company</th>
-                <th class="py-2 px-4 text-left">Position</th>
-                <th class="py-2 px-4 text-left">Province</th>
-                <th class="py-2 px-4 text-left">Time</th>
-                <th class="py-2 px-4 text-left">Requirement</th>
-                <th class="py-2 px-4 text-left">Message</th>
-                <th class="py-2 px-4 text-left">Create Time</th>
+                <th class="py-2 px-4 text-left">{t('admin.p8')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p9')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p10')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p11')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p12')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p13')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p14')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p15')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p16')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p17')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p18')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p19')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p20')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p21')}</th>
               </tr>
             </thead>
             <tbody>
               {formData.map((data, index) => (
                 <tr className="border-b border-gray-200" key={index}>
-                  <td className="py-2 px-4">{index+1}</td>
+                  <td className="py-2 px-4">{index + 1}</td>
                   <td className="py-2 px-4">{data.product}</td>
                   <td className="py-2 px-4">{data.name}</td>
                   <td className="py-2 px-4">{data.tel}</td>

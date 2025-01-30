@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'
 
 function CategoryCard({ ID, picture_1, name_th, description_th, name_en, description_en, itemType }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language;
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
       <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[70%] md:my-[auto]" : ""}`}>
         <div className="">
-          <p className="text-[24px] text-[#E5B22C] truncate">{name_th}</p>
+          <p className="text-[24px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           {/* Sliding effect only for type1 */}
           <div
             className="w-full flex items-center transition-all duration-500 overflow-hidden"
@@ -41,7 +42,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
               className={`text-[14px] text-[#E5B22C] line-clamp-2 ${itemType === "type2" ? "w-[100%]" : ""
                 }`}
             >
-              {description_th}
+              {currentLang === 'th' ? description_th : description_en}
             </p>
           </div>
         </div>
@@ -50,7 +51,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
           <div className={`${itemType === "type2" ? "" : "flex justify-between items-center"}`}>
             <Link to={`/category/${ID}`}>
               <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">
-                ดูรายการสินค้าเพิ่มเติม
+                {t('homepage.p28')}
               </button>
             </Link>
           </div>
