@@ -13,18 +13,17 @@ function ItemCard({ ID, picture_1, name_th, description_th, search_word_th, bran
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "" : "h-[60%]"}`}>
-        <div className={`bg-black overflow-hidden flex my-[auto] mx-[auto] ${itemType === "type2" ? "" : "max-h-[250px] "}`}>
+      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "md:w-[30%]" : "h-[60%]"}`}>
+        <div className={`bg-black overflow-hidden flex my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
-            className={`transition-transform duration-300 transform ${itemType === "type2" ? "" : "w-full h-full object-cover"
-              } ${isActive ? 'scale-110 opacity-75' : ''}`}
+            className={`transition-transform duration-300 transform w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
             src={`${process.env.REACT_APP_API}${picture_1}`}
             alt={name_th}
           />
         </div>
       </Link>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "md:min-w-[80%] md:my-[auto]" : ""}`}>
+      <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[70%] md:my-[auto]" : ""}`}>
         <div className="pb-[50px]">
           <p className="text-[24px] text-[#E5B22C] truncate">{name_th}</p>
           <p className="text-[14px] uppercase  pb-[15px] ">{brand_th}</p>

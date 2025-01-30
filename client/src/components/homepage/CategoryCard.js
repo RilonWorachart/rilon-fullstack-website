@@ -13,21 +13,21 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
   return (
     <div
-      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2" : ""}`}
+      className={`shadow-md z-0 ${itemType === "type2" ? "my-2 md:flex" : ""}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/category/${ID}`} className={`flex ${itemType === "type2" ? "" : "h-[60%]"}`}>
-        <div className={`bg-black overflow-hidden flex justify-center my-[auto] mx-[auto] ${itemType === "type2" ? "" : "max-h-[250px]"}`}>
+      <Link to={`/category/${ID}`} className={`flex ${itemType === "type2" ? "md:w-[30%]" : "h-[60%]"}`}>
+        <div className={`bg-black overflow-hidden flex justify-center my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
-            className={`transition-transform duration-300 transform overflow-hidden ${itemType === "type2" ? "" : "w-full h-full object-cover"} ${isActive ? 'scale-110 opacity-75' : ''}`}
+            className={`transition-transform duration-300 transform overflow-hidden w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
             src={`${process.env.REACT_APP_API}${picture_1}`}
             alt={name_th}
           />
         </div>
       </Link>
 
-      <div className={`px-5 py-5 my-[auto] ${itemType === "type2" ? "md:min-w-[80%]" : ""}`}>
+      <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[70%] md:my-[auto]" : ""}`}>
         <div className="">
           <p className="text-[24px] text-[#E5B22C] truncate">{name_th}</p>
           {/* Sliding effect only for type1 */}

@@ -93,16 +93,16 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
       onMouseLeave={() => setIsActive(false)}
     >
       {/* Image Section */}
-      <div className={`overflow-hidden flex ${itemType === "type2" ? "min-w-[30%]" : "h-[45%]"}`}>
+      <div className={`overflow-hidden flex ${itemType === "type2" ? "md:w-[30%]" : "h-[45%]"}`}>
         <img
-          className={`transition-transform duration-300 transform my-[auto] mx-[auto] ${itemType === "type2" ? "max-w-[300px]" : "w-full h-full object-cover"} ${isActive ? 'scale-110 opacity-75' : ''}`}
+          className={`transition-transform duration-300 transform ${itemType === "type2" ? "sm:w-full md:mx-[auto] md:my-[auto]" : "w-full h-full object-cover"} ${isActive ? 'scale-110 opacity-75' : ''}`}
           src={`${process.env.REACT_APP_API}${picture_1}`}
           alt={name_th}
         />
       </div>
 
       {/* Content Section */}
-      <div className={`px-5 py-5 my-[auto] ${itemType === "type2" ? "min-w-[65%]" : "flex flex-col space-y-7"}`}>
+      <div className={`px-5 py-5 my-[auto] ${itemType === "type2" ? "md:w-[70%]" : "flex flex-col space-y-7"}`}>
         <div className="">
           <p className="text-[28px] text-[#E5B22C] truncate">{name_th}</p>
           <p className={`text-[14px] uppercase ${itemType === "type2" ? "w-full" : ""}`}>
