@@ -95,14 +95,6 @@ function AdminItemPage() {
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
 
-  const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-  };
-
   if (categoryData.length === 0) {
     return <div>Loading...</div>; // Show loading state until category data is ready
   }

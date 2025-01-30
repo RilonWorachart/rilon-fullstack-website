@@ -13,11 +13,11 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
   return (
     <div
-      className={`shadow-md z-0 ${itemType === "type2" ? "my-2 md:flex" : ""}`}
+      className={`shadow-md z-0 ${itemType === "type2" ? "my-2 md:flex" : "flex flex-col justify-between"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/category/${ID}`} className={`flex ${itemType === "type2" ? "md:w-[30%]" : "h-[60%]"}`}>
+      <Link to={`/category/${ID}`} className={`flex ${itemType === "type2" ? "md:w-[30%]" : "h-[60%] my-[auto]"}`}>
         <div className={`bg-black overflow-hidden flex justify-center my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
             className={`transition-transform duration-300 transform overflow-hidden w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
