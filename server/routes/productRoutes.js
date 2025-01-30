@@ -24,14 +24,14 @@ const storage = multer.diskStorage({
 
 
 const fileFilter = (req, file, cb) => {
-    const fileTypes = /jpeg|jpg|png/;
+    const fileTypes = /jpeg|jpg|png|svg/;
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = fileTypes.test(file.mimetype);
 
     if (extname && mimetype) {
         return cb(null, true); // Accept the file
     } else {
-        return cb(new Error('Invalid file type. Only image files (jpg, jpeg, png) are allowed.'));
+        return cb(new Error('Invalid file type. Only image files (jpg, jpeg, png, svg) are allowed.'));
     }
 };
 

@@ -43,7 +43,7 @@ function AdminLoginPage() {
           confirmButtonText: 'OK'
         });
         setTimeout(() => {
-          window.location = "/adminitem"; // Redirect to the admin item page after successful login
+          window.location = "/adminpanel"; // Redirect to the admin item page after successful login
         }, 1000);
       } else {
         Swal.fire({

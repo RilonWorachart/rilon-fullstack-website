@@ -116,7 +116,9 @@ function AdminItemPage() {
               <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
             </Link>
             <span> » </span>
-            <span className="">Admin</span>
+            <Link to="/adminpanel"><span className="">Admin Panel</span></Link>
+            <span> » </span>
+            <span className="">Item</span>
           </p>
           <div className="flex">
             <Link to="/admincreate">

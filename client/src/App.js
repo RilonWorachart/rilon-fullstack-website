@@ -7,6 +7,8 @@ import FormPage from "./pages/FormPage.js";
 import CategoryPage from './pages/CategoryPage.js'
 import CatalogKeywordPage from "./pages/CatalogKeywordPage.js";
 import AdminLoginPage from './adminpages/AdminLoginPage.js'
+import AdminPanelPage from './adminpages/AdminPanelPage.js'
+import AdminFormPage from './adminpages/AdminFormPage.js'
 import AdminItemPage from './adminpages/AdminItemPage.js';
 import AdminEditItemPage from './adminpages/AdminEditItemPage.js'
 import AdminCreateItemPage from './adminpages/AdminCreateItemPage.js'
@@ -32,6 +34,8 @@ function App() {
             <Route path="/category/:id" element={<CategoryPage />} />
             <Route path="/requestform" element={<FormPage />} />
             <Route path="/adminlogin" element={<AdminLoginPage />} />
+            <Route path="/adminpanel" element={<AdminPanelPage />} />
+            <Route path="/adminform" element={<AdminFormPage />} />
             <Route path="/adminitem" element={<AdminItemPage />} />
             <Route path="/admincreate" element={<AdminCreateItemPage />} />
             <Route path="/adminedit/:id" element={<AdminEditItemPage />} />
