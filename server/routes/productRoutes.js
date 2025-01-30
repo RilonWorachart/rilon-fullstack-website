@@ -1,7 +1,6 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import Swal from 'sweetalert2';
 import { createProduct, deleteProduct, editProduct, getproductbyId, getproductbyCategory, getallProduct } from '../controllers/productController.js';
 import { authenmiddleware } from '../controllers/authController.js';
 import { fileURLToPath } from 'url';

@@ -119,8 +119,8 @@ function AdminEditItemPage() {
         if (productData) {
             setFormData({
                 rilon_id: productData.rilon_id,
-                picture_1: null,
-                picture_2: null,
+                picture_1: productData.picture_1,
+                picture_2: productData.picture_2,
                 name_th: productData.name_th,
                 description_th: productData.description_th,
                 search_word_th: productData.search_word_th,
@@ -199,12 +199,19 @@ function AdminEditItemPage() {
         formDataToSend.append('category_id', formData.category_id);
         formDataToSend.append('ID', formData.ID);
 
-        // Append the pictures if they exist
-        if (formData.picture_1) {
+        // Append the pictures only if they are new files (i.e., file input exists)
+        if (formData.picture_1 && formData.picture_1 instanceof File) {
             formDataToSend.append('picture_1', formData.picture_1);
+        } else if (!formData.picture_1) {
+            // Use old picture_1 if no new file is selected
+            formDataToSend.append('picture_1', formData.rilon_id); // Assuming `rilon_id` holds the path to the image
         }
-        if (formData.picture_2) {
+
+        if (formData.picture_2 && formData.picture_2 instanceof File) {
             formDataToSend.append('picture_2', formData.picture_2);
+        } else if (!formData.picture_2) {
+            // Use old picture_2 if no new file is selected
+            formDataToSend.append('picture_2', formData.picture_2 || ''); // Ensure no undefined value
         }
 
         // Send the request to the backend
@@ -392,7 +399,6 @@ function AdminEditItemPage() {
                                     id="picture_1"
                                     name="picture_1"
                                     onChange={handleChange}
-                                    required
                                     className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 />
                             </div>

@@ -202,7 +202,6 @@ export const editProduct = async (req, res, next) => {
     const picture_1 = req.files && req.files.picture_1 ? `/uploads/${req.files.picture_1[0].filename}` : null;
     const picture_2 = req.files && req.files.picture_2 ? `/uploads/${req.files.picture_2[0].filename}` : null;
 
-
     // Check if the category_id exists in the categories table
     const [category] = await promisePool.execute("SELECT * FROM categories WHERE id = ?", [category_id]);
 
@@ -218,17 +217,16 @@ export const editProduct = async (req, res, next) => {
         const [product] = await promisePool.execute("SELECT picture_1, picture_2 FROM products WHERE ID = ?", [ID]);
 
         if (product.length > 0) {
-            const oldPicture1 = product[0].picture_1;
+            const oldPicture1 = product[0].picture_1; // Define oldPicture1 and oldPicture2
             const oldPicture2 = product[0].picture_2;
 
             // Log current picture paths to check what's being deleted
             console.log('Current Picture 1:', oldPicture1);
             console.log('Current Picture 2:', oldPicture2);
 
-            // Delete old pictures if new ones are provided
+            // Delete old picture 1 only if a new one is provided
             if (picture_1 && oldPicture1) {
-                // Correct path for deletion (including 'uploads' directory)
-                const oldPicturePath1 = path.join(__dirname, '..', 'public', oldPicture1); // Don't replace /uploads anymore
+                const oldPicturePath1 = path.join(__dirname, '..', 'public', oldPicture1); // Correct path for deletion
                 console.log('Attempting to delete old Picture 1 at:', oldPicturePath1);
 
                 try {
@@ -239,9 +237,9 @@ export const editProduct = async (req, res, next) => {
                 }
             }
 
+            // Delete old picture 2 only if a new one is provided
             if (picture_2 && oldPicture2) {
-                // Correct path for deletion (including 'uploads' directory)
-                const oldPicturePath2 = path.join(__dirname, '..', 'public', oldPicture2); // Don't replace /uploads anymore
+                const oldPicturePath2 = path.join(__dirname, '..', 'public', oldPicture2); // Correct path for deletion
                 console.log('Attempting to delete old Picture 2 at:', oldPicturePath2);
 
                 try {
@@ -253,12 +251,26 @@ export const editProduct = async (req, res, next) => {
             }
         }
 
-        // Update the existing product with new values
+        // Update the product with new values, keeping the old picture if no new picture is uploaded
         await promisePool.execute(
             "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, search_word_th = ?, brand_th = ?, other_th = ?, name_en = ?, description_en = ?, search_word_en = ?, brand_en = ?, other_en = ?, category_id = ? WHERE ID = ?",
-            [rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
-                brand_th, other_th, name_en, description_en, search_word_en,
-                brand_en, other_en, category_id, ID]
+            [
+                rilon_id,
+                picture_1 || product[0].picture_1,  // Use the new picture_1 or keep the old one if no new picture is uploaded
+                picture_2 || product[0].picture_2,  // Use the new picture_2 or keep the old one if no new picture is uploaded
+                name_th,
+                description_th,
+                search_word_th,
+                brand_th,
+                other_th,
+                name_en,
+                description_en,
+                search_word_en,
+                brand_en,
+                other_en,
+                category_id,
+                ID
+            ]
         );
 
         res.json({ status: "ok", message: "Product has been updated successfully" });
@@ -266,3 +278,4 @@ export const editProduct = async (req, res, next) => {
         res.json({ status: "error", message: err.message });
     }
 };
+
