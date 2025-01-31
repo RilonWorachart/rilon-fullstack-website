@@ -11,7 +11,7 @@ function ItemDetail() {
     const { id } = useParams();
     const [productData, setProductData] = useState(null);  // Initially null to check if data is fetched
     const [categoryData, setCategoryData] = useState(null); // Start with null to avoid error
-    const { t, i18n} = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const currentLang = i18n.language;
 
@@ -78,7 +78,7 @@ function ItemDetail() {
                         <span className="hover:text-[#00007E]">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
                     </Link>
                     <span> » </span>
-                    <span className="">{currentLang === 'th' ? productData.name_th: productData.name_en}</span>
+                    <span className="">{currentLang === 'th' ? productData.name_th : productData.name_en}</span>
                 </p>
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>
             </div>
@@ -89,7 +89,7 @@ function ItemDetail() {
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
                 <img className="w-[100%] md:w-[35%] md:h-[100%] border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${productData.picture_1}`} alt={productData.name_th} />
-                <div className="lg:w-[70%]">
+                <div className="md:w-[70%]">
                     <p className="text-[32px] pt-4">{currentLang === 'th' ? productData.name_th : productData.name_en}</p>
                     <p className="py-1">
                         <span>{t('itempage.p5')} </span>
@@ -108,7 +108,7 @@ function ItemDetail() {
                     <div className="flex">
                         <Link to={`/category/${productData.category_id}`}>
                             <button className="bg-[#E2B22C] border text-white text-[13px] py-1 px-4 mr-2 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
-                                {currentLang === 'th' ? categoryData.name_th: categoryData.name_en}
+                                {currentLang === 'th' ? categoryData.name_th : categoryData.name_en}
                             </button>
                         </Link>
                     </div>
@@ -157,25 +157,41 @@ function ItemDetail() {
                     </h1>
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
                 </div>
-                <div className="pb-[50px]">
-                    <p className="pt-6 pb-2">{currentLang === 'th' ? productData.description_th : productData.description_en}</p>
+                <div className="py-[50px]">
+                    <table className="w-[100%]">
+                        <tbody className="border-[1px] border-lightgray">
+                            <tr className="border-[1px] border-lightgray">
+                                <td className="hidden md:table-cell w-[15%] text-center py-2 px-4 font-semibold border-[1px] border-lightgray">{currentLang === 'th' ? 'คำอธิบาย' : 'Description'}</td>
+                                <td className="py-4 px-5">{currentLang === 'th' ? productData.description_th : productData.description_en}</td>
+                            </tr>
+                            {productData.picture_2 && (
+                                <tr className="border-[1px] border-lightgray">
+                                    <td className="hidden md:table-cell py-2 px-4 text-center font-semibold border-[1px] border-lightgray">{currentLang === 'th' ? 'แผ่นข้อมูล' : 'Datasheet'}</td>
+                                    <td className="py-10">
+                                        <div className="mx-[auto] md:mx-[10%] ">
+                                            <img
+                                                className="mx-[auto] border rounded-md"
+                                                src={`${process.env.REACT_APP_API}${productData.picture_2}`}
+                                                alt={productData.name_th}
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
+                            )}
+                            {productData.other_th && (
+                                <tr className="border-[1px] border-lightgray">
+                                    <td className="hidden md:table-cell py-2 px-4  text-center font-semibold border-[1px] border-lightgray">{currentLang === 'th' ? 'อื่นๆ' : 'Other'}</td>
+                                    <td className="py-4 px-5">
+                                        <div className="break-words">
+                                            {currentLang === 'th' ? productData.other_th : productData.other_en}
+                                        </div>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
                 </div>
-                {productData.picture_2 && (
-                    <div className="mx-[20%]">
-                        <img
-                            className="mx-[auto] w-[100%] border rounded-md md:mr-[40px]"
-                            src={`${process.env.REACT_APP_API}${productData.picture_2}`}
-                            alt={productData.name_th}
-                        />
-                    </div>
-                )}
-                {productData.other_th && (
-                    <div className="pt-[50px] ">
-                        <p className="break-words">{currentLang === 'th' ? productData.other_th : productData.other_en}</p>
-                    </div>
-                )}
-                <div className="mt-[50px]"></div>
-                <QRcodeComponent/>
+                <QRcodeComponent />
                 <div className="text-center">
                     <p className="pt-10 pb-2 font-bold text-[16px] text-[#FF0000]">{t('itempage.p10')}</p>
                     <div className="pb-8 text-[17px] font-semibold">

@@ -39,7 +39,7 @@ function Header() {
       </div>
 
 
-      <div className="px-2 py-2 hidden lg:flex lg:items-between lg:justify-between w-[60%] max-w-[600px] ">
+      <div className="px-2 py-2 hidden xl:flex lg:items-between lg:justify-between w-[60%] max-w-[600px] ">
         <Link to="/">
           <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "home" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("home")}>
             <button className="hover:text-[#00007E]" >{t('header.homepage')}</button>
@@ -66,7 +66,7 @@ function Header() {
 
       <div className="w-[20%] justify-end" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
         <div className="relative">
-          <div className="hidden lg:flex justify-end text-[#E2B22C] hover:text-[#00007E]">
+          <div className="hidden xl:flex justify-end text-[#E2B22C] hover:text-[#00007E]">
             <img
               src={selectedPic}
               alt="Selected Flag"
@@ -109,7 +109,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="text-black text-[20px] hover:cursor-pointer lg:hidden">
+      <div className="text-black text-[20px] hover:cursor-pointer xl:hidden">
         <GiHamburgerMenu onClick={() => setIsActiveSidebar(true)} className="text-[#E2B22C]" />
         {isActiveSidebar && (
           <>

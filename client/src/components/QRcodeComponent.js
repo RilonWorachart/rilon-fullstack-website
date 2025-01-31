@@ -6,7 +6,7 @@ function QRcodeComponent() {
 
 
   return (
-    <div className="px-[100px] text-[#FF0000] text-center">
+    <div className="mx-[10%]  text-[#FF0000] text-center">
       <p className="text-[20px] font-bold">
         {t('qrcode.p1')}
       </p>
