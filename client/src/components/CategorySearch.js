@@ -4,10 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 function CategorySearch() {
   const { t, i18n } = useTranslation();
-
   const currentLang = i18n.language;
-
-
 
   const searchwords = [
     { id: 1, name_th: 'เครื่องเชื่อมอินวอเตอร์ราคาถูก', name_en: 'Cheap Inverter Welding Machine' },
@@ -68,11 +65,11 @@ function CategorySearch() {
           <Link to={`/catalog/keyword/rilon`}>
             <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">{currentLang === 'th' ? 'ไรล่อน' : 'RILON'}</button>
           </Link>
-          <Link to={`/catalog/keyword/jw`}>
-            <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">JW</button>
+          <Link to={`/catalog/keyword/JW INVERTER`}>
+            <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">JW INVERTER</button>
           </Link>
-          <Link to={`/catalog/keyword/jingweitip`}>
-            <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">JINGWEITIP</button>
+          <Link to={`/catalog/keyword/JW JINGWEITIP`}>
+            <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">JW JINGWEITIP</button>
           </Link>
         </div>
       </div>

@@ -13,8 +13,8 @@ function AdminEditItemPage() {
 
     const BrandData = [
         { id: 1, name_th: 'ไรล่อน', name_en: 'RILON' },
-        { id: 2, name_th: 'JW', name_en: 'JW' },
-        { id: 3, name_th: 'JINGWEITIP', name_en: 'JINGWEITIP' },
+        { id: 2, name_th: 'JW INVERTER', name_en: 'JW INVERTER' },
+        { id: 3, name_th: 'JW JINGWEITIP', name_en: 'JW JINGWEITIP' },
     ];
 
     const searchwords = [

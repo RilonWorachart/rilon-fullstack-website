@@ -84,6 +84,12 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                         <button>{t('header.contactus')}</button>
                     </div>
 
+                    <Link to="/requestform">
+                        <div className={``}>
+                            <button className="hover:text-[#00007E]" >{t('header.moreinfo')}</button>
+                        </div>
+                    </Link>
+
 
                     <div className="w-[100%] flex justify-center items-center" onMouseEnter={() => setIsActiveLangSidebar(true)} onMouseLeave={() => setIsActiveLangSidebar(false)}>
                         <div className="relative">
@@ -103,7 +109,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                             <div
                                                 className="flex items-center p-2 cursor-pointer hover:text-[#00007E]"
                                                 onClick={() =>
-                                                    handleSelectSidebar('Thai', 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg','th')
+                                                    handleSelectSidebar('Thai', 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg', 'th')
                                                 }
                                             >
                                                 <img
@@ -114,10 +120,10 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                                 {t('header.langth')}
                                             </div>
 
-                                           
+
                                             <div
                                                 className="flex items-center p-2 cursor-pointer hover:text-[#00007E]"
-                                                onClick={() => handleSelectSidebar('English', 'https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png','en')}
+                                                onClick={() => handleSelectSidebar('English', 'https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png', 'en')}
                                             >
                                                 <img
                                                     src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png"

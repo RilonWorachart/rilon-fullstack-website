@@ -11,8 +11,8 @@ const AdminCreateItemPage = () => {
 
   const BrandData = [
     { id: 1, name_th: 'ไรล่อน', name_en: 'RILON' },
-    { id: 2, name_th: 'JW', name_en: 'JW' },
-    { id: 3, name_th: 'JINGWEITIP', name_en: 'JINGWEITIP' },
+    { id: 2, name_th: 'JW INVERTER', name_en: 'JW INVERTER' },
+    { id: 3, name_th: 'JW JINGWEITIP', name_en: 'JW JINGWEITIP' },
   ];
 
   const searchwords = [
@@ -256,11 +256,11 @@ const AdminCreateItemPage = () => {
         </p>
         <div className="flex">
           <Link to="/adminitem">
-            <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px]">
+            <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
               {t('admin.p24')}
             </button>
           </Link>
-          <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[100px] ml-[10px]">
+          <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
           {t('admin.p23')}
           </button>
         </div>
@@ -396,7 +396,6 @@ const AdminCreateItemPage = () => {
                   id="search_word_th"
                   value={formData.search_word_th}
                   onChange={handleChange}
-                  required
                   className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 >
                   <option value="">{t('admin.p44')}</option>

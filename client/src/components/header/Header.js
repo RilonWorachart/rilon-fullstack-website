@@ -39,7 +39,7 @@ function Header() {
       </div>
 
 
-      <div className="px-2 py-2 hidden lg:flex lg:items-between lg:justify-between w-[50%] max-w-[500px] ">
+      <div className="px-2 py-2 hidden lg:flex lg:items-between lg:justify-between w-[60%] max-w-[600px] ">
         <Link to="/">
           <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "home" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("home")}>
             <button className="hover:text-[#00007E]" >{t('header.homepage')}</button>
@@ -54,9 +54,14 @@ function Header() {
         <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "recommend" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("recommend")}>
           <button className="hover:text-[#00007E]" onClick={() => navigateAndScroll(2)}>{t('header.recommend')}</button>
         </div>
-        <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "contactus" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("contactus")}>
-          <button className="hover:text-[#00007E]" onClick={() => navigateAndScroll(3)}>{t('header.contactus')}</button>
-        </div>
+          <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "contactus" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("contactus")}>
+            <button className="hover:text-[#00007E]" onClick={() => navigateAndScroll(3)}>{t('header.contactus')}</button>
+          </div>
+        <Link to="/requestform">
+          <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "moreinfo" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("moreinfo")}>
+            <button className="hover:text-[#00007E]" >{t('header.moreinfo')}</button>
+          </div>
+        </Link>
       </div>
 
       <div className="w-[20%] justify-end" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
