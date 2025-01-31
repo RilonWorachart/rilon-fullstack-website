@@ -129,13 +129,15 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
           <p className={`text-[14px] text-[#E5B22C] truncate ${itemType === "type2" ? "w-full" : ""}`}>
             Category: {currentLang === 'th' ? categoryData.name_th : categoryData.name_en}
           </p>
-          <div className={`text-[#E5B22C] py-[2px] flex items-center overflow-hidden mb-2 ${itemType === "type2" ? "w-full" : ""}`}>
-            <FaTags className="mr-1 w-[24px]" />
-            <span className="text-[14px] truncate mr-1">{currentLang === 'th' ? search_word_th : search_word_en}</span>
-          </div>
+          {search_word_th && (
+            <div className={`text-[#E5B22C] flex items-center overflow-hidden ${itemType === "type2" ? "w-full" : ""}`}>
+              <FaTags className="mr-1 w-[24px]" />
+              <span className="text-[14px] truncate mr-1">{currentLang === 'th' ? search_word_th : search_word_en}</span>
+            </div>
+          )}
 
           {/* Buttons Section */}
-          <div className={`flex justify-center ${itemType === "type2" ? "mx-[auto]" : ""}`}>
+          <div className={`flex justify-center mt-2 ${itemType === "type2" ? "mx-[auto]" : ""}`}>
             <Link to={`/adminedit/${ID}`} className="w-[45%]">
               <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-full">
                 {t('admin.p27')}
