@@ -2,12 +2,12 @@
     "header": {
         "homepage": "Home",
         "aboutme": "About",
-        "catelog": "Catelog",
+        "catelog": "Category",
         "recommend": "Recommend",
         "contactus": "Contact",
         "langth": "Thai",
         "langeng": "English",
-        "moreinfo": "Request more details"
+        "moreinfo": "Request"
     },
     "homepage": {
         "address": "110/61,91/1 Sai Ma, Mueang Nonthaburi, Nonthaburi 11000",

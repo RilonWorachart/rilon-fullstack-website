@@ -444,7 +444,6 @@ function AdminEditItemPage() {
                                     id="search_word_th"
                                     value={formData.search_word_th}
                                     onChange={handleChange}
-                                    required
                                     className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 >
                                     <option value="">{t('admin.p44')}</option>

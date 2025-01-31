@@ -112,12 +112,15 @@ function ItemDetail() {
                             </button>
                         </Link>
                     </div>
-                    <p className="py-2">{t('itempage.p12')}</p>
-                    <Link to={`/catalog/keyword/${productData.search_word_th}`}>
-                        <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{currentLang === 'th' ? productData.search_word_th : productData.search_word_en}</button>
-                    </Link>
-                    <div></div>
-                    <hr />
+                    {productData.search_word_th && (
+                        <div>
+                            <p className="py-2">{t('itempage.p12')}</p>
+                            <Link to={`/catalog/keyword/${productData.search_word_th}`}>
+                                <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{currentLang === 'th' ? productData.search_word_th : productData.search_word_en}</button>
+                            </Link>
+                        </div>
+                    )}
+                    <hr className="mt-3"/>
                     <p className="py-2">{t('itempage.p8')}</p>
 
                     <div className="flex">
