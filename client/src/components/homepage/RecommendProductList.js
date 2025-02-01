@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import RecommendProductCard from './RecommendProductCard';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 function RecommendProductList() {
   const [recommendProductData, setRecommendProductData] = useState([]);
@@ -53,13 +54,14 @@ function RecommendProductList() {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {recommendProductData.map((item) => (
-              <div key={item.id} className="w-full flex-shrink-0">
+              <Link to={`/item/${item.id}`} className="w-full flex-shrink-0">
                 <RecommendProductCard
                   image={item.image}
                   id={item.id}
                   name={item.name}
+                  key={item.id} 
                 />
-              </div>
+              </Link>
             ))}
           </div>
 
