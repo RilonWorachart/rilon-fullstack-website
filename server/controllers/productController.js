@@ -25,12 +25,13 @@ export const getproductbyId = async (req, res, next) => {
 
 export const getproductbyCategory = async (req, res, next) => {
     const id = req.query.category_id; // Getting id from query parameters
+    const limit = 10
 
     try {
         // Query to get products by category
         const [rows] = await promisePool.execute(
-            "SELECT * FROM products WHERE category_id = ?",
-            [id]
+            "SELECT * FROM products WHERE category_id = ? LIMIT ?",
+            [id,limit]
         );
 
         if (rows.length === 0) {
