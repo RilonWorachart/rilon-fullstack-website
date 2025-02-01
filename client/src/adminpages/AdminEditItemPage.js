@@ -375,6 +375,7 @@ function AdminEditItemPage() {
                                     id="description_th"
                                     name="description_th"
                                     value={formData.description_th}
+                                    rows="5"
                                     onChange={handleChange}
                                     required
                                     className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
@@ -387,13 +388,14 @@ function AdminEditItemPage() {
                                     id="other_th"
                                     name="other_th"
                                     value={formData.other_th}
+                                    rows="5"
                                     onChange={handleChange}
                                     className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 />
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="picture_1" className="font-semibold py-1">{t('admin.p41')}<span className="text-[#DC3545]">*</span></label><br />
+                                <label htmlFor="picture_1" className="font-semibold py-1">{t('admin.p41')}</label><br />
                                 <input
                                     type="file"
                                     id="picture_1"
@@ -462,6 +464,7 @@ function AdminEditItemPage() {
                                     name="description_en"
                                     value={formData.description_en}
                                     onChange={handleChange}
+                                    rows="5"
                                     required
                                     className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 />
@@ -474,6 +477,7 @@ function AdminEditItemPage() {
                                     name="other_en"
                                     value={formData.other_en}
                                     onChange={handleChange}
+                                    rows="5"
                                     className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 />
                             </div>

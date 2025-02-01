@@ -211,5 +211,9 @@
         "p44": "Select a search word",
         "p45": "Select a category",
         "p46": "Select a brand"
+    },
+    "pagination" :{
+        "prev":"Back",
+        "next":"Next"
     }
 }

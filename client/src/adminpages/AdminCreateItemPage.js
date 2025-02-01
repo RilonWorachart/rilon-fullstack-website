@@ -327,6 +327,7 @@ const AdminCreateItemPage = () => {
                   name="description_th"
                   value={formData.description_th}
                   onChange={handleChange}
+                  rows="5"
                   required
                   className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
@@ -337,6 +338,7 @@ const AdminCreateItemPage = () => {
                 <textarea
                   id="other_th"
                   name="other_th"
+                  rows="5"
                   value={formData.other_th}
                   onChange={handleChange}
                   className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
@@ -414,6 +416,7 @@ const AdminCreateItemPage = () => {
                   name="description_en"
                   value={formData.description_en}
                   onChange={handleChange}
+                  rows="5"
                   required
                   className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
@@ -426,6 +429,7 @@ const AdminCreateItemPage = () => {
                   name="other_en"
                   value={formData.other_en}
                   onChange={handleChange}
+                  rows="5"
                   className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
               </div>

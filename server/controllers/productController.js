@@ -279,3 +279,87 @@ export const editProduct = async (req, res, next) => {
     }
 };
 
+
+export const getFilteredProducts = async (req, res) => {
+    try {
+      const { searchTerm = "", category = "", brand = "", page = 1, limit = 20 } = req.query;
+  
+      // Calculate the offset based on the page number
+      const offset = (page - 1) * limit;
+      
+      // Base SQL query for fetching products with filters
+      let query = "SELECT * FROM products WHERE 1=1";
+      let queryParams = [];
+  
+      // Apply search term filter
+      if (searchTerm) {
+        query += " AND (name_th LIKE ? OR name_en LIKE ?)";
+        queryParams.push(`%${searchTerm}%`, `%${searchTerm}%`);
+      }
+  
+      // Apply category filter
+      if (category) {
+        query += " AND category_id = ?";
+        queryParams.push(category);
+      }
+  
+      // Apply brand filter
+      if (brand) {
+        query += " AND brand_th = ?";
+        queryParams.push(brand);
+      }
+  
+      // Add pagination (LIMIT and OFFSET) to the query
+      query += " LIMIT ? OFFSET ?";
+      queryParams.push(parseInt(limit), parseInt(offset));
+  
+      // Fetch filtered products
+      const [products] = await promisePool.execute(query, queryParams);
+  
+      // Get the total count of filtered products for pagination
+      let countQuery = "SELECT COUNT(*) AS total FROM products WHERE 1=1";
+      let countQueryParams = [];
+  
+      // Apply filters to count query as well
+      if (searchTerm) {
+        countQuery += " AND (name_th LIKE ? OR name_en LIKE ?)";
+        countQueryParams.push(`%${searchTerm}%`, `%${searchTerm}%`);
+      }
+  
+      if (category) {
+        countQuery += " AND category_id = ?";
+        countQueryParams.push(category);
+      }
+  
+      if (brand) {
+        countQuery += " AND brand_th = ?";
+        countQueryParams.push(brand);
+      }
+  
+      // Fetch the total count of filtered products
+      const [totalRows] = await promisePool.execute(countQuery, countQueryParams);
+      const totalProducts = totalRows[0].total;
+  
+      // Calculate the total number of pages
+      const totalPages = Math.ceil(totalProducts / limit);
+  
+      // Send the filtered products along with pagination data
+      res.json({
+        status: 'ok',
+        data: products,
+        pagination: {
+          currentPage: page,
+          totalPages: totalPages,
+          totalProducts: totalProducts,
+        },
+      });
+    } catch (error) {
+      // Handle any errors and return a proper response
+      console.error('Error fetching filtered products:', error);
+      res.status(500).json({
+        status: 'error',
+        message: error.message,
+      });
+    }
+  };
+  
