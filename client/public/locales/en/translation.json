@@ -216,6 +216,7 @@
         "prev":"Back",
         "next":"Next",
         "page":"Page",
-        "from":"from"
+        "from":"from",
+        "noproduct":"No Product was Found"
     }
 }

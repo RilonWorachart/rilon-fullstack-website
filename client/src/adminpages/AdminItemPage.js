@@ -223,15 +223,19 @@ function AdminItemPage() {
         </div>
 
         {/* Toggle View Button */}
-        <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#E2B22C] flex justify-between items-center">
-          <div className="text-[24px]">
-            <p>{t('pagination.page')} <span className="">{page}</span> {t('pagination.from')} <span>{totalPages}</span></p>
-          </div>
-          <div className="flex text-[30px]">
-            <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={toggleItemType} />
-            <TfiMenuAlt className="hover:text-[#00009F]" onClick={toggleItemType} />
-          </div>
-        </div>
+        {
+          (totalPages !== 0) && (
+            <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#E2B22C] flex justify-between items-center">
+              <div className="text-[24px]">
+                <p>{t('pagination.page')} <span className="">{page}</span> {t('pagination.from')} <span>{totalPages}</span></p>
+              </div>
+              <div className="flex text-[30px]">
+                <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={toggleItemType} />
+                <TfiMenuAlt className="hover:text-[#00009F]" onClick={toggleItemType} />
+              </div>
+            </div>
+          )
+        }
 
         {/* Item Grid */}
         <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'}`}>
@@ -269,9 +273,8 @@ function AdminItemPage() {
               </button>
             )
           }
-
           {
-            (page !== totalPages) && (
+            (page !== totalPages && (totalPages !== 0)) && (
               <button
                 className="px-4 py-2 bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] rounded-lg mx-[10px] "
                 onClick={() => handlePageChange(page + 1)}
@@ -282,7 +285,11 @@ function AdminItemPage() {
             )
           }
         </div>
-
+        {
+          (totalPages === 0) && (
+            <div className="text-center text-[24px] mb-[50px] text-[#E2B22C]">{t('pagination.noproduct')}</div>
+          )
+        }
       </div>
       <Footer />
     </>

@@ -33,7 +33,7 @@ function SearchKeyButton() {
                 <Link to={linkPath}>
                     <button
                         type="submit"
-                        className="bg-transparent border-none text-[#6C757D]  rounded-r-full"
+                        className="bg-transparent border-none text-[#6C757D] pt-1"
                     >
                         <FaSearch />
                     </button>
