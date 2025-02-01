@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { createProduct, deleteProduct, editProduct, getproductbyId, getproductbyCategory, getallProduct, getFilteredProducts } from '../controllers/productController.js';
+import { createProduct, deleteProduct, editProduct, getproductbyId, getproductbyCategory, getallProduct, getFilteredProducts, getallCatelogProduct } from '../controllers/productController.js';
 import { authenmiddleware } from '../controllers/authController.js';
 import { fileURLToPath } from 'url';
 
@@ -61,6 +61,7 @@ router.get('/getallproduct', getallProduct);
 router.get('/getproductbyid', getproductbyId);
 router.get('/getproductbycategory', getproductbyCategory);
 router.get('/getfilterproduct', getFilteredProducts)
+router.get('/getallcatelog', getallCatelogProduct)
 
 // Export the router
 export default router;

@@ -363,3 +363,53 @@ export const getFilteredProducts = async (req, res) => {
     }
   };
   
+
+
+  export const getallCatelogProduct = async (req, res, next) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const offset = (page - 1) * limit;
+        const key = req.query.key ? req.query.key.toLowerCase() : ''; // Get the search term from query params
+
+        // Query to get all products
+        const [allRows] = await promisePool.execute("SELECT * FROM products");
+
+        // Filter products based on the 'key' parameter
+        const filteredRows = allRows.filter(item => {
+            return (
+                (item.name_th && item.name_th.toLowerCase().includes(key)) ||
+                (item.name_en && item.name_en.toLowerCase().includes(key)) ||
+                (item.search_word_th && item.search_word_th.toLowerCase().includes(key)) ||
+                (item.search_word_en && item.search_word_en.toLowerCase().includes(key)) ||
+                (item.brand_th && item.brand_th.toLowerCase().includes(key)) ||
+                (item.brand_en && item.brand_en.toLowerCase().includes(key))
+            );
+        });
+
+        const totalFilteredProducts = filteredRows.length;
+
+        // Apply pagination to the filtered rows
+        const paginatedRows = filteredRows.slice(offset, offset + limit);
+
+        // Calculate the total pages based on filtered data
+        const totalPages = Math.ceil(totalFilteredProducts / limit);
+
+        // Send the response with filtered and paginated data
+        res.json({
+            status: "ok",
+            data: paginatedRows,
+            pagination: {
+                totalProducts: totalFilteredProducts,
+                totalPages,
+                currentPage: page,
+                itemsPerPage: limit,
+            },
+        });
+    } catch (err) {
+        res.json({ status: "error", message: err.message });
+    }
+};
+
+
+
