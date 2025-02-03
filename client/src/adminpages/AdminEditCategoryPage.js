@@ -104,7 +104,7 @@ function AdminEditCategoryPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
         // Create FormData object to handle file uploads
         const formDataToSend = new FormData();
         formDataToSend.append('name_th', formData.name_th);
@@ -112,14 +112,14 @@ function AdminEditCategoryPage() {
         formDataToSend.append('name_en', formData.name_en);
         formDataToSend.append('description_en', formData.description_en);
         formDataToSend.append('ID', formData.ID);
-    
+
         if (formData.picture_1 instanceof File) {
             formDataToSend.append('picture_1', formData.picture_1);
         } else if (formData.picture_1 && formData.picture_1 !== null) {
             // If there's no new file selected, you could append the old image URL or just leave it out
             formDataToSend.append('picture_1', formData.picture_1);
         }
-    
+
         // Send the request to the backend
         axios.put(`${process.env.REACT_APP_API}/editcategory`, formDataToSend, {
             headers: {
@@ -127,31 +127,31 @@ function AdminEditCategoryPage() {
                 "Authorization": "Bearer " + localStorage.getItem("token"),
             }
         })
-        .then((response) => {
-            console.log(response.data);
-            if (response.data.status === 'ok') {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Edited category successfully!',
-                    icon: 'success',
-                    confirmButtonText: 'OK',
-                });
-                setTimeout(() => {
-                    window.location = "/admincategory"; // Redirect to the admin item page after success
-                }, 1000);
-            } else {
-                Swal.fire({
-                    title: 'Fail!',
-                    text: 'Edited category failed!',
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                });
-            }
-        })
-        .catch((error) => {
-            // Handle error
-        });
-    };s
+            .then((response) => {
+                console.log(response.data);
+                if (response.data.status === 'ok') {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Edited category successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    });
+                    setTimeout(() => {
+                        window.location = "/admincategory"; // Redirect to the admin item page after success
+                    }, 1000);
+                } else {
+                    Swal.fire({
+                        title: 'Fail!',
+                        text: 'Edited category failed!',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            })
+            .catch((error) => {
+                // Handle error
+            });
+    };
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -208,16 +208,18 @@ function AdminEditCategoryPage() {
                 <p className="py-1">
                     <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
                     <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
+                    <Link to="/admincategory"><span className="hover:text-[#00007E]">{t('admin.p47')}</span></Link>
+                    <span> » </span>
                     <span>{t('admin.p53')}</span>
                 </p>
                 <div className="flex">
                     <Link to="/admincategory">
                         <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
-                        {t('admin.p24')}
+                            {t('admin.p24')}
                         </button>
                     </Link>
                     <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
-                    {t('admin.p23')}
+                        {t('admin.p23')}
                     </button>
                 </div>
             </div>

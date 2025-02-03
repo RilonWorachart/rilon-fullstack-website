@@ -172,6 +172,8 @@ const AdminCreateItemPage = () => {
         <p className="py-1">
           <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
           <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
+          <Link to="/admincategory"><span className="hover:text-[#00007E]">{t('admin.p47')}</span></Link>
+          <span> » </span>
           <span>{t('admin.p54')}</span>
         </p>
         <div className="flex">
@@ -181,7 +183,7 @@ const AdminCreateItemPage = () => {
             </button>
           </Link>
           <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
-          {t('admin.p23')}
+            {t('admin.p23')}
           </button>
         </div>
       </div>
@@ -271,7 +273,7 @@ const AdminCreateItemPage = () => {
           </div>
         </form>
       </div>
-      
+
 
       <Footer />
     </div>

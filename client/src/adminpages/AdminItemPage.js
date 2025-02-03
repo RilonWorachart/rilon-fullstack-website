@@ -149,7 +149,7 @@ function AdminItemPage() {
             <span> » </span>
             <Link to="/adminpanel"><span className="hover:text-[#00007E]">{t('admin.p5')}</span></Link>
             <span> » </span>
-            <span className="">{t('admin.p9')}</span>
+            <span className="">{t('admin.p7')}</span>
           </p>
           <div className="flex">
             <Link to="/admincreate">

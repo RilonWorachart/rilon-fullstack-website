@@ -300,7 +300,8 @@ function AdminEditItemPage() {
             <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
                 <p className="py-1">
                     <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
-                    <a href="/adminitem" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
+                    <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
+                    <a href="/adminitem" className="">{t('admin.p7')}</a> <span> » </span>
                     <span>{t('admin.p29')}</span>
                 </p>
                 <div className="flex">
