@@ -306,11 +306,11 @@ function AdminEditItemPage() {
                 <div className="flex">
                     <Link to="/adminitem">
                         <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
-                        {t('admin.p24')}
+                            {t('admin.p24')}
                         </button>
                     </Link>
                     <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
-                    {t('admin.p23')}
+                        {t('admin.p23')}
                     </button>
                 </div>
             </div>

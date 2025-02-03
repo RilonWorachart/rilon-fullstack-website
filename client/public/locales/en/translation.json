@@ -216,7 +216,9 @@
         "p49": "Picture",
         "p50": "Add Recommend product",
         "p51": "Recommend product",
-        "p52": "ADD"
+        "p52": "ADD",
+        "p53": "Edit Category",
+        "p54": "Create Category"
     },
     "pagination" :{
         "prev":"Back",

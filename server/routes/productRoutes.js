@@ -47,13 +47,13 @@ const upload = multer({
 router.post('/createproduct', upload.fields([
     { name: 'picture_1', maxCount: 1 },
     { name: 'picture_2', maxCount: 1 }
-]),authenmiddleware, createProduct);
+]), authenmiddleware, createProduct);
 
 
 router.put('/editproduct',upload.fields([
     { name: 'picture_1', maxCount: 1 },
     { name: 'picture_2', maxCount: 1 }
-]),authenmiddleware, editProduct);
+]), authenmiddleware, editProduct);
 
 
 router.delete('/deleteproduct', authenmiddleware, deleteProduct);

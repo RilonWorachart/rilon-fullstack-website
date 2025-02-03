@@ -247,7 +247,7 @@ function AdminRecommendPage() {
                             <span className="hover:text-[#00007E]">{t('admin.p5')}</span>
                         </Link>
                         <span> » </span>
-                        <span className="">{t('admin.p6')}</span>
+                        <span className="">{t('admin.p48')}</span>
                     </p>
                     <div className="">
                         <Link to="/adminPanel">
