@@ -170,8 +170,8 @@
         "p3": "Password",
         "p4": "Login",
         "p5": "Admin",
-        "p6": "Form",
-        "p7": "Products",
+        "p6": "Manage Form",
+        "p7": "Manage Products",
         "p8": "No.",
         "p9": "Product",
         "p10": "Name",
@@ -210,7 +210,13 @@
         "p43": "Submit",
         "p44": "Select a search word",
         "p45": "Select a category",
-        "p46": "Select a brand"
+        "p46": "Select a brand",
+        "p47": "Manage Categories",
+        "p48": "Manage Recommend products",
+        "p49": "Picture",
+        "p50": "Add Recommend product",
+        "p51": "Recommend product",
+        "p52": "ADD"
     },
     "pagination" :{
         "prev":"Back",

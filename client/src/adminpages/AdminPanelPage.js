@@ -85,10 +85,16 @@ function AdminPanelPage() {
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C] mx-auto my-2" />
                     <div className="pt-4">
                         <Link to="/adminform">
-                            <div className="mb-3 mx-[auto] w-[100px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p6')}</div>
+                            <div className="mb-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p6')}</div>
                         </Link>
                         <Link to="/adminitem">
-                            <div className="my-3 mx-[auto] w-[100px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p7')}</div>
+                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p7')}</div>
+                        </Link>
+                        <Link to="/admincategory">
+                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p47')}</div>
+                        </Link>
+                        <Link to="/adminrecommend">
+                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p48')}</div>
                         </Link>
                     </div>
                 </div>

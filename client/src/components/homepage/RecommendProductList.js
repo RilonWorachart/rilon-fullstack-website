@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import RecommendProductCard from './RecommendProductCard';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -8,16 +9,25 @@ function RecommendProductList() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    fetch('recommendproduct.json')
-      .then((response) => response.json())
-      .then((result) => {
-        setRecommendProductData(result);
+
+  const fetchRecommendProduct = async () => {
+    try {
+      // Use Axios to send the GET request
+      const response = await axios.get(`${process.env.REACT_APP_API}/getallrecommendproduct`, {
       });
-  }, []);
+  
+      const result = response.data;
+      setRecommendProductData(result.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+
 
   // Automatically move to the next slide every 3 seconds
   useEffect(() => {
+    fetchRecommendProduct()
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === recommendProductData.length - 1 ? 0 : prevIndex + 1
@@ -54,12 +64,11 @@ function RecommendProductList() {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {recommendProductData.map((item) => (
-              <Link to={`/item/${item.id}`} className="w-full flex-shrink-0">
+              <Link to={`/catalog/keyword/${item.name}`} key={item.id}  className="w-full flex-shrink-0">
                 <RecommendProductCard
                   image={item.image}
                   id={item.id}
                   name={item.name}
-                  key={item.id} 
                 />
               </Link>
             ))}

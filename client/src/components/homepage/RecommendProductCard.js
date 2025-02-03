@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
-function RecommendProductCard({ image, name }) {
+function RecommendProductCard({ id, image, name }) {
     const [isActive, setIsActive] = useState(false)
 
     return (
         <div className={`relative flex justify-center ${isActive ? 'bg-gradient-to-r from-emerald-900 to-red-900' : ''}`} onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
             <img
                 className={`h-[100%] w-[50%] hover:opacity-75 transition-transform duration-300 transform  ${isActive ? ' opacity-75' : ''}`}
-                src={`/images/recommendproducts/${image}`}
+                src={`${process.env.REACT_APP_API}${image}`}
                 alt={name}
             />
             {
