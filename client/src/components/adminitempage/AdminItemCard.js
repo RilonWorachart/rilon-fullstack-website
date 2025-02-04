@@ -6,9 +6,11 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, search_word_th, brand_th, name_en, description_en, search_word_en, brand_en, category_id, itemType }) {
+function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name_en, description_en, category_id, itemType, searchword_id, brand_id }) {
   const { t, i18n } = useTranslation();
   const [categoryData, setCategoryData] = useState(null);
+  const [brandData, setBrandData] = useState(null)
+  const [searchwordData, setSearchwordData] = useState(null)
   const [isActive, setIsActive] = useState(false);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -34,13 +36,54 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
     }
   };
 
-  useEffect(() => {
-    if (category_id) {
-      fetchCategoryData();  // Fetch category data after product data is available
+
+  const fetchBrandData = async () => {
+    if (brand_id) {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API}/getbrandbyid?id=${brand_id}`);
+            const result = response.data;
+            if (result && result.data && result.data.length > 0) {
+                setBrandData(result.data[0]);
+            } else {
+                console.error("Brand not found");
+            }
+        } catch (error) {
+            console.error("Error fetching brand data:", error);
+        }
     } else {
-      console.error("category_id is missing!");
+        console.error("brand_id is missing");
     }
-  }, [category_id]);
+};
+
+
+const fetchSearchwordData = async () => {
+  if (searchword_id) {
+      try {
+          const response = await axios.get(`${process.env.REACT_APP_API}/getsearchwordbyid?id=${searchword_id}`);
+          const result = response.data;
+          if (result && result.data && result.data.length > 0) {
+              setSearchwordData(result.data[0]);
+          } else {
+              console.error("Searchword not found");
+          }
+      } catch (error) {
+          console.error("Error fetching searchword data:", error);
+      }
+  } else {
+      console.error("searchword_id is missing");
+  }
+};
+
+useEffect(() => {
+  if (category_id && brand_id) {
+      fetchCategoryData();  // Fetch category data after product data is available
+      fetchBrandData()
+      if (searchword_id) {
+        fetchSearchwordData()
+      }
+  }
+}, [category_id,brand_id,searchword_id ]); 
+
 
   // Handle delete
   const handledelete = () => {
@@ -84,7 +127,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
       });
   };
 
-  if (!categoryData) {
+  if (!categoryData || !brandData) {
     return <div>Loading...</div>; // Show loading state until data is ready
   }
 
@@ -108,7 +151,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
         <div className="">
           <p className="text-[28px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           <p className={`text-[14px] uppercase ${itemType === "type2" ? "w-full" : ""}`}>
-            {currentLang === 'th' ? brand_th : brand_en}
+            {currentLang === 'th' ? brandData.name_th : brandData.name_en}
           </p>
           <p
             className={`text-[14px] text-[#E5B22C] line-clamp-2 overflow-hidden pt-2 ${itemType === "type2" ? "w-full" : ""}`}
@@ -129,10 +172,10 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, sear
           <p className={`text-[14px] text-[#E5B22C] truncate ${itemType === "type2" ? "w-full" : ""}`}>
             Category: {currentLang === 'th' ? categoryData.name_th : categoryData.name_en}
           </p>
-          {search_word_th && (
+          {searchword_id && (
             <div className={`text-[#E5B22C] flex items-center overflow-hidden ${itemType === "type2" ? "w-full" : ""}`}>
               <FaTags className="mr-1 w-[24px]" />
-              <span className="text-[14px] truncate mr-1">{currentLang === 'th' ? search_word_th : search_word_en}</span>
+              <span className="text-[14px] truncate mr-1">{currentLang === 'th' ? searchwordData.name_th : searchwordData.name_en}</span>
             </div>
           )}
 

@@ -306,7 +306,7 @@ export const getFilteredProducts = async (req, res) => {
   
       // Apply brand filter
       if (brand) {
-        query += " AND brand_th = ?";
+        query += " AND brand_id = ?";
         queryParams.push(brand);
       }
   
@@ -333,7 +333,7 @@ export const getFilteredProducts = async (req, res) => {
       }
   
       if (brand) {
-        countQuery += " AND brand_th = ?";
+        countQuery += " AND brand_id = ?";
         countQueryParams.push(brand);
       }
   
@@ -373,16 +373,27 @@ export const getFilteredProducts = async (req, res) => {
         const offset = (page - 1) * limit;
         const key = req.query.key ? req.query.key.toLowerCase() : ''; // Get the search term from query params
 
-        // Query to get all products
-        const [allRows] = await promisePool.execute("SELECT * FROM products");
+        // Query to get all products, joining with brands and searchwords
+        const [allRows] = await promisePool.execute(`
+            SELECT 
+                p.*, 
+                b.brand_th, 
+                b.brand_en, 
+                s.searchword_th, 
+                s.searchword_en
+            FROM products p
+            LEFT JOIN brands b ON p.brand_id = b.id
+            LEFT JOIN searchword_brand_link swl ON p.searchword_id = swl.searchword_id
+            LEFT JOIN searchwords s ON swl.searchword_id = s.id
+        `);
 
         // Filter products based on the 'key' parameter
         const filteredRows = allRows.filter(item => {
             return (
                 (item.name_th && item.name_th.toLowerCase().includes(key)) ||
                 (item.name_en && item.name_en.toLowerCase().includes(key)) ||
-                (item.search_word_th && item.search_word_th.toLowerCase().includes(key)) ||
-                (item.search_word_en && item.search_word_en.toLowerCase().includes(key)) ||
+                (item.searchword_th && item.searchword_th.toLowerCase().includes(key)) ||
+                (item.searchword_en && item.searchword_en.toLowerCase().includes(key)) ||
                 (item.brand_th && item.brand_th.toLowerCase().includes(key)) ||
                 (item.brand_en && item.brand_en.toLowerCase().includes(key))
             );

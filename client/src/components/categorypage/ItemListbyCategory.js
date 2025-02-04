@@ -11,6 +11,7 @@ function ItemListbyCategory() {
   const currentLang = i18n.language;
   const { id } = useParams();
   const [productData, setProductData] = useState([])
+  const [brandData, setBrandData] = useState([])
   const [itemType, setItemType] = useState("type1")
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState(id);
@@ -39,8 +40,20 @@ function ItemListbyCategory() {
     }
   };
 
+
+  const fetchAllBrandData = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API}/getallbrand`);
+      const result = response.data;
+      setBrandData(result.data);
+    } catch (error) {
+      console.error("Error fetching category data:", error);
+    }
+  };
+
   useEffect(() => {
     fetchAllProductByCategory()
+    fetchAllBrandData()
   }, [t, page, category, brand]); // Empty dependency array means this runs once when the component mounts
 
 
@@ -71,9 +84,15 @@ function ItemListbyCategory() {
       <div className="mx-[20px] my-[20px] text-[#E2B22C] flex justify-between items-center">
         <div className="md:flex" >
           <button onClick={() => handleBrandClick('')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>{currentLang === 'th' ? 'ทั้งหมด' : 'ALL'}</button>
-          <button onClick={() => handleBrandClick('ไรล่อน')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300  ${brand === "ไรล่อน" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>{currentLang === 'th' ? 'ไรล่อน' : 'RILON'}</button>
-          <button onClick={() => handleBrandClick('JW INVERTER')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "JW INVERTER" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>JW INVERTER</button>
-          <button onClick={() => handleBrandClick('JW JINGWEITIP')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "JW JINGWEITIP" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>JW JINGWEITIP</button>
+          {brandData.map((brandItem) => (
+            <button
+              key={brandItem.id}
+              onClick={() => handleBrandClick(brandItem.id)}
+              className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === brandItem.id ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}
+            >
+              {currentLang === 'th' ? brandItem.name_th : brandItem.name_en}
+            </button>
+          ))}
         </div>
 
         <div className="flex text-[30px]">
@@ -92,8 +111,8 @@ function ItemListbyCategory() {
         {productData.map((item) => {
           return (
             <ItemCard key={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} ID={item.ID} name_th={item.name_th}
-              description_th={item.description_th} search_word_th={item.search_word_th} brand_th={item.brand_th}
-              name_en={item.name_en} description_en={item.description_en} search_word_en={item.search_word_en} brand_en={item.brand_en}
+              description_th={item.description_th} searchword_id={item.searchword_id} brand_id={item.brand_id}
+              name_en={item.name_en} description_en={item.description_en}
               itemType={itemType}
             />
           )

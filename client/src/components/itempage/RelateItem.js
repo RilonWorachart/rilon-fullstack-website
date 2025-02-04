@@ -130,13 +130,11 @@ function RelateItem() {
                 name_th={item.name_th}
                 category_id={item.category_id}
                 description_th={item.description_th}
-                search_word_th={item.search_word_th}
-                brand_th={item.brand_th}
                 name_en={item.name_en}
                 description_en={item.description_en}
-                search_word_en={item.search_word_en}
-                brand_en={item.brand_en}
                 itemType={'type1'}
+                searchword_id = {item.searchword_id}
+                brand_id = {item.brand_id}
               />
             </div>
           ))}

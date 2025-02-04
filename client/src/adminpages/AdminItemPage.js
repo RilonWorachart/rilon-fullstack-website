@@ -12,6 +12,7 @@ import { FaSearch } from "react-icons/fa";
 function AdminItemPage() {
   const [productData, setProductData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const [brandData, setBrandData] = useState([]);
   const [itemType, setItemType] = useState("type1"); // Default to grid view
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
@@ -41,6 +42,7 @@ function AdminItemPage() {
           if (response.data.status === "ok") {
             fetchAllProductByPage();
             fetchAllCategoryData();
+            fetchAllBrandData();
           } else {
             localStorage.removeItem("token");
             window.location = "/adminlogin";
@@ -88,6 +90,16 @@ function AdminItemPage() {
       const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
       const result = response.data;
       setCategoryData(result.data);
+    } catch (error) {
+      console.error("Error fetching category data:", error);
+    }
+  };
+
+  const fetchAllBrandData = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API}/getallbrand`);
+      const result = response.data;
+      setBrandData(result.data);
     } catch (error) {
       console.error("Error fetching category data:", error);
     }
@@ -215,9 +227,15 @@ function AdminItemPage() {
             </div>
             <div className="flex flex-wrap justify-center items-center mx-[auto] py-10">
               <button onClick={() => handleBrandClick('')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>{t('admin.p25')}</button>
-              <button onClick={() => handleBrandClick('ไรล่อน')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "ไรล่อน" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>{t('admin.p26')}</button>
-              <button onClick={() => handleBrandClick('JW INVERTER')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "JW INVERTER" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>JW INVERTER</button>
-              <button onClick={() => handleBrandClick('JW JINGWEITIP')} className={` py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "JW JINGWEITIP" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>JW JINGWEITIP</button>
+              {brandData.map((brandItem) => (
+                <button
+                  key={brandItem.id}
+                  onClick={() => handleBrandClick(brandItem.id)}
+                  className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === brandItem.id ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}
+                >
+                  {currentLang === 'th' ? brandItem.name_th : brandItem.name_en}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -256,6 +274,8 @@ function AdminItemPage() {
               search_word_en={item.search_word_en}
               brand_en={item.brand_en}
               itemType={itemType}
+              searchword_id={item.searchword_id}
+              brand_id={item.brand_id}
             />
           ))}
         </div>

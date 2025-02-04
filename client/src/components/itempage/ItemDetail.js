@@ -11,6 +11,8 @@ function ItemDetail() {
     const { id } = useParams();
     const [productData, setProductData] = useState(null);  // Initially null to check if data is fetched
     const [categoryData, setCategoryData] = useState(null); // Start with null to avoid error
+    const [brandData, setBrandData] = useState(null)
+    const [searchwordData, setSearchwordData] = useState(null)
     const { t, i18n } = useTranslation();
 
     const currentLang = i18n.language;
@@ -50,6 +52,45 @@ function ItemDetail() {
         }
     };
 
+
+    const fetchBrandData = async () => {
+        if (productData.brand_id) {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API}/getbrandbyid?id=${productData.brand_id}`);
+                const result = response.data;
+                if (result && result.data && result.data.length > 0) {
+                    setBrandData(result.data[0]);
+                } else {
+                    console.error("Category not found");
+                }
+            } catch (error) {
+                console.error("Error fetching category data:", error);
+            }
+        } else {
+            console.error("category_id is missing");
+        }
+    };
+
+
+
+    const fetchSearchwordData = async () => {
+        if (productData.searchword_id) {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API}/getsearchwordbyid?id=${productData.searchword_id}`);
+                const result = response.data;
+                if (result && result.data && result.data.length > 0) {
+                    setSearchwordData(result.data[0]);
+                } else {
+                    console.error("Category not found");
+                }
+            } catch (error) {
+                console.error("Error fetching category data:", error);
+            }
+        } else {
+            console.error("category_id is missing");
+        }
+    };
+
     useEffect(() => {
         fetchProductById();  // Fetch product data when component mounts or `id` changes
     }, [id]);  // Depend on `id` to refetch if `id` changes
@@ -58,11 +99,13 @@ function ItemDetail() {
     useEffect(() => {
         if (productData && productData.category_id) {
             fetchCategoryData();  // Fetch category data after product data is available
+            fetchBrandData()
+            fetchSearchwordData()
         }
     }, [productData]);  // Depend on `productData` to trigger category data fetch
 
-    if (!productData || !categoryData) {
-        console.log("Loading data:", productData, categoryData); // Log to check the state
+    if (!productData || !categoryData || !brandData || !searchwordData) {
+        console.log("Loading data:", productData, categoryData, brandData, searchwordData); // Log to check the state
         return <div>Loading...</div>;
     }
 
@@ -93,8 +136,8 @@ function ItemDetail() {
                     <p className="text-[32px] pt-4">{currentLang === 'th' ? productData.name_th : productData.name_en}</p>
                     <p className="py-1">
                         <span>{t('itempage.p5')} </span>
-                        <Link to={`/catalog/keyword/${productData.brand_th}`}>
-                            <span className="text-[#E2B22C] uppercase">{currentLang === 'th' ? productData.brand_th : productData.brand_en}</span>
+                        <Link to={`/catalog/keyword/${brandData.name_th}`}>
+                            <span className="text-[#E2B22C] uppercase">{currentLang === 'th' ? brandData.name_th : brandData.name_en}</span>
                         </Link>
                     </p>
                     <hr />
@@ -112,11 +155,11 @@ function ItemDetail() {
                             </button>
                         </Link>
                     </div>
-                    {productData.search_word_th && (
+                    {productData.searchword_id && (
                         <div>
                             <p className="py-2">{t('itempage.p12')}</p>
-                            <Link to={`/catalog/keyword/${productData.search_word_th}`}>
-                                <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{currentLang === 'th' ? productData.search_word_th : productData.search_word_en}</button>
+                            <Link to={`/catalog/keyword/${searchwordData.name_th}`}>
+                                <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{currentLang === 'th' ? searchwordData.name_th : productData.name_en}</button>
                             </Link>
                         </div>
                     )}
