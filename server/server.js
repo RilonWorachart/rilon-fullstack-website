@@ -7,6 +7,8 @@ import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import formRoutes from './routes/formRoutes.js';
 import recommendProductRoutes from './routes/recommendProductRoutes.js';
+import brandRoutes from './routes/brandRoutes.js';
+import searchwordRoutes from './routes/searchwordRoutes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -24,6 +26,8 @@ app.use('/api', authRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', formRoutes);
 app.use('/api', recommendProductRoutes)
+app.use('/api', brandRoutes)
+app.use('/api', searchwordRoutes)
 
 const uploadsPath = path.join(__dirname, 'public', 'uploads');
 app.use('/api/uploads', express.static(uploadsPath));

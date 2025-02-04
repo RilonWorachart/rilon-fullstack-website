@@ -93,6 +93,12 @@ function AdminPanelPage() {
                         <Link to="/admincategory">
                             <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p47')}</div>
                         </Link>
+                        <Link to="/adminbrand">
+                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p55')}</div>
+                        </Link>
+                        <Link to="/adminsearchword">
+                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p56')}</div>
+                        </Link>
                         <Link to="/adminrecommend">
                             <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p48')}</div>
                         </Link>

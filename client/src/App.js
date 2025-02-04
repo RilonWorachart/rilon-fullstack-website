@@ -16,6 +16,8 @@ import AdminRecommendPage from './adminpages/AdminRecommendPage.js';
 import AdminCategoryPage from "./adminpages/AdminCategoryPage.js";
 import AdminEditCategoryPage from './adminpages/AdminEditCategoryPage.js';
 import AdminCreateCategoryPage from "./adminpages/AdminCreateCategoryPage.js";
+import AdminBrandPage from "./adminpages/AdminBrandPage.js";
+import AdminSearchwordPage from "./adminpages/AdminSearchWordPage.js";
 import FixedButton from "./components/FixedButton.js";
 import Header from "./components/header/Header.js";
 import ScrollToTop from "./utils/ScrollToTop.js";
@@ -47,6 +49,8 @@ function App() {
             <Route path="/admincategory" element={<AdminCategoryPage />} />
             <Route path="/admincreatecategory" element={<AdminCreateCategoryPage />} />
             <Route path="/admineditcategory/:id" element={<AdminEditCategoryPage />} />
+            <Route path="/adminbrand" element={<AdminBrandPage />} />
+            <Route path="/adminsearchword" element={<AdminSearchwordPage />} />
           </Routes>
         </ScrollProvider>
       </BrowserRouter>

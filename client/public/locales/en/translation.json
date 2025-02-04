@@ -218,7 +218,11 @@
         "p51": "Recommend product",
         "p52": "ADD",
         "p53": "Edit Category",
-        "p54": "Create Category"
+        "p54": "Create Category",
+        "p55": "Manage Brands",
+        "p56": "Manage Searchwords",
+        "p57": "Add Brand",
+        "p58": "Add Searchword"
     },
     "pagination" :{
         "prev":"Back",
