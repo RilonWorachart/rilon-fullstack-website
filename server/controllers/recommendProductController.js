@@ -23,19 +23,15 @@ export const deleterecommendProduct = async (req, res, next) => {
     const __dirname = path.dirname(__filename);
 
     try {
-
         const [product] = await promisePool.execute(
             "SELECT * FROM recommendproducts WHERE ID = ?",
             [id]
         );
-
         if (product.length === 0) {
             return res.json({ status: "error", message: "Recommend Product not found" });
         }
 
         const productData = product[0];
-
-
         if (productData.image) {
             const image_Path = path.join(__dirname, '..', 'public', productData.image); // Adjust path as needed
 

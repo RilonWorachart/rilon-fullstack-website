@@ -4,6 +4,10 @@ import AdminItemCard from '../components/adminitempage/AdminItemCard';
 import { Link } from 'react-router-dom';
 import { CgMenuGridR } from "react-icons/cg";
 import { TfiMenuAlt } from "react-icons/tfi";
+import { FaAngleLeft } from "react-icons/fa6";
+import { FaAnglesLeft } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa6";
+import { FaAnglesRight } from "react-icons/fa6";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -245,7 +249,7 @@ function AdminItemPage() {
           (totalPages !== 0) && (
             <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#E2B22C] flex justify-between items-center">
               <div className="text-[24px]">
-                <p>{t('pagination.page')} <span className="">{page}</span> {t('pagination.from')} <span>{totalPages}</span></p>
+                <p className="text-[#C1C1C1] font-light ">{t('pagination.page')} <span className="">{page} /{totalPages}</span></p>
               </div>
               <div className="flex text-[30px]">
                 <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={toggleItemType} />
@@ -281,36 +285,58 @@ function AdminItemPage() {
         </div>
 
         {/* Pagination */}
-        <div className="mx-[10%] 2xl:mx-[20%] flex justify-center pb-5">
-          {
-            (page !== 1) && (
+
+        {
+          (totalPages !== 0) && (
+            <div className="mx-[10%] 2xl:mx-[20%] flex justify-center items-center pb-5">
               <button
-                className="px-4 py-2 bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] rounded-lg mx-[10px] "
+                className={`px-4 py-4 
+                         rounded-full mr-[10px] ${page !== 1 ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+                onClick={() => handlePageChange(1)}
+                disabled={page === 1}
+              >
+                <FaAnglesLeft />
+              </button>
+              <button
+                className={`px-4 py-4 
+                         rounded-full mr-[20px] ${page !== 1 ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
                 onClick={() => handlePageChange(page - 1)}
                 disabled={page === 1}
               >
-                {t('pagination.prev')}
+                <FaAngleLeft />
               </button>
-            )
-          }
-          {
-            (page !== totalPages && (totalPages !== 0)) && (
+
+              <div className="text-[20px]">
+                <p><span className="font-light text-[#959595]">{page} / {totalPages}</span></p>
+              </div>
+
               <button
-                className="px-4 py-2 bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] rounded-lg mx-[10px] "
+                className={`px-4 py-4 
+                         rounded-full ml-[20px] ${page !== totalPages && (totalPages !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
                 onClick={() => handlePageChange(page + 1)}
                 disabled={page === totalPages}
               >
-                {t('pagination.next')}
+                <FaAngleRight />
               </button>
-            )
-          }
-        </div>
+              <button
+                className={`px-4 py-4 
+                         rounded-full ml-[10px] ${page !== totalPages && (totalPages !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+                onClick={() => handlePageChange(totalPages)}
+                disabled={page === totalPages}
+              >
+                <FaAnglesRight />
+              </button>
+            </div>
+          )
+        }
+
         {
           (totalPages === 0) && (
             <div className="text-center text-[24px] mb-[50px] text-[#E2B22C]">{t('pagination.noproduct')}</div>
           )
         }
       </div>
+      <div className="h-[50px]"></div>
       <Footer />
     </>
   );
