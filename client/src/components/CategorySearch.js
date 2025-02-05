@@ -47,7 +47,7 @@ function CategorySearch() {
         </div>
         <div className="flex flex-wrap justify-center items-center mx-[auto] py-10" >
           {searchwordData.map((result) => (
-            <Link to={`/catalog/keyword/${encodeURIComponent(result.name_th)}`} key={result.id}>
+            <Link to={`/catalog/keyword/${result.name_th}`} key={result.id}>
               <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
                 {currentLang === 'th' ? result.name_th : result.name_en}
               </button>

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTags } from "react-icons/fa";
+import { BiSolidCategory } from "react-icons/bi";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -39,50 +40,50 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
 
   const fetchBrandData = async () => {
     if (brand_id) {
-        try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getbrandbyid?id=${brand_id}`);
-            const result = response.data;
-            if (result && result.data && result.data.length > 0) {
-                setBrandData(result.data[0]);
-            } else {
-                console.error("Brand not found");
-            }
-        } catch (error) {
-            console.error("Error fetching brand data:", error);
-        }
-    } else {
-        console.error("brand_id is missing");
-    }
-};
-
-
-const fetchSearchwordData = async () => {
-  if (searchword_id) {
       try {
-          const response = await axios.get(`${process.env.REACT_APP_API}/getsearchwordbyid?id=${searchword_id}`);
-          const result = response.data;
-          if (result && result.data && result.data.length > 0) {
-              setSearchwordData(result.data[0]);
-          } else {
-              console.error("Searchword not found");
-          }
+        const response = await axios.get(`${process.env.REACT_APP_API}/getbrandbyid?id=${brand_id}`);
+        const result = response.data;
+        if (result && result.data && result.data.length > 0) {
+          setBrandData(result.data[0]);
+        } else {
+          console.error("Brand not found");
+        }
       } catch (error) {
-          console.error("Error fetching searchword data:", error);
+        console.error("Error fetching brand data:", error);
       }
-  } else {
-      console.error("searchword_id is missing");
-  }
-};
+    } else {
+      console.error("brand_id is missing");
+    }
+  };
 
-useEffect(() => {
-  if (category_id && brand_id) {
+
+  const fetchSearchwordData = async () => {
+    if (searchword_id) {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API}/getsearchwordbyid?id=${searchword_id}`);
+        const result = response.data;
+        if (result && result.data && result.data.length > 0) {
+          setSearchwordData(result.data[0]);
+        } else {
+          console.error("Searchword not found");
+        }
+      } catch (error) {
+        console.error("Error fetching searchword data:", error);
+      }
+    } else {
+      console.error("searchword_id is missing");
+    }
+  };
+
+  useEffect(() => {
+    if (category_id && brand_id) {
       fetchCategoryData();  // Fetch category data after product data is available
       fetchBrandData()
       if (searchword_id) {
         fetchSearchwordData()
       }
-  }
-}, [category_id,brand_id,searchword_id ]); 
+    }
+  }, [category_id, brand_id, searchword_id]);
 
 
   // Handle delete
@@ -160,18 +161,24 @@ useEffect(() => {
           </p>
 
           {/* Second Image */}
-          <img
-            className={`h-[40%] w-[40%] 2xl:h-[25%] 2xl:w-[25%] my-[10px] mx-[auto] ${itemType === "type2" ? "" : "hidden"}`}
-            src={`${process.env.REACT_APP_API}${picture_2}`}
-            alt={name_th}
-          />
+          {
+            picture_2 && (
+              <img
+                className={`h-[40%] w-[40%] 2xl:h-[25%] 2xl:w-[25%] my-[10px] mx-[auto] ${itemType === "type2" ? "" : "hidden"}`}
+                src={`${process.env.REACT_APP_API}${picture_2}`}
+                alt={name_th}
+              />
+
+            )
+          }
         </div>
 
         {/* Additional Info Section */}
         <div className={`${itemType === "type2" ? "items-center" : ""}`}>
-          <p className={`text-[14px] text-[#E5B22C] truncate ${itemType === "type2" ? "w-full" : ""}`}>
-            Category: {currentLang === 'th' ? categoryData.name_th : categoryData.name_en}
-          </p>
+          <div className={`text-[#E5B22C] truncate pt-2 flex items-center ${itemType === "type2" ? "w-full" : ""}`}>
+            <BiSolidCategory className="mr-1 w-[24px]"/>
+            <span className="text-[14px]">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
+          </div>
           {searchword_id && searchwordData && (
             <div className={`text-[#E5B22C] flex items-center overflow-hidden ${itemType === "type2" ? "w-full" : ""}`}>
               <FaTags className="mr-1 w-[24px]" />

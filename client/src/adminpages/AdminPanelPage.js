@@ -3,6 +3,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
+import { BiSolidCategory } from "react-icons/bi";
+import { FaTags } from "react-icons/fa";
+import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { SiGoogleforms } from "react-icons/si";
+import { MdRecommend } from "react-icons/md";
+import { MdDriveFileRenameOutline } from "react-icons/md";
 
 
 function AdminPanelPage() {
@@ -85,22 +91,40 @@ function AdminPanelPage() {
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C] mx-auto my-2" />
                     <div className="pt-4">
                         <Link to="/adminform">
-                            <div className="mb-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p6')}</div>
+                            <div className="flex items-center mb-3 mx-[auto] w-full py-1 px-4 text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">
+                                <SiGoogleforms />
+                                <span className="ml-4">{t('admin.p6')}</span>
+                            </div>
                         </Link>
                         <Link to="/adminitem">
-                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p7')}</div>
+                        <div className="flex items-center mb-3 mx-[auto] w-full py-1 px-4 text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">
+                                <MdOutlineProductionQuantityLimits />
+                                <span className="ml-4">{t('admin.p7')}</span>
+                            </div>
                         </Link>
                         <Link to="/admincategory">
-                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p47')}</div>
+                        <div className="flex items-center mb-3 mx-[auto] w-full py-1 px-4 text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">
+                                <BiSolidCategory />
+                                <span className="ml-4">{t('admin.p47')}</span>
+                            </div>
                         </Link>
                         <Link to="/adminbrand">
-                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p55')}</div>
+                        <div className="flex items-center mb-3 mx-[auto] w-full py-1 px-4 text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">
+                                <MdDriveFileRenameOutline />
+                                <span className="ml-4">{t('admin.p55')}</span>
+                            </div>
                         </Link>
                         <Link to="/adminsearchword">
-                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p56')}</div>
+                        <div className="flex items-center mb-3 mx-[auto] w-full py-1 px-4 text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">
+                                <FaTags />
+                                <span className="ml-4">{t('admin.p56')}</span>
+                            </div>
                         </Link>
                         <Link to="/adminrecommend">
-                            <div className="my-3 mx-[auto] w-[200px] py-1 px-4 text-center text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">{t('admin.p48')}</div>
+                        <div className="flex items-center mb-3 mx-[auto] w-full py-1 px-4 text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#42189F] hover:text-[#42189F] transition duration-300 cursor-pointer">
+                                <MdRecommend />
+                                <span className="ml-4">{t('admin.p48')}</span>
+                            </div>
                         </Link>
                     </div>
                 </div>

@@ -13,7 +13,6 @@ function FormPage() {
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 
-
   // Fetch province options
   useEffect(() => {
     fetch(`/locales/${i18next.language}/province.json`)

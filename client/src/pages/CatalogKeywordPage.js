@@ -96,7 +96,7 @@ function CatalogKeywordPage() {
           {productData.map((item) => {
             return (
               <ItemCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} category_id={item.category_id}
-                description_th={item.description_th} search_word_th={item.search_word_th} brand_th={item.brand_th} brand_en={item.brand_en} name_en={item.name_en} description_en={item.description_en} search_word_en={item.search_word_en} itemType={itemType}
+                description_th={item.description_th}  name_en={item.name_en} description_en={item.description_en} brand_id={item.brand_id} searchword_id={item.searchword_id} itemType={itemType}
               />
             )
           })}
