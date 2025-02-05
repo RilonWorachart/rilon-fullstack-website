@@ -1,16 +1,15 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTags } from "react-icons/fa";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 function ItemCard({ ID, picture_1, name_th, description_th, name_en, description_en, itemType, searchword_id, brand_id }) {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language;
   const [isActive, setIsActive] = useState(false);
-  const [brandData, setBrandData] = useState(null)
-  const [searchwordData, setSearchwordData] = useState(null)
-
+  const [brandData, setBrandData] = useState(null);
+  const [searchwordData, setSearchwordData] = useState(null);
 
   const fetchBrandData = async () => {
     if (brand_id) {
@@ -29,7 +28,6 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
       console.error("brand_id is missing");
     }
   };
-
 
   const fetchSearchwordData = async () => {
     if (searchword_id) {
@@ -51,13 +49,18 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
 
   useEffect(() => {
     if (brand_id) {
-      fetchBrandData()
-      if (searchword_id) {
-        fetchSearchwordData()
-      }
+      fetchBrandData();
+    }
+    if (searchword_id) {
+      fetchSearchwordData();
     }
   }, [brand_id, searchword_id]);
 
+  if (!brandData) {
+    return <div>Loading...</div>; // Loading state while fetching brand data
+  }
+
+  
   return (
     <div
       className={`shadow-md relative z-0 ${itemType === "type2" ? "md:flex my-2" : ""}`}
@@ -77,25 +80,22 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
       <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[70%] md:my-[auto]" : ""}`}>
         <div className="pb-[50px]">
           <p className="text-[24px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
-          <p className="text-[14px] uppercase  pb-[15px] ">{currentLang === 'th' ? brandData.name_th : brandData.name_en}</p>
+          <p className="text-[14px] uppercase pb-[15px]">
+            {currentLang === 'th' ? brandData?.name_th : brandData?.name_en || 'Loading brand...'}
+          </p>
 
-          {/* Sliding effect only for type1 */}
           <div
             className={`w-full flex items-center transition-all duration-500 overflow-hidden ${itemType === "type1"
               ? isActive
-                ? "max-h-[200px]"  // adjust max-height for sliding text
+                ? "max-h-[200px]"
                 : "max-h-0"
-              : "max-h-[1000px]" // for type2, the description stays visible
-              }`}
+              : "max-h-[1000px]"} `}
             style={{
               transition: 'max-height 0.5s ease-out',
             }}
           >
-            <p
-              className={`text-[14px] text-[#E5B22C] line-clamp-2 ${itemType === "type2" ? "w-[100%]" : ""
-                }`}
-            >
-              {currentLang === 'th' ? description_th : description_en}
+            <p className={`text-[14px] text-[#E5B22C] line-clamp-2 ${itemType === "type2" ? "w-[100%]" : ""}`}>
+              {currentLang === 'th' ? description_th : description_en || 'No description available'}
             </p>
           </div>
         </div>
@@ -104,11 +104,13 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
           <div className={`${itemType === "type2" ? "" : "flex justify-between items-center"}`}>
             {searchword_id && (
               <Link
-                to={`/catalog/keyword/${searchwordData.name_th}`}
+                to={`/catalog/keyword/${searchwordData?.name_th}`}
                 className={`text-[#E5B22C] py-[2px] inline-flex items-center overflow-hidden ${itemType === "type2" ? "w-[100%] my-2" : ""}`}
               >
                 <FaTags className="mr-1 w-[24px]" />
-                <span className="text-[14px] truncate mr-1">{currentLang === 'th' ? searchwordData.name_th : searchwordData.name_en}</span>
+                <span className="text-[14px] truncate mr-1">
+                  {currentLang === 'th' ? searchwordData?.name_th : searchwordData?.name_en || 'Loading searchword...'}
+                </span>
               </Link>
             )}
             <div className={`flex ${!searchword_id && itemType === "type1" ? "justify-end w-full" : ""}`}>
@@ -121,11 +123,8 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 
 export default ItemCard;
-
-
-

@@ -95,18 +95,16 @@ function ItemDetail() {
         fetchProductById();  // Fetch product data when component mounts or `id` changes
     }, [id]);  // Depend on `id` to refetch if `id` changes
 
-    // Fetch category data when productData is available
     useEffect(() => {
-        if (productData && productData.category_id) {
-            fetchCategoryData();  // Fetch category data after product data is available
-            fetchBrandData()
-            fetchSearchwordData()
+        if (productData) {
+            if (productData.category_id) fetchCategoryData();  // Fetch category data if available
+            if (productData.brand_id) fetchBrandData();        // Fetch brand data if available
+            if (productData.searchword_id) fetchSearchwordData();  // Fetch searchword data if available
         }
-    }, [productData]);  // Depend on `productData` to trigger category data fetch
+    }, [productData]);
 
-    if (!productData || !categoryData || !brandData || !searchwordData) {
-        console.log("Loading data:", productData, categoryData, brandData, searchwordData); // Log to check the state
-        return <div>Loading...</div>;
+    if (!productData || !categoryData || !brandData) {
+        return <div>Loading...</div>;  // If product, category, or brand data is missing, show loading
     }
 
     return (

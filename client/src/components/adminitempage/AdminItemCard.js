@@ -172,7 +172,7 @@ useEffect(() => {
           <p className={`text-[14px] text-[#E5B22C] truncate ${itemType === "type2" ? "w-full" : ""}`}>
             Category: {currentLang === 'th' ? categoryData.name_th : categoryData.name_en}
           </p>
-          {searchword_id && (
+          {searchword_id && searchwordData && (
             <div className={`text-[#E5B22C] flex items-center overflow-hidden ${itemType === "type2" ? "w-full" : ""}`}>
               <FaTags className="mr-1 w-[24px]" />
               <span className="text-[14px] truncate mr-1">{currentLang === 'th' ? searchwordData.name_th : searchwordData.name_en}</span>
