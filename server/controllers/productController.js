@@ -121,9 +121,7 @@ export const deleteProduct = async (req, res, next) => {
 
 export const createProduct = async (req, res, next) => {
     const {
-        rilon_id, name_th, description_th, search_word_th,
-        brand_th, other_th, name_en, description_en, search_word_en,
-        brand_en, other_en, category_id
+        rilon_id, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id, brand_id
     } = req.body;
 
     // Access the uploaded files using req.files
@@ -140,14 +138,32 @@ export const createProduct = async (req, res, next) => {
         });
     }
 
+    const [brand] = await promisePool.execute("SELECT * FROM brands WHERE id = ?", [brand_id]);
+
+    if (!brand.length) {
+        return res.status(400).json({
+            status: "error",
+            message: "Brand with the provided brand_id does not exist"
+        });
+    }
+    
+    const [searchword] = await promisePool.execute("SELECT * FROM searchwords WHERE id = ?", [searchword_id]);
+
+    if (!searchword.length) {
+        return res.status(400).json({
+            status: "error",
+            message: "Searchword with the provided searchword_id does not exist"
+        });
+    }
+
+
+
     try {
         // Insert the product into the products table
         await promisePool.execute(
-            "INSERT INTO products (rilon_id, picture_1, picture_2, name_th, description_th, search_word_th, brand_th, other_th, name_en, description_en, search_word_en, brand_en, other_en, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO products (rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id, brand_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
-                rilon_id, picture_1, picture_2, name_th, description_th, search_word_th,
-                brand_th, other_th, name_en, description_en, search_word_en,
-                brand_en, other_en, category_id
+                rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id, brand_id
             ]
         );
 
@@ -194,9 +210,7 @@ export const editProduct = async (req, res, next) => {
     const __dirname = path.dirname(__filename);
 
     const {
-        rilon_id, name_th, description_th, search_word_th,
-        brand_th, other_th, name_en, description_en, search_word_en,
-        brand_en, other_en, category_id, ID
+        rilon_id, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id, brand_id, ID
     } = req.body;
 
     // Access the uploaded files using req.files
@@ -210,6 +224,24 @@ export const editProduct = async (req, res, next) => {
         return res.status(400).json({
             status: "error",
             message: "Category with the provided category_id does not exist"
+        });
+    }
+
+    const [brand] = await promisePool.execute("SELECT * FROM brands WHERE id = ?", [brand_id]);
+
+    if (!brand.length) {
+        return res.status(400).json({
+            status: "error",
+            message: "Brand with the provided brand_id does not exist"
+        });
+    }
+
+    const [searchword] = await promisePool.execute("SELECT * FROM searchwords WHERE id = ?", [searchword_id]);
+
+    if (!searchword.length) {
+        return res.status(400).json({
+            status: "error",
+            message: "Searchword with the provided searchword_id does not exist"
         });
     }
 
@@ -254,22 +286,20 @@ export const editProduct = async (req, res, next) => {
 
         // Update the product with new values, keeping the old picture if no new picture is uploaded
         await promisePool.execute(
-            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, search_word_th = ?, brand_th = ?, other_th = ?, name_en = ?, description_en = ?, search_word_en = ?, brand_en = ?, other_en = ?, category_id = ? WHERE ID = ?",
+            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, other_th = ?, name_en = ?, description_en = ?, other_en = ?, category_id = ?, searchword_id = ?, brand_id = ? WHERE ID = ?",
             [
                 rilon_id,
                 picture_1 || product[0].picture_1,  // Use the new picture_1 or keep the old one if no new picture is uploaded
                 picture_2 || product[0].picture_2,  // Use the new picture_2 or keep the old one if no new picture is uploaded
                 name_th,
                 description_th,
-                search_word_th,
-                brand_th,
                 other_th,
                 name_en,
                 description_en,
-                search_word_en,
-                brand_en,
                 other_en,
                 category_id,
+                searchword_id,
+                brand_id,
                 ID
             ]
         );

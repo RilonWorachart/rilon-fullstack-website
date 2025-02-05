@@ -8,41 +8,29 @@ import Swal from 'sweetalert2';
 const AdminCreateItemPage = () => {
   const { t } = useTranslation();
   const [categoryData, setCategoryData] = useState([]);
-
-  const BrandData = [
-    { id: 1, name_th: 'ไรล่อน', name_en: 'RILON' },
-    { id: 2, name_th: 'JW INVERTER', name_en: 'JW INVERTER' },
-    { id: 3, name_th: 'JW JINGWEITIP', name_en: 'JW JINGWEITIP' },
-  ];
-
-  const searchwords = [
-    { id: 1, name_th: 'เครื่องเชื่อมอินวอเตอร์ราคาถูก', name_en: 'Cheap Inverter Welding Machine' },
-    { id: 2, name_th: 'เครื่องเชื่อมอินวอเตอร์คุณภาพดี', name_en: 'High-Quality Inverter Welding Machine' },
-    { id: 3, name_th: 'เครื่องเชื่อมไฟฟ้าราคาถูก', name_en: 'Cheap Electric Welding Machine' },
-    { id: 4, name_th: 'เครื่องเชื่อมไฟฟ้าคุณภาพดี', name_en: 'High-Quality Electric Welding Machine' },
-    { id: 5, name_th: 'เครื่องเชื่อมทิกราคาถูก', name_en: 'Cheap TIG Welding Machine' },
-    { id: 6, name_th: 'เครื่องเชื่อมทิกคุณภาพดี', name_en: 'High-Quality TIG Welding Machine' },
-    { id: 7, name_th: 'เครื่องเชื่อมอาร์กอนราคาถูก', name_en: 'Cheap Argon Welding Machine' },
-    { id: 8, name_th: 'เครื่องเชื่อมอาร์กอนคุณภาพดี', name_en: 'High-Quality Argon Welding Machine' },
-    { id: 9, name_th: 'เครื่องเชื่อมอลูมีเนียมสแตนเลสราคาถูก', name_en: 'Cheap Aluminum Stainless Steel Welding Machine' },
-    { id: 10, name_th: 'เครื่องเชื่อมอลูมีเนียมสแตนเลสคุณภาพดี', name_en: 'High-Quality Aluminum Stainless Steel Welding Machine' },
-    { id: 11, name_th: 'เครื่องเชื่อมมิกราคาถูก', name_en: 'Cheap MIG Welding Machine' },
-    { id: 12, name_th: 'เครื่องเชื่อมมิกคุณภาพดี', name_en: 'High-Quality MIG Welding Machine' },
-    { id: 13, name_th: 'เครื่องเชื่อมซีโอทูราคาถูก', name_en: 'Cheap CO2 Welding Machine' },
-    { id: 14, name_th: 'เครื่องเชื่อมซีโอทูคุณภาพดี', name_en: 'High-Quality CO2 Welding Machine' },
-    { id: 15, name_th: 'เครื่องตัดพลาสม่าราคาถูก', name_en: 'Cheap Plasma Cutting Machine' },
-    { id: 16, name_th: 'เครื่องตัดพลาสม่าคุณภาพดี', name_en: 'High-Quality Plasma Cutting Machine' },
-    { id: 17, name_th: 'อุปกรณ์งานเชื่อมราคาถูก', name_en: 'Cheap Welding Equipment' },
-    { id: 18, name_th: 'อุปกรณ์งานเชื่อมคุณภาพดี', name_en: 'High-Quality Welding Equipment' },
-    { id: 19, name_th: 'อะไหล่เครื่องเชื่อมราคาถูก', name_en: 'Cheap Welding Machine Spare Parts' },
-    { id: 20, name_th: 'อะไหล่เครื่องเชื่อมคุณภาพดี', name_en: 'High-Quality Welding Machine Spare Parts' },
-    { id: 21, name_th: 'สายเชื่อมตู้เชื่อมราคาถูก', name_en: 'Cheap Welding Machine Cables' },
-    { id: 22, name_th: 'สายเชื่อมตู้เชื่อมคุณภาพดี', name_en: 'High-Quality Welding Machine Cables' },
-    { id: 23, name_th: 'สายเชื่อมอาร์กอนราคาถูก', name_en: 'Cheap Argon Welding Cables' },
-    { id: 24, name_th: 'สายเชื่อมอาร์กอนคุณภาพดี', name_en: 'High-Quality Argon Welding Cables' }
-  ];
+  const [brandData, setBrandData] = useState([]);
+  const [searchwordData, setSearchwordData] = useState([]);
 
 
+  const fetchAllBrandData = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API}/getallbrand`);
+      const result = response.data;
+      setBrandData(result.data);
+    } catch (error) {
+      console.error("Error fetching brand data:", error);
+    }
+  };
+
+  const fetchAllSearchwordData = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API}/getallsearchword`);
+      const result = response.data;
+      setSearchwordData(result.data);
+    } catch (error) {
+      console.error("Error fetching searchword data:", error);
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -62,6 +50,8 @@ const AdminCreateItemPage = () => {
           if (response.data.status === "ok") {
             // If token is valid, fetch all category data
             fetchAllCategoryData();
+            fetchAllSearchwordData();
+            fetchAllBrandData();
           } else {
             localStorage.removeItem("token");
             window.location = "/adminlogin"; // Redirect to login if token is invalid
@@ -84,15 +74,13 @@ const AdminCreateItemPage = () => {
     picture_2: null,
     name_th: '',
     description_th: '',
-    search_word_th: '',
-    search_word_en: '',
-    brand_th: '',
-    brand_en: '',
     other_th: '',
     other_en: '',
     name_en: '',
     description_en: '',
-    category_id: '', // For category ID
+    category_id: '',
+    brand_id:'',
+    searchword_id:''
   });
 
   const fetchAllCategoryData = async () => {
@@ -108,22 +96,7 @@ const AdminCreateItemPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Handle search word and brand to update both languages
-    if (name === 'search_word_th') {
-      const selectedSearchWord = searchwords.find(word => word.name_th === value);
-      setFormData({
-        ...formData,
-        search_word_th: selectedSearchWord.name_th,
-        search_word_en: selectedSearchWord.name_en,
-      });
-    } else if (name === 'brand_th') {
-      const selectedBrand = BrandData.find(brand => brand.name_th === value);
-      setFormData({
-        ...formData,
-        brand_th: selectedBrand.name_th,
-        brand_en: selectedBrand.name_en,
-      });
-    } else if (name === 'picture_1' || name === 'picture_2') {
+   if (name === 'picture_1' || name === 'picture_2') {
       // Handle file inputs
       setFormData({
         ...formData,
@@ -145,15 +118,13 @@ const AdminCreateItemPage = () => {
     formDataToSend.append('rilon_id', formData.rilon_id);
     formDataToSend.append('name_th', formData.name_th);
     formDataToSend.append('description_th', formData.description_th);
-    formDataToSend.append('search_word_th', formData.search_word_th);
-    formDataToSend.append('search_word_en', formData.search_word_en);
-    formDataToSend.append('brand_th', formData.brand_th);
-    formDataToSend.append('brand_en', formData.brand_en);
     formDataToSend.append('other_th', formData.other_th);
     formDataToSend.append('other_en', formData.other_en);
     formDataToSend.append('name_en', formData.name_en);
     formDataToSend.append('description_en', formData.description_en);
     formDataToSend.append('category_id', formData.category_id);
+    formDataToSend.append('brand_id', formData.brand_id);
+    formDataToSend.append('searchword_id', formData.searchword_id);
 
     // Append the pictures if they exist
     if (formData.picture_1) {
@@ -375,18 +346,18 @@ const AdminCreateItemPage = () => {
               </div>
 
               <div className="pt-4">
-                <label htmlFor="brand_th" className="font-semibold py-1">{t('admin.p34')}<span className="text-[#DC3545]">*</span></label><br />
+                <label htmlFor="brand_id" className="font-semibold py-1">{t('admin.p34')}<span className="text-[#DC3545]">*</span></label><br />
                 <select
-                  name="brand_th"
-                  id="brand_th"
-                  value={formData.brand_th}
+                  name="brand_id"
+                  id="brand_id"
+                  value={formData.brand_id}
                   onChange={handleChange}
                   required
                   className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 >
                   <option value="">{t('admin.p46')}</option>
-                  {BrandData.map((result) => (
-                    <option key={result.id} value={result.name_th}>
+                  {brandData.map((result) => (
+                    <option key={result.id} value={result.id}>
                       {result.name_th} / {result.name_en}
                     </option>
                   ))}
@@ -394,17 +365,17 @@ const AdminCreateItemPage = () => {
               </div>
 
               <div className="pt-4">
-                <label htmlFor="search_word_th" className="font-semibold py-1">{t('admin.p36')}</label><br />
+                <label htmlFor="searchword_id" className="font-semibold py-1">{t('admin.p36')}</label><br />
                 <select
-                  name="search_word_th"
-                  id="search_word_th"
-                  value={formData.search_word_th}
+                  name="searchword_id"
+                  id="searchword_id"
+                  value={formData.searchword_id}
                   onChange={handleChange}
                   className="border w-[100%] py-1 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 >
                   <option value="">{t('admin.p44')}</option>
-                  {searchwords.map((result) => (
-                    <option key={result.id} value={result.name_th}>
+                  {searchwordData.map((result) => (
+                    <option key={result.id} value={result.id}>
                       {result.name_th} / {result.name_en}
                     </option>
                   ))}

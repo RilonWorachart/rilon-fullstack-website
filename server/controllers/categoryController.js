@@ -68,9 +68,9 @@ export const deleteCategory = async (req, res, next) => {
       // Check if the image file exists and delete it
       fs.unlink(picture_1_Path, (err) => {
         if (err) {
-          console.error("Error deleting picture_1:", err);
+          console.error("Error deleting category picture:", err);
         } else {
-          console.log("picture_1 deleted successfully");
+          console.log("category picture deleted successfully");
         }
       });
     }
