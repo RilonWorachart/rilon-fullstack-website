@@ -40,8 +40,7 @@ function Contact() {
                 <div className="py-3 flex flex-wrap">
                     <FaGlobe className="mt-[2px] mr-4" />
                     <p>
-                        <a href="https://www.rilon-riland.com/" className="text-[#E2B22C] hover:text-[#00007E]">www.rilon-riland.com</a>,
-                        <a href="https://rilon-welding.yellowpages.co.th" className="text-[#E2B22C] hover:text-[#00007E]"> https://rilon-welding.yellowpages.co.th</a>
+                        <a href="https://www.rilonthailand.co.th/" className="text-[#E2B22C] hover:text-[#00007E]">www.rilonthailand.co.th</a>
                     </p>
                 </div>
                 <div className="py-3 flex flex-wrap">

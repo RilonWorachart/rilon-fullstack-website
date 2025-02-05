@@ -147,23 +147,31 @@ export const createProduct = async (req, res, next) => {
         });
     }
 
-    const [searchword] = await promisePool.execute("SELECT * FROM searchwords WHERE id = ?", [searchword_id]);
+    // If searchword_id is provided, check if it exists in the searchwords table
+    let searchwordQuery = '';
+    let searchwordParams = [];
 
-    if (!searchword.length) {
+    if (searchword_id) {
+        searchwordQuery = "SELECT * FROM searchwords WHERE id = ?";
+        searchwordParams = [searchword_id];
+    }
+
+    const [searchword] = searchwordQuery ? await promisePool.execute(searchwordQuery, searchwordParams) : [];
+
+    // If searchword_id is provided and not found, return error
+    if (searchword_id && !searchword.length) {
         return res.status(400).json({
             status: "error",
             message: "Searchword with the provided searchword_id does not exist"
         });
     }
 
-
-
     try {
-        // Insert the product into the products table
+        // Insert the product into the products table (searchword_id can be null if not provided)
         await promisePool.execute(
             "INSERT INTO products (rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id, brand_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
-                rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id, brand_id
+                rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id || null, brand_id
             ]
         );
 
@@ -236,9 +244,19 @@ export const editProduct = async (req, res, next) => {
         });
     }
 
-    const [searchword] = await promisePool.execute("SELECT * FROM searchwords WHERE id = ?", [searchword_id]);
+    // If searchword_id is provided, check if it exists in the searchwords table
+    let searchwordQuery = '';
+    let searchwordParams = [];
 
-    if (!searchword.length) {
+    if (searchword_id) {
+        searchwordQuery = "SELECT * FROM searchwords WHERE id = ?";
+        searchwordParams = [searchword_id];
+    }
+
+    const [searchword] = searchwordQuery ? await promisePool.execute(searchwordQuery, searchwordParams) : [];
+
+    // If searchword_id is provided and not found, return error
+    if (searchword_id && !searchword.length) {
         return res.status(400).json({
             status: "error",
             message: "Searchword with the provided searchword_id does not exist"
@@ -298,7 +316,7 @@ export const editProduct = async (req, res, next) => {
                 description_en,
                 other_en,
                 category_id,
-                searchword_id,
+                searchword_id || null,  // If searchword_id is not provided, set it to null
                 brand_id,
                 ID
             ]

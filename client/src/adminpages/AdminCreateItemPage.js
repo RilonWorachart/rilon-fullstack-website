@@ -126,6 +126,7 @@ const AdminCreateItemPage = () => {
     formDataToSend.append('brand_id', formData.brand_id);
     formDataToSend.append('searchword_id', formData.searchword_id);
 
+
     // Append the pictures if they exist
     if (formData.picture_1) {
       formDataToSend.append('picture_1', formData.picture_1);
