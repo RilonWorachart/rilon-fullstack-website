@@ -63,11 +63,11 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
   
   return (
     <div
-      className={`shadow-md relative z-0 ${itemType === "type2" ? "md:flex my-2" : ""}`}
+      className={`shadow-md relative z-0 ${itemType === "type2" ? "md:flex my-2" : "min-h-[420px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "md:w-[30%]" : "h-[60%]"}`}>
+      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "md:w-[30%]" : "h-[50%]"}`}>
         <div className={`bg-black overflow-hidden flex my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
             className={`transition-transform duration-300 transform w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}

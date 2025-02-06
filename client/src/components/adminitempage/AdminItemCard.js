@@ -134,7 +134,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
 
   return (
     <div
-      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2" : "max-h-[600px]"}`}
+      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2" : "min-h-[420px] max-h-[600px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >

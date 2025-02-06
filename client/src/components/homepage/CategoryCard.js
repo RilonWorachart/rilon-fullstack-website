@@ -14,7 +14,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
   return (
     <div
-      className={`shadow-md z-0 ${itemType === "type2" ? "my-2 md:flex" : "flex flex-col justify-between"}`}
+      className={`shadow-md z-0 ${itemType === "type2" ? "my-2 md:flex h-[250px]" : "flex flex-col justify-between h-[420px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
@@ -47,7 +47,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
           </div>
         </div>
 
-        <div className={`${itemType === "type2" ? "items-center" : "py-2"}`}>
+        <div className={`py-2 ${itemType === "type2" ? "items-center" : ""}`}>
           <div className={`${itemType === "type2" ? "" : "flex justify-between items-center"}`}>
             <Link to={`/category/${ID}`}>
               <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">

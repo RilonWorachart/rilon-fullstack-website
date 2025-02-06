@@ -6,7 +6,10 @@ import { fileURLToPath } from 'url';
 export const getallCategory = async (req, res, next) => {
   try {
     // Execute the query using promisePool
-    const [rows] = await promisePool.execute("SELECT * FROM categories");
+    const [rows] = await promisePool.execute(`
+      SELECT * FROM categories 
+      ORDER BY ID = 19
+    `);
 
     // Check if there are any categories
     if (rows.length === 0) {

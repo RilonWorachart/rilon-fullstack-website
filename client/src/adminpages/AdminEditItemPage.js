@@ -301,6 +301,8 @@ function AdminEditItemPage() {
                 <p className="py-1">
                     <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
                     <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
+                    <Link to="/adminitem"><span className="hover:text-[#00007E]">{t('admin.p9')}</span></Link>
+                    <span> » </span>
                     <span>{t('admin.p29')}</span>
                 </p>
                 <div className="flex">
