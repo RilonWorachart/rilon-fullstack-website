@@ -6,6 +6,8 @@ import QRcodeComponent from '../QRcodeComponent';
 import SearchKeyButton from '../SearchKeyButton';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { TbCircleLetterLFilled } from "react-icons/tb";
+import { SiShopee } from "react-icons/si";
 
 function ItemDetail() {
     const { id } = useParams();
@@ -188,6 +190,16 @@ function ItemDetail() {
                         <a href="mailto:janenyrilon_jingwei@hotmail.com">
                             <div className="p-1.5 mr-1.5 text-[18px] bg-white border border-[#0078D4] text-[#0078D4] rounded-full hover:bg-[#0078D4] hover:text-white transition duration-300">
                                 <MdOutlineEmail />
+                            </div>
+                        </a>
+                        <a href="https://www.lazada.co.th/shop/jw-jingweitip/?spm=a2o4m.pdp_revamp.seller.1.7ecf41f8hb1o3I&itemId=4370282627&channelSource=pdp">
+                            <div className="p-1.5 mr-1.5 text-[18px] bg-white border border-[#0F146D] text-[#0F146D] rounded-full hover:bg-[#0F146D] hover:text-white transition duration-300">
+                                <TbCircleLetterLFilled />
+                            </div>
+                        </a>
+                        <a href="https://shopee.co.th/wprachrt">
+                            <div className="p-1.5 mr-1.5 text-[18px] bg-white border border-[#F6402E] text-[#F6402E] rounded-full hover:bg-[#F6402E] hover:text-white transition duration-300">
+                                <SiShopee />
                             </div>
                         </a>
                     </div>
