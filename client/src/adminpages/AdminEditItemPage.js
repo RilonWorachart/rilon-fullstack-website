@@ -118,7 +118,7 @@ function AdminEditItemPage() {
                 description_en: productData.description_en,
                 category_id: productData.category_id,
                 brand_id: productData.brand_id,
-                searchword_id: productData.searchword_id,
+                searchword_id: productData.searchword_id || "",
                 ID: productData.ID
             });
         }
