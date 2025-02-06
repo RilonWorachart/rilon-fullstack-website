@@ -79,8 +79,8 @@ const AdminCreateItemPage = () => {
     name_en: '',
     description_en: '',
     category_id: '',
-    brand_id:'',
-    searchword_id:''
+    brand_id: '',
+    searchword_id: ''
   });
 
   const fetchAllCategoryData = async () => {
@@ -96,7 +96,7 @@ const AdminCreateItemPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-   if (name === 'picture_1' || name === 'picture_2') {
+    if (name === 'picture_1' || name === 'picture_2') {
       // Handle file inputs
       setFormData({
         ...formData,
@@ -218,14 +218,40 @@ const AdminCreateItemPage = () => {
     }, 1000);
   };
 
+  const [picture_1_PreviewUrl, setPicture_1_PreviewUrl] = useState(null);
+  const [picture_2_PreviewUrl, setPicture_2_PreviewUrl] = useState(null);
+
+  useEffect(() => {
+    // Create object URLs for the image previews only if they are valid files
+    if (formData.picture_1 && formData.picture_1 instanceof File) {
+      setPicture_1_PreviewUrl(URL.createObjectURL(formData.picture_1));
+    } else {
+      setPicture_1_PreviewUrl(null); // Reset preview if picture_1 is not a valid File
+    }
+
+    if (formData.picture_2 && formData.picture_2 instanceof File) {
+      setPicture_2_PreviewUrl(URL.createObjectURL(formData.picture_2));
+    } else {
+      setPicture_2_PreviewUrl(null); // Reset preview if picture_2 is not a valid File
+    }
+
+    // Cleanup URLs on component unmount or when the file changes
+    return () => {
+      if (picture_1_PreviewUrl) {
+        URL.revokeObjectURL(picture_1_PreviewUrl);
+      }
+      if (picture_2_PreviewUrl) {
+        URL.revokeObjectURL(picture_2_PreviewUrl);
+      }
+    };
+  }, [formData]);  // Trigger effect whenever formData changes
+
   return (
     <div className="min-h-screen font-plex-sans-thai">
       <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
         <p className="py-1">
           <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
           <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p7')}</a> <span> » </span>
-          <a href="/adminitem" className="">{t('admin.p9')}</a> 
-          <span> » </span>
           <span>{t('admin.p22')}</span>
         </p>
         <div className="flex">
@@ -235,14 +261,14 @@ const AdminCreateItemPage = () => {
             </button>
           </Link>
           <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
-          {t('admin.p23')}
+            {t('admin.p23')}
           </button>
         </div>
       </div>
 
       <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] pt-4 pb-10">
         <div>
-          <h1 className="text-[30px]">{t('admin.p30')}</h1>
+          <h1 className="text-[30px]">{t('admin.p22')}</h1>
           <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
         </div>
 
@@ -329,6 +355,16 @@ const AdminCreateItemPage = () => {
                   required
                   className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
+                {picture_1_PreviewUrl && (
+                  <div className="mt-4 flex justify-center">
+                    <img
+                      src={picture_1_PreviewUrl}
+                      alt="Preview"
+                      width="200"
+                      className="border rounded-md"
+                    />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -417,6 +453,16 @@ const AdminCreateItemPage = () => {
                   onChange={handleChange}
                   className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
+                {picture_2_PreviewUrl && (
+                  <div className="mt-4 flex justify-center">
+                    <img
+                      src={picture_2_PreviewUrl}
+                      alt="Preview"
+                      width="200"
+                      className="border rounded-md"
+                    />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -432,7 +478,7 @@ const AdminCreateItemPage = () => {
           </div>
         </form>
       </div>
-      
+
 
       <Footer />
     </div>

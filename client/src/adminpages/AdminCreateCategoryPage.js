@@ -166,6 +166,27 @@ const AdminCreateItemPage = () => {
     }, 1000);
   };
 
+
+  const [picture_1_PreviewUrl, setPicture_1_PreviewUrl] = useState(null);
+
+  useEffect(() => {
+      // Create object URLs for the image previews only if they are valid files
+      if (formData.picture_1 && formData.picture_1 instanceof File) {
+        setPicture_1_PreviewUrl(URL.createObjectURL(formData.picture_1));
+      } else {
+        setPicture_1_PreviewUrl(null); // Reset preview if picture_1 is not a valid File
+      }
+  
+  
+      // Cleanup URLs on component unmount or when the file changes
+      return () => {
+        if (picture_1_PreviewUrl) {
+          URL.revokeObjectURL(picture_1_PreviewUrl);
+        }
+      };
+    }, [formData]);  // Trigger effect whenever formData changes
+  
+
   return (
     <div className="min-h-screen font-plex-sans-thai">
       <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
@@ -232,6 +253,16 @@ const AdminCreateItemPage = () => {
                   required
                   className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
+                {picture_1_PreviewUrl && (
+                  <div className="mt-4 flex justify-center">
+                    <img
+                      src={picture_1_PreviewUrl}
+                      alt="Preview"
+                      width="200"
+                      className="border rounded-md"
+                    />
+                  </div>
+                )}
               </div>
             </div>
             <div className="md:w-[50%] md:pl-[10px]">

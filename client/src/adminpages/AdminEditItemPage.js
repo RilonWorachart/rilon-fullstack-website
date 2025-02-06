@@ -265,13 +265,42 @@ function AdminEditItemPage() {
         }, 1000);
     }
 
+
+    const [picture_1_PreviewUrl, setPicture_1_PreviewUrl] = useState(null);
+    const [picture_2_PreviewUrl, setPicture_2_PreviewUrl] = useState(null);
+
+    useEffect(() => {
+        // Create object URLs for the image previews only if they are valid files
+        if (formData.picture_1 && formData.picture_1 instanceof File) {
+            setPicture_1_PreviewUrl(URL.createObjectURL(formData.picture_1));
+        } else {
+            setPicture_1_PreviewUrl(null); // Reset preview if picture_1 is not a valid File
+        }
+
+        if (formData.picture_2 && formData.picture_2 instanceof File) {
+            setPicture_2_PreviewUrl(URL.createObjectURL(formData.picture_2));
+        } else {
+            setPicture_2_PreviewUrl(null); // Reset preview if picture_2 is not a valid File
+        }
+
+        // Cleanup URLs on component unmount or when the file changes
+        return () => {
+            if (picture_1_PreviewUrl) {
+                URL.revokeObjectURL(picture_1_PreviewUrl);
+            }
+            if (picture_2_PreviewUrl) {
+                URL.revokeObjectURL(picture_2_PreviewUrl);
+            }
+        };
+    }, [formData]);  // Trigger effect whenever formData changes
+
+
     return (
         <div className="min-h-screen font-plex-sans-thai">
             <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
                 <p className="py-1">
                     <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
                     <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
-                    <a href="/adminitem" className="">{t('admin.p7')}</a> <span> » </span>
                     <span>{t('admin.p29')}</span>
                 </p>
                 <div className="flex">
@@ -288,7 +317,7 @@ function AdminEditItemPage() {
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] pt-4 pb-10">
                 <div>
-                    <h1 className="text-[30px]">{t('admin.p30')}</h1>
+                    <h1 className="text-[30px]">{t('admin.p29')}</h1>
                     <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
                 </div>
 
@@ -374,6 +403,16 @@ function AdminEditItemPage() {
                                     onChange={handleChange}
                                     className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 />
+                                {formData.picture_1 && (typeof formData.picture_1 === 'string' || formData.picture_1 instanceof File) && (
+                                    <div className="mt-4 flex justify-center">
+                                        <img
+                                            src={formData.picture_1 instanceof File ? URL.createObjectURL(formData.picture_1) : `${process.env.REACT_APP_API}${formData.picture_1}`}
+                                            alt="Preview picture 1"
+                                            width="200"
+                                            className="border rounded-md"
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -462,10 +501,18 @@ function AdminEditItemPage() {
                                     onChange={handleChange}
                                     className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 />
+                                {formData.picture_2 && (typeof formData.picture_2 === 'string' || formData.picture_2 instanceof File) && (
+                                    <div className="mt-4 flex justify-center">
+                                        <img
+                                            src={formData.picture_2 instanceof File ? URL.createObjectURL(formData.picture_2) : `${process.env.REACT_APP_API}${formData.picture_2}`}
+                                            alt="Preview picture 2"
+                                            width="200"
+                                            className="border rounded-md"
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
-
-
                     </div>
                     <div className="pt-8 flex justify-center">
                         <button

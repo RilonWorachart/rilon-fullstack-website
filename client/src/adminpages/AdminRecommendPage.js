@@ -193,44 +193,62 @@ function AdminRecommendPage() {
         const token = localStorage.getItem("token");
 
         axios
-          .delete(`${process.env.REACT_APP_API}/deleterecommendproduct?id=${ID}`, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((response) => {
-            if (response.data.status === "ok") {
-              Swal.fire({
-                title: 'Success!',
-                text: 'Deleted successfully!',
-                icon: 'success',
-                confirmButtonText: 'OK',
-              });
-              setTimeout(() => {
-                navigate(0);
-              }, 1000);
-            }
-          })
-          .catch((error) => {
-            console.error("Error deleting product", error.response ? error.response.data : error);
-            if (error.response && error.response.status === 401) {
-              Swal.fire({
-                title: 'Unauthorized!',
-                text: 'Please login to continue.',
-                icon: 'warning',
-                confirmButtonText: 'OK',
-              });
-            } else {
-              Swal.fire({
-                title: 'Error!',
-                text: 'Something went wrong. Please try again later.',
-                icon: 'error',
-                confirmButtonText: 'OK',
-              });
-            }
-          });
-      };
+            .delete(`${process.env.REACT_APP_API}/deleterecommendproduct?id=${ID}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                if (response.data.status === "ok") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Deleted successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    });
+                    setTimeout(() => {
+                        navigate(0);
+                    }, 1000);
+                }
+            })
+            .catch((error) => {
+                console.error("Error deleting product", error.response ? error.response.data : error);
+                if (error.response && error.response.status === 401) {
+                    Swal.fire({
+                        title: 'Unauthorized!',
+                        text: 'Please login to continue.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
+    };
+
+    const [image_PreviewUrl, setimage_PreviewUrl] = useState(null);
+
+    useEffect(() => {
+        // Create object URLs for the image previews only if they are valid files
+        if (formData.image && formData.image instanceof File) {
+          setimage_PreviewUrl(URL.createObjectURL(formData.image));
+        } else {
+          setimage_PreviewUrl(null); // Reset preview if image is not a valid File
+        }
+    
+        // Cleanup URLs on component unmount or when the file changes
+        return () => {
+          if (image_PreviewUrl) {
+            URL.revokeObjectURL(image_PreviewUrl);
+          }
+        };
+      }, [formData]);  // Trigger effect whenever formData changes
 
 
 
@@ -291,6 +309,16 @@ function AdminRecommendPage() {
                                 required
                                 className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                             />
+                            {image_PreviewUrl && (
+                                <div className="mt-4 flex justify-center">
+                                    <img
+                                        src={image_PreviewUrl}
+                                        alt="Preview"
+                                        width="200"
+                                        className="border rounded-md"
+                                    />
+                                </div>
+                            )}
                         </div>
                         <div className="pt-8 flex justify-center">
                             <button
@@ -332,9 +360,9 @@ function AdminRecommendPage() {
                                         <img className="md:w-[200px]" src={`${process.env.REACT_APP_API}${data.image}`} alt={data.name} />
                                     </td>
                                     <td className="py-2 px-4 text-[#EE0003] text-[30px] text-center">
-                                            <button className="hover:text-[#872325]" onClick={() => handledelete(data.id)}>
-                                                <FaMinusSquare />
-                                            </button>
+                                        <button className="hover:text-[#872325]" onClick={() => handledelete(data.id)}>
+                                            <FaMinusSquare />
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
