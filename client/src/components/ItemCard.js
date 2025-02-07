@@ -68,7 +68,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
       onMouseLeave={() => setIsActive(false)}
     >
       <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "sm:w-[375px] h-[55%] sm:h-[100%]" : "h-[55%]"}`}>
-        <div className={`bg-black overflow-hidden flex my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
+        <div className={`bg-[#e3dedd] overflow-hidden flex my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
             className={`transition-transform duration-300 transform w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
             src={`${process.env.REACT_APP_API}${picture_1}`}
@@ -113,7 +113,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
                 </span>
               </Link>
             )}
-            <div className={`flex ${!searchword_id && itemType === "type1" ? "justify-end w-full" : ""}`}>
+            <div className={`flex ${!searchword_id && itemType === "type1" ? "justify-end w-full" : "my-2"}`}>
               <Link to={`/item/${ID}`}>
                 <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">
                   {t('itemcard.p1')}

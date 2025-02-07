@@ -139,7 +139,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
       onMouseLeave={() => setIsActive(false)}
     >
       {/* Image Section */}
-      <div className={`overflow-hidden flex ${itemType === "type2" ? "md:w-[30%]" : "h-[53%]"}`}>
+      <div className={`bg-white overflow-hidden flex ${itemType === "type2" ? "md:w-[30%]" : "h-[53%]"}`}>
         <img
           className={`transition-transform duration-300 transform ${itemType === "type2" ? "sm:w-full md:mx-[auto] md:my-[auto]" : "w-full h-full"} ${isActive ? 'scale-110 opacity-75' : ''}`}
           src={`${process.env.REACT_APP_API}${picture_1}`}
