@@ -134,12 +134,12 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
 
   return (
     <div
-      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2" : "min-h-[420px] max-h-[600px]"}`}
+      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2" : "h-[500px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
       {/* Image Section */}
-      <div className={`overflow-hidden flex ${itemType === "type2" ? "md:w-[30%]" : "h-[50%] md:h-[45%]"}`}>
+      <div className={`overflow-hidden flex ${itemType === "type2" ? "md:w-[30%]" : "h-[53%]"}`}>
         <img
           className={`transition-transform duration-300 transform ${itemType === "type2" ? "sm:w-full md:mx-[auto] md:my-[auto]" : "w-full h-full"} ${isActive ? 'scale-110 opacity-75' : ''}`}
           src={`${process.env.REACT_APP_API}${picture_1}`}
@@ -148,7 +148,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
       </div>
 
       {/* Content Section */}
-      <div className={`px-5 py-5 my-[auto] ${itemType === "type2" ? "md:w-[70%]" : "flex flex-col justify-between h-[50%] md:h-[55%]"}`}>
+      <div className={`px-5 py-4 ${itemType === "type2" ? "md:w-[70%]" : "flex flex-col justify-between h-[47%]"}`}>
         <div className="">
           <p className="text-[28px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           <p className={`text-[14px] uppercase ${itemType === "type2" ? "w-full" : ""}`}>

@@ -63,11 +63,11 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
   
   return (
     <div
-      className={`shadow-md relative z-0 ${itemType === "type2" ? "md:flex my-2" : "min-h-[420px]"}`}
+      className={`shadow-md relative z-0 ${itemType === "type2" ? "sm:flex my-2 sm:h-[275px] h-[470px]" : "h-[470px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "md:w-[30%]" : "h-[50%]"}`}>
+      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "sm:w-[375px] h-[55%] sm:h-[100%]" : "h-[55%]"}`}>
         <div className={`bg-black overflow-hidden flex my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
             className={`transition-transform duration-300 transform w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
@@ -77,8 +77,8 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
         </div>
       </Link>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "md:w-[70%] md:my-[auto]" : ""}`}>
-        <div className="pb-[50px]">
+      <div className={`px-5 py-3 ${itemType === "type2" ? "sm:w-[70%] sm:my-[auto] " : "my-[auto]"}`}>
+        <div className="">
           <p className="text-[24px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           <p className="text-[14px] uppercase pb-[15px]">
             {currentLang === 'th' ? brandData?.name_th : brandData?.name_en || 'Loading brand...'}

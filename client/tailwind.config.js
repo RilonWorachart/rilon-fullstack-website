@@ -8,6 +8,10 @@ module.exports = {
       fontFamily: {
         'plex-sans-thai': ['IBM Plex Sans Thai', 'sans-serif'], // Add IBM Plex Sans Thai font here
       },
+      screens: {
+        '3xl': '1600px',  // Or whatever value you want for your 3xl breakpoint
+        '4xl': '1800px',
+      },
     },
   },
   plugins: [],
