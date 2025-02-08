@@ -23,14 +23,25 @@ const storage = multer.diskStorage({
 
 
 const fileFilter = (req, file, cb) => {
-    const fileTypes = /jpeg|jpg|png|svg/;
-    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = fileTypes.test(file.mimetype);
+    const fileTypes = /jpeg|jpg|png|svg|glb|gltf/;
+    const extname = path.extname(file.originalname).toLowerCase();
+    const mimetype = file.mimetype;
 
-    if (extname && mimetype) {
+    // Check if the extension is valid
+    const isValidExtension = fileTypes.test(extname);
+
+    // Check if the MIME type matches allowed types
+    const isValidMimeType =
+        mimetype === 'model/gltf-binary' ||  // Correct MIME type for .glb files
+        mimetype === 'application/json' ||   // Correct MIME type for .gltf files
+        mimetype === 'application/octet-stream' ||  // Possible fallback for .glb MIME type
+        fileTypes.test(mimetype);            // For other image types (jpeg, png, etc.)
+        
+
+    if (isValidExtension && isValidMimeType) {
         return cb(null, true); // Accept the file
     } else {
-        return cb(new Error('Invalid file type. Only image files (jpg, jpeg, png, svg) are allowed.'));
+        return cb(new Error('Invalid file type. Only image files (jpg, jpeg, png, svg, glb, gltf) are allowed.'));
     }
 };
 
@@ -38,7 +49,7 @@ const upload = multer({
     storage,
     fileFilter,
     limits: {
-        fileSize: 2 * 1024 * 1024 // 2MB
+        fileSize: 20 * 1024 * 1024 // 3MB
     }
 });
 
@@ -46,7 +57,8 @@ const upload = multer({
 // Define the routes
 router.post('/createproduct', upload.fields([
     { name: 'picture_1', maxCount: 1 },
-    { name: 'picture_2', maxCount: 1 }
+    { name: 'picture_2', maxCount: 1 },
+    { name: 'model',  maxCount: 1}
 ]), authenmiddleware, createProduct);
 
 

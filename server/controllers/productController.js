@@ -127,6 +127,7 @@ export const createProduct = async (req, res, next) => {
     // Access the uploaded files using req.files
     const picture_1 = req.files && req.files.picture_1 ? `/uploads/${req.files.picture_1[0].filename}` : null;
     const picture_2 = req.files && req.files.picture_2 ? `/uploads/${req.files.picture_2[0].filename}` : null;
+    const model = req.files && req.files.model ? `/uploads/${req.files.model[0].filename}` : null;
 
     // Check if the category_id exists in the categories table
     const [category] = await promisePool.execute("SELECT * FROM categories WHERE id = ?", [category_id]);
@@ -169,9 +170,9 @@ export const createProduct = async (req, res, next) => {
     try {
         // Insert the product into the products table (searchword_id can be null if not provided)
         await promisePool.execute(
-            "INSERT INTO products (rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id, brand_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO products (rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, model, category_id, searchword_id, brand_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
-                rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, category_id, searchword_id || null, brand_id
+                rilon_id, picture_1, picture_2, name_th, description_th, other_th, name_en, description_en, other_en, model, category_id, searchword_id || null, brand_id
             ]
         );
 

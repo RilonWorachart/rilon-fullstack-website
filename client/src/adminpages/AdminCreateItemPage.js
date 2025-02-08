@@ -78,6 +78,7 @@ const AdminCreateItemPage = () => {
     other_en: '',
     name_en: '',
     description_en: '',
+    model:null,
     category_id: '',
     brand_id: '',
     searchword_id: ''
@@ -93,10 +94,11 @@ const AdminCreateItemPage = () => {
     }
   };
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'picture_1' || name === 'picture_2') {
+    if (name === 'picture_1' || name === 'picture_2' || name=== 'model') {
       // Handle file inputs
       setFormData({
         ...formData,
@@ -133,6 +135,9 @@ const AdminCreateItemPage = () => {
     }
     if (formData.picture_2) {
       formDataToSend.append('picture_2', formData.picture_2);
+    }
+    if (formData.model) {
+      formDataToSend.append('model', formData.model);
     }
 
     // Send the request to the backend
@@ -367,6 +372,26 @@ const AdminCreateItemPage = () => {
                     />
                   </div>
                 )}
+              </div>
+              <div className="pt-4">
+                <label htmlFor="model" className="font-semibold py-1">{t('admin.p59')}</label><br />
+                <input
+                  type="file"
+                  id="model"
+                  name="model"
+                  onChange={handleChange}
+                  className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                />
+                {/* {picture_2_PreviewUrl && (
+                  <div className="mt-4 flex justify-center">
+                    <img
+                      src={picture_2_PreviewUrl}
+                      alt="Preview"
+                      width="200"
+                      className="border rounded-md"
+                    />
+                  </div>
+                )} */}
               </div>
             </div>
 

@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { TbCircleLetterLFilled } from "react-icons/tb";
 import { SiShopee } from "react-icons/si";
+import Model from './Model';
 
 function ItemDetail() {
     const { id } = useParams();
@@ -16,6 +17,7 @@ function ItemDetail() {
     const [brandData, setBrandData] = useState(null)
     const [searchwordData, setSearchwordData] = useState(null)
     const { t, i18n } = useTranslation();
+
 
     const currentLang = i18n.language;
 
@@ -163,7 +165,7 @@ function ItemDetail() {
                             </Link>
                         </div>
                     )}
-                    <hr className="mt-3"/>
+                    <hr className="mt-3" />
                     <p className="py-2">{t('itempage.p8')}</p>
 
                     <div className="flex">
@@ -216,6 +218,13 @@ function ItemDetail() {
                 <div className="py-[50px]">
                     <table className="w-[100%]">
                         <tbody className="border-[1px] border-lightgray">
+                            {productData.model && (
+                                <tr className="border-[1px] border-lightgray">
+                                    <td className="" colspan="2">
+                                        <Model modelPath={productData.model} />
+                                    </td>
+                                </tr>
+                            )}
                             <tr className="border-[1px] border-lightgray">
                                 <td className="hidden md:table-cell w-[15%] text-center py-2 px-4 font-semibold border-[1px] border-lightgray">{currentLang === 'th' ? 'คำอธิบาย' : 'Description'}</td>
                                 <td className="py-4 px-5">{currentLang === 'th' ? productData.description_th : productData.description_en}</td>

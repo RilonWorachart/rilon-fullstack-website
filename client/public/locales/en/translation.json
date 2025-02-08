@@ -222,7 +222,8 @@
         "p55": "Manage Brands",
         "p56": "Manage Searchwords",
         "p57": "Add Brand",
-        "p58": "Add Searchword"
+        "p58": "Add Searchword",
+        "p59": "Model"
     },
     "pagination" :{
         "prev":"Back",
