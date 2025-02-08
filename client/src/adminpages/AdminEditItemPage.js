@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
+import ModelPreview from '../components/ModelPreview';
 
 function AdminEditItemPage() {
     const { t } = useTranslation();
@@ -100,6 +101,7 @@ function AdminEditItemPage() {
         description_en: '',
         category_id: '',
         brand_id: '',
+        model: null,
         searchword_id: '',
         ID: ''
     });
@@ -116,6 +118,7 @@ function AdminEditItemPage() {
                 other_en: productData.other_en,
                 name_en: productData.name_en,
                 description_en: productData.description_en,
+                model: productData.model,
                 category_id: productData.category_id,
                 brand_id: productData.brand_id,
                 searchword_id: productData.searchword_id || "",
@@ -138,7 +141,7 @@ function AdminEditItemPage() {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === 'picture_1' || name === 'picture_2') {
+        if (name === 'picture_1' || name === 'picture_2' || name === 'model') {
             // Handle file inputs
             setFormData({
                 ...formData,
@@ -182,6 +185,13 @@ function AdminEditItemPage() {
         } else if (!formData.picture_2) {
             // Use old picture_2 if no new file is selected
             formDataToSend.append('picture_2', formData.picture_2 || ''); // Ensure no undefined value
+        }
+
+        if (formData.model && formData.model instanceof File) {
+            formDataToSend.append('model', formData.model);
+        } else if (!formData.model) {
+            // Use old Model if no new file is selected
+            formDataToSend.append('model', formData.model || ''); // Ensure no undefined value
         }
 
         // Send the request to the backend
@@ -268,6 +278,7 @@ function AdminEditItemPage() {
 
     const [picture_1_PreviewUrl, setPicture_1_PreviewUrl] = useState(null);
     const [picture_2_PreviewUrl, setPicture_2_PreviewUrl] = useState(null);
+    const [model_PreviewUrl, setModel_PreviewUrl] = useState(null);
 
     useEffect(() => {
         // Create object URLs for the image previews only if they are valid files
@@ -283,6 +294,12 @@ function AdminEditItemPage() {
             setPicture_2_PreviewUrl(null); // Reset preview if picture_2 is not a valid File
         }
 
+        if (formData.model && formData.model instanceof File) {
+            setModel_PreviewUrl(URL.createObjectURL(formData.model));
+        } else {
+            setModel_PreviewUrl(null); // Reset preview if picture_2 is not a valid File
+        }
+
         // Cleanup URLs on component unmount or when the file changes
         return () => {
             if (picture_1_PreviewUrl) {
@@ -290,6 +307,9 @@ function AdminEditItemPage() {
             }
             if (picture_2_PreviewUrl) {
                 URL.revokeObjectURL(picture_2_PreviewUrl);
+            }
+            if (model_PreviewUrl) {
+                URL.revokeObjectURL(model_PreviewUrl);
             }
         };
     }, [formData]);  // Trigger effect whenever formData changes
@@ -409,10 +429,25 @@ function AdminEditItemPage() {
                                     <div className="mt-4 flex justify-center">
                                         <img
                                             src={formData.picture_1 instanceof File ? URL.createObjectURL(formData.picture_1) : `${process.env.REACT_APP_API}${formData.picture_1}`}
-                                            alt="Preview picture 1"
+                                            alt="Preview main"
                                             width="200"
                                             className="border rounded-md"
                                         />
+                                    </div>
+                                )}
+                            </div>
+                            <div className="pt-4">
+                                <label htmlFor="model" className="font-semibold py-1">{t('admin.p59')}</label><br />
+                                <input
+                                    type="file"
+                                    id="model"
+                                    name="model"
+                                    onChange={handleChange}
+                                    className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                                />
+                                {formData.model && (typeof formData.model === 'string' || formData.model instanceof File) && (
+                                    <div className="mt-4 flex justify-center">
+                                        <ModelPreview modelPath={formData.model instanceof File ? URL.createObjectURL(formData.model) : `${process.env.REACT_APP_API}${formData.model}`} />
                                     </div>
                                 )}
                             </div>
@@ -507,7 +542,7 @@ function AdminEditItemPage() {
                                     <div className="mt-4 flex justify-center">
                                         <img
                                             src={formData.picture_2 instanceof File ? URL.createObjectURL(formData.picture_2) : `${process.env.REACT_APP_API}${formData.picture_2}`}
-                                            alt="Preview picture 2"
+                                            alt="Preview datasheet"
                                             width="200"
                                             className="border rounded-md"
                                         />

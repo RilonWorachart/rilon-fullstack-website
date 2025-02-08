@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
+import ModelPreview from '../components/ModelPreview';
 
 const AdminCreateItemPage = () => {
   const { t } = useTranslation();
@@ -225,6 +226,7 @@ const AdminCreateItemPage = () => {
 
   const [picture_1_PreviewUrl, setPicture_1_PreviewUrl] = useState(null);
   const [picture_2_PreviewUrl, setPicture_2_PreviewUrl] = useState(null);
+  const [model_PreviewUrl, setModel_PreviewUrl] = useState(null);
 
   useEffect(() => {
     // Create object URLs for the image previews only if they are valid files
@@ -240,6 +242,12 @@ const AdminCreateItemPage = () => {
       setPicture_2_PreviewUrl(null); // Reset preview if picture_2 is not a valid File
     }
 
+    if (formData.model && formData.model instanceof File) {
+      setModel_PreviewUrl(URL.createObjectURL(formData.model));
+    } else {
+      setModel_PreviewUrl(null); // Reset preview if picture_2 is not a valid File
+    }
+
     // Cleanup URLs on component unmount or when the file changes
     return () => {
       if (picture_1_PreviewUrl) {
@@ -247,6 +255,9 @@ const AdminCreateItemPage = () => {
       }
       if (picture_2_PreviewUrl) {
         URL.revokeObjectURL(picture_2_PreviewUrl);
+      }
+      if (model_PreviewUrl) {
+        URL.revokeObjectURL(model_PreviewUrl);
       }
     };
   }, [formData]);  // Trigger effect whenever formData changes
@@ -366,7 +377,7 @@ const AdminCreateItemPage = () => {
                   <div className="mt-4 flex justify-center">
                     <img
                       src={picture_1_PreviewUrl}
-                      alt="Preview"
+                      alt="Preview main"
                       width="200"
                       className="border rounded-md"
                     />
@@ -382,16 +393,11 @@ const AdminCreateItemPage = () => {
                   onChange={handleChange}
                   className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                 />
-                {/* {picture_2_PreviewUrl && (
+                {model_PreviewUrl && (
                   <div className="mt-4 flex justify-center">
-                    <img
-                      src={picture_2_PreviewUrl}
-                      alt="Preview"
-                      width="200"
-                      className="border rounded-md"
-                    />
+                    <ModelPreview modelPath={model_PreviewUrl} />
                   </div>
-                )} */}
+                )}
               </div>
             </div>
 
@@ -484,7 +490,7 @@ const AdminCreateItemPage = () => {
                   <div className="mt-4 flex justify-center">
                     <img
                       src={picture_2_PreviewUrl}
-                      alt="Preview"
+                      alt="Preview datasheet"
                       width="200"
                       className="border rounded-md"
                     />

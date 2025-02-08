@@ -7,13 +7,11 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { FaSearch } from "react-icons/fa";
 
 function AdminCategoryPage() {
   const [categoryData, setCategoryData] = useState([]);
   const [itemType, setItemType] = useState("type1"); // Default to grid view
-  const { t, i18n } = useTranslation();
-  const currentLang = i18n.language;
+  const { t } = useTranslation()
 
   useEffect(() => {
     const token = localStorage.getItem("token");

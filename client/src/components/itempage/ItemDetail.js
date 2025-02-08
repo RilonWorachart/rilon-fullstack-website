@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { TbCircleLetterLFilled } from "react-icons/tb";
 import { SiShopee } from "react-icons/si";
-import Model from './Model';
+import Model from '../Model';
 
 function ItemDetail() {
     const { id } = useParams();

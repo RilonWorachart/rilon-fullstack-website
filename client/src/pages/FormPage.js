@@ -8,7 +8,6 @@ import Swal from 'sweetalert2'
 import axios from 'axios';
 
 function FormPage() {
-  const [productData, setProductData] = useState({});
   const [provinceOptions, setProvinceOptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
@@ -277,7 +276,6 @@ function FormPage() {
 
           <form className="py-6" onSubmit={handleSubmit}>
             <div className="md:flex">
-
               <div className="md:w-[50%] md:pr-[10px]">
                 <div className="pt-4">
                   <label htmlFor="product" className="font-semibold py-1">{t('formpage.p8')}<span className="text-[#DC3545]">*</span></label><br />
@@ -285,7 +283,7 @@ function FormPage() {
                     type="text"
                     id="product"
                     name="product"
-                    value={productData.product}
+                    value={formData.product}
                     onChange={handleChange}
                     required
                     className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300" />

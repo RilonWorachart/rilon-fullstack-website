@@ -27,6 +27,10 @@ const fileFilter = (req, file, cb) => {
     const extname = path.extname(file.originalname).toLowerCase();
     const mimetype = file.mimetype;
 
+    // Log the file extension and MIME type for debugging
+    console.log("File Extension:", extname);
+    console.log("MIME Type:", mimetype);
+
     // Check if the extension is valid
     const isValidExtension = fileTypes.test(extname);
 
@@ -36,7 +40,9 @@ const fileFilter = (req, file, cb) => {
         mimetype === 'application/json' ||   // Correct MIME type for .gltf files
         mimetype === 'application/octet-stream' ||  // Possible fallback for .glb MIME type
         fileTypes.test(mimetype);            // For other image types (jpeg, png, etc.)
-        
+
+    console.log("Valid Extension:", isValidExtension);
+    console.log("Valid MIME Type:", isValidMimeType);
 
     if (isValidExtension && isValidMimeType) {
         return cb(null, true); // Accept the file
@@ -64,7 +70,8 @@ router.post('/createproduct', upload.fields([
 
 router.put('/editproduct',upload.fields([
     { name: 'picture_1', maxCount: 1 },
-    { name: 'picture_2', maxCount: 1 }
+    { name: 'picture_2', maxCount: 1 },
+    { name: 'model',  maxCount: 1}
 ]), authenmiddleware, editProduct);
 
 

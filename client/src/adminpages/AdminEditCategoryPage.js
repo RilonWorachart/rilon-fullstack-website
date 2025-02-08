@@ -10,10 +10,8 @@ function AdminEditCategoryPage() {
     const { id } = useParams();
     const [categoryData, setCategoryData] = useState(null);
 
-
     useEffect(() => {
         const token = localStorage.getItem("token");
-
         if (token) {
             axios
                 .post(
@@ -45,8 +43,6 @@ function AdminEditCategoryPage() {
             window.location = "/adminlogin"; // Redirect to login if no token
         }
     }, []);
-
-
 
     const fetchCategoryById = async () => {
         try {
@@ -168,40 +164,6 @@ function AdminEditCategoryPage() {
     }
 
 
-    const handleError = (error) => {
-        if (error.response) {
-            if (error.response.status === 500) {
-                Swal.fire({
-                    title: 'Server Error!',
-                    text: 'Invalid file type or file size exceeds the limit.',
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                });
-            } else {
-                Swal.fire({
-                    title: 'Error!',
-                    text: `Error: ${error.response.status} - ${error.response.statusText}`,
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                });
-            }
-        } else if (error.request) {
-            Swal.fire({
-                title: 'Network Error!',
-                text: 'No response from the server. Please check your internet connection.',
-                icon: 'error',
-                confirmButtonText: 'OK',
-            });
-        } else {
-            Swal.fire({
-                title: 'Error!',
-                text: `An error occurred: ${error.message}`,
-                icon: 'error',
-                confirmButtonText: 'OK',
-            });
-        }
-    };
-
     const [picture_1_PreviewUrl, setPicture_1_PreviewUrl] = useState(null);
 
     useEffect(() => {
@@ -288,7 +250,7 @@ function AdminEditCategoryPage() {
                                     <div className="mt-4 flex justify-center">
                                         <img
                                             src={formData.picture_1 instanceof File ? URL.createObjectURL(formData.picture_1) : `${process.env.REACT_APP_API}${formData.picture_1}`}
-                                            alt="Preview picture 1"
+                                            alt="Preview"
                                             width="200"
                                             className="border rounded-md"
                                         />

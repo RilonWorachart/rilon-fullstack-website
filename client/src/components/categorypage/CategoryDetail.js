@@ -20,10 +20,7 @@ function CategoryDetail() {
         try {
             // Use Axios to send the GET request
             const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${id}`)
-
             const result = response.data;
-            console.log(result)
-            console.log(process.env.REACT_APP_API)
             setProductData(result.data[0]);
         } catch (error) {
             console.error("Error fetching user data:", error);

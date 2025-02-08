@@ -101,6 +101,20 @@ export const deleteProduct = async (req, res, next) => {
             });
         }
 
+
+        if (productData.model) {
+            const model_Path = path.join(__dirname, '..', 'public', productData.model); // Adjust path as needed
+
+            // Check if the image file exists and delete it
+            fs.unlink(model_Path, (err) => {
+                if (err) {
+                    console.error("Error deleting Model:", err);
+                } else {
+                    console.log("Model deleted successfully");
+                }
+            });
+        }
+
         // Query to get the product by ID
         const [rows] = await promisePool.execute(
             "DELETE FROM products WHERE ID = ?",
@@ -183,9 +197,6 @@ export const createProduct = async (req, res, next) => {
     }
 };
 
-
-
-
 const deleteFileWithRetry = (filePath, retries = 3, delay = 1000) => {
     return new Promise((resolve, reject) => {
         const attemptDelete = (retryCount) => {
@@ -225,6 +236,7 @@ export const editProduct = async (req, res, next) => {
     // Access the uploaded files using req.files
     const picture_1 = req.files && req.files.picture_1 ? `/uploads/${req.files.picture_1[0].filename}` : null;
     const picture_2 = req.files && req.files.picture_2 ? `/uploads/${req.files.picture_2[0].filename}` : null;
+    const model = req.files && req.files.model ? `/uploads/${req.files.model[0].filename}` : null;
 
     // Check if the category_id exists in the categories table
     const [category] = await promisePool.execute("SELECT * FROM categories WHERE id = ?", [category_id]);
@@ -266,21 +278,22 @@ export const editProduct = async (req, res, next) => {
 
     try {
         // Fetch the current pictures from the product before updating
-        const [product] = await promisePool.execute("SELECT picture_1, picture_2 FROM products WHERE ID = ?", [ID]);
+        const [product] = await promisePool.execute("SELECT picture_1, picture_2, model FROM products WHERE ID = ?", [ID]);
 
         if (product.length > 0) {
             const oldPicture1 = product[0].picture_1; // Define oldPicture1 and oldPicture2
             const oldPicture2 = product[0].picture_2;
+            const oldModel = product[0].model;
 
             // Log current picture paths to check what's being deleted
             console.log('Current Picture 1:', oldPicture1);
             console.log('Current Picture 2:', oldPicture2);
+            console.log('Current Model:', oldModel);
 
             // Delete old picture 1 only if a new one is provided
             if (picture_1 && oldPicture1) {
                 const oldPicturePath1 = path.join(__dirname, '..', 'public', oldPicture1); // Correct path for deletion
                 console.log('Attempting to delete old Picture 1 at:', oldPicturePath1);
-
                 try {
                     await deleteFileWithRetry(oldPicturePath1);
                     console.log('Old Picture 1 deleted successfully');
@@ -289,11 +302,15 @@ export const editProduct = async (req, res, next) => {
                 }
             }
 
+            // If no new picture_1 uploaded, leave the old picture in place
+            if (!picture_1 && oldPicture1) {
+                console.log('No new Picture 1 uploaded. Old Picture 1 remains unchanged');
+            }
+
             // Delete old picture 2 only if a new one is provided
             if (picture_2 && oldPicture2) {
                 const oldPicturePath2 = path.join(__dirname, '..', 'public', oldPicture2); // Correct path for deletion
                 console.log('Attempting to delete old Picture 2 at:', oldPicturePath2);
-
                 try {
                     await deleteFileWithRetry(oldPicturePath2);
                     console.log('Old Picture 2 deleted successfully');
@@ -301,11 +318,33 @@ export const editProduct = async (req, res, next) => {
                     console.log('Failed to delete Old Picture 2:', err.message);
                 }
             }
+
+            // If no new picture_2 uploaded, leave the old picture in place
+            if (!picture_2 && oldPicture2) {
+                console.log('No new Picture 2 uploaded. Old Picture 2 remains unchanged');
+            }
+
+            // Delete old model only if a new one is provided
+            if (model && oldModel) {
+                const oldModelPath = path.join(__dirname, '..', 'public', oldModel); // Correct path for deletion
+                console.log('Attempting to delete old Model at:', oldModelPath);
+                try {
+                    await deleteFileWithRetry(oldModelPath);
+                    console.log('Old Model deleted successfully');
+                } catch (err) {
+                    console.log('Failed to delete Old Model:', err.message);
+                }
+            }
+
+            // If no new model uploaded, leave the old model in place
+            if (!model && oldModel) {
+                console.log('No new Model uploaded. Old Model remains unchanged');
+            }
         }
 
         // Update the product with new values, keeping the old picture if no new picture is uploaded
         await promisePool.execute(
-            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, other_th = ?, name_en = ?, description_en = ?, other_en = ?, category_id = ?, searchword_id = ?, brand_id = ? WHERE ID = ?",
+            "UPDATE products SET rilon_id = ?, picture_1 = ?, picture_2 = ?, name_th = ?, description_th = ?, other_th = ?, name_en = ?, description_en = ?, other_en = ?, model = ?, category_id = ?, searchword_id = ?, brand_id = ? WHERE ID = ?",
             [
                 rilon_id,
                 picture_1 || product[0].picture_1,  // Use the new picture_1 or keep the old one if no new picture is uploaded
@@ -316,6 +355,7 @@ export const editProduct = async (req, res, next) => {
                 name_en,
                 description_en,
                 other_en,
+                model || product[0].model,  // Use the new model or keep the old one if no new model is uploaded
                 category_id,
                 searchword_id || null,  // If searchword_id is not provided, set it to null
                 brand_id,
