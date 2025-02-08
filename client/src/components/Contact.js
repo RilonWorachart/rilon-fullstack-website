@@ -3,7 +3,7 @@ import { FaFacebookF, FaGlobe, FaInstagram, FaLine, FaPhoneAlt, FaYoutube, FaBui
 import { FaClock } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import { SiShopee } from "react-icons/si";
-import { TbCircleLetterLFilled } from "react-icons/tb";
+import { BsBagHeartFill } from "react-icons/bs";
 import { useTranslation } from 'react-i18next';
 
 
@@ -83,7 +83,7 @@ function Contact() {
                     </a>
                     <a href="https://www.lazada.co.th/shop/jw-jingweitip/?spm=a2o4m.pdp_revamp.seller.1.7ecf41f8hb1o3I&itemId=4370282627&channelSource=pdp">
                         <div className="bg-[#0F146D] p-1.5 mr-2 text-white rounded-full hover:bg-[#2424A8]">
-                            <TbCircleLetterLFilled />
+                            <BsBagHeartFill />
                         </div>
                     </a>
                     <a href="https://shopee.co.th/wprachrt">

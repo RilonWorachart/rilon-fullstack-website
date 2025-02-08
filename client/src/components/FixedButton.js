@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { IoIosArrowUp } from "react-icons/io";
 import { FaShareAltSquare, FaRegAddressCard, FaFacebookSquare,FaYoutube, FaLine, FaInstagram } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import { TbCircleLetterLFilled } from "react-icons/tb";
+import { BsBagHeartFill } from "react-icons/bs";
 import { SiShopee } from "react-icons/si";
 
 function FixedButton() {
@@ -66,7 +66,7 @@ function FixedButton() {
                 <a href="https://www.lazada.co.th/shop/jw-jingweitip/?spm=a2o4m.pdp_revamp.seller.1.7ecf41f8hb1o3I&itemId=4370282627&channelSource=pdp"
                     className={`fixed left-[20px] h-[35px] w-[35px] bg-[#E2B22C] text-white flex items-center justify-center rounded-full shadow-xl hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition-all duration-300 ${isContactActive ? 'bottom-[265px]' : 'bottom-[65px]'}`}
                 >
-                    <TbCircleLetterLFilled className="" />
+                    <BsBagHeartFill />
                 </a>
                 <a href="https://shopee.co.th/wprachrt"
                     className={`fixed left-[20px] h-[35px] w-[35px] bg-[#E2B22C] text-white flex items-center justify-center rounded-full shadow-xl hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition-all duration-300 ${isContactActive ? 'bottom-[315px]' : 'bottom-[65px]'}`}
