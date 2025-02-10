@@ -20,7 +20,7 @@ const ModelPreview = ({ modelPath }) => {
           // Ensure all meshes have a material
           loadedModel.traverse((child) => {
             if (child.isMesh && !child.material) {
-              child.material = new THREE.MeshStandardMaterial({ color: 0x888888 }); // Default gray material
+              child.material = new THREE.MeshStandardMaterial({ color: 0xaaaaaa }); // Default gray material
             }
           });
 
@@ -51,10 +51,15 @@ const ModelPreview = ({ modelPath }) => {
         className="w-full h-full"
         camera={{ position: [0, 0, 1], fov: 75 }}
       >
+        {/* Lighting Setup */}
         <ambientLight intensity={0.2} />
-        <pointLight position={[10, 10, 10]} intensity={1.5} />
-        <directionalLight position={[5, 5, 5]} intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1.0} />
+        <directionalLight position={[5, 5, 5]} intensity={1.0} />
+
+        {/* Model rendering */}
         {model && <primitive object={model} position={[0, 0, 0]} scale={[1, 1, 1]} />}
+
+        {/* Controls for Orbiting around the model */}
         <OrbitControls />
       </Canvas>
     </div>

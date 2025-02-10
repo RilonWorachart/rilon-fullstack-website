@@ -20,29 +20,29 @@ function Contact() {
                 <div className="py-3 flex flex-wrap">
                     <FaPhoneAlt className="mt-[2px] mr-4" />
                     <p>
-                        <span className="text-[#E2B22C] hover:text-[#00007E]">08-1694-5000</span>,
-                        <span className="text-[#E2B22C] hover:text-[#00007E]"> 08-1697-7000</span>,
-                        <span className="text-[#E2B22C] hover:text-[#00007E]"> 09-5961-9901</span>
+                        <span className="text-[#E2B22C] hover:text-[#0079A9]">08-1694-5000</span>,
+                        <span className="text-[#E2B22C] hover:text-[#0079A9]"> 08-1697-7000</span>,
+                        <span className="text-[#E2B22C] hover:text-[#0079A9]"> 09-5961-9901</span>
                     </p>
                 </div>
                 <div className="py-3 flex flex-wrap">
                     <FaFax className="mt-[2px] mr-4" />
                     <p>
-                        <span className="text-[#E2B22C] hover:text-[#00007E]">0-2922-2832</span>,
-                        <span className="text-[#E2B22C] hover:text-[#00007E]"> 0-2595-8518</span>
+                        <span className="text-[#E2B22C] hover:text-[#0079A9]">0-2922-2832</span>,
+                        <span className="text-[#E2B22C] hover:text-[#0079A9]"> 0-2595-8518</span>
                     </p>
                 </div>
                 <div className="py-3 flex flex-wrap">
                     <MdMail className="mt-[2px] mr-4" />
-                    <p><a href="mailto:janenyrilon_jingwei@hotmail.com" className="text-[#E2B22C] hover:text-[#00007E]"> janenyrilon_jingwei@hotmail.com</a>,
-                        <a href="mailto:worachart_soi@hotmail.com" className="text-[#E2B22C] hover:text-[#00007E]"> worachart_soi@hotmail.com</a>,
-                        <a href="mailto:worachartgroup@gmail.com" className="text-[#E2B22C] hover:text-[#00007E]"> worachartgroup@gmail.com</a>
+                    <p><a href="mailto:janenyrilon_jingwei@hotmail.com" className="text-[#E2B22C] hover:text-[#0079A9]"> janenyrilon_jingwei@hotmail.com</a>,
+                        <a href="mailto:worachart_soi@hotmail.com" className="text-[#E2B22C] hover:text-[#0079A9]"> worachart_soi@hotmail.com</a>,
+                        <a href="mailto:worachartgroup@gmail.com" className="text-[#E2B22C] hover:text-[#0079A9]"> worachartgroup@gmail.com</a>
                     </p>
                 </div>
                 <div className="py-3 flex flex-wrap">
                     <FaGlobe className="mt-[2px] mr-4" />
                     <p>
-                        <a href="https://www.rilonthailand.co.th/" className="text-[#E2B22C] hover:text-[#00007E]">www.rilonthailand.co.th</a>
+                        <a href="https://www.rilonthailand.co.th/" className="text-[#E2B22C] hover:text-[#0079A9]">www.rilonthailand.co.th</a>
                     </p>
                 </div>
                 <div className="py-3 flex flex-wrap">
@@ -51,7 +51,7 @@ function Contact() {
                 </div>
                 <div className="py-3 flex flex-wrap">
                     <FaMapMarkerAlt className="mt-[2px] mr-4" />
-                    <p className="text-[#E2B22C] hover:text-[#00007E]">13.872115747061208, 100.46261770286053</p>
+                    <p className="text-[#E2B22C] hover:text-[#0079A9]">13.872115747061208, 100.46261770286053</p>
                 </div>
 
                 <div className="py-3 pr-2 flex text-[16px] ">

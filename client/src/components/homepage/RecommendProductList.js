@@ -51,12 +51,12 @@ function RecommendProductList() {
   };
 
   return (
-    <div className="pb-10">
+    <div className="py-[50px] bg-[#EFEFEF]">
       <div>
         <h1 className="pt-2 text-[30px] text-center">
           {t('homepage.p27')}
         </h1>
-        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-auto bg-[#E2B22C]" />
+        <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#0079A9]" />
       </div>
       <div className="py-10 relative w-full max-w-4xl mx-auto">
         <div className="relative overflow-hidden">
@@ -77,14 +77,14 @@ function RecommendProductList() {
 
           <div className="mt-[30px] mx-[10%] 2xl:mx-[20%] flex justify-center items-center pb-5">
             <button
-              className={`px-4 py-4 rounded-full mr-[10px] ${currentIndex !== 0 ? "bg-[#E2B22C] border border-[#E2B22C] text-white hover:text-[#00009F] hover:bg-white hover:border-[#00009F]" : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+              className={`px-4 py-4 rounded-full mr-[10px] ${currentIndex !== 0 ? "bg-[#E2B22C] border border-[#E2B22C] text-white hover:text-[#0079A9] hover:bg-white hover:border-[#0079A9]" : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
               onClick={() => setCurrentIndex(0)}
               disabled={currentIndex === 0}
             >
               <FaAnglesLeft />
             </button>
             <button
-              className={`px-4 py-4 rounded-full mr-[20px] ${currentIndex !== 0 ? "bg-[#E2B22C] border border-[#E2B22C] text-white hover:text-[#00009F] hover:bg-white hover:border-[#00009F]" : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+              className={`px-4 py-4 rounded-full mr-[20px] ${currentIndex !== 0 ? "bg-[#E2B22C] border border-[#E2B22C] text-white hover:text-[#0079A9] hover:bg-white hover:border-[#0079A9]" : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
               onClick={goToPreviousSlide}
               disabled={currentIndex === 0}
             >
@@ -96,14 +96,14 @@ function RecommendProductList() {
             </div>
 
             <button
-              className={`px-4 py-4 rounded-full ml-[20px] ${currentIndex !== recommendProductData.length - 1 && (recommendProductData.length - 1 !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white hover:text-[#00009F] hover:bg-white hover:border-[#00009F]" : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+              className={`px-4 py-4 rounded-full ml-[20px] ${currentIndex !== recommendProductData.length - 1 && (recommendProductData.length - 1 !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white hover:text-[#0079A9] hover:bg-white hover:border-[#0079A9]" : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
               onClick={goToNextSlide}
               disabled={currentIndex === recommendProductData.length - 1}
             >
               <FaAngleRight />
             </button>
             <button
-              className={`px-4 py-4 rounded-full ml-[10px] ${currentIndex !== recommendProductData.length - 1 && (recommendProductData.length - 1 !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white hover:text-[#00009F] hover:bg-white hover:border-[#00009F]" : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+              className={`px-4 py-4 rounded-full ml-[10px] ${currentIndex !== recommendProductData.length - 1 && (recommendProductData.length - 1 !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white hover:text-[#0079A9] hover:bg-white hover:border-[#0079A9]" : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
               onClick={() => setCurrentIndex(recommendProductData.length - 1)}
               disabled={currentIndex === recommendProductData.length - 1}
             >

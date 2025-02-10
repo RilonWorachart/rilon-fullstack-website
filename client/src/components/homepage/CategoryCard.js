@@ -14,7 +14,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
   return (
     <div
-      className={`shadow-md z-0 ${itemType === "type2" ? "my-2 sm:flex sm:h-[275px] h-[470px]" : "flex flex-col h-[470px]"}`}
+      className={`shadow-md z-0 bg-white ${itemType === "type2" ? "my-2 sm:flex sm:h-[275px] h-[470px]" : "flex flex-col h-[470px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
@@ -30,7 +30,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
       <div className={`px-5 py-5 ${itemType === "type2" ? "sm:w-[70%] sm:my-[auto] " : "my-[auto]"}`}>
         <div className="">
-          <p className="text-[24px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
+          <p className="text-[24px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           {/* Sliding effect only for type1 */}
           <div
             className="w-full flex items-center transition-all duration-500 overflow-hidden"
@@ -50,7 +50,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
         <div className={`py-2 ${itemType === "type2" ? "items-center" : ""}`}>
           <div className={`${itemType === "type2" ? "" : "flex justify-between items-center"}`}>
             <Link to={`/category/${ID}`}>
-              <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">
+              <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300">
                 {t('homepage.p28')}
               </button>
             </Link>

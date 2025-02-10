@@ -104,10 +104,10 @@ function RelateItem() {
   }
 
   return (
-    <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] transform transition-all">
+    <div className="px-[10%] py-[50px] max-w-[1400px] 2xl:px-[auto] transform transition-all bg-[#EFEFEF]">
       <div className="">
         <h1 className="pt-2 text-[30px] text-center">{t('itempage.p11')}</h1>
-        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-auto bg-[#E2B22C]" />
+        <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#0079A9]" />
       </div>
 
       <div className="my-10 relative w-full mx-auto z-10 overflow-hidden">
@@ -144,13 +144,13 @@ function RelateItem() {
         <div className="z-40 flex justify-center w-full pt-[20px]">
           <button
             onClick={prevSlide}
-            className="w-10 h-10 flex items-center justify-center mx-1 bg-[#E2E2E2] text-white rounded-full hover:bg-[#F0D895]"
+            className="w-10 h-10 flex items-center justify-center mx-1 bg-[#6CC3EE] text-white rounded-full hover:bg-[#F0D895]"
           >
             &#8592;
           </button>
           <button
             onClick={nextSlide}
-            className="w-10 h-10 flex items-center justify-center mx-1 bg-[#E2E2E2] text-white rounded-full hover:bg-[#F0D895]"
+            className="w-10 h-10 flex items-center justify-center mx-1 bg-[#6CC3EE] text-white rounded-full hover:bg-[#F0D895]"
           >
             &#8594;
           </button>

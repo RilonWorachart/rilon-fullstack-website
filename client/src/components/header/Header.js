@@ -31,7 +31,7 @@ function Header() {
   };
 
   return (
-    <div className="font-plex-sans-thai px-[10%] py-3 flex items-center justify-between text-[#E2B22C] fixed w-full top-0 left-0 bg-white z-50">
+    <div className="font-plex-sans-thai bg-[#FFD600] px-[10%] py-[13px] flex items-center justify-between text-[#0079A9] fixed w-full top-0 left-0 z-50">
       <div className="w-[20%]">
         <Link to="/">
           <img src='/images/page_images/logo-w.png' alt="logo" className="w-[60px] h-[45px]"></img>
@@ -39,34 +39,34 @@ function Header() {
       </div>
 
 
-      <div className="px-2 py-2 hidden xl:flex lg:items-between lg:justify-between w-[60%] max-w-[600px] ">
+      <div className="px-2 py-2 hidden xl:flex lg:items-between lg:justify-between w-[60%] max-w-[600px]">
         <Link to="/">
-          <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "home" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("home")}>
-            <button className="hover:text-[#00007E]" >{t('header.homepage')}</button>
+          <div className={`border-b-2 hover:border-b-2 hover:border-[#3AB4F3] ${toggleMenu === "home" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("home")}>
+            <button className="" >{t('header.homepage')}</button>
           </div>
         </Link>
-        <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "aboutus" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("aboutus")}>
-          <button className="hover:text-[#00007E]" onClick={() => navigateAndScroll(0)}>{t('header.aboutme')}</button>
+        <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "aboutus" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("aboutus")}>
+          <button className="" onClick={() => navigateAndScroll(0)}>{t('header.aboutme')}</button>
         </div>
-        <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "catelog" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("catelog")}>
-          <button className="hover:text-[#00007E]" onClick={() => navigateAndScroll(1)}>{t('header.catelog')}</button>
+        <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "catelog" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("catelog")}>
+          <button className="" onClick={() => navigateAndScroll(1)}>{t('header.catelog')}</button>
         </div>
-        <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "recommend" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("recommend")}>
-          <button className="hover:text-[#00007E]" onClick={() => navigateAndScroll(2)}>{t('header.recommend')}</button>
+        <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "recommend" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("recommend")}>
+          <button className="" onClick={() => navigateAndScroll(2)}>{t('header.recommend')}</button>
         </div>
-          <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "contactus" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("contactus")}>
-            <button className="hover:text-[#00007E]" onClick={() => navigateAndScroll(3)}>{t('header.contactus')}</button>
+          <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "contactus" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("contactus")}>
+            <button className="" onClick={() => navigateAndScroll(3)}>{t('header.contactus')}</button>
           </div>
         <Link to="/requestform">
-          <div className={`border-b-2 hover:text-[#00007E] hover:border-b-2 hover:border-[#E2B22C] ${toggleMenu === "moreinfo" ? "border-[#E2B22C]" : "border-white"}`} onClick={() => setToggleMenu("moreinfo")}>
-            <button className="hover:text-[#00007E]" >{t('header.moreinfo')}</button>
+          <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "moreinfo" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("moreinfo")}>
+            <button className="" >{t('header.moreinfo')}</button>
           </div>
         </Link>
       </div>
 
       <div className="w-[20%] justify-end" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
         <div className="relative">
-          <div className="hidden xl:flex justify-end text-[#E2B22C] hover:text-[#00007E]">
+          <div className="hidden xl:flex justify-end text-[#0079A9] hover:text-[#0079A9]">
             <img
               src={selectedPic}
               alt="Selected Flag"
@@ -80,7 +80,7 @@ function Header() {
               <div className="absolute top-0 mt-0 right-[0px] z-50" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
                 <div className="mt-10 w-[160px] bg-white shadow-2xl">
                   <div
-                    className="flex items-center p-2 cursor-pointer hover:text-[#00007E]"
+                    className="flex items-center p-2 cursor-pointer text-[#0079A9] hover:text-[#3AB4F3]"
                     onClick={() => handleSelect('Thai', 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg', 'th')}
                   >
                     <img
@@ -92,7 +92,7 @@ function Header() {
                   </div>
 
                   <div
-                    className="flex items-center p-2 cursor-pointer hover:text-[#00007E]"
+                    className="flex items-center p-2 cursor-pointer text-[#0079A9] hover:text-[#3AB4F3]"
                     onClick={() => handleSelect('English', 'https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png', 'en')}
                   >
                     <img

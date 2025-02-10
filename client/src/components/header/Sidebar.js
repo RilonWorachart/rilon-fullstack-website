@@ -36,14 +36,14 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
             <div className="fixed right-0 top-0 h-full text-white bg-[#E2B22C] w-[280px] z-70">
                 <button
                     onClick={() => setIsActiveSidebar(false)}
-                    className="absolute top-4 right-4 text-2xl font-bold hover:text-[#00007E]"
+                    className="absolute top-4 right-4 text-2xl font-bold hover:text-[#0079A9]"
                 >
                     &times;
                 </button>
                 <div className="flex flex-col items-center justify-center space-y-4 h-[100%] text-[18px]">
                     <Link to="/">
                         <div
-                            className="hover:text-[#00007E]"
+                            className="hover:text-[#0079A9]"
                             onClick={() => {
                                 setIsActiveSidebar(false)
                             }}
@@ -52,7 +52,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                         </div>
                     </Link>
                     <div
-                        className="hover:text-[#00007E]"
+                        className="hover:text-[#0079A9]"
                         onClick={() => {
                             handleSidebar(0)
                         }}
@@ -60,7 +60,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                         <button>{t('header.aboutme')}</button>
                     </div>
                     <div
-                        className="hover:text-[#00007E]"
+                        className="hover:text-[#0079A9]"
                         onClick={() => {
                             handleSidebar(1)
                         }}
@@ -68,7 +68,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                         <button>{t('header.catelog')}</button>
                     </div>
                     <div
-                        className="hover:text-[#00007E]"
+                        className="hover:text-[#0079A9]"
                         onClick={() => {
                             handleSidebar(2)
                         }}
@@ -76,7 +76,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                         <button>{t('header.recommend')}</button>
                     </div>
                     <div
-                        className="hover:text-[#00007E]"
+                        className="hover:text-[#0079A9]"
                         onClick={() => {
                             handleSidebar(3)
                         }}
@@ -86,14 +86,14 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
 
                     <Link to="/requestform">
                         <div className={``}>
-                            <button className="hover:text-[#00007E]" >{t('header.moreinfo')}</button>
+                            <button className="hover:text-[#0079A9]" >{t('header.moreinfo')}</button>
                         </div>
                     </Link>
 
 
                     <div className="w-[100%] flex justify-center items-center" onMouseEnter={() => setIsActiveLangSidebar(true)} onMouseLeave={() => setIsActiveLangSidebar(false)}>
                         <div className="relative">
-                            <div className="flex text-white hover:text-[#00007E]">
+                            <div className="flex text-white hover:text-[#0079A9]">
                                 <img
                                     src={selectedPic}
                                     alt="Selected Flag"
@@ -107,7 +107,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                     <div className="absolute top-0 mt-0 z-50">
                                         <div className="mt-10 w-[160px] bg-white text-[#E2B22C] shadow-2xl">
                                             <div
-                                                className="flex items-center p-2 cursor-pointer hover:text-[#00007E]"
+                                                className="flex items-center p-2 cursor-pointer hover:text-[#0079A9]"
                                                 onClick={() =>
                                                     handleSelectSidebar('Thai', 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg', 'th')
                                                 }
@@ -122,7 +122,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
 
 
                                             <div
-                                                className="flex items-center p-2 cursor-pointer hover:text-[#00007E]"
+                                                className="flex items-center p-2 cursor-pointer hover:text-[#0079A9]"
                                                 onClick={() => handleSelectSidebar('English', 'https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/800px-Flag_of_the_United_Kingdom.svg.png', 'en')}
                                             >
                                                 <img

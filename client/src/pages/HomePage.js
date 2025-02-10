@@ -14,7 +14,6 @@ import { SiShopee } from "react-icons/si";
 import { BsBagHeartFill } from "react-icons/bs";
 
 
-
 function HomePage() {
     const { setSectionRefs } = useScroll();
     const section1Ref = useRef(null);
@@ -29,23 +28,23 @@ function HomePage() {
 
     return (
         <>
-            <div className="min-h-screen font-plex-sans-thai">
-                <img src="/images/page_images/Y-Banding-03-01.png" className="mt-[70px]" alt="advertise"></img>
-                <div className="px-[10%] pt-4 pb-6 text-center text-white bg-[#E2B22C]">
-                    <h1 className="text-[34px]">{t('homepage.h1')}</h1>
+            <div className="min-h-screen font-plex-sans-thai ">
+                <img src="/images/page_images/Y-Banding-03-01.png" className="mt-[69px] w-full 4xl:px-[10%]" alt="advertise"></img>
+                <div className="px-[10%] 4xl:px-[20%] py-[20px] text-center text-white bg-[#FFD600]">
+                    <h1 className="text-[34px] text-[#0079A9]">{t('homepage.h1')}</h1>
                 </div>
-                <div className="px-[10%] py-4 aligns-center justify-center ">
+                <div className="px-[10%] 4xl:px-[20%] py-[50px] aligns-center justify-center  ">
                     <div className="py-1 flex flex-wrap">
                         <FaPhoneAlt className="mt-[2px] mr-4" />
-                        <p className="text-[#E2B22C] hover:text-[#00007E]">08-1694-5000</p>,
-                        <p className="text-[#E2B22C] hover:text-[#00007E]">&nbsp;08-1697-7000</p>,
-                        <p className="text-[#E2B22C] hover:text-[#00007E]">&nbsp;09-5961-9901 </p>
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">08-1694-5000</p>,
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;08-1697-7000</p>,
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;09-5961-9901 </p>
                     </div>
                     <div className=" py-1 flex flex-wrap">
                         <MdMail className="mt-[2px] mr-4" />
-                        <a className="text-[#E2B22C] hover:text-[#00007E]" href="mailto:janenyrilon_jingwei@hotmail.com">janenyrilon_jingwei@hotmail.com</a>,
-                        <a className="text-[#E2B22C] hover:text-[#00007E]" href="mailto:worachart_soi@hotmail.com">&nbsp;worachart_soi@hotmail.com</a>,
-                        <a className="text-[#E2B22C] hover:text-[#00007E]" href="mailto:worachartgroup@gmail.com">&nbsp;worachartgroup@gmail.com</a>
+                        <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:janenyrilon_jingwei@hotmail.com">janenyrilon_jingwei@hotmail.com</a>,
+                        <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:worachart_soi@hotmail.com">&nbsp;worachart_soi@hotmail.com</a>,
+                        <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:worachartgroup@gmail.com">&nbsp;worachartgroup@gmail.com</a>
                     </div>
                     <div className="py-1 flex flex-wrap">
                         <FaMapMarkerAlt className="mt-[2px] mr-4" />
@@ -82,15 +81,15 @@ function HomePage() {
                 </div >
 
 
-                <div className="px-[10%] text-center py-8 background">
+                <div className="px-[10%] 4xl:px-[20%] text-center py-[50px] background">
                     <div className="pb-4">
                         <h1 className="text-[34px] text-white">
                             {t('homepage.h2')}
                         </h1>
-                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
+                        <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
                     <div className="md:flex">
-                        <div className="text-[#E2B22C] backdrop-blur-sm bg-white/10 z-0 pt-1 pb-4 px-[20px] md:w-[60%]">
+                        <div className="text-[#E2B22C] backdrop-blur-sm bg-white/10 z-0 pt-1 pb-4 px-[20px] my-[auto] md:w-[60%]">
                             <h1 className="text-[34px] pt-3 pb-6 ">
                                 {t('homepage.h3')}
                             </h1>
@@ -108,28 +107,28 @@ function HomePage() {
                 </div>
 
 
-                <div className="md:flex justify-between items-center bg-[#FFD600] px-[10%] text-center py-8">
+                <div className="md:flex justify-between items-center bg-[#FFD600] px-[10%] 4xl:px-[20%] text-center py-[50px]">
                     <div className="py-12 md:w-[30%]">
                         <h1 className="text-[28px]">DEALER</h1>
-                        <img src='/images/page_images/Dealer.jpg' alt="dealer" className="mt-4 mb-6 mx-auto rounded-[50%] object-right overflow-hidden border-solid border-8 border-white w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96  object-cover"></img>
+                        <img src='/images/page_images/Dealer.jpg' alt="dealer" className="mt-4 mb-6 mx-auto rounded-[50%] object-right overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96  object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
                         <p>{t('homepage.p3')}</p>
                     </div>
                     <div className="py-12 md:w-[30%]">
                         <h1 className="text-[28px]">HIGHER EFFICIENCY</h1>
-                        <img src='/images/page_images/HighEfficiency.jpg' alt="efficiency" className="mt-4 mb-6 mx-auto rounded-[50%] object-center overflow-hidden border-solid border-8 border-white w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96 object-cover"></img>
+                        <img src='/images/page_images/HighEfficiency.jpg' alt="efficiency" className="mt-4 mb-6 mx-auto rounded-[50%] object-center overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
                         <p>{t('homepage.p4')}</p>
                     </div>
                     <div className="py-12 md:w-[30%]">
                         <h1 className="text-[28px]" >WARANTY SERVICE</h1>
-                        <img src='/images/page_images/WarantyService.jpg' alt="service" className="mt-4 mb-6 mx-auto rounded-[50%]  overflow-hidden border-solid border-8 border-white w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96 object-cover"></img>
+                        <img src='/images/page_images/WarantyService.jpg' alt="service" className="mt-4 mb-6 mx-auto rounded-[50%]  overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
                         <p>{t('homepage.p5')}</p>
                     </div>
                 </div>
 
 
-                <div className="px-[10%] py-4 text-center ">
+                <div className="px-[10%] 4xl:px-[20%] py-[50px] text-center ">
                     <div className="flex justify-center items-center">
-                        <img src='/images/page_images/Y-Banding-02-01.png' alt="y_banding" className="py-4 xl:max-w-[50%] item-center"></img>
+                        <img src='/images/page_images/Y-Banding-02-01.png' alt="y_banding" className="py-4 item-center xl:max-w-[1200px]"></img>
                     </div>
                     <hr />
                     <h1 className="py-4 text-[24px]">
@@ -137,19 +136,19 @@ function HomePage() {
                     </h1>
 
                     <div ref={section1Ref} className="flex justify-center items-center">
-                        <img src='/images/page_images/Line3pic.png' alt="line" className="py-4 xl:max-w-[40%] item-center"></img>
+                        <img src='/images/page_images/Line3pic.png' alt="line" className="py-4 item-center xl:max-w-[1200px]"></img>
                     </div>
 
                     <div>
                         <h1 className="pt-12 text-[30px]">
                             {t('homepage.h5')}
                         </h1>
-                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
+                        <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                         <p className='pt-3'>
                             {t('homepage.p6')}
                         </p>
                         <div className="flex justify-center items-center">
-                            <img src='/images/page_images/Plusma.png' alt="plusma" className="py-4 xl:max-w-[35%] item-center"></img>
+                            <img src='/images/page_images/Plusma.png' alt="plusma" className="py-4 item-center xl:max-w-[1200px]"></img>
                         </div>
                     </div>
                     <div className="pt-4 pb-14">
@@ -159,18 +158,18 @@ function HomePage() {
                         </div>
                         <p className="text-[#FF0042] text-[20px] pt-[30px] py-[10px]">{t('homepage.h7')}</p>
                         <a href="https://page.line.me/156vctty?openQrModal=true" className="flex justify-center items-center">
-                            <img src='/images/page_images/AddLine.png' alt="addline" className="w-[200px]"></img>
+                            <img src='/images/page_images/AddLine.png' alt="addline" className="w-[200px] xl:max-w-[1200px]"></img>
                         </a>
                     </div>
                 </div>
 
 
-                <div className="px-[10%] py-[70px] bg-[#FFD600] md:flex md:justify-between">
-                    <div className="md:w-[50%] px-4 ">
+                <div className="px-[10%] 4xl:px-[20%] py-[70px] bg-[#FFD600] md:flex md:justify-between md:items-center">
+                    <div className="md:w-[50%] px-4">
                         <h1 className="py-6 text-[30px] text-center">
                             {t('homepage.h8')}
                         </h1>
-                        <p className="py-4">
+                        <p className="py-4 text-center">
                             {t('homepage.p7')}
                         </p>
                     </div>
@@ -179,12 +178,12 @@ function HomePage() {
                     </div>
                 </div>
 
-                <div className="px-[10%] py-4">
+                <div className="px-[10%] 4xl:px-[20%] py-[50px]">
                     <div className="pb-4 text-center">
                         <h1 className="text-[34px]">
                             {t('homepage.h9')}
                         </h1>
-                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
+                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
                     <p>{t('homepage.p8')}</p>
                     <YouTubeEmbed />
@@ -235,11 +234,18 @@ function HomePage() {
                     </div>
                 </div>
 
-                <div className="px-[10%] text-center">
-                    <a href="https://anyflip.com/uggut/ubmb/" className="text-[30px] text-[#FFFF00]">{t('homepage.h15')}</a>
-                    <div className="flex justify-center items-center pb-8">
-                        <img src='/images/page_images/Book.png' alt="book" className="w-[350px]"></img>
+                <div className="text-center w-[100%] 4xl:px-[20%] py-[50px] md:flex justify-center items-center">
+                    <div className="md:w-[60%] flex items-center justify-center">
+                        <a href="https://anyflip.com/uggut/ubmb/">
+                            <img src='/images/page_images/Book.png' alt="book" className="w-[350px] 2xl:w-[450px] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        </a>
                     </div>
+                    <div className="hidden bg-[#0079A9] rounded-l-xl w-[40%] md:flex items-center justify-center py-[100px] px-[20px]">
+                        <a href="https://anyflip.com/uggut/ubmb/" className="text-[30px] text-white hover:text-[#FFD600]">{t('homepage.h15')}</a>
+                    </div>
+                </div>
+
+                <div className="px-[10%] 4xl:px-[20%] text-center py-[50px]">
                     <p className="py-10 font-bold text-[20px]">{t('homepage.h16')}</p>
                     <div className="text-[#E4403C] pb-8 text-[17px]">
                         <p>{t('homepage.p17')}</p>
@@ -252,34 +258,35 @@ function HomePage() {
                     </div>
                 </div>
 
-                <div ref={section2Ref}></div>
-                <CategoryList />
+                <div ref={section2Ref} className="">
+                    <CategoryList />
+                    <CategorySearch />
+                </div>
 
-                <CategorySearch />
+                <div ref={section3Ref}>
+                    <RecommendProductList />
+                </div>
 
-                <div ref={section3Ref}></div>
-                <RecommendProductList />
-
-                <div className="bg-[#FFD600] md:flex px-[10%] py-4 md:justify-between ">
-                    <div className="bg-white mb-10 md:mb-0 md:w-[30%]" >
-                        <img src='/images/page_images/WeldingMC.png' alt="weldingMC" className="w-[100%]"></img>
-                        <h1 className="text-[20px] text-center p-4">{t('homepage.h18')}</h1>
+                <div className="bg-[#FFD600] md:flex px-[10%] 4xl:px-[20%] py-[50px] md:justify-between ">
+                    <div className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden" >
+                        <img src='/images/page_images/WeldingMC.png' alt="weldingMC" className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h18')}</h1>
                         <p className="px-4 pb-8">{t('homepage.p21')}</p>
                     </div>
-                    <div className="bg-white mb-10 md:mb-0 md:w-[30%]">
-                        <img src='/images/page_images/TorchSerPana.png' alt="torchserpana" className="w-[100%]"></img>
-                        <h1 className="text-[20px] text-center p-4">{t('homepage.h19')}</h1>
+                    <div className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden">
+                        <img src='/images/page_images/TorchSerPana.png' alt="torchserpana" className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h19')}</h1>
                         <p className="px-4 pb-8">{t('homepage.p22')}</p>
                     </div>
-                    <div className="bg-white md:w-[30%]">
-                        <img src='/images/page_images/Robot.png' alt="robot" className="w-[100%]"></img>
-                        <h1 className="text-[20px] text-center p-4">{t('homepage.h20')}</h1>
+                    <div className="bg-white md:w-[30%] overflow-hidden">
+                        <img src='/images/page_images/Robot.png' alt="robot" className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h20')}</h1>
                         <p className="px-4 pb-8">{t('homepage.p23')}</p>
                     </div>
                 </div>
 
-                <div ref={section4Ref} className="xl:py-[100px] xl:px-[10%] xl:flex xl:justify-between">
-                    <div className="xl:w-[50%] px-[10%] py-[20px] xl:p-[0%]">
+                <div ref={section4Ref} className="xl:py-[100px] 4xl:px-[20%] xl:px-[10%] xl:flex xl:justify-between">
+                    <div className="xl:w-[50%] px-[10%] py-[50px] xl:p-[0%]">
                         <div className="py-3 flex flex-wrap">
                             <MdBusinessCenter className="mt-[2px] mr-4" />
                             <p>{t('homepage.p24')}</p>

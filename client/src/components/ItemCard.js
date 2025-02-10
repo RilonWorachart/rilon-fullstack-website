@@ -63,12 +63,12 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
   
   return (
     <div
-      className={`shadow-md relative z-0 ${itemType === "type2" ? "sm:flex my-2 sm:h-[275px] h-[470px]" : "h-[470px]"}`}
+      className={`shadow-md relative z-0 bg-white ${itemType === "type2" ? "sm:flex my-2 sm:h-[275px] h-[470px]" : "h-[470px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
       <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "sm:w-[375px] h-[55%] sm:h-[100%]" : "h-[55%]"}`}>
-        <div className={`bg-[#e3dedd] overflow-hidden flex my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
+        <div className={`bg-white overflow-hidden flex my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
             className={`transition-transform duration-300 transform w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
             src={`${process.env.REACT_APP_API}${picture_1}`}
@@ -79,7 +79,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
 
       <div className={`px-5 py-3 ${itemType === "type2" ? "sm:w-[70%] sm:my-[auto] " : "my-[auto]"}`}>
         <div className="">
-          <p className="text-[24px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
+          <p className="text-[24px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           <p className="text-[14px] uppercase pb-[15px]">
             {currentLang === 'th' ? brandData?.name_th : brandData?.name_en || 'Loading brand...'}
           </p>
@@ -115,7 +115,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
             )}
             <div className={`flex ${!searchword_id && itemType === "type1" ? "justify-end w-full" : "my-2"}`}>
               <Link to={`/item/${ID}`}>
-                <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">
+                <button className="text-[14px] overflow-hidden truncate bg-[#E2B22C] border text-white py-1 px-4 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300">
                   {t('itemcard.p1')}
                 </button>
               </Link>

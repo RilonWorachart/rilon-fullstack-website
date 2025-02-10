@@ -83,16 +83,16 @@ function ItemListbyCategory() {
         <h1 className="text-[30px]">
           {t('categorypage.p5')}
         </h1>
-        <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
+        <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#0079A9]" />
       </div>
       <div className="mx-[20px] my-[20px] text-[#E2B22C] flex justify-between items-center">
         <div className="md:flex" >
-          <button onClick={() => handleBrandClick('')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>{currentLang === 'th' ? 'ทั้งหมด' : 'ALL'}</button>
+          <button onClick={() => handleBrandClick('')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 ${brand === "" ? 'bg-white text-[#0079A9] border border-[#0079A9]' : 'bg-[#E2B22C] border text-white'}`}>{currentLang === 'th' ? 'ทั้งหมด' : 'ALL'}</button>
           {brandData.map((brandItem) => (
             <button
               key={brandItem.id}
               onClick={() => handleBrandClick(brandItem.id)}
-              className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === brandItem.id ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}
+              className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 ${brand === brandItem.id ? 'bg-white text-[#0079A9] border border-[#0079A9]' : 'bg-[#E2B22C] border text-white'}`}
             >
               {currentLang === 'th' ? brandItem.name_th : brandItem.name_en}
             </button>
@@ -100,8 +100,8 @@ function ItemListbyCategory() {
         </div>
 
         <div className="flex text-[30px]">
-          <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={() => setItemType("type1")} />
-          <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")} />
+          <CgMenuGridR className="text-[#0079A9] hover:text-[#E2B22C] mr-1" onClick={() => setItemType("type1")} />
+          <TfiMenuAlt className="text-[#0079A9] hover:text-[#E2B22C] " onClick={() => setItemType("type2")} />
         </div>
       </div>
       {

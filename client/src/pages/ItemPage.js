@@ -20,7 +20,7 @@ function ItemPage() {
                         <h1 className="text-[30px]">
                             {t('itempage.p1')}
                         </h1>
-                        <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
+                        <div className="text-[#E2B22C] h-[4px] w-[60px] bg-[#0079A9]" />
                     </div>
                     <div className="px-4">
                         <Contact />

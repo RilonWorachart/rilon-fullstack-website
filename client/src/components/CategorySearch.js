@@ -37,18 +37,18 @@ function CategorySearch() {
 
 
   return (
-    <>
-      <div className="px-[10%]">
+    <div className="py-[50px]">
+      <div className="px-[10%] 4xl:px-[20%]">
         <div>
-          <h1 className="pt-2 text-[30px] text-center">
+          <h1 className="text-[30px] text-center">
             {t('search.p1')}
           </h1>
-          <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
+          <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
         </div>
         <div className="flex flex-wrap justify-center items-center mx-[auto] py-10" >
           {searchwordData.map((result) => (
             <Link to={`/catalog/keyword/${result.name_th}`} key={result.id}>
-              <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
+              <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 inline-block">
                 {currentLang === 'th' ? result.name_th : result.name_en}
               </button>
             </Link>
@@ -58,22 +58,22 @@ function CategorySearch() {
 
       <div className="px-[10%]">
         <div>
-          <h1 className="pt-2 text-[30px] text-center">
+          <h1 className="text-[30px] text-center">
             {t('search.p16')}
           </h1>
-          <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
+          <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
         </div>
         <div className="flex flex-wrap justify-center items-center mx-[auto] py-10" >
           {brandData.map((result) => (
             <Link to={`/catalog/keyword/${result.name_th}`} key={result.id}>
-              <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
+              <button className="bg-[#E2B22C] border text-white py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 inline-block">
                 {currentLang === 'th' ? result.name_th : result.name_en}
               </button>
             </Link>
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

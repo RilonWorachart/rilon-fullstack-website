@@ -116,11 +116,11 @@ function ItemDetail() {
             <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
                 <p className="py-1">
                     <Link to="/">
-                        <span className="hover:text-[#00007E]">{t('itempage.p2')}</span>
+                        <span className="hover:text-[#0079A9]">{t('itempage.p2')}</span>
                     </Link>
                     <span> » </span>
                     <Link to={`/category/${productData.category_id}`}>
-                        <span className="hover:text-[#00007E]">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
+                        <span className="hover:text-[#0079A9]">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
                     </Link>
                     <span> » </span>
                     <span className="">{currentLang === 'th' ? productData.name_th : productData.name_en}</span>
@@ -135,7 +135,7 @@ function ItemDetail() {
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
                 <img className="w-[100%] md:w-[35%] md:h-[100%] border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${productData.picture_1}`} alt={productData.name_th} />
                 <div className="md:w-[70%]">
-                    <p className="text-[32px] pt-4">{currentLang === 'th' ? productData.name_th : productData.name_en}</p>
+                    <p className="text-[32px] text-[#0079A9] pt-4">{currentLang === 'th' ? productData.name_th : productData.name_en}</p>
                     <p className="py-1">
                         <span>{t('itempage.p5')} </span>
                         <Link to={`/catalog/keyword/${brandData.name_th}`}>
@@ -145,14 +145,14 @@ function ItemDetail() {
                     <hr />
                     <div className="flex py-6">
                         <Link to={`/requestform`}>
-                            <button className="bg-[#E2B22C] border text-white py-2 px-6 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{t('itempage.p13')}</button>
+                            <button className="bg-[#E2B22C] border text-white py-2 px-6 mr-4 hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 inline-block">{t('itempage.p13')}</button>
                         </Link>
                     </div>
                     <hr />
                     <p className="py-2">{t('itempage.p6')}</p>
                     <div className="flex">
                         <Link to={`/category/${productData.category_id}`}>
-                            <button className="bg-[#E2B22C] border text-white text-[13px] py-1 px-4 mr-2 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">
+                            <button className="bg-[#E2B22C] border text-white text-[13px] py-1 px-4 mr-2 hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 inline-block">
                                 {currentLang === 'th' ? categoryData.name_th : categoryData.name_en}
                             </button>
                         </Link>
@@ -161,7 +161,7 @@ function ItemDetail() {
                         <div>
                             <p className="py-2">{t('itempage.p12')}</p>
                             <Link to={`/catalog/keyword/${searchwordData.name_th}`}>
-                                <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 inline-block">{currentLang === 'th' ? searchwordData.name_th : productData.name_en}</button>
+                                <button className="bg-[#E2B22C] border text-white text-[13px] mb-2 py-1 px-4 mr-4 hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 inline-block">{currentLang === 'th' ? searchwordData.name_th : productData.name_en}</button>
                             </Link>
                         </div>
                     )}
@@ -213,7 +213,7 @@ function ItemDetail() {
                     <h1 className="text-[30px]">
                         {t('itempage.p9')}
                     </h1>
-                    <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
+                    <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#0079A9]" />
                 </div>
                 <div className="py-[50px]">
                     <table className="w-[100%]">
@@ -226,8 +226,8 @@ function ItemDetail() {
                                 </tr>
                             )}
                             <tr className="border-[1px] border-lightgray">
-                                <td className="hidden md:table-cell w-[15%] text-center py-2 px-4 font-semibold border-[1px] border-lightgray">{currentLang === 'th' ? 'คำอธิบาย' : 'Description'}</td>
-                                <td className="py-4 px-5">{currentLang === 'th' ? productData.description_th : productData.description_en}</td>
+                                <td className="hidden md:table-cell w-[15%] text-center py-2 px-4 font-semibold border-[1px] border-lightgray bg-[#EFEFEF] ">{currentLang === 'th' ? 'คำอธิบาย' : 'Description'}</td>
+                                <td className="py-4 px-10 bg-[#EFEFEF]  ">{currentLang === 'th' ? productData.description_th : productData.description_en}</td>
                             </tr>
                             {productData.picture_2 && (
                                 <tr className="border-[1px] border-lightgray">
@@ -245,8 +245,8 @@ function ItemDetail() {
                             )}
                             {productData.other_th && (
                                 <tr className="border-[1px] border-lightgray">
-                                    <td className="hidden md:table-cell py-2 px-4  text-center font-semibold border-[1px] border-lightgray">{currentLang === 'th' ? 'อื่นๆ' : 'Other'}</td>
-                                    <td className="py-4 px-5">
+                                    <td className="hidden md:table-cell py-2 px-4  text-center font-semibold border-[1px] border-lightgray bg-[#EFEFEF] ">{currentLang === 'th' ? 'อื่นๆ' : 'Other'}</td>
+                                    <td className="py-4 px-10 bg-[#EFEFEF] ">
                                         <div className="break-words">
                                             {currentLang === 'th' ? productData.other_th : productData.other_en}
                                         </div>

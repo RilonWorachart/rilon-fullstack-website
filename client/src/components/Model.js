@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import * as THREE from 'three';  // Import the entire THREE namespace
+import { OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
 
 const Model = ({ modelPath }) => {
   const [model, setModel] = useState(null);
@@ -12,15 +12,33 @@ const Model = ({ modelPath }) => {
   useEffect(() => {
     if (modelPath) {
       const loader = new GLTFLoader();
+      const textureLoader = new THREE.TextureLoader();
+
       loader.load(
         `${process.env.REACT_APP_API}${modelPath}`,
         (gltf) => {
           const loadedModel = gltf.scene;
 
-          // Ensure all meshes have a material
+          // Traverse through all the objects in the model
           loadedModel.traverse((child) => {
-            if (child.isMesh && !child.material) {
-              child.material = new THREE.MeshStandardMaterial({ color: 0x888888 }); // Default gray material
+            // Apply default material if mesh doesn't have one
+            if (child.isMesh) {
+              if (!child.material) {
+                child.material = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
+              }
+
+              // If the mesh has textures, apply them
+              if (child.material.map) {
+                child.material.map = textureLoader.load(child.material.map);
+              }
+
+              // You can also apply other textures, such as normal maps, roughness maps, etc.
+              // if (child.material.normalMap) {
+              //   child.material.normalMap = textureLoader.load(child.material.normalMap);
+              // }
+
+              // Ensure the material uses proper settings for rendering
+              child.material.needsUpdate = true;
             }
           });
 
@@ -38,23 +56,28 @@ const Model = ({ modelPath }) => {
   }, [modelPath]);
 
   if (error) {
-    return <div className="text-red-500 text-xl">{error}</div>; // Tailwind class for error styling
+    return <div className="text-red-500 text-xl">{error}</div>;
   }
 
   if (isLoading) {
-    return <div className="text-blue-500 text-xl">Loading model...</div>; // Tailwind class for loading state
+    return <div className="text-blue-500 text-xl">Loading model...</div>;
   }
 
   return (
     <div className="w-[90%] md:w-[100%] mx-[auto] h-[300px] md:h-[600px] relative flex justify-center items-center">
       <Canvas
         className="w-full h-full"
-        camera={{ position: [0, 0, 1], fov: 75 }}
+        camera={{ position: [5, 5, 13], fov: 100 }}
       >
-        <ambientLight intensity={0.2} />
-        <pointLight position={[10, 10, 10]} intensity={1.5} />
-        <directionalLight position={[5, 5, 5]} intensity={0.5} />
-        {model && <primitive object={model} position={[0, 0, 0]} scale={[1, 1, 1]} />}
+        {/* Lighting Setup */}
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1.0} />
+        <directionalLight position={[5, 5, 5]} intensity={1.0} />
+
+        {/* Model rendering */}
+        {model && <primitive object={model} position={[0, -5, 0]} scale={[1, 1, 1]} />}
+        
+        {/* Controls for Orbiting around the model */}
         <OrbitControls />
       </Canvas>
     </div>
