@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Footer from '../components/Footer'
 import CategorySearch from '../components/CategorySearch'
 import RecommendProductList from '../components/homepage/RecommendProductList'
@@ -21,15 +21,36 @@ function HomePage() {
     const section3Ref = useRef(null);
     const section4Ref = useRef(null);
     const { t } = useTranslation();
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         setSectionRefs([section1Ref.current, section2Ref.current, section3Ref.current, section4Ref.current]);
     }, [setSectionRefs]);
 
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentIndex((prevIndex) =>
+                prevIndex === 3 - 1 ? 0 : prevIndex + 1
+            );
+        }, 3000); // Change slide every 3 seconds
+
+        // Cleanup on component unmount or when data changes
+        return () => clearInterval(intervalId);
+    }, []); // Depend on recommendProductData to reinitialize interval after fetch
+
     return (
         <>
             <div className="min-h-screen font-plex-sans-thai ">
-                <img src="/images/page_images/Y-Banding-03-01.png" className="mt-[69px] w-full 4xl:px-[10%] bg-[#111215]" alt="advertise"></img>
+                <div className="relative overflow-hidden">
+                    <div
+                        className="flex transition-transform duration-500 ease-in-out"
+                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    >
+                        <img src="/images/page_images/Y-Banding-03-01.png" className="mt-[70px] w-full 4xl:px-[10%] bg-[#111215]" alt="advertise"></img>
+                        <img src='/images/page_images/Y-Banding-02-01.png' alt="y_banding" className="mt-[70px] w-full 4xl:px-[10%] bg-[#111215]"></img>
+                    </div>
+                </div>
                 <div className="px-[10%] 4xl:px-[20%] py-[20px] text-center text-white bg-[#FFD600]">
                     <h1 className="text-[34px] text-[#0079A9]">{t('homepage.h1')}</h1>
                 </div>
@@ -127,29 +148,23 @@ function HomePage() {
 
 
                 <div className="px-[10%] 4xl:px-[20%] py-[50px] text-center ">
-                    <div className="flex justify-center items-center">
-                        <img src='/images/page_images/Y-Banding-02-01.png' alt="y_banding" className="py-4 item-center xl:max-w-[1200px]"></img>
-                    </div>
-                    <hr />
-                    <h1 className="py-4 text-[24px]">
+                    <h1 className="pt-4 text-[30px]">
                         {t('homepage.h4')}
                     </h1>
+                    <div className="h-[4px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
 
                     <div ref={section1Ref} className="flex justify-center items-center">
                         <img src='/images/page_images/Line3pic.png' alt="line" className="py-4 item-center xl:max-w-[1200px]"></img>
                     </div>
-
                     <div>
                         <h1 className="pt-12 text-[30px]">
                             {t('homepage.h5')}
                         </h1>
                         <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
-                        <p className='pt-3'>
+                        <p className='py-[20px]'>
                             {t('homepage.p6')}
                         </p>
-                        <div className="flex justify-center items-center">
-                            <img src='/images/page_images/Plusma.png' alt="plusma" className="py-4 item-center xl:max-w-[1200px]"></img>
-                        </div>
+                        <YouTubeEmbed />
                     </div>
                     <div className="pt-4 pb-14">
                         <p className="text-[#FF0042] text-[20px] py-[20px]">{t('homepage.h6')}</p>
@@ -185,52 +200,75 @@ function HomePage() {
                         </h1>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
-                    <p>{t('homepage.p8')}</p>
-                    <YouTubeEmbed />
-                    <p className="py-2"><b>{t('homepage.h10')}</b> {t('homepage.p9')}</p>
-                    <p className="font-bold py-2">{t('homepage.h11')}</p>
-                    <ul class="list-disc pl-6 space-y-2 py-2">
-                        <li>{t('homepage.p10')}</li>
-                        <li>{t('homepage.p11')}</li>
-                        <li>{t('homepage.p12')}</li>
-                    </ul>
-                    <div className="flex justify-center items-center py-12">
-                        <img src='/images/page_images/CO2.png' alt="co2" className="xl:max-w-[1200px]"></img>
+                    <p className="text-center py-[20px]">{t('homepage.p8')}</p>
+                    <img src='/images/page_images/Jingweitip.png' alt="jingweitip" className="xl:max-w-[1200px] pt-[20px]"></img>
+                </div>
+
+                <div className="px-[10%] 4xl:px-[20%] py-[50px]">
+                    <div className="text-center">
+                        <p className="text-[30px] text-center">{t('homepage.h10')}</p>
+                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
-                    <p className="font-bold py-2">{t('homepage.h12')}</p>
-                    <ul class="list-disc pl-6 space-y-2 py-2">
-                        <li>{t('homepage.p13')}</li>
-                    </ul>
-                    <p className="font-bold py-2">{t('homepage.h13')}</p>
-                    <ul class="list-disc pl-6 space-y-2 py-2">
-                        <li>{t('homepage.p14')}</li>
-                    </ul>
-                    <div className="flex justify-center items-center py-12">
+
+                    <div className="py-[30px]">
+                        <div className="py-[10px]">
+                            <p className="font-bold py-2">{t('homepage.h11')}</p>
+                            <ul class="list-disc pl-6 space-y-2 py-2">
+                                <li>{t('homepage.p10')}</li>
+                                <li>{t('homepage.p11')}</li>
+                            </ul>
+                        </div>
+                        <div className="py-[10px]">
+                            <p className="font-bold py-2">{t('homepage.p9')}</p>
+                            <ul class="list-disc pl-6 space-y-2 py-2">
+                                <li>{t('homepage.p12')}</li>
+                            </ul>
+                        </div>
+                        <div className="py-[10px]">
+                            <p className="font-bold py-2">{t('homepage.h12')}</p>
+                            <ul class="list-disc pl-6 space-y-2 py-2">
+                                <li>{t('homepage.p13')}</li>
+                            </ul>
+                        </div>
+                        <div className="py-[10px]">
+                            <p className="font-bold py-2">{t('homepage.h13')}</p>
+                            <ul class="list-disc pl-6 space-y-2 py-2">
+                                <li>{t('homepage.p14')}</li>
+                            </ul>
+
+                        </div>
+                        <p className="py-[20px] text-center">
+                            {t('homepage.p15')}
+                        </p>
+                    </div>
+                    <div
+                        className="flex transition-transform duration-500 ease-in-out"
+                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    >
+                        <img src='/images/page_images/Plusma.png' alt="plusma" className="py-4 item-center xl:max-w-[1200px]"></img>
+                        <img src='/images/page_images/CO2.png' alt="co2" className="xl:max-w-[1200px]"></img>
                         <img src='/images/page_images/Argon.png' alt="argon" className="xl:max-w-[1200px]"></img>
                     </div>
-                    <p>
-                        {t('homepage.p15')}
-                    </p>
-                    <div className="flex justify-center items-center py-12">
-                        <img src='/images/page_images/Jingweitip.png' alt="jingweitip" className="xl:max-w-[1200px]"></img>
+                </div>
+
+                <div className="relative overflow-hidden py-[50px]">
+                    <div className="px-[10%] 4xl:px-[20%]">
+                        <h1 className="text-[30px] text-center">
+                            {t('homepage.h14')}
+                        </h1>
+                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
+                        <p className="py-[30px]">
+                            {t('homepage.p16')}
+                        </p>
                     </div>
-                    <h1 className="text-[30px] font-bold">
-                        {t('homepage.h14')}
-                    </h1>
-                    <div className="flex justify-center items-center py-12">
-                        <img src='/images/page_images/WP.png' alt="wp" className="xl:max-w-[1200px]"></img>
-                    </div>
-                    <p>
-                        {t('homepage.p16')}
-                    </p>
-                    <div className="flex justify-center items-center pt-12 pb-6">
-                        <img src='/images/page_images/Torch.png' alt="torch" className="xl:max-w-[1200px]"></img>
-                    </div>
-                    <div className="flex justify-center items-center py-6">
-                        <img src='/images/page_images/Equipment.png' alt="equipment" className="xl:max-w-[1200px]"></img>
-                    </div>
-                    <div className="flex justify-center items-center pt-6 pb-12">
-                        <img src='/images/page_images/Rotate.png' alt="rotate" className="xl:max-w-[1200px]"></img>
+                    <div
+                        className="flex transition-transform duration-500 ease-in-out pt-[20px]"
+                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    >
+                        <img src="/images/page_images/Torch.png" alt="torch" className="w-[100%]"></img>
+                        <img src='/images/page_images/Equipment.png' alt="equipment" className="w-[100%]"></img>
+                        <img src='/images/page_images/Rotate.png' alt="rotate" className="w-[100%]"></img>
+                        <img src='/images/page_images/WP.png' alt="wp" className="w-[100%]"></img>
                     </div>
                 </div>
 
