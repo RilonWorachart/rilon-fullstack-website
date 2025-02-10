@@ -6,6 +6,7 @@ import { BiSolidCategory } from "react-icons/bi";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { ClipLoader } from 'react-spinners';
 
 function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name_en, description_en, category_id, itemType, searchword_id, brand_id }) {
   const { t, i18n } = useTranslation();
@@ -129,7 +130,11 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
   };
 
   if (!categoryData || !brandData) {
-    return <div>Loading...</div>; // Show loading state until data is ready
+    return (
+      <div className="flex justify-center items-center">
+        <ClipLoader color="#3498db" loading={true} size={50} />
+      </div>
+    );; // Show loading state until data is ready
   }
 
   return (
@@ -150,7 +155,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
       {/* Content Section */}
       <div className={`px-5 py-4 ${itemType === "type2" ? "md:w-[70%]" : "flex flex-col justify-between h-[47%]"}`}>
         <div className="">
-          <p className="text-[28px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
+          <p className="text-[28px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           <p className={`text-[14px] uppercase ${itemType === "type2" ? "w-full" : ""}`}>
             {currentLang === 'th' ? brandData.name_th : brandData.name_en}
           </p>
@@ -189,13 +194,13 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
           {/* Buttons Section */}
           <div className={`flex justify-center mt-2 ${itemType === "type2" ? "mx-[auto]" : ""}`}>
             <Link to={`/adminedit/${ID}`} className="w-[45%]">
-              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-full">
+              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-full">
                 {t('admin.p27')}
               </button>
             </Link>
             <button
               onClick={() => handledelete()}
-              className="ml-[2%] text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[45%]"
+              className="ml-[2%] text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[45%]"
             >
               {t('admin.p28')}
             </button>

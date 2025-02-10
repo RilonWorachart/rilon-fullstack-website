@@ -9,6 +9,7 @@ import axios from 'axios';
 import { BsBagHeartFill } from "react-icons/bs";
 import { SiShopee } from "react-icons/si";
 import Model from '../Model';
+import { ClipLoader } from 'react-spinners';
 
 function ItemDetail() {
     const { id } = useParams();
@@ -39,7 +40,7 @@ function ItemDetail() {
 
     // Fetch category data using product's category_id
     const fetchCategoryData = async () => {
-        if (productData.category_id) {
+        if (productData?.category_id) {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${productData.category_id}`);
                 const result = response.data;
@@ -58,7 +59,7 @@ function ItemDetail() {
 
 
     const fetchBrandData = async () => {
-        if (productData.brand_id) {
+        if (productData?.brand_id) {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API}/getbrandbyid?id=${productData.brand_id}`);
                 const result = response.data;
@@ -78,7 +79,7 @@ function ItemDetail() {
 
 
     const fetchSearchwordData = async () => {
-        if (productData.searchword_id) {
+        if (productData?.searchword_id) {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API}/getsearchwordbyid?id=${productData.searchword_id}`);
                 const result = response.data;
@@ -101,26 +102,30 @@ function ItemDetail() {
 
     useEffect(() => {
         if (productData) {
-            if (productData.category_id) fetchCategoryData();  // Fetch category data if available
-            if (productData.brand_id) fetchBrandData();        // Fetch brand data if available
-            if (productData.searchword_id) fetchSearchwordData();  // Fetch searchword data if available
+            fetchCategoryData();
+            fetchBrandData();
+            fetchSearchwordData();
         }
     }, [productData]);
 
     if (!productData || !categoryData || !brandData) {
-        return <div>Loading...</div>;  // If product, category, or brand data is missing, show loading
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <ClipLoader color="#3498db" loading={true} size={50} />
+            </div>
+        );  // If product, category, or brand data is missing, show loading
     }
 
     return (
         <>
-            <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
+            <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
                 <p className="py-1">
                     <Link to="/">
-                        <span className="hover:text-[#0079A9]">{t('itempage.p2')}</span>
+                        <span className="hover:text-[#EEE185]">{t('itempage.p2')}</span>
                     </Link>
                     <span> » </span>
                     <Link to={`/category/${productData.category_id}`}>
-                        <span className="hover:text-[#0079A9]">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
+                        <span className="hover:text-[#EEE185]">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
                     </Link>
                     <span> » </span>
                     <span className="">{currentLang === 'th' ? productData.name_th : productData.name_en}</span>
@@ -133,7 +138,7 @@ function ItemDetail() {
             </div>
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[15px] py-[15px] border-[1px] border-lightgray rounded-md md:flex">
-                <img className="w-[100%] md:w-[35%] md:h-[100%] border rounded-md md:mr-[40px]" src={`${process.env.REACT_APP_API}${productData.picture_1}`} alt={productData.name_th} />
+                <img className="w-[100%] md:w-[35%] md:h-[100%] border rounded-md md:mr-[40px] transition-transform duration-300 ease-in-out transform hover:scale-110" src={`${process.env.REACT_APP_API}${productData.picture_1}`} alt={productData.name_th} />
                 <div className="md:w-[70%]">
                     <p className="text-[32px] text-[#0079A9] pt-4">{currentLang === 'th' ? productData.name_th : productData.name_en}</p>
                     <p className="py-1">
@@ -157,7 +162,7 @@ function ItemDetail() {
                             </button>
                         </Link>
                     </div>
-                    {productData.searchword_id && (
+                    {searchwordData && (
                         <div>
                             <p className="py-2">{t('itempage.p12')}</p>
                             <Link to={`/catalog/keyword/${searchwordData.name_th}`}>
@@ -226,12 +231,12 @@ function ItemDetail() {
                                 </tr>
                             )}
                             <tr className="border-[1px] border-lightgray">
-                                <td className="hidden md:table-cell w-[15%] text-center py-2 px-4 font-semibold border-[1px] border-lightgray bg-[#EFEFEF] ">{currentLang === 'th' ? 'คำอธิบาย' : 'Description'}</td>
-                                <td className="py-4 px-10 bg-[#EFEFEF]  ">{currentLang === 'th' ? productData.description_th : productData.description_en}</td>
+                                <td className="hidden md:table-cell w-[15%] text-center py-2 px-4 font-semibold border-[1px] border-lightgray bg-[#F9F9F9] ">{currentLang === 'th' ? 'คำอธิบาย' : 'Description'}</td>
+                                <td className="py-4 px-10">{currentLang === 'th' ? productData.description_th : productData.description_en}</td>
                             </tr>
                             {productData.picture_2 && (
                                 <tr className="border-[1px] border-lightgray">
-                                    <td className="hidden md:table-cell py-2 px-4 text-center font-semibold border-[1px] border-lightgray">{currentLang === 'th' ? 'แผ่นข้อมูล' : 'Datasheet'}</td>
+                                    <td className="hidden md:table-cell py-2 px-4 text-center font-semibold border-[1px] border-lightgray bg-[#F9F9F9]">{currentLang === 'th' ? 'แผ่นข้อมูล' : 'Datasheet'}</td>
                                     <td className="py-10">
                                         <div className="mx-[auto] md:mx-[10%] ">
                                             <img
@@ -245,8 +250,8 @@ function ItemDetail() {
                             )}
                             {productData.other_th && (
                                 <tr className="border-[1px] border-lightgray">
-                                    <td className="hidden md:table-cell py-2 px-4  text-center font-semibold border-[1px] border-lightgray bg-[#EFEFEF] ">{currentLang === 'th' ? 'อื่นๆ' : 'Other'}</td>
-                                    <td className="py-4 px-10 bg-[#EFEFEF] ">
+                                    <td className="hidden md:table-cell py-2 px-4  text-center font-semibold border-[1px] border-lightgray bg-[#F9F9F9] ">{currentLang === 'th' ? 'อื่นๆ' : 'Other'}</td>
+                                    <td className="py-4 px-10">
                                         <div className="break-words">
                                             {currentLang === 'th' ? productData.other_th : productData.other_en}
                                         </div>

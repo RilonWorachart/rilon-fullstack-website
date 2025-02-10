@@ -29,7 +29,7 @@ function HomePage() {
     return (
         <>
             <div className="min-h-screen font-plex-sans-thai ">
-                <img src="/images/page_images/Y-Banding-03-01.png" className="mt-[69px] w-full 4xl:px-[10%]" alt="advertise"></img>
+                <img src="/images/page_images/Y-Banding-03-01.png" className="mt-[69px] w-full 4xl:px-[10%] bg-[#111215]" alt="advertise"></img>
                 <div className="px-[10%] 4xl:px-[20%] py-[20px] text-center text-white bg-[#FFD600]">
                     <h1 className="text-[34px] text-[#0079A9]">{t('homepage.h1')}</h1>
                 </div>
@@ -81,27 +81,27 @@ function HomePage() {
                 </div >
 
 
-                <div className="px-[10%] 4xl:px-[20%] text-center py-[50px] background">
-                    <div className="pb-4">
-                        <h1 className="text-[34px] text-white">
+                <div className="px-[10%] 4xl:px-[20%] text-center py-[100px] background bg-fixed bg-cover">
+                    <div className="pb-[50px]">
+                        <h1 className="text-[34px] text-[#EEE185]">
                             {t('homepage.h2')}
                         </h1>
                         <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
                     <div className="md:flex">
-                        <div className="text-[#E2B22C] backdrop-blur-sm bg-white/10 z-0 pt-1 pb-4 px-[20px] my-[auto] md:w-[60%]">
-                            <h1 className="text-[34px] pt-3 pb-6 ">
+                        <div className="text-[#E2B22C] backdrop-blur-sm bg-[#EEE185]/10 z-0 py-4 px-[20px] my-[auto] md:w-[60%]">
+                            <h1 className="text-[34px] py-6 ">
                                 {t('homepage.h3')}
                             </h1>
                             <p className="text-[22px] text-[#F4D016] py-2">
                                 {t('homepage.p1')}
                             </p>
-                            <h2 className="text-[24px] text-[#F4D016] font-bold ">
+                            <h2 className="text-[24px] text-[#F4D016] py-6 font-bold ">
                                 {t('homepage.p2')}
                             </h2>
                         </div>
-                        <div className="md:w-[40%] md:ml-[30px] mt-10 md:mt-0">
-                            <img src="/images/page_images/logo.png" alt="logo"></img>
+                        <div className="md:w-[40%] md:ml-[30px] mt-10 md:mt-0 flex justify-center items-center">
+                            <img src="/images/page_images/logo.png" alt="logo" className=" transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
                         </div>
                     </div>
                 </div>

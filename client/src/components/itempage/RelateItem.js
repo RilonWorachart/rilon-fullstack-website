@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ItemCard from '../ItemCard';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { ClipLoader } from 'react-spinners';
 
 function RelateItem() {
   const { id } = useParams();
@@ -100,11 +101,15 @@ function RelateItem() {
 
   if (!productData || !allCategoryProductData.length) {
     // Only return loading here, after hooks have been called.
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center ">
+          <ClipLoader color="#3498db" loading={true} size={50} />
+      </div>
+  );;
   }
 
   return (
-    <div className="px-[10%] py-[50px] max-w-[1400px] 2xl:px-[auto] transform transition-all bg-[#EFEFEF]">
+    <div className="px-[10%] py-[50px] 4xl:px-[20%] transform transition-all bg-[#EFEFEF]">
       <div className="">
         <h1 className="pt-2 text-[30px] text-center">{t('itempage.p11')}</h1>
         <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#0079A9]" />
@@ -144,13 +149,13 @@ function RelateItem() {
         <div className="z-40 flex justify-center w-full pt-[20px]">
           <button
             onClick={prevSlide}
-            className="w-10 h-10 flex items-center justify-center mx-1 bg-[#6CC3EE] text-white rounded-full hover:bg-[#F0D895]"
+            className="w-10 h-10 flex items-center justify-center mx-1 bg-[#0079A9] text-white rounded-full hover:bg-[#F0D895]"
           >
             &#8592;
           </button>
           <button
             onClick={nextSlide}
-            className="w-10 h-10 flex items-center justify-center mx-1 bg-[#6CC3EE] text-white rounded-full hover:bg-[#F0D895]"
+            className="w-10 h-10 flex items-center justify-center mx-1 bg-[#0079A9] text-white rounded-full hover:bg-[#F0D895]"
           >
             &#8594;
           </button>

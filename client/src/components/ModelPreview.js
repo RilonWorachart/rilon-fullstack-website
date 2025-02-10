@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';  // Import the entire THREE namespace
+import { ClipLoader } from 'react-spinners';
 
 const ModelPreview = ({ modelPath }) => {
   const [model, setModel] = useState(null);
@@ -38,18 +39,20 @@ const ModelPreview = ({ modelPath }) => {
   }, [modelPath]);
 
   if (error) {
-    return <div className="text-red-500 text-xl">{error}</div>; // Tailwind class for error styling
+    return <div className="text-red-500 text-xl flex justify-center items-center py-[20px]">{error}</div>;
   }
 
   if (isLoading) {
-    return <div className="text-blue-500 text-xl">Loading model...</div>; // Tailwind class for loading state
+    return <div className="text-blue-500 text-xl text-center flex justify-center items-center py-[20px]">
+      <ClipLoader color="#3498db" loading={true} size={50} />
+    </div>;
   }
 
   return (
     <div className="w-[90%] md:w-[100%] mx-[auto] h-[300px] relative flex justify-center items-center">
       <Canvas
         className="w-full h-full"
-        camera={{ position: [0, 0, 1], fov: 75 }}
+        camera={{ position: [5, 5, 13], fov: 75 }}
       >
         {/* Lighting Setup */}
         <ambientLight intensity={0.2} />
@@ -57,7 +60,7 @@ const ModelPreview = ({ modelPath }) => {
         <directionalLight position={[5, 5, 5]} intensity={1.0} />
 
         {/* Model rendering */}
-        {model && <primitive object={model} position={[0, 0, 0]} scale={[1, 1, 1]} />}
+        {model && <primitive object={model} position={[0, -5, 0]} scale={[1, 1, 1]} />}
 
         {/* Controls for Orbiting around the model */}
         <OrbitControls />

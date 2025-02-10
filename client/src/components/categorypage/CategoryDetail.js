@@ -35,10 +35,10 @@ function CategoryDetail() {
 
     return (
         <>
-            <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
+            <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
                 <p className="py-1">
                     <Link to="/">
-                        <span className="hover:text-[#0079A9]">{t('itempage.p2')}</span>
+                        <span className="hover:text-[#EEE185]">{t('itempage.p2')}</span>
                     </Link>
                     <span> » </span>
                     <span className="">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>

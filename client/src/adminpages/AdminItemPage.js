@@ -157,23 +157,23 @@ function AdminItemPage() {
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
-        <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
+        <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
           <p className="py-1">
             <Link to="/">
-              <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
+              <span className="hover:text-[#EEE185]">{t('categorypage.p1')}</span>
             </Link>
             <span> » </span>
-            <Link to="/adminpanel"><span className="hover:text-[#00007E]">{t('admin.p5')}</span></Link>
+            <Link to="/adminpanel"><span className="hover:text-[#EEE185]">{t('admin.p5')}</span></Link>
             <span> » </span>
             <span className="">{t('admin.p7')}</span>
           </p>
           <div className="flex">
             <Link to="/admincreate">
-              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
+              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px]">
                 {t('admin.p22')}
               </button>
             </Link>
-            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px] ml-[10px]">
               {t('admin.p23')}
             </button>
           </div>
@@ -189,7 +189,9 @@ function AdminItemPage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button onClick={() => handleSearchTermClick()}><FaSearch /></button>
+            <button onClick={() => handleSearchTermClick()}>
+              <FaSearch />
+            </button>
           </div>
         </div>
 
@@ -200,12 +202,12 @@ function AdminItemPage() {
               <h1 className="pt-2 text-[30px] text-center">
                 {t('itempage.p6')}
               </h1>
-              <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
+              <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
             </div>
             <div className="flex flex-wrap justify-center items-center mx-[auto] py-10">
               <button
                 onClick={() => handleCategoryClick('')}
-                className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${category === '' ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}
+                className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 ${category === '' ? 'bg-white text-[#0079A9] border border-[#0079A9]' : 'bg-[#E2B22C] border text-white'}`}
               >
                 {t('admin.p25')}
               </button>
@@ -213,7 +215,7 @@ function AdminItemPage() {
                 <button
                   key={categoryItem.ID}
                   onClick={() => handleCategoryClick(categoryItem.ID)}
-                  className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${category === categoryItem.ID ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}
+                  className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 ${category === categoryItem.ID ? 'bg-white text-[#0079A9] border border-[#0079A9]' : 'bg-[#E2B22C] border text-white'}`}
                 >
                   {currentLang === 'th' ? categoryItem.name_th : categoryItem.name_en}
                 </button>
@@ -227,15 +229,15 @@ function AdminItemPage() {
               <h1 className="pt-2 text-[30px] text-center">
                 {t('search.p16')}
               </h1>
-              <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#E2B22C]" />
+              <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
             </div>
             <div className="flex flex-wrap justify-center items-center mx-[auto] py-10">
-              <button onClick={() => handleBrandClick('')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === "" ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}>{t('admin.p25')}</button>
+              <button onClick={() => handleBrandClick('')} className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 ${brand === "" ? 'bg-white text-[#0079A9] border border-[#0079A9]' : 'bg-[#E2B22C] border text-white'}`}>{t('admin.p25')}</button>
               {brandData.map((brandItem) => (
                 <button
                   key={brandItem.id}
                   onClick={() => handleBrandClick(brandItem.id)}
-                  className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 ${brand === brandItem.id ? 'bg-white text-[#42189F] border border-[#42189F]' : 'bg-[#E2B22C] border text-white'}`}
+                  className={`py-1 px-6 m-1 rounded-full hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 ${brand === brandItem.id ? 'bg-white text-[#0079A9] border border-[#0079A9]' : 'bg-[#E2B22C] border text-white'}`}
                 >
                   {currentLang === 'th' ? brandItem.name_th : brandItem.name_en}
                 </button>
@@ -247,13 +249,13 @@ function AdminItemPage() {
         {/* Toggle View Button */}
         {
           (totalPages !== 0) && (
-            <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#E2B22C] flex justify-between items-center">
+            <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#0079A9] flex justify-between items-center">
               <div className="text-[24px]">
                 <p className="text-[#C1C1C1] font-light ">{t('pagination.page')} <span className="">{page} /{totalPages}</span></p>
               </div>
               <div className="flex text-[30px]">
-                <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={toggleItemType} />
-                <TfiMenuAlt className="hover:text-[#00009F]" onClick={toggleItemType} />
+                <CgMenuGridR className="hover:text-[#EEE185] mr-1 cursor-pointer" onClick={toggleItemType} />
+                <TfiMenuAlt className="hover:text-[#EEE185] cursor-pointer" onClick={toggleItemType} />
               </div>
             </div>
           )
@@ -291,7 +293,7 @@ function AdminItemPage() {
             <div className="mx-[10%] 2xl:mx-[20%] flex justify-center items-center pb-5">
               <button
                 className={`px-4 py-4 
-                         rounded-full mr-[10px] ${page !== 1 ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+                         rounded-full mr-[10px] ${page !== 1 ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#0079A9] hover:bg-white hover:border-[#0079A9] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
                 onClick={() => handlePageChange(1)}
                 disabled={page === 1}
               >
@@ -299,7 +301,7 @@ function AdminItemPage() {
               </button>
               <button
                 className={`px-4 py-4 
-                         rounded-full mr-[20px] ${page !== 1 ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+                         rounded-full mr-[20px] ${page !== 1 ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#0079A9] hover:bg-white hover:border-[#0079A9] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
                 onClick={() => handlePageChange(page - 1)}
                 disabled={page === 1}
               >
@@ -312,7 +314,7 @@ function AdminItemPage() {
 
               <button
                 className={`px-4 py-4 
-                         rounded-full ml-[20px] ${page !== totalPages && (totalPages !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+                         rounded-full ml-[20px] ${page !== totalPages && (totalPages !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#0079A9] hover:bg-white hover:border-[#0079A9] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
                 onClick={() => handlePageChange(page + 1)}
                 disabled={page === totalPages}
               >
@@ -320,7 +322,7 @@ function AdminItemPage() {
               </button>
               <button
                 className={`px-4 py-4 
-                         rounded-full ml-[10px] ${page !== totalPages && (totalPages !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#00009F] hover:bg-white hover:border-[#00009F] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
+                         rounded-full ml-[10px] ${page !== totalPages && (totalPages !== 0) ? "bg-[#E2B22C] border border-[#E2B22C] text-white  hover:text-[#0079A9] hover:bg-white hover:border-[#0079A9] " : "border border-[#E0E0E0] text-[#E0E0E0]"}`}
                 onClick={() => handlePageChange(totalPages)}
                 disabled={page === totalPages}
               >

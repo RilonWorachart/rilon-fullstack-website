@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaTags } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { ClipLoader } from 'react-spinners';
 
 function ItemCard({ ID, picture_1, name_th, description_th, name_en, description_en, itemType, searchword_id, brand_id }) {
   const { t, i18n } = useTranslation();
@@ -57,10 +58,14 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
   }, [brand_id, searchword_id]);
 
   if (!brandData) {
-    return <div>Loading...</div>; // Loading state while fetching brand data
+    return (
+      <div className="flex justify-center items-center">
+        <ClipLoader color="#3498db" loading={true} size={50} />
+      </div>
+    ); // Loading state while fetching brand data
   }
 
-  
+
   return (
     <div
       className={`shadow-md relative z-0 bg-white ${itemType === "type2" ? "sm:flex my-2 sm:h-[275px] h-[470px]" : "h-[470px]"}`}

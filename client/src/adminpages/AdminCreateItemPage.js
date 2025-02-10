@@ -264,21 +264,21 @@ const AdminCreateItemPage = () => {
 
   return (
     <div className="min-h-screen font-plex-sans-thai">
-      <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
+      <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
         <p className="py-1">
-          <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
-          <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p7')}</a> <span> » </span>
-          <Link to="/adminitem"><span className="hover:text-[#00007E]">{t('admin.p9')}</span></Link>
+          <a href="/" className="hover:text-[#EEE185]">{t('categorypage.p1')}</a><span> » </span>
+          <a href="/adminpanel" className="hover:text-[#EEE185]">{t('admin.p7')}</a> <span> » </span>
+          <Link to="/adminitem"><span className="hover:text-[#EEE185]">{t('admin.p9')}</span></Link>
           <span> » </span>
           <span>{t('admin.p22')}</span>
         </p>
         <div className="flex">
           <Link to="/adminitem">
-            <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
+            <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px]">
               {t('admin.p24')}
             </button>
           </Link>
-          <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+          <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px] ml-[10px]">
             {t('admin.p23')}
           </button>
         </div>
@@ -287,7 +287,7 @@ const AdminCreateItemPage = () => {
       <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] pt-4 pb-10">
         <div>
           <h1 className="text-[30px]">{t('admin.p22')}</h1>
-          <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
+          <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#0079A9]" />
         </div>
 
         <form className="py-6" onSubmit={handleSubmit}>

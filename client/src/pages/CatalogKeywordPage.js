@@ -66,10 +66,10 @@ function CatalogKeywordPage() {
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
-        <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 ">
+        <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 ">
           <p className="py-1">
             <Link to="/">
-              <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
+              <span className="hover:text-[#EEE185]">{t('categorypage.p1')}</span>
             </Link>
             <span> » </span>
             <span className="">{t('categorypage.p2')}</span>

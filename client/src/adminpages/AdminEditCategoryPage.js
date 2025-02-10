@@ -184,7 +184,7 @@ function AdminEditCategoryPage() {
 
     return (
         <div className="min-h-screen font-plex-sans-thai">
-            <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
+            <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
                 <p className="py-1">
                     <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
                     <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
@@ -207,7 +207,7 @@ function AdminEditCategoryPage() {
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] pt-4 pb-10">
                 <div>
                     <h1 className="text-[30px]">{t('admin.p53')}</h1>
-                    <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C]" />
+                    <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#0079A9]" />
                 </div>
 
                 <form className="py-6" onSubmit={handleSubmit}>

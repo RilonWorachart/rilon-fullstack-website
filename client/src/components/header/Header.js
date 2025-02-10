@@ -110,7 +110,7 @@ function Header() {
       </div>
 
       <div className="text-black text-[20px] hover:cursor-pointer xl:hidden">
-        <GiHamburgerMenu onClick={() => setIsActiveSidebar(true)} className="text-[#E2B22C]" />
+        <GiHamburgerMenu onClick={() => setIsActiveSidebar(true)} className="text-[#0079A9]" />
         {isActiveSidebar && (
           <>
             <div className="fixed inset-0 bg-black opacity-50 z-40" style={{ right: '280px' }}></div>

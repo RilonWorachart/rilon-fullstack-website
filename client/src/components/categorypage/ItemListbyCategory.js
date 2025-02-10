@@ -9,6 +9,7 @@ import { FaAngleRight } from "react-icons/fa6";
 import { FaAnglesRight } from "react-icons/fa6";
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 
 function ItemListbyCategory() {
   const { t, i18n } = useTranslation();
@@ -74,7 +75,11 @@ function ItemListbyCategory() {
 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center py-[200px]">
+        <ClipLoader color="#3498db" loading={true} size={50} />
+      </div>
+    );
   }
 
   return (

@@ -254,9 +254,9 @@ function FormPage() {
 
   return (
     <div className="min-h-screen font-plex-sans-thai">
-      <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
+      <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
         <p className="py-1">
-          <Link to="/" className="hover:text-[#00007E]">{t('formpage.p1')}</Link>
+          <Link to="/" className="hover:text-[#EEE185]">{t('formpage.p1')}</Link>
           <span>{t('formpage.p3')}</span>
         </p>
         <h2 className="py-1 text-[20px]">{t('formpage.p4')}</h2>

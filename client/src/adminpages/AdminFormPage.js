@@ -105,10 +105,10 @@ function AdminFormPage() {
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
-        <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
+        <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
           <p className="py-1">
             <Link to="/">
-              <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
+              <span className="hover:text-[#EEE185]">{t('categorypage.p1')}</span>
             </Link>
             <span> » </span>
             <Link to="/adminpanel">
@@ -119,11 +119,11 @@ function AdminFormPage() {
           </p>
           <div className="">
             <Link to="/adminPanel">
-              <button className=" text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
+              <button className=" text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px]">
                 {t('admin.p24')}
               </button>
             </Link>
-            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px] ml-[10px]">
               {t('admin.p23')}
             </button>
           </div>

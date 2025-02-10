@@ -87,23 +87,23 @@ function AdminCategoryPage() {
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
-        <div className="mt-[70px] bg-[#E2B22C] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
+        <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
           <p className="py-1">
             <Link to="/">
-              <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
+              <span className="hover:text-[#EEE185]">{t('categorypage.p1')}</span>
             </Link>
             <span> » </span>
-            <Link to="/adminpanel"><span className="hover:text-[#00007E]">{t('admin.p5')}</span></Link>
+            <Link to="/adminpanel"><span className="hover:text-[#EEE185]">{t('admin.p5')}</span></Link>
             <span> » </span>
             <span className="">{t('admin.p47')}</span>
           </p>
           <div className="flex">
             <Link to="/admincreatecategory">
-              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
+              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px]">
                 {t('admin.p54')}
               </button>
             </Link>
-            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+            <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px] ml-[10px]">
               {t('admin.p23')}
             </button>
           </div>
@@ -113,16 +113,16 @@ function AdminCategoryPage() {
           <h1 className="pt-2 text-[30px] text-center">
             {t('admin.p47')}
           </h1>
-          <div className="text-[#E2B22C] h-[3px] w-[60px] mx-[auto] bg-[#E2B22C]" />
+          <div className="text-[#E2B22C] h-[3px] w-[60px] mx-[auto] bg-[#0079A9]" />
         </div>
 
 
         {/* Toggle View Button */}
-        <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#E2B22C] flex justify-between items-center">
+        <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#0079A9] flex justify-between items-center">
           <div></div>
           <div className="flex text-[30px]">
-            <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={toggleItemType} />
-            <TfiMenuAlt className="hover:text-[#00009F]" onClick={toggleItemType} />
+            <CgMenuGridR className="hover:text-[#EEE185] mr-1 cursor-pointer" onClick={toggleItemType} />
+            <TfiMenuAlt className="hover:text-[#EEE185] cursor-pointer" onClick={toggleItemType} />
           </div>
         </div>
 

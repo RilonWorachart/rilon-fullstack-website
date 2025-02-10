@@ -77,7 +77,7 @@ function AdminCategoryCard({ ID, picture_1, name_th, description_th, name_en, de
 
       <div className={`px-5 py-5 ${itemType === "type2" ? "sm:w-[80%] my-[auto]" : "my-[auto]"}`}>
         <div className="">
-          <p className="text-[24px] text-[#E5B22C] truncate">{currentLang === 'th' ? name_th : name_en}</p>
+          <p className="text-[24px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           {/* Sliding effect only for type1 */}
           <div
             className="w-full flex items-center transition-all duration-500 overflow-hidden"
@@ -97,11 +97,11 @@ function AdminCategoryCard({ ID, picture_1, name_th, description_th, name_en, de
         <div className={`${itemType === "type2" ? "items-center" : "py-2"}`}>
           <div className={`flex justify-center items-center  ${itemType === "type2" ? "my-4" : "my-1"}`}>
             <Link to={`/admineditcategory/${ID}`} className="w-[45%]">
-              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-full">
+              <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-full">
                 {t('admin.p27')}
               </button>
             </Link>
-            <button onClick={() => handledelete()} className="ml-[5px] w-[45%] text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300">
+            <button onClick={() => handledelete()} className="ml-[5px] w-[45%] text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300">
               {t('admin.p28')}
             </button>
           </div>

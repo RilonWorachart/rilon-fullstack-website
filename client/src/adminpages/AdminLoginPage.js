@@ -65,7 +65,7 @@ function AdminLoginPage() {
       <div className="min-h-screen font-plex-sans-thai bg-[#f4f4f4] flex justify-center items-center">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h1 className="text-2xl font-semibold text-center text-[#333]">{t('admin.p1')}</h1>
-          <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#E2B22C] mx-auto my-2" />
+          <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#0079A9] mx-auto my-2" />
 
           <form className="space-y-4" onSubmit={handleSubmit}>
 
