@@ -35,7 +35,7 @@ function CategoryList() {
 
 
   return (
-    <div className="bg-[#EFEFEF] py-[50px]">
+    <div className="bg-[#E9E9E9] py-[50px]">
       <div className="flex justify-end">
         <SearchKeyButton/>
       </div>

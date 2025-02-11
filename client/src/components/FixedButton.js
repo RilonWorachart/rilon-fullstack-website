@@ -38,7 +38,7 @@ function FixedButton() {
     return (
         <div>
             {backToTopButton && (
-                <button className="fixed bottom-[15px] right-[20px] h-[35px] w-[35px] bg-[#0079A9] text-2xl text-white flex items-center justify-center shadow-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300" onClick={scrollUp}>
+                <button className="z-20 fixed bottom-[15px] right-[20px] h-[35px] w-[35px] bg-[#0079A9] text-2xl text-white flex items-center justify-center shadow-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300" onClick={scrollUp}>
                     <IoIosArrowUp className="" />
                 </button>
             )}

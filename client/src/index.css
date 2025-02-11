@@ -10,3 +10,10 @@
     background-position: center;
   }
 
+
+  .background2 {
+    background-image: url('../public/images/page_images/background2.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+

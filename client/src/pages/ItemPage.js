@@ -15,7 +15,7 @@ function ItemPage() {
         <>
             <div className="min-h-screen font-plex-sans-thai">
                 <ItemDetail />
-                <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] px-[20px] py-[10px] border-[1px] border-lightgray rounded-md">
+                <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] mt-[30px] mb-[70px] px-[20px] py-[10px] border-[1px] border-lightgray rounded-md">
                     <div className="pb-4">
                         <h1 className="text-[30px]">
                             {t('itempage.p1')}

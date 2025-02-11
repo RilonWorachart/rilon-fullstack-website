@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Footer from '../components/Footer'
 import CategorySearch from '../components/CategorySearch'
 import RecommendProductList from '../components/homepage/RecommendProductList'
@@ -12,6 +12,9 @@ import { MdBusinessCenter, MdMail } from "react-icons/md";
 import { useTranslation } from 'react-i18next';
 import { SiShopee } from "react-icons/si";
 import { BsBagHeartFill } from "react-icons/bs";
+import SliderTop from '../components/homepage/SliderTop';
+import SliderRilon from '../components/homepage/SliderRilon';
+import SliderJingweitip from '../components/homepage/SliderJingweitip';
 
 
 function HomePage() {
@@ -21,36 +24,16 @@ function HomePage() {
     const section3Ref = useRef(null);
     const section4Ref = useRef(null);
     const { t } = useTranslation();
-    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         setSectionRefs([section1Ref.current, section2Ref.current, section3Ref.current, section4Ref.current]);
     }, [setSectionRefs]);
 
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentIndex((prevIndex) =>
-                prevIndex === 3 - 1 ? 0 : prevIndex + 1
-            );
-        }, 3000); // Change slide every 3 seconds
-
-        // Cleanup on component unmount or when data changes
-        return () => clearInterval(intervalId);
-    }, []); // Depend on recommendProductData to reinitialize interval after fetch
-
     return (
         <>
             <div className="min-h-screen font-plex-sans-thai ">
-                <div className="relative overflow-hidden">
-                    <div
-                        className="flex transition-transform duration-500 ease-in-out"
-                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                    >
-                        <img src="/images/page_images/Y-Banding-03-01.png" className="mt-[70px] w-full 4xl:px-[10%] bg-[#111215]" alt="advertise"></img>
-                        <img src='/images/page_images/Y-Banding-02-01.png' alt="y_banding" className="mt-[70px] w-full 4xl:px-[10%] bg-[#111215]"></img>
-                    </div>
-                </div>
+                <SliderTop />
                 <div className="px-[10%] 4xl:px-[20%] py-[20px] text-center text-white bg-[#FFD600]">
                     <h1 className="text-[34px] text-[#0079A9]">{t('homepage.h1')}</h1>
                 </div>
@@ -101,10 +84,9 @@ function HomePage() {
                     </div >
                 </div >
 
-
                 <div className="px-[10%] 4xl:px-[20%] text-center py-[100px] background bg-fixed bg-cover">
                     <div className="pb-[50px]">
-                        <h1 className="text-[34px] text-[#EEE185]">
+                        <h1 className="text-[34px] text-[#FFD600]">
                             {t('homepage.h2')}
                         </h1>
                         <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
@@ -127,7 +109,6 @@ function HomePage() {
                     </div>
                 </div>
 
-
                 <div className="md:flex justify-between items-center bg-[#FFD600] px-[10%] 4xl:px-[20%] text-center py-[50px]">
                     <div className="py-12 md:w-[30%]">
                         <h1 className="text-[28px]">DEALER</h1>
@@ -146,71 +127,51 @@ function HomePage() {
                     </div>
                 </div>
 
-
-                <div className="px-[10%] 4xl:px-[20%] py-[50px] text-center ">
-                    <h1 className="pt-4 text-[30px]">
-                        {t('homepage.h4')}
-                    </h1>
-                    <div className="h-[4px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
-
-                    <div ref={section1Ref} className="flex justify-center items-center">
-                        <img src='/images/page_images/Line3pic.png' alt="line" className="py-4 item-center xl:max-w-[1200px]"></img>
-                    </div>
+                <div className="px-[10%] 4xl:px-[20%] py-[100px] text-center ">
                     <div>
-                        <h1 className="pt-12 text-[30px]">
+                        <h1 className="text-[30px]">
                             {t('homepage.h5')}
                         </h1>
                         <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
-                        <p className='py-[20px]'>
+                        <p className='py-[40px] 4xl:px-[20%]'>
                             {t('homepage.p6')}
                         </p>
                         <YouTubeEmbed />
                     </div>
-                    <div className="pt-4 pb-14">
-                        <p className="text-[#FF0042] text-[20px] py-[20px]">{t('homepage.h6')}</p>
-                        <div className="flex justify-center items-center pt-[10px]">
-                            <img src='/images/page_images/QRcode.png' alt="qrcode" className="w-[200px]"></img>
-                        </div>
-                        <p className="text-[#FF0042] text-[20px] pt-[30px] py-[10px]">{t('homepage.h7')}</p>
-                        <a href="https://page.line.me/156vctty?openQrModal=true" className="flex justify-center items-center">
-                            <img src='/images/page_images/AddLine.png' alt="addline" className="w-[200px] xl:max-w-[1200px]"></img>
-                        </a>
-                    </div>
                 </div>
 
 
-                <div className="px-[10%] 4xl:px-[20%] py-[70px] bg-[#FFD600] md:flex md:justify-between md:items-center">
+                <div className="px-[10%] 4xl:px-[20%] py-[70px] bg-[#0079A9] md:flex md:justify-between md:items-center">
                     <div className="md:w-[50%] px-4">
-                        <h1 className="py-6 text-[30px] text-center">
+                        <h1 className="py-6 text-[30px] text-center text-[#FFD600] font-bold">
                             {t('homepage.h8')}
                         </h1>
-                        <p className="py-4 text-center">
+                        <p className="py-4 text-center text-white">
                             {t('homepage.p7')}
                         </p>
                     </div>
                     <div className="md:w-[47%]">
-                        <img src='/images/page_images/YellowRilon.png' alt="yellowrilon"></img>
+                        <img src='/images/page_images/RilonTH02.png' alt="yellowrilon"></img>
                     </div>
                 </div>
 
-                <div className="px-[10%] 4xl:px-[20%] py-[50px]">
+                <div className="px-[10%] 4xl:px-[20%] py-[100px] bg-[#FFD600]">
                     <div className="pb-4 text-center">
                         <h1 className="text-[34px]">
                             {t('homepage.h9')}
                         </h1>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
-                    <p className="text-center py-[20px]">{t('homepage.p8')}</p>
-                    <img src='/images/page_images/Jingweitip.png' alt="jingweitip" className="xl:max-w-[1200px] pt-[20px]"></img>
+                    <p className="text-center py-[20px] 4xl:px-[20%]">{t('homepage.p8')}</p>
                 </div>
 
-                <div className="px-[10%] 4xl:px-[20%] py-[50px]">
-                    <div className="text-center">
+                <div className="mx-[10%] 4xl:mx-[20%] pt-[100px] pb-[50px]">
+                    <div className="text-center 4xl:px-[20%]">
                         <p className="text-[30px] text-center">{t('homepage.h10')}</p>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
 
-                    <div className="py-[30px]">
+                    <div className="py-[30px] 4xl:px-[20%] ">
                         <div className="py-[10px]">
                             <p className="font-bold py-2">{t('homepage.h11')}</p>
                             <ul class="list-disc pl-6 space-y-2 py-2">
@@ -237,23 +198,13 @@ function HomePage() {
                             </ul>
 
                         </div>
-                        <p className="py-[20px] text-center">
-                            {t('homepage.p15')}
-                        </p>
                     </div>
-                    <div
-                        className="flex transition-transform duration-500 ease-in-out"
-                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                    >
-                        <img src='/images/page_images/Plusma.png' alt="plusma" className="py-4 item-center xl:max-w-[1200px]"></img>
-                        <img src='/images/page_images/CO2.png' alt="co2" className="xl:max-w-[1200px]"></img>
-                        <img src='/images/page_images/Argon.png' alt="argon" className="xl:max-w-[1200px]"></img>
-                    </div>
+                    <SliderRilon />
                 </div>
 
-                <div className="relative overflow-hidden py-[50px]">
-                    <div className="px-[10%] 4xl:px-[20%]">
-                        <h1 className="text-[30px] text-center">
+                <div className="mx-[10%] 4xl:mx-[20%] relative overflow-hidden pt-[50px] pb-[100px]">
+                    <div className="text-center 4xl:px-[20%]">
+                        <h1 className="text-[30px]">
                             {t('homepage.h14')}
                         </h1>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
@@ -261,29 +212,29 @@ function HomePage() {
                             {t('homepage.p16')}
                         </p>
                     </div>
-                    <div
-                        className="flex transition-transform duration-500 ease-in-out pt-[20px]"
-                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                    >
-                        <img src="/images/page_images/Torch.png" alt="torch" className="w-[100%]"></img>
-                        <img src='/images/page_images/Equipment.png' alt="equipment" className="w-[100%]"></img>
-                        <img src='/images/page_images/Rotate.png' alt="rotate" className="w-[100%]"></img>
-                        <img src='/images/page_images/WP.png' alt="wp" className="w-[100%]"></img>
+                    <SliderJingweitip />
+
+                    <p className="py-[50px] text-center 4xl:px-[20%]">
+                        {t('homepage.p15')}
+                    </p>
+                </div>
+
+                <div className="text-center w-[100%] 4xl:px-[20%] py-[100px] flex justify-center md:justify-end md:items-center background2 bg-fixed bg-cover">
+                    <div className="bg-black w-[60%] md:w-[40%] py-[50px] px-[20px] ">
+                        <a href="https://anyflip.com/uggut/ubmb/" className="text-[30px] font-bold text-white hover:text-[#EA100F]">{t('homepage.h15')}</a>
+                        <div className="flex items-center justify-center pt-[20px]">
+                            <a href="https://anyflip.com/uggut/ubmb/">
+                                <img
+                                    src="/images/page_images/Book.png"
+                                    alt="book"
+                                    className="w-[350px] 2xl:w-[450px] border-4 border-transparent hover:border-red-500 transition-all duration-300"
+                                />
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div className="text-center w-[100%] 4xl:px-[20%] py-[50px] md:flex justify-center items-center">
-                    <div className="md:w-[60%] flex items-center justify-center">
-                        <a href="https://anyflip.com/uggut/ubmb/">
-                            <img src='/images/page_images/Book.png' alt="book" className="w-[350px] 2xl:w-[450px] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
-                        </a>
-                    </div>
-                    <div className="hidden bg-[#0079A9] rounded-l-xl w-[40%] md:flex items-center justify-center py-[100px] px-[20px]">
-                        <a href="https://anyflip.com/uggut/ubmb/" className="text-[30px] text-white hover:text-[#FFD600]">{t('homepage.h15')}</a>
-                    </div>
-                </div>
-
-                <div className="px-[10%] 4xl:px-[20%] text-center py-[50px]">
+                <div className="4xl:px-[20%] text-center py-[100px]">
                     <p className="py-10 font-bold text-[20px]">{t('homepage.h16')}</p>
                     <div className="text-[#E4403C] pb-8 text-[17px]">
                         <p>{t('homepage.p17')}</p>
@@ -294,6 +245,29 @@ function HomePage() {
                     <div className="">
                         <QRcodeComponent />
                     </div>
+
+                    <h1 className="pt-4 text-[30px]">
+                        {t('homepage.h4')}
+                    </h1>
+                    <div className="h-[4px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
+
+                    <div ref={section1Ref} className="flex justify-center items-center">
+                        <img src='/images/page_images/Line3pic.png' alt="line" className="py-4 item-center xl:max-w-[1200px]"></img>
+                    </div>
+
+
+                    <div className="pt-4 pb-14">
+                        <p className="text-[#FF0042] text-[20px] py-[20px]">{t('homepage.h6')}</p>
+                        <div className="flex justify-center items-center pt-[10px]">
+                            <img src='/images/page_images/QRcode.png' alt="qrcode" className="w-[200px]"></img>
+                        </div>
+                        <p className="text-[#FF0042] text-[20px] pt-[30px] py-[10px]">{t('homepage.h7')}</p>
+                        <a href="https://page.line.me/156vctty?openQrModal=true" className="flex justify-center items-center">
+                            <img src='/images/page_images/AddLine.png' alt="addline" className="w-[200px] xl:max-w-[1200px]"></img>
+                        </a>
+                    </div>
+
+
                 </div>
 
                 <div ref={section2Ref} className="">
@@ -305,7 +279,7 @@ function HomePage() {
                     <RecommendProductList />
                 </div>
 
-                <div className="bg-[#FFD600] md:flex px-[10%] 4xl:px-[20%] py-[50px] md:justify-between ">
+                <div className="bg-[#FFD600] md:flex px-[10%] 4xl:px-[20%] py-[100px] md:justify-between ">
                     <div className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden" >
                         <img src='/images/page_images/WeldingMC.png' alt="weldingMC" className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
                         <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h18')}</h1>
