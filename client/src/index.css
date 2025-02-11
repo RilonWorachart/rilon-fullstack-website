@@ -5,7 +5,7 @@
 
 
 .background {
-    background-image: url('../public/images/page_images/background.jpg');
+    background-image: url('../public/images/page_images/background12.JPG');
     background-size: cover;
     background-position: center;
   }
@@ -17,3 +17,8 @@
     background-position: center;
   }
 
+  .background3 {
+    background-image: url('../public/images/page_images/background3.jpg');
+    background-size: cover;
+    background-position: center;
+}

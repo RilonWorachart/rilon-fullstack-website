@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Footer from '../components/Footer'
 import CategorySearch from '../components/CategorySearch'
 import RecommendProductList from '../components/homepage/RecommendProductList'
@@ -24,11 +24,57 @@ function HomePage() {
     const section3Ref = useRef(null);
     const section4Ref = useRef(null);
     const { t } = useTranslation();
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [inView, setInView] = useState(false); // To track if the div is in the viewport
+    const divRef = useRef(null); // Reference to the div
 
     useEffect(() => {
         setSectionRefs([section1Ref.current, section2Ref.current, section3Ref.current, section4Ref.current]);
     }, [setSectionRefs]);
 
+    useEffect(() => {
+        // Store the ref value in a variable before observing it
+        const currentDivRef = divRef.current;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setInView(true); // Set inView to true when the component is in the viewport
+                    }
+                });
+            },
+            { threshold: 0.8 } // Trigger when 50% of the element is visible
+        );
+
+        if (currentDivRef) {
+            observer.observe(currentDivRef); // Observe the target div
+        }
+
+        return () => {
+            // Use the variable to ensure it's accessed correctly during cleanup
+            if (currentDivRef) {
+                observer.unobserve(currentDivRef); // Clean up observer on unmount
+            }
+        };
+    }, []); // Empty dependency array to set up observer once
+
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY); // Update the scroll position
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll); // Clean up event listener on unmount
+        };
+    }, []);
+
+
+    const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
 
     return (
         <>
@@ -107,25 +153,31 @@ function HomePage() {
                             </h2>
                         </div>
                         <div className="md:w-[40%] md:ml-[30px] mt-10 md:mt-0 flex justify-center items-center">
-                            <img src="/images/page_images/logo.png" alt="logo" className=" transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                            <img src="/images/page_images/logo.png" alt="logo" className=" transition-transform duration-300 ease-in-out transform "></img>
                         </div>
                     </div>
                 </div>
 
-                <div className="md:flex justify-between items-center bg-[#FFD600] px-[10%] 4xl:px-[20%] text-center py-[50px]">
-                    <div className="py-12 md:w-[30%]">
+                <div className="flex flex-col lg:flex-row justify-between items-center bg-[#FFD600] px-[10%] 4xl:px-[20%] text-center py-[50px]">
+                    <div className="py-12 lg:w-[30%]">
                         <h1 className="text-[28px]">DEALER</h1>
-                        <img src='/images/page_images/Dealer.jpg' alt="dealer" className="mt-4 mb-6 mx-auto rounded-[50%] object-right overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96  object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
+                            <img src='/images/page_images/Dealer.jpg' alt="dealer" className="h-full w-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        </div>
                         <p>{t('homepage.p3')}</p>
                     </div>
-                    <div className="py-12 md:w-[30%]">
+                    <div className="py-12 lg:w-[30%]">
                         <h1 className="text-[28px]">HIGHER EFFICIENCY</h1>
-                        <img src='/images/page_images/HighEfficiency.jpg' alt="efficiency" className="mt-4 mb-6 mx-auto rounded-[50%] object-center overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
+                            <img src='/images/page_images/HighEfficiency.jpg' alt="efficiency" className="h-full w-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        </div>
                         <p>{t('homepage.p4')}</p>
                     </div>
-                    <div className="py-12 md:w-[30%]">
+                    <div className="py-12 lg:w-[30%]">
                         <h1 className="text-[28px]" >WARANTY SERVICE</h1>
-                        <img src='/images/page_images/WarantyService.jpg' alt="service" className="mt-4 mb-6 mx-auto rounded-[50%]  overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 md:w-64 md:h-64 2xl:w-96 2xl:h-96 object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
+                            <img src='/images/page_images/WarantyService.jpg' alt="service" className="h-full w-full  object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                        </div>
                         <p>{t('homepage.p5')}</p>
                     </div>
                 </div>
@@ -181,7 +233,7 @@ function HomePage() {
                     </div>
 
                     <div className="py-[30px] 4xl:px-[20%] ">
-                        <div className="py-[10px]">
+                        <div ref={divRef} className="py-[10px]">
                             <p className="font-bold py-2 text-[#0079A9]">{t('homepage.h11')}</p>
                             <ul class="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p10')}</li>
@@ -260,19 +312,46 @@ function HomePage() {
                     <RecommendProductList />
                 </div>
 
-                <div className="bg-[#FFD600] md:flex px-[10%] 4xl:px-[20%] py-[100px] md:justify-between ">
-                    <div className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden" >
-                        <img src='/images/page_images/WeldingMC.png' alt="weldingMC" className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                <div ref={divRef} className="bg-cover bg-fixed bg-center background3 md:flex px-[10%] 4xl:px-[20%] py-[100px] md:justify-between">
+                    <div
+                        className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-300 ease-in-out"
+                        style={{
+                            transform: `translateX(-${100 - scrollEffect}%)`, // Move from off-screen to in-screen
+                        }}
+                    >
+                        <img
+                            src="/images/page_images/WeldingMC.png"
+                            alt="weldingMC"
+                            className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
+                        />
                         <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h18')}</h1>
                         <p className="px-4 pb-8">{t('homepage.p21')}</p>
                     </div>
-                    <div className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden">
-                        <img src='/images/page_images/TorchSerPana.png' alt="torchserpana" className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                    <div
+                        className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-300 ease-in-out"
+                        style={{
+                            transform: `translateX(-${100 - scrollEffect}%)`, // Move from off-screen to in-screen
+                        }}
+                    >
+                        <img
+                            src="/images/page_images/TorchSerPana.png"
+                            alt="torchserpana"
+                            className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
+                        />
                         <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h19')}</h1>
                         <p className="px-4 pb-8">{t('homepage.p22')}</p>
                     </div>
-                    <div className="bg-white md:w-[30%] overflow-hidden">
-                        <img src='/images/page_images/Robot.png' alt="robot" className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                    <div
+                        className="bg-white md:w-[30%] overflow-hidden transition-transform duration-300 ease-in-out"
+                        style={{
+                            transform: `translateX(-${100 - scrollEffect}%)`, // Move from off-screen to in-screen
+                        }}
+                    >
+                        <img
+                            src="/images/page_images/Robot.png"
+                            alt="robot"
+                            className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
+                        />
                         <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h20')}</h1>
                         <p className="px-4 pb-8">{t('homepage.p23')}</p>
                     </div>
