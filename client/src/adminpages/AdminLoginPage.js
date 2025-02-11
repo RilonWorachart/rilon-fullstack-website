@@ -66,7 +66,7 @@ function AdminLoginPage() {
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
           <h1 className="text-2xl font-semibold text-center text-[#333]">{t('admin.p1')}</h1>
           <div className="text-[#E2B22C] h-[3px] w-[60px] bg-[#0079A9] mx-auto my-2" />
-
+          <img src='/images/page_images/logo.png' className="w-[200px] mx-[auto] my-[20px]" alt="logo"></img>
           <form className="space-y-4" onSubmit={handleSubmit}>
 
             {/* First Name Input */}

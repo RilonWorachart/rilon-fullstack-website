@@ -3,22 +3,21 @@ import { useTranslation } from 'react-i18next';
 
 function QRcodeComponent() {
   const { t } = useTranslation();
-
-
+  
   return (
-    <div className="mx-[10%]  text-[#FF0000] text-center">
-      <p className="text-[20px] font-bold">
-        {t('qrcode.p1')}
-      </p>
-      <div className="flex justify-center items-center py-8">
-        <img src='/images/page_images/QRcode.png' className="w-[150px]" alt="qrcode"></img>
+    <div className="mx-[10%] text-center flex flex-col lg:flex-row justify-center items-center gap-x-[20px] pb-[40px]">
+      <div className="bg-[#0079A9] rounded-lg my-[10px] lg:my-[0px] lg:mx-[10px]">
+        <img src='/images/page_images/Line1.png' alt="line1" className="py-4 px-[auto] px-4"></img>
+        <p className="text-center text-white pb-4 text-[22px]">095-961-9901</p>
       </div>
-      <p className="font-bold text-[18px]">
-        {t('qrcode.p2')}
-      </p>
-      <a href="https://page.line.me/156vctty?openQrModal=true" className="flex justify-center items-center py-4">
-        <img src='/images/page_images/Addline.png' className="w-[200px]" alt="addline"></img>
-      </a>
+      <div className="bg-[#E2B22C] rounded-lg my-[10px] lg:my-[0px] lg:mx-[10px]">
+        <img src='/images/page_images/Line2.png' alt="line2" className="py-4 px-[auto] px-4"></img>
+        <p className="text-center text-white pb-4 text-[22px]">089-660-9609</p>
+      </div>
+      <div className="bg-[#0079A9] rounded-lg my-[10px] lg:my-[0px] lg:mx-[10px]">
+        <img src='/images/page_images/Line3.png' alt="line3" className="py-4 px-[auto] px-4"></img>
+        <p className="text-center text-white pb-4 text-[22px]">081-694-5000</p>
+      </div>
     </div>
   )
 }

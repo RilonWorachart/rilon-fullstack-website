@@ -41,8 +41,11 @@ function HomePage() {
                     <div className="py-1 flex flex-wrap">
                         <FaPhoneAlt className="mt-[2px] mr-4" />
                         <p className="text-[#E2B22C] hover:text-[#0079A9]">08-1694-5000</p>,
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;08-1697-7000</p>,
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;09-5961-9901 </p>
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;08-1697-7000 (office)</p>,
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;09-5961-9901 </p>,
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;098-426-6953</p>,
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;089-660-9609</p>,
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;094-695-5599</p>
                     </div>
                     <div className=" py-1 flex flex-wrap">
                         <MdMail className="mt-[2px] mr-4" />
@@ -156,43 +159,49 @@ function HomePage() {
                 </div>
 
                 <div className="px-[10%] 4xl:px-[20%] py-[100px] bg-[#FFD600]">
-                    <div className="pb-4 text-center">
+                    <div className="pb-[40px] text-center">
                         <h1 className="text-[34px]">
                             {t('homepage.h9')}
                         </h1>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
+                    <img src='/images/page_images/logo-w.png' className="w-[300px] mx-[auto]" alt="logo"></img>
                     <p className="text-center py-[20px] 4xl:px-[20%]">{t('homepage.p8')}</p>
+                    <div className="lg:flex lg:justify-center lg:items-center lg:gap-x-[30px] pt-[20px]">
+                        <img src='/images/page_images/Rilonlogo.png' className="w-[300px] mx-[auto] lg:mx-[0px] lg:pb-[0px] pb-[40px] " alt="logo"></img>
+                        <img src='/images/page_images/JWInverterlogo.png' className="w-[300px] mx-[auto] lg:mx-[0px] lg:pb-[0px] pb-[60px] " alt="logo"></img>
+                        <img src='/images/page_images/Jingweitiplogo.png' className="w-[300px] mx-[auto] lg:mx-[0px]" alt="logo"></img>
+                    </div>
                 </div>
 
                 <div className="mx-[10%] 4xl:mx-[20%] pt-[100px] pb-[50px]">
                     <div className="text-center 4xl:px-[20%]">
-                        <p className="text-[30px] text-center">{t('homepage.h10')}</p>
+                        <p className="text-[30px] text-center ">{t('homepage.h10')}</p>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
 
                     <div className="py-[30px] 4xl:px-[20%] ">
                         <div className="py-[10px]">
-                            <p className="font-bold py-2">{t('homepage.h11')}</p>
+                            <p className="font-bold py-2 text-[#0079A9]">{t('homepage.h11')}</p>
                             <ul class="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p10')}</li>
                                 <li>{t('homepage.p11')}</li>
                             </ul>
                         </div>
                         <div className="py-[10px]">
-                            <p className="font-bold py-2">{t('homepage.p9')}</p>
+                            <p className="font-bold py-2 text-[#0079A9]">{t('homepage.p9')}</p>
                             <ul class="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p12')}</li>
                             </ul>
                         </div>
                         <div className="py-[10px]">
-                            <p className="font-bold py-2">{t('homepage.h12')}</p>
+                            <p className="font-bold py-2 text-[#0079A9]">{t('homepage.h12')}</p>
                             <ul class="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p13')}</li>
                             </ul>
                         </div>
                         <div className="py-[10px]">
-                            <p className="font-bold py-2">{t('homepage.h13')}</p>
+                            <p className="font-bold py-2 text-[#0079A9]">{t('homepage.h13')}</p>
                             <ul class="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p14')}</li>
                             </ul>
@@ -208,13 +217,12 @@ function HomePage() {
                             {t('homepage.h14')}
                         </h1>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
-                        <p className="py-[30px]">
+                        <p className="py-[40px]">
                             {t('homepage.p16')}
                         </p>
                     </div>
                     <SliderJingweitip />
-
-                    <p className="py-[50px] text-center 4xl:px-[20%]">
+                    <p className="pt-[60px] text-center 4xl:px-[20%]">
                         {t('homepage.p15')}
                     </p>
                 </div>
@@ -235,39 +243,12 @@ function HomePage() {
                 </div>
 
                 <div className="4xl:px-[20%] text-center py-[100px]">
-                    <p className="py-10 font-bold text-[20px]">{t('homepage.h16')}</p>
-                    <div className="text-[#E4403C] pb-8 text-[17px]">
-                        <p>{t('homepage.p17')}</p>
-                        <p>{t('homepage.p18')}</p>
-                        <p>{t('homepage.p19')}</p>
-                        <p>{t('homepage.p20')}</p>
-                    </div>
-                    <div className="">
-                        <QRcodeComponent />
-                    </div>
-
-                    <h1 className="pt-4 text-[30px]">
+                    <h1 className="text-[30px]">
                         {t('homepage.h4')}
                     </h1>
-                    <div className="h-[4px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
+                    <div ref={section1Ref} className="h-[4px] w-[60px] text-center mx-[auto] bg-[#0079A9] mb-[40px]" />
 
-                    <div ref={section1Ref} className="flex justify-center items-center">
-                        <img src='/images/page_images/Line3pic.png' alt="line" className="py-4 item-center xl:max-w-[1200px]"></img>
-                    </div>
-
-
-                    <div className="pt-4 pb-14">
-                        <p className="text-[#FF0042] text-[20px] py-[20px]">{t('homepage.h6')}</p>
-                        <div className="flex justify-center items-center pt-[10px]">
-                            <img src='/images/page_images/QRcode.png' alt="qrcode" className="w-[200px]"></img>
-                        </div>
-                        <p className="text-[#FF0042] text-[20px] pt-[30px] py-[10px]">{t('homepage.h7')}</p>
-                        <a href="https://page.line.me/156vctty?openQrModal=true" className="flex justify-center items-center">
-                            <img src='/images/page_images/AddLine.png' alt="addline" className="w-[200px] xl:max-w-[1200px]"></img>
-                        </a>
-                    </div>
-
-
+                    <QRcodeComponent />
                 </div>
 
                 <div ref={section2Ref} className="">

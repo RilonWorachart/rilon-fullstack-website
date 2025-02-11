@@ -106,15 +106,6 @@ function CategoryDetail() {
                 <ItemListbyCategory />
                 <div className="pt-[20px]">
                     <QRcodeComponent />
-                    <div className="text-center">
-                        <p className="pt-10 pb-2 font-bold text-[16px] text-[#FF0000]">{t('itempage.p10')}</p>
-                        <div className="pb-8 text-[17px] font-semibold">
-                            <p className="py-2">08-1694-5000 , 098-426-6953 </p>
-                            <p className="py-2">095-961-9901 , 089-660-9609</p>
-                            <p className="py-2">094-695-5599</p>
-                            <p className="py-2">081-697-7000 office</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </>
