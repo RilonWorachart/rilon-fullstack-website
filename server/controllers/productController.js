@@ -513,3 +513,100 @@ export const getallCatelogProduct = async (req, res, next) => {
 
 
 
+
+export const deleteProductPicture2 = async (req, res, next) => {
+    const id = req.query.id;
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    try {
+
+        const [product] = await promisePool.execute(
+            "SELECT * FROM products WHERE ID = ?",
+            [id]
+        );
+
+        if (product.length === 0) {
+            return res.json({ status: "error", message: "Product not found" });
+        }
+
+        const productData = product[0];
+
+        if (productData.picture_2) {
+            const picture_2_Path = path.join(__dirname, '..', 'public', productData.picture_2); // Adjust path as needed
+
+            // Check if the image file exists and delete it
+            fs.unlink(picture_2_Path, (err) => {
+                if (err) {
+                    console.error("Error deleting picture_2:", err);
+                } else {
+                    console.log("picture_2 deleted successfully");
+                }
+            });
+        }
+
+        // Query to get the product by ID
+        const [rows] = await promisePool.execute(
+            "UPDATE products SET picture_2 = NULL WHERE ID = ?",
+            [id]
+        );
+
+        if (rows.length === 0) {
+            return res.json({ status: "error", message: "Product Picture 2 not found" });
+        }
+
+        res.json({ status: "ok", message: "Product Picture 2 has been delete successfully" });
+    } catch (err) {
+        res.json({ status: "error", message: err.message });
+    }
+};
+
+
+
+export const deleteProductModel = async (req, res, next) => {
+    const id = req.query.id;
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    try {
+
+        const [product] = await promisePool.execute(
+            "SELECT * FROM products WHERE ID = ?",
+            [id]
+        );
+
+        if (product.length === 0) {
+            return res.json({ status: "error", message: "Product not found" });
+        }
+
+        const productData = product[0];
+
+
+        if (productData.model) {
+            const model_Path = path.join(__dirname, '..', 'public', productData.model); // Adjust path as needed
+
+            // Check if the image file exists and delete it
+            fs.unlink(model_Path, (err) => {
+                if (err) {
+                    console.error("Error deleting Model:", err);
+                } else {
+                    console.log("Model deleted successfully");
+                }
+            });
+        }
+
+        // Query to get the product by ID
+        const [rows] = await promisePool.execute(
+            "UPDATE products SET model = NULL WHERE ID = ?",
+            [id]
+        );
+
+        if (rows.length === 0) {
+            return res.json({ status: "error", message: "Product Model not found" });
+        }
+
+        res.json({ status: "ok", message: "Product Model has been delete successfully" });
+    } catch (err) {
+        res.json({ status: "error", message: err.message });
+    }
+};

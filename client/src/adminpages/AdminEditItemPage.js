@@ -5,6 +5,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
 import ModelPreview from '../components/ModelPreview';
+import { FaMinusSquare } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function AdminEditItemPage() {
     const { t } = useTranslation();
@@ -13,6 +15,8 @@ function AdminEditItemPage() {
     const [categoryData, setCategoryData] = useState([]);
     const [brandData, setBrandData] = useState([]);
     const [searchwordData, setSearchwordData] = useState([]);
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     const fetchAllBrandData = async () => {
         try {
@@ -315,6 +319,90 @@ function AdminEditItemPage() {
     }, [formData]);  // Trigger effect whenever formData changes
 
 
+    const handleDeletePicture2 = () => {
+        axios
+            .delete(`${process.env.REACT_APP_API}/deleteproductpicture2?id=${id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                if (response.data.status === "ok") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Deleted picture 2 successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    });
+                    setTimeout(() => {
+                        navigate(0);
+                    }, 1000);
+                }
+            })
+            .catch((error) => {
+                console.error("Error deleting product picture 2", error.response ? error.response.data : error);
+                if (error.response && error.response.status === 401) {
+                    Swal.fire({
+                        title: 'Unauthorized!',
+                        text: 'Please login to continue.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
+    }
+
+
+    const handleDeleteModel = () => {
+        axios
+            .delete(`${process.env.REACT_APP_API}/deleteproductmodel?id=${id}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                if (response.data.status === "ok") {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Deleted Model successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    });
+                    setTimeout(() => {
+                        navigate(0);
+                    }, 1000);
+                }
+            })
+            .catch((error) => {
+                console.error("Error deleting product Model", error.response ? error.response.data : error);
+                if (error.response && error.response.status === 401) {
+                    Swal.fire({
+                        title: 'Unauthorized!',
+                        text: 'Please login to continue.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
+    }
+
+
     return (
         <div className="min-h-screen font-plex-sans-thai">
             <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
@@ -417,7 +505,7 @@ function AdminEditItemPage() {
                             </div>
 
                             <div className="pt-4">
-                                <label htmlFor="picture_1" className="font-semibold py-1">{t('admin.p41')}</label><br />
+                                <label htmlFor="picture_1" className="font-semibold py-1">{t('admin.p41')}<span className="text-[#DC3545]">*</span></label><br />
                                 <input
                                     type="file"
                                     id="picture_1"
@@ -425,6 +513,7 @@ function AdminEditItemPage() {
                                     onChange={handleChange}
                                     className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                                 />
+
                                 {formData.picture_1 && (typeof formData.picture_1 === 'string' || formData.picture_1 instanceof File) && (
                                     <div className="mt-4 flex justify-center">
                                         <img
@@ -438,13 +527,18 @@ function AdminEditItemPage() {
                             </div>
                             <div className="pt-4">
                                 <label htmlFor="model" className="font-semibold py-1">{t('admin.p59')}</label><br />
-                                <input
-                                    type="file"
-                                    id="model"
-                                    name="model"
-                                    onChange={handleChange}
-                                    className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
-                                />
+                                <div className="flex justify-center items-center">
+                                    <input
+                                        type="file"
+                                        id="model"
+                                        name="model"
+                                        onChange={handleChange}
+                                        className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                                    />
+                                    <div className="text-[#DC3545] hover:text-[#872325] ml-[10px] cursor-pointer" onClick={() => handleDeleteModel()}>
+                                        <FaMinusSquare className="w-[30px] h-[30px]" />
+                                    </div>
+                                </div>
                                 {formData.model && (typeof formData.model === 'string' || formData.model instanceof File) && (
                                     <div className="mt-4 flex justify-center">
                                         <ModelPreview modelPath={formData.model instanceof File ? URL.createObjectURL(formData.model) : `${process.env.REACT_APP_API}${formData.model}`} />
@@ -531,13 +625,18 @@ function AdminEditItemPage() {
 
                             <div className="pt-4">
                                 <label htmlFor="picture_2" className="font-semibold py-1">{t('admin.p42')}</label><br />
-                                <input
-                                    type="file"
-                                    id="picture_2"
-                                    name="picture_2"
-                                    onChange={handleChange}
-                                    className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
-                                />
+                                <div className="flex items-center justify-between">
+                                    <input
+                                        type="file"
+                                        id="picture_2"
+                                        name="picture_2"
+                                        onChange={handleChange}
+                                        className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                                    />
+                                    <div className="text-[#DC3545] hover:text-[#872325] ml-[10px] cursor-pointer" onClick={() => handleDeletePicture2()}>
+                                        <FaMinusSquare className="w-[30px] h-[30px]" />
+                                    </div>
+                                </div>
                                 {formData.picture_2 && (typeof formData.picture_2 === 'string' || formData.picture_2 instanceof File) && (
                                     <div className="mt-4 flex justify-center">
                                         <img

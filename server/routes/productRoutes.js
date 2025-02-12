@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { createProduct, deleteProduct, editProduct, getproductbyId, getproductbyCategory, getallProduct, getFilteredProducts, getallCatelogProduct } from '../controllers/productController.js';
+import { createProduct, deleteProduct, editProduct, getproductbyId, getproductbyCategory, getallProduct, getFilteredProducts, getallCatelogProduct, deleteProductModel, deleteProductPicture2 } from '../controllers/productController.js';
 import { authenmiddleware } from '../controllers/authController.js';
 import { fileURLToPath } from 'url';
 
@@ -55,7 +55,7 @@ const upload = multer({
     storage,
     fileFilter,
     limits: {
-        fileSize: 20 * 1024 * 1024 // 3MB
+        fileSize: 6 * 1024 * 1024 // 6MB
     }
 });
 
@@ -75,12 +75,14 @@ router.put('/editproduct',upload.fields([
 ]), authenmiddleware, editProduct);
 
 
-router.delete('/deleteproduct', authenmiddleware, deleteProduct);
 router.get('/getallproduct', getallProduct);
 router.get('/getproductbyid', getproductbyId);
 router.get('/getproductbycategory', getproductbyCategory);
 router.get('/getfilterproduct', getFilteredProducts)
 router.get('/getallcatelog', getallCatelogProduct)
+router.delete('/deleteproduct', authenmiddleware, deleteProduct);
+router.delete('/deleteproductpicture2',authenmiddleware,deleteProductPicture2);
+router.delete('/deleteproductmodel',authenmiddleware,deleteProductModel);
 
 // Export the router
 export default router;
