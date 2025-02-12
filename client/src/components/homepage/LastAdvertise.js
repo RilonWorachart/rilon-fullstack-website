@@ -58,7 +58,7 @@ function LastAdvertise() {
             <div
                 className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out"
                 style={{
-                    transform: `${isFlexColumn ? `translateY(-${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
+                    transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(${100 - scrollEffect}%)`}`
                 }}
             >
                 <img
@@ -72,7 +72,7 @@ function LastAdvertise() {
             <div
                 className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out"
                 style={{
-                    transform: `${isFlexColumn ? `translateY(-${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
+                    transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(${100 - scrollEffect}%)`}`
                 }}
             >
                 <img
@@ -86,7 +86,7 @@ function LastAdvertise() {
             <div
                 className="bg-white md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out"
                 style={{
-                    transform: `${isFlexColumn ? `translateY(-${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
+                    transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(${100 - scrollEffect}%)`}`
                 }}
             >
                 <img
