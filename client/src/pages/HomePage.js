@@ -15,6 +15,7 @@ import SliderRilon from '../components/homepage/SliderRilon';
 import SliderJingweitip from '../components/homepage/SliderJingweitip';
 import About from '../components/homepage/About';
 import Service from '../components/homepage/Service';
+import Company from '../components/homepage/Company';
 import { FaFacebookF, FaGlobe, FaInstagram, FaLine, FaPhoneAlt, FaYoutube, FaMapMarkerAlt } from "react-icons/fa";
 import { MdBusinessCenter, MdMail } from "react-icons/md";
 import { SiShopee } from "react-icons/si";
@@ -107,26 +108,7 @@ function HomePage() {
 
                 <Dealer />
 
-                <div className="px-[10%] 4xl:px-[20%] py-[100px] bg-[#FFD600]">
-                    <div className="pb-[40px] text-center">
-                        <h1 className="text-[34px]">
-                            {t('homepage.h9')}
-                        </h1>
-                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
-                    </div>
-                    <img src='/images/page_images/logo-w.png' className="w-[300px] mx-[auto]" alt="logo" />
-                    <p className="text-center py-[20px] 4xl:px-[20%]">{t('homepage.p8')}</p>
-                    <div className="pt-[20px] mx-[auto] overflow-hidden w-[200px] lg:w-[600px]"> {/* Adjusted margin */}
-                        <div className="images-wrapper">
-                            <img src='/images/page_images/Rilonlogo.png' className="image" alt="logo" />
-                            <img src='/images/page_images/JWInverterlogo.png' className="image" alt="logo" />
-                            <img src='/images/page_images/Jingweitiplogo.png' className="image" alt="logo" />
-                            <img src='/images/page_images/Rilonlogo.png' className="image" alt="logo" />
-                            <img src='/images/page_images/JWInverterlogo.png' className="image" alt="logo" />
-                            <img src='/images/page_images/Jingweitiplogo.png' className="image" alt="logo" />
-                        </div>
-                    </div>
-                </div>
+                <Company />
 
                 <About />
 
