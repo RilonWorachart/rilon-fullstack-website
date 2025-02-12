@@ -97,19 +97,20 @@ function HomePage() {
                     </div >
                 </div >
 
-                <div ref={section2Ref}>
-                    <CategoryList />
-                    <CategorySearch />
-                </div>
+                <div ref={section2Ref}></div>
+                <CategoryList />
+                
+                <CategorySearch />
 
-                <div ref={section3Ref}>
-                    <RecommendProductList />
-                </div>
+
+                <div ref={section3Ref}></div>
+                <RecommendProductList />
 
                 <Dealer />
 
                 <Company />
 
+                <div ref={section1Ref}></div>
                 <About />
 
                 <Riloninverter />
@@ -175,7 +176,7 @@ function HomePage() {
                     <h1 className="text-[30px]">
                         {t('homepage.h4')}
                     </h1>
-                    <div ref={section1Ref} className="h-[4px] w-[60px] text-center mx-[auto] bg-[#0079A9] mb-[40px]" />
+                    <div className="h-[4px] w-[60px] text-center mx-[auto] bg-[#0079A9] mb-[40px]" />
 
                     <QRcodeComponent />
                 </div>

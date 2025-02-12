@@ -54,6 +54,8 @@ function About() {
 
 
     const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
+
+    
     return (
         <div ref={divRef} className="px-[10%] py-[100px] text-center overflow-hidden ">
             <div className="2xl:flex 2xl:items-center 2xl:justify-center 2xl:gap-x-[100px]"
