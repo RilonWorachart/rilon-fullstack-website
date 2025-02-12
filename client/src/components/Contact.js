@@ -15,7 +15,7 @@ function Contact() {
             <div className="">
                 <div className="py-3 flex flex-wrap">
                     <FaBuilding className="mt-[2px] mr-4" />
-                    <p>{t('contact.p1')}</p>
+                    <p className="text-[#0079A9]">{t('contact.p1')}</p>
                 </div>
                 <div className="py-3 flex flex-wrap">
                     <FaPhoneAlt className="mt-[2px] mr-4" />
@@ -50,7 +50,7 @@ function Contact() {
                 </div>
                 <div className="py-3 flex flex-wrap">
                     <FaClock className="mt-[2px] mr-4" />
-                    <p>{t('contact.p2')}</p>
+                    <p className="text-[#0079A9]">{t('contact.p2')}</p>
                 </div>
                 <div className="py-3 flex flex-wrap">
                     <FaMapMarkerAlt className="mt-[2px] mr-4" />

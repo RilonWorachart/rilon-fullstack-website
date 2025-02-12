@@ -14,7 +14,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
   return (
     <div
-      className={`shadow-md z-0 bg-white ${itemType === "type2" ? "my-2 sm:flex sm:h-[275px] h-[470px]" : "flex flex-col h-[470px]"}`}
+      className={`shadow-md z-0 bg-white ${itemType === "type2" ? "my-2 sm:flex sm:h-[275px] h-[470px]" : "flex flex-col h-[470px] max-w-[350px] mx-[auto] sm:mx-[0px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >

@@ -17,6 +17,8 @@ import { MdBusinessCenter, MdMail } from "react-icons/md";
 import { useTranslation } from 'react-i18next';
 import { SiShopee } from "react-icons/si";
 import { BsBagHeartFill } from "react-icons/bs";
+import { BiSolidQuoteAltLeft } from "react-icons/bi";
+import { BiSolidQuoteAltRight } from "react-icons/bi";
 
 
 
@@ -60,7 +62,7 @@ function HomePage() {
                     </div>
                     <div className="py-1 flex flex-wrap">
                         <FaMapMarkerAlt className="mt-[2px] mr-4" />
-                        <p>{t('homepage.address')}</p>
+                        <p className="text-[#0079A9]">{t('homepage.address')}</p>
                     </div>
 
                     <div className="py-2 pr-2 flex text-[16px] ">
@@ -105,22 +107,24 @@ function HomePage() {
 
                 <div className="px-[10%] 4xl:px-[20%] text-center py-[100px] background bg-fixed bg-cover">
                     <div className="pb-[50px]">
-                        <h1 className="text-[34px] text-[#FFD600]">
+                        <h1 className="text-[34px] text-[#F4D016]">
                             {t('homepage.h2')}
                         </h1>
                         <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
                     <div className="md:flex md:items-center">
-                        <div className="text-[#E2B22C] backdrop-blur-sm bg-[#EEE185]/10 z-0 py-4 px-[20px] my-[auto] md:w-[60%]">
+                        <div className="text-white backdrop-blur-sm bg-[#EEE185]/10 z-0 py-4 px-[20px] my-[auto] md:w-[60%]">
                             <h1 className="text-[34px] py-6 ">
                                 {t('homepage.h3')}
                             </h1>
-                            <p className="text-[22px] text-[#F4D016] py-2">
+                            <p className="text-[22px] text-white py-2">
                                 {t('homepage.p1')}
                             </p>
-                            <h2 className="text-[24px] text-[#F4D016] py-6 font-bold ">
-                                {t('homepage.p2')}
-                            </h2>
+                            <div className="text-[24px] text-[#F4D016] py-6 font-bold ">
+                                <BiSolidQuoteAltLeft className="mx-[auto]"/>
+                                <p className="py-[20px]">{t('homepage.p2')}</p>
+                                <BiSolidQuoteAltRight className="mx-[auto]"/>
+                            </div>
                         </div>
                         <div className="md:w-[40%] md:ml-[30px] mt-10 md:mt-0 flex justify-center items-center">
                             <img src="/images/page_images/logo.png" alt="logo" className=" transition-transform duration-300 ease-in-out transform "></img>
@@ -151,11 +155,15 @@ function HomePage() {
                                 {t('homepage.h5')}
                             </h1>
                             <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
-                            <p className='py-[40px]'>
-                                {t('homepage.p6')}
-                            </p>
+
+                            <div className='py-[40px]'>
+                                <BiSolidQuoteAltLeft className="text-[#E2B22C] text-[36px] mx-[auto]"/>
+                                <p className="py-[20px]">{t('homepage.p6')}</p>
+                                <BiSolidQuoteAltRight className="text-[#E2B22C] text-[36px] mx-[auto]" />
+                            </div>
+
                         </div>
-                        <YouTubeEmbed className="2xl:w-[40%]"/>
+                        <YouTubeEmbed className="2xl:w-[40%]" />
                     </div>
                 </div>
 
@@ -267,7 +275,7 @@ function HomePage() {
                     <div className="xl:w-[50%] px-[10%] py-[50px] xl:p-[0%]">
                         <div className="py-3 flex flex-wrap">
                             <MdBusinessCenter className="mt-[2px] mr-4" />
-                            <p>{t('homepage.p24')}</p>
+                            <p className="text-[#0079A9]">{t('homepage.p24')}</p>
                         </div>
                         <Contact />
                     </div>

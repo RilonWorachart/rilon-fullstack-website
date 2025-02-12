@@ -217,11 +217,11 @@ function AdminBrandPage() {
                 <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
                     <p className="py-1">
                         <Link to="/">
-                            <span className="hover:text-[#00007E]">{t('categorypage.p1')}</span>
+                            <span className="hover:text-[#EEE185]">{t('categorypage.p1')}</span>
                         </Link>
                         <span> » </span>
                         <Link to="/adminpanel">
-                            <span className="hover:text-[#00007E]">{t('admin.p5')}</span>
+                            <span className="hover:text-[#EEE185]">{t('admin.p5')}</span>
                         </Link>
                         <span> » </span>
                         <span className="">{t('admin.p55')}</span>

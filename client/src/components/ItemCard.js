@@ -68,7 +68,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
 
   return (
     <div
-      className={`shadow-md relative z-0 bg-white ${itemType === "type2" ? "sm:flex my-2 sm:h-[275px] h-[470px]" : "h-[470px]"}`}
+      className={`shadow-md relative z-0 bg-white ${itemType === "type2" ? "sm:flex my-2 sm:h-[275px] h-[470px]" : "h-[470px] max-w-[350px] mx-[auto] sm:mx-[0px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
