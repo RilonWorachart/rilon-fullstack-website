@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Footer from '../components/Footer'
 import CategorySearch from '../components/CategorySearch'
 import RecommendProductList from '../components/homepage/RecommendProductList'
@@ -6,15 +6,18 @@ import YouTubeEmbed from '../components/homepage/YoutubeEmbed'
 import Contact from '../components/Contact'
 import QRcodeComponent from '../components/QRcodeComponent'
 import CategoryList from '../components/homepage/CategoryList'
+import LastAdvertise from '../components/homepage/LastAdvertise'
+import Ebook from '../components/homepage/Ebook'
 import { useScroll } from '../components/header/ScrollContext';
+import SliderTop from '../components/homepage/SliderTop';
+import SliderRilon from '../components/homepage/SliderRilon';
+import SliderJingweitip from '../components/homepage/SliderJingweitip';
 import { FaFacebookF, FaGlobe, FaInstagram, FaLine, FaPhoneAlt, FaYoutube, FaMapMarkerAlt } from "react-icons/fa";
 import { MdBusinessCenter, MdMail } from "react-icons/md";
 import { useTranslation } from 'react-i18next';
 import { SiShopee } from "react-icons/si";
 import { BsBagHeartFill } from "react-icons/bs";
-import SliderTop from '../components/homepage/SliderTop';
-import SliderRilon from '../components/homepage/SliderRilon';
-import SliderJingweitip from '../components/homepage/SliderJingweitip';
+
 
 
 function HomePage() {
@@ -24,64 +27,20 @@ function HomePage() {
     const section3Ref = useRef(null);
     const section4Ref = useRef(null);
     const { t } = useTranslation();
-    const [scrollPosition, setScrollPosition] = useState(0);
-    const [inView, setInView] = useState(false); // To track if the div is in the viewport
-    const divRef = useRef(null); // Reference to the div
+
 
     useEffect(() => {
         setSectionRefs([section1Ref.current, section2Ref.current, section3Ref.current, section4Ref.current]);
     }, [setSectionRefs]);
 
-    useEffect(() => {
-        // Store the ref value in a variable before observing it
-        const currentDivRef = divRef.current;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setInView(true); // Set inView to true when the component is in the viewport
-                    }
-                });
-            },
-            { threshold: 0.8 } // Trigger when 50% of the element is visible
-        );
-
-        if (currentDivRef) {
-            observer.observe(currentDivRef); // Observe the target div
-        }
-
-        return () => {
-            // Use the variable to ensure it's accessed correctly during cleanup
-            if (currentDivRef) {
-                observer.unobserve(currentDivRef); // Clean up observer on unmount
-            }
-        };
-    }, []); // Empty dependency array to set up observer once
-
-
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrollPosition(window.scrollY); // Update the scroll position
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll); // Clean up event listener on unmount
-        };
-    }, []);
-
-
-    const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
 
     return (
         <>
             <div className="min-h-screen font-plex-sans-thai ">
                 <SliderTop />
-                <div className="px-[10%] 4xl:px-[20%] py-[20px] text-center text-white bg-[#FFD600]">
-                    <h1 className="text-[34px] text-[#0079A9]">{t('homepage.h1')}</h1>
+                <div className="px-[10%] 4xl:px-[20%] py-[20px] text-center text-white bg-[#0079A9]">
+                    <h1 className="text-[34px] text-white">{t('homepage.h1')}</h1>
+                    <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#E2B22C]" />
                 </div>
                 <div className="px-[10%] 4xl:px-[20%] py-[50px] aligns-center justify-center  ">
                     <div className="py-1 flex flex-wrap">
@@ -133,6 +92,17 @@ function HomePage() {
                     </div >
                 </div >
 
+                <div ref={section2Ref}>
+                    <CategoryList />
+                    <CategorySearch />
+                </div>
+
+
+                <div ref={section3Ref}>
+                    <RecommendProductList />
+                </div>
+
+
                 <div className="px-[10%] 4xl:px-[20%] text-center py-[100px] background bg-fixed bg-cover">
                     <div className="pb-[50px]">
                         <h1 className="text-[34px] text-[#FFD600]">
@@ -140,7 +110,7 @@ function HomePage() {
                         </h1>
                         <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
                     </div>
-                    <div className="md:flex">
+                    <div className="md:flex md:items-center">
                         <div className="text-[#E2B22C] backdrop-blur-sm bg-[#EEE185]/10 z-0 py-4 px-[20px] my-[auto] md:w-[60%]">
                             <h1 className="text-[34px] py-6 ">
                                 {t('homepage.h3')}
@@ -155,6 +125,51 @@ function HomePage() {
                         <div className="md:w-[40%] md:ml-[30px] mt-10 md:mt-0 flex justify-center items-center">
                             <img src="/images/page_images/logo.png" alt="logo" className=" transition-transform duration-300 ease-in-out transform "></img>
                         </div>
+                    </div>
+                </div>
+
+                <div className="px-[10%] 4xl:px-[20%] py-[100px] bg-[#FFD600]">
+                    <div className="pb-[40px] text-center">
+                        <h1 className="text-[34px]">
+                            {t('homepage.h9')}
+                        </h1>
+                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
+                    </div>
+                    <img src='/images/page_images/logo-w.png' className="w-[300px] mx-[auto]" alt="logo"></img>
+                    <p className="text-center py-[20px] 4xl:px-[20%]">{t('homepage.p8')}</p>
+                    <div className="lg:flex lg:justify-center lg:items-center lg:gap-x-[30px] pt-[20px]">
+                        <img src='/images/page_images/Rilonlogo.png' className="w-[300px] mx-[auto] lg:mx-[0px] lg:pb-[0px] pb-[40px] " alt="logo"></img>
+                        <img src='/images/page_images/JWInverterlogo.png' className="w-[300px] mx-[auto] lg:mx-[0px] lg:pb-[0px] pb-[60px] " alt="logo"></img>
+                        <img src='/images/page_images/Jingweitiplogo.png' className="w-[300px] mx-[auto] lg:mx-[0px]" alt="logo"></img>
+                    </div>
+                </div>
+
+                <div className="px-[10%] py-[100px] text-center ">
+                    <div className="2xl:flex 2xl:items-center 2xl:justify-center 2xl:gap-x-[100px]">
+                        <div className="2xl:w-[40%]">
+                            <h1 className="text-[30px]">
+                                {t('homepage.h5')}
+                            </h1>
+                            <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
+                            <p className='py-[40px]'>
+                                {t('homepage.p6')}
+                            </p>
+                        </div>
+                        <YouTubeEmbed className="2xl:w-[40%]"/>
+                    </div>
+                </div>
+
+                <div className="px-[10%] 4xl:px-[20%] py-[70px] bg-[#0079A9] md:flex md:justify-between md:items-center">
+                    <div className="md:w-[50%] px-4">
+                        <h1 className="py-6 text-[30px] text-center text-[#FFD600] font-bold">
+                            {t('homepage.h8')}
+                        </h1>
+                        <p className="py-4 text-center text-white">
+                            {t('homepage.p7')}
+                        </p>
+                    </div>
+                    <div className="md:w-[47%]">
+                        <img src='/images/page_images/RilonTH02.png' alt="yellowrilon"></img>
                     </div>
                 </div>
 
@@ -182,50 +197,6 @@ function HomePage() {
                     </div>
                 </div>
 
-                <div className="px-[10%] 4xl:px-[20%] py-[100px] text-center ">
-                    <div>
-                        <h1 className="text-[30px]">
-                            {t('homepage.h5')}
-                        </h1>
-                        <div className="h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
-                        <p className='py-[40px] 4xl:px-[20%]'>
-                            {t('homepage.p6')}
-                        </p>
-                        <YouTubeEmbed />
-                    </div>
-                </div>
-
-
-                <div className="px-[10%] 4xl:px-[20%] py-[70px] bg-[#0079A9] md:flex md:justify-between md:items-center">
-                    <div className="md:w-[50%] px-4">
-                        <h1 className="py-6 text-[30px] text-center text-[#FFD600] font-bold">
-                            {t('homepage.h8')}
-                        </h1>
-                        <p className="py-4 text-center text-white">
-                            {t('homepage.p7')}
-                        </p>
-                    </div>
-                    <div className="md:w-[47%]">
-                        <img src='/images/page_images/RilonTH02.png' alt="yellowrilon"></img>
-                    </div>
-                </div>
-
-                <div className="px-[10%] 4xl:px-[20%] py-[100px] bg-[#FFD600]">
-                    <div className="pb-[40px] text-center">
-                        <h1 className="text-[34px]">
-                            {t('homepage.h9')}
-                        </h1>
-                        <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />
-                    </div>
-                    <img src='/images/page_images/logo-w.png' className="w-[300px] mx-[auto]" alt="logo"></img>
-                    <p className="text-center py-[20px] 4xl:px-[20%]">{t('homepage.p8')}</p>
-                    <div className="lg:flex lg:justify-center lg:items-center lg:gap-x-[30px] pt-[20px]">
-                        <img src='/images/page_images/Rilonlogo.png' className="w-[300px] mx-[auto] lg:mx-[0px] lg:pb-[0px] pb-[40px] " alt="logo"></img>
-                        <img src='/images/page_images/JWInverterlogo.png' className="w-[300px] mx-[auto] lg:mx-[0px] lg:pb-[0px] pb-[60px] " alt="logo"></img>
-                        <img src='/images/page_images/Jingweitiplogo.png' className="w-[300px] mx-[auto] lg:mx-[0px]" alt="logo"></img>
-                    </div>
-                </div>
-
                 <div className="mx-[10%] 4xl:mx-[20%] pt-[100px] pb-[50px]">
                     <div className="text-center 4xl:px-[20%]">
                         <p className="text-[30px] text-center ">{t('homepage.h10')}</p>
@@ -233,7 +204,7 @@ function HomePage() {
                     </div>
 
                     <div className="py-[30px] 4xl:px-[20%] ">
-                        <div ref={divRef} className="py-[10px]">
+                        <div className="py-[10px]">
                             <p className="font-bold py-2 text-[#0079A9]">{t('homepage.h11')}</p>
                             <ul class="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p10')}</li>
@@ -279,20 +250,7 @@ function HomePage() {
                     </p>
                 </div>
 
-                <div className="text-center w-[100%] 4xl:px-[20%] py-[100px] flex justify-center md:justify-end md:items-center background2 bg-fixed bg-cover">
-                    <div className="bg-black w-[60%] md:w-[40%] py-[50px] px-[20px] ">
-                        <a href="https://anyflip.com/uggut/ubmb/" className="text-[30px] font-bold text-white hover:text-[#EA100F]">{t('homepage.h15')}</a>
-                        <div className="flex items-center justify-center pt-[20px]">
-                            <a href="https://anyflip.com/uggut/ubmb/">
-                                <img
-                                    src="/images/page_images/Book.png"
-                                    alt="book"
-                                    className="w-[350px] 2xl:w-[450px] border-4 border-transparent hover:border-red-500 transition-all duration-300"
-                                />
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <Ebook />
 
                 <div className="4xl:px-[20%] text-center py-[100px]">
                     <h1 className="text-[30px]">
@@ -303,59 +261,7 @@ function HomePage() {
                     <QRcodeComponent />
                 </div>
 
-                <div ref={section2Ref} className="">
-                    <CategoryList />
-                    <CategorySearch />
-                </div>
-
-                <div ref={section3Ref}>
-                    <RecommendProductList />
-                </div>
-
-                <div ref={divRef} className="bg-cover bg-fixed bg-center background3 md:flex px-[10%] 4xl:px-[20%] py-[100px] md:justify-between">
-                    <div
-                        className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-300 ease-in-out"
-                        style={{
-                            transform: `translateX(-${100 - scrollEffect}%)`, // Move from off-screen to in-screen
-                        }}
-                    >
-                        <img
-                            src="/images/page_images/WeldingMC.png"
-                            alt="weldingMC"
-                            className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
-                        />
-                        <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h18')}</h1>
-                        <p className="px-4 pb-8">{t('homepage.p21')}</p>
-                    </div>
-                    <div
-                        className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-300 ease-in-out"
-                        style={{
-                            transform: `translateX(-${100 - scrollEffect}%)`, // Move from off-screen to in-screen
-                        }}
-                    >
-                        <img
-                            src="/images/page_images/TorchSerPana.png"
-                            alt="torchserpana"
-                            className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
-                        />
-                        <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h19')}</h1>
-                        <p className="px-4 pb-8">{t('homepage.p22')}</p>
-                    </div>
-                    <div
-                        className="bg-white md:w-[30%] overflow-hidden transition-transform duration-300 ease-in-out"
-                        style={{
-                            transform: `translateX(-${100 - scrollEffect}%)`, // Move from off-screen to in-screen
-                        }}
-                    >
-                        <img
-                            src="/images/page_images/Robot.png"
-                            alt="robot"
-                            className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
-                        />
-                        <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h20')}</h1>
-                        <p className="px-4 pb-8">{t('homepage.p23')}</p>
-                    </div>
-                </div>
+                <LastAdvertise />
 
                 <div ref={section4Ref} className="xl:py-[100px] 4xl:px-[20%] xl:px-[10%] xl:flex xl:justify-between">
                     <div className="xl:w-[50%] px-[10%] py-[50px] xl:p-[0%]">

@@ -51,12 +51,12 @@ function RecommendProductList() {
   };
 
   return (
-    <div className="py-[50px] bg-[#EFEFEF]">
+    <div className="py-[50px] bg-[#0079A9]">
       <div>
-        <h1 className="pt-2 text-[30px] text-center">
+        <h1 className="pt-2 text-[30px] text-center text-white">
           {t('homepage.p27')}
         </h1>
-        <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#0079A9]" />
+        <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#E2B22C]" />
       </div>
       <div className="py-10 relative w-full max-w-4xl mx-auto">
         <div className="relative overflow-hidden">
@@ -92,7 +92,7 @@ function RecommendProductList() {
             </button>
 
             <div className="text-[20px]">
-              <p><span className="font-light text-[#959595]">{currentIndex + 1} / {recommendProductData.length}</span></p>
+              <p><span className="font-light text-white">{currentIndex + 1} / {recommendProductData.length}</span></p>
             </div>
 
             <button

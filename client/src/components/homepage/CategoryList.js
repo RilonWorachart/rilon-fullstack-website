@@ -40,8 +40,8 @@ function CategoryList() {
         <SearchKeyButton/>
       </div>
       <div className="mx-[10%] my-[20px] 2xl:mx-[20%] text-[#0079A9] text-[30px] flex justify-end items-center">
-          <CgMenuGridR className="hover:text-[#E2B22C] mr-1" onClick={() => setItemType("type1")} />
-          <TfiMenuAlt className="hover:text-[#E2B22C] " onClick={() => setItemType("type2")} />
+          <CgMenuGridR className="hover:text-[#E2B22C] mr-1 cursor-pointer" onClick={() => setItemType("type1")} />
+          <TfiMenuAlt className="hover:text-[#E2B22C] cursor-pointer" onClick={() => setItemType("type2")} />
       </div>
       <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 4xl:grid-cols-4 gap-[20px]'} }`}>
         {categoryData.map((item) => {
