@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { FaFacebook, FaLine, FaYoutube, FaInstagram } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
@@ -46,7 +46,7 @@ function CategoryDetail() {
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>
             </div>
 
-            <div className="flex justify-end ">
+            <div className="flex justify-end">
                 <SearchKeyButton />
             </div>
 
@@ -103,7 +103,7 @@ function CategoryDetail() {
             </div>
 
             <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] my-[30px] pt-[20px] pb-[10px] border-[1px] border-lightgray rounded-md">
-                <ItemListbyCategory />
+                <ItemListbyCategory/>
                 <div className="pt-[20px]">
                     <QRcodeComponent />
                 </div>

@@ -23,50 +23,6 @@ function ItemListbyCategory() {
   const [page, setPage] = useState(1); // State for pagination
   const [totalPages, setTotalPages] = useState(1); // Total number of pages from the API
   const [loading, setLoading] = useState(true);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [inView, setInView] = useState(false); // To track if the div is in the viewport
-  const divRef = useRef(null); // Reference to the div
-
-  useEffect(() => {
-    // Store the ref value in a variable before observing it
-    const currentDivRef = divRef.current;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setInView(true); // Set inView to true when the component is in the viewport
-          }
-        });
-      },
-      { threshold: 0.1 } // Trigger when 50% of the element is visible
-    );
-
-    if (currentDivRef) {
-      observer.observe(currentDivRef); // Observe the target div
-    }
-
-    return () => {
-      // Use the variable to ensure it's accessed correctly during cleanup
-      if (currentDivRef) {
-        observer.unobserve(currentDivRef); // Clean up observer on unmount
-      }
-    };
-  }, []); // Empty dependency array to set up observer once
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY); // Update the scroll position
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll); // Clean up event listener on unmount
-    };
-  }, []);
-
-  const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
 
 
   const fetchAllProductByCategory = async () => {
@@ -118,6 +74,51 @@ function ItemListbyCategory() {
   };
 
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [inView, setInView] = useState(false); // To track if the div is in the viewport
+  const divRef = useRef(null); // Reference to the div
+
+  // Intersection Observer to track visibility of the div
+  useEffect(() => {
+    const currentDivRef = divRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInView(true); // Set inView to true when the div is visible
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (currentDivRef) {
+      observer.observe(currentDivRef);
+    }
+
+    return () => {
+      if (currentDivRef) {
+        observer.unobserve(currentDivRef);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY); // Update the scroll position
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll); // Clean up event listener on unmount
+    };
+  }, []);
+
+  const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
+
+
   if (loading) {
     return (
       <div className="flex justify-center items-center py-[200px]">
@@ -128,8 +129,8 @@ function ItemListbyCategory() {
 
 
   return (
-    <>
-      <div className="mx-[20px] ">
+    <div ref={divRef}>
+      <div className="mx-[20px] overflow-hidden">
         <h1 className="text-[30px]">
           {t('categorypage.p5')}
         </h1>
@@ -150,8 +151,8 @@ function ItemListbyCategory() {
         </div>
 
         <div className="flex text-[30px]">
-          <CgMenuGridR className="text-[#0079A9] hover:text-[#E2B22C] mr-1" onClick={() => setItemType("type1")} />
-          <TfiMenuAlt className="text-[#0079A9] hover:text-[#E2B22C] " onClick={() => setItemType("type2")} />
+          <CgMenuGridR className="text-[#0079A9] hover:text-[#E2B22C] mr-1 cursor-pointer" onClick={() => setItemType("type1")} />
+          <TfiMenuAlt className="text-[#0079A9] hover:text-[#E2B22C] cursor-pointer" onClick={() => setItemType("type2")} />
         </div>
       </div>
       {
@@ -161,18 +162,21 @@ function ItemListbyCategory() {
           </div>
         )
       }
-      <div ref={divRef} className={`mb-[40px] mx-[20px] transition-transform duration-500 ease-in-out overflow-hidden ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px]'} }`}
+      <div className={`mb-[40px] mx-[20px] transition-transform duration-500 ease-in-out ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px]'}`}
         // style={{
         //   transform: `translateY(${100 - scrollEffect}%)`
         // }}
       >
         {productData.map((item) => {
           return (
-            <ItemCard key={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} ID={item.ID} name_th={item.name_th}
-              description_th={item.description_th} searchword_id={item.searchword_id} brand_id={item.brand_id}
-              name_en={item.name_en} description_en={item.description_en}
-              itemType={itemType}
-            />
+            <div className=""
+            >
+              <ItemCard key={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} ID={item.ID} name_th={item.name_th}
+                description_th={item.description_th} searchword_id={item.searchword_id} brand_id={item.brand_id}
+                name_en={item.name_en} description_en={item.description_en}
+                itemType={itemType}
+              />
+            </div>
           )
         })}
       </div>
@@ -227,7 +231,7 @@ function ItemListbyCategory() {
           <div className="text-center text-[24px] mb-[50px] text-[#E2B22C]">{t('pagination.noproduct')}</div>
         )
       }
-    </>
+    </div>
   )
 }
 
