@@ -15,8 +15,8 @@ function SliderTop() {
 
 
     return (
-        <div>
-            <div className="relative overflow-hidden">
+        <div className="overflow-hidden">
+            <div className="relative">
                 <div
                     className="flex transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}

@@ -54,7 +54,7 @@ function Service() {
     const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
 
     return (
-        <div ref={divRef} className="flex flex-col lg:flex-row justify-between items-center bg-[#FFD600] px-[10%] 4xl:px-[20%] text-center py-[50px] overflow-hidden">
+        <div ref={divRef} className="flex flex-col lg:flex-row justify-between items-center bg-[#FFD600] px-[10%] 4xl:px-[20%] text-center overflow-hidden">
             <div className="py-12 lg:w-[30%] transition-transform duration-500 ease-in-out"
                 style={{
                     transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`

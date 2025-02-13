@@ -54,7 +54,7 @@ function Riloninverter() {
 
     const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
     return (
-        <div ref={divRef} className="px-[10%] 4xl:px-[20%] py-[70px] bg-[#0079A9] md:flex md:justify-between md:items-center overflow-hidden">
+        <div ref={divRef} className="py-[50px] px-[10%] 4xl:px-[20%] bg-[#0079A9] md:flex md:justify-between md:items-center overflow-hidden">
             <div className="md:w-[50%] px-4 transition-transform duration-500 ease-in-out"
                 style={{
                     transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`

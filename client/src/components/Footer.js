@@ -9,6 +9,7 @@ function Footer() {
 
     return (
         <>
+            
             <div class="px-2 py-8 bg-[#FFD600] text-[#0079A9] text-center">
                 <div className="flex justify-center py-[22px]">
                     <img src='/images/page_images/logo-w.png' alt="logo" className="w-[75px]"></img>

@@ -5,7 +5,7 @@ function Company() {
     const { t } = useTranslation();
 
     return (
-        <div className="px-[10%] 4xl:px-[20%] py-[100px] bg-[#FFD600]">
+        <div className="px-[10%] 4xl:px-[20%] pt-[100px] bg-[#FFD600]">
             <div className="pb-[40px] text-center">
                 <h1 className="text-[34px]">
                     {t('homepage.h9')}

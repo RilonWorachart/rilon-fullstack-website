@@ -99,25 +99,41 @@ function HomePage() {
 
                 <div ref={section2Ref}></div>
                 <CategoryList />
-                
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="#ECF4F7" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,42.7C960,53,1200,75,1320,85.3L1440,96L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+
                 <CategorySearch />
 
 
                 <div ref={section3Ref}></div>
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 1440 100"><path fill="#0079A9" fill-opacity="1" d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 <RecommendProductList />
 
                 <Dealer />
 
                 <Company />
 
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 170" class="w-full h-auto">
+                    <path fill="#FFD600" fill-opacity="1" d="M0,160L120,154.7C240,149,480,139,720,122.7C960,107,1200,85,1320,74.7L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+                </svg>
+
                 <div ref={section1Ref}></div>
                 <About />
 
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 150"><path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                
                 <Riloninverter />
 
-                <Service />
+                <div className="bg-[#0079A9]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="#FFD600" fill-opacity="1" d="M0,64L120,58.7C240,53,480,43,720,37.3C960,32,1200,32,1320,32L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                </div>
 
-                <div className="mx-[10%] 4xl:mx-[20%] pt-[100px] pb-[50px]">
+                <Service />
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1440 100"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,165.3C960,160,1200,160,1320,160L1440,160L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+
+                <div className="mx-[10%] 4xl:mx-[20%] pt-[50px] pb-[50px]">
                     <div className="text-center 4xl:px-[20%]">
                         <p className="text-[30px] text-center ">{t('homepage.h10')}</p>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />

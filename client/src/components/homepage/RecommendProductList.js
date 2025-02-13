@@ -51,7 +51,7 @@ function RecommendProductList() {
   };
 
   return (
-    <div className="py-[50px] bg-[#0079A9]">
+    <div className="bg-[#0079A9]">
       <div>
         <h1 className="pt-2 text-[30px] text-center text-white">
           {t('homepage.p27')}

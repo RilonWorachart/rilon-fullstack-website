@@ -57,7 +57,7 @@ function About() {
 
     
     return (
-        <div ref={divRef} className="px-[10%] py-[100px] text-center overflow-hidden ">
+        <div ref={divRef} className="py-[50px] px-[10%] text-center overflow-hidden ">
             <div className="2xl:flex 2xl:items-center 2xl:justify-center 2xl:gap-x-[100px]"
             >
                 <div className="2xl:w-[40%] transition-transform duration-500 ease-in-out"

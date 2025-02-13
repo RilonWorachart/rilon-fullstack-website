@@ -15,7 +15,7 @@ function ItemPage() {
         <>
             <div className="min-h-screen font-plex-sans-thai">
                 <ItemDetail />
-                <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] mt-[30px] mb-[70px] px-[20px] py-[10px] border-[1px] border-lightgray rounded-md">
+                <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] mt-[30px] mb-[20px] px-[20px] py-[10px] border-[1px] border-lightgray rounded-md">
                     <div className="pb-4">
                         <h1 className="text-[30px]">
                             {t('itempage.p1')}
@@ -26,6 +26,7 @@ function ItemPage() {
                         <Contact />
                     </div>
                 </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 120 1440 140"><path fill="#0079A9" fill-opacity="1" d="M0,256L120,240C240,224,480,192,720,181.3C960,171,1200,181,1320,186.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 <RelateItem id={id}/>
                 <CategorySearch />
                 <Footer />

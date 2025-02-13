@@ -109,7 +109,7 @@ function RelateItem() {
   }
 
   return (
-    <div className="px-[10%] py-[50px] 4xl:px-[20%] transform transition-all bg-[#0079A9]">
+    <div className="px-[10%] pb-[50px] 4xl:px-[20%] transform transition-all bg-[#0079A9]">
       <div className="">
         <h1 className="pt-2 text-[30px] text-center text-white">{t('itempage.p11')}</h1>
         <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#E2B22C]" />
