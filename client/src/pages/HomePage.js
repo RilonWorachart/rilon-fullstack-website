@@ -121,16 +121,16 @@ function HomePage() {
                 <div ref={section1Ref}></div>
                 <About />
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 150"><path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
-                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 170"><path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+
                 <Riloninverter />
 
                 <div className="bg-[#0079A9]">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="#FFD600" fill-opacity="1" d="M0,64L120,58.7C240,53,480,43,720,37.3C960,32,1200,32,1320,32L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 70 1440 200"><path fill="#FFD600" fill-opacity="1" d="M0,128L120,144C240,160,480,192,720,186.7C960,181,1200,139,1320,117.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 </div>
 
                 <Service />
-                
+
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1440 100"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,165.3C960,160,1200,160,1320,160L1440,160L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
 
                 <div className="mx-[10%] 4xl:mx-[20%] pt-[50px] pb-[50px]">
