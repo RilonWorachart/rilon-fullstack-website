@@ -74,9 +74,9 @@ const Model = ({ modelPath }) => {
       >
         {/* 13-15cm */}
         {/* Lighting Setup */}
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1.0} />
-        <directionalLight position={[5, 5, 5]} intensity={1.0} />
+        <ambientLight intensity={2} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        <directionalLight position={[5, 5, 5]} intensity={2.0} />
 
         {/* Model rendering */}
         {model && <primitive object={model} position={[5, 0, 5]} scale={[4, 4, 4]} />}
