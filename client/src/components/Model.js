@@ -70,15 +70,16 @@ const Model = ({ modelPath }) => {
     <div className="w-[90%] md:w-[100%] mx-[auto] h-[300px] md:h-[600px] relative flex justify-center items-center">
       <Canvas
         className="w-full h-full"
-        camera={{ position: [5, 5, 13], fov: 75 }}
+        camera={{ position: [10, 10, 10], fov: 75 }}
       >
+        {/* 13-15cm */}
         {/* Lighting Setup */}
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1.0} />
         <directionalLight position={[5, 5, 5]} intensity={1.0} />
 
         {/* Model rendering */}
-        {model && <primitive object={model} position={[0, -5, 0]} scale={[1, 1, 1]} />}
+        {model && <primitive object={model} position={[5, 0, 5]} scale={[4, 4, 4]} />}
         
         {/* Controls for Orbiting around the model */}
         <OrbitControls />

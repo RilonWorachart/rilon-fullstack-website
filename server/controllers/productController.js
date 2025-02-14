@@ -399,6 +399,8 @@ export const getFilteredProducts = async (req, res) => {
             queryParams.push(brand);
         }
 
+        query += ` ORDER BY name_th asc`;
+
         // Add pagination (LIMIT and OFFSET) to the query
         query += " LIMIT ? OFFSET ?";
         queryParams.push(parseInt(limit), parseInt(offset));

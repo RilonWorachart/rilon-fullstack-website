@@ -7,8 +7,7 @@ export const getallCategory = async (req, res, next) => {
   try {
     // Execute the query using promisePool
     const [rows] = await promisePool.execute(`
-      SELECT * FROM categories 
-      ORDER BY ID = 19
+      SELECT * FROM categories ORDER BY CASE WHEN ID = 19 THEN 1 ELSE 0 END, name_th DESC;
     `);
 
     // Check if there are any categories

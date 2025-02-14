@@ -20,10 +20,10 @@ function SliderRilon() {
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-                <img src='/images/page_images/Argon.png' alt="argon" className="w-full flex-shrink-0"></img>
-                <img src='/images/page_images/CO2.png' alt="co2" className="w-full flex-shrink-0"></img>
-                <img src='/images/page_images/Plusma.png' alt="plusma" className="w-full flex-shrink-0"></img>
-                <img src='/images/page_images/Rotate.png' alt="rotate" className="w-full flex-shrink-0"></img>
+                <img src='/images/page_images/argon.jpg' alt="argon" className="w-full flex-shrink-0"></img>
+                <img src='/images/page_images/CO2.jpg' alt="co2" className="w-full flex-shrink-0"></img>
+                <img src='/images/page_images/plusma.jpg' alt="plusma" className="w-full flex-shrink-0"></img>
+                <img src='/images/page_images/rotate.jpg' alt="rotate" className="w-full flex-shrink-0"></img>
             </div>
         </div>
     )

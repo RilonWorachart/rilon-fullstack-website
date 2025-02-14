@@ -20,10 +20,10 @@ function SliderJingweitip() {
                 className="flex transition-transform duration-500 ease-in-out pt-[20px]"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-                <img src="/images/page_images/Torch.png" alt="torch" className="w-[100%]"></img>
-                <img src='/images/page_images/Equipment.png' alt="equipment" className="w-[100%]"></img>
-                <img src='/images/page_images/WP.png' alt="wp" className="w-[100%]"></img>
-                <img src='/images/page_images/Jingweitip.png' alt="jingweitip" className="w-[100%]"></img>
+                <img src="/images/page_images/jingweitip.jpg" alt="torch" className="w-[100%]"></img>
+                <img src='/images/page_images/jingweitip2.jpg' alt="equipment" className="w-[100%]"></img>
+                <img src='/images/page_images/jingweitip3.jpg' alt="jingweitip" className="w-[100%]"></img>
+                <img src='/images/page_images/wp.jpg' alt="wp" className="w-[100%]"></img>
             </div>
         </div>
     )
