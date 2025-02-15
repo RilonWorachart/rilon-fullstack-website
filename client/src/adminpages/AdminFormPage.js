@@ -154,6 +154,7 @@ function AdminFormPage() {
                 <th class="py-2 px-4 text-left">{t('admin.p18')}</th>
                 <th class="py-2 px-4 text-left">{t('admin.p19')}</th>
                 <th class="py-2 px-4 text-left">{t('admin.p20')}</th>
+                <th class="py-2 px-4 text-left">{t('admin.p60')}</th>
                 <th class="py-2 px-4 text-left">{t('admin.p21')}</th>
               </tr>
             </thead>
@@ -173,6 +174,7 @@ function AdminFormPage() {
                   <td className="py-2 px-4">{data.time}</td>
                   <td className="py-2 px-4">{data.requirement}</td>
                   <td className="py-2 px-4">{data.message}</td>
+                  <td className="py-2 px-4">{data.accepted_terms}</td>
                   <td className="py-2 px-4">{moment(data.create_time).format('YYYY-MM-DD HH:mm:ss')}</td>
                 </tr>
               ))}

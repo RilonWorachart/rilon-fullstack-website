@@ -47,6 +47,7 @@ function FormPage() {
       ต้องการให้พนักงานขายติดต่อกลับ: false,
       ตัวแทนจัดจำหน่าย: false,
     },
+    accepted_terms: false
   });
 
 
@@ -55,14 +56,20 @@ function FormPage() {
     const { name, value, type, checked } = e.target;
 
     if (type === 'checkbox') {
-      // Handle checkbox values inside 'requirement' object
-      setFormData({
-        ...formData,
-        requirement: {
-          ...formData.requirement,
-          [name]: checked, // Set the checkbox as checked or unchecked
-        },
-      });
+      if (name === 'accepted_terms') {  // Changed 'accept' to 'accepted_terms'
+        setFormData({
+          ...formData,
+          accepted_terms: checked,  // Update the 'accepted_terms' field
+        });
+      } else {
+        setFormData({
+          ...formData,
+          requirement: {
+            ...formData.requirement,
+            [name]: checked, // Set the checkbox as checked or unchecked
+          },
+        });
+      }
     } else {
       // Handle other form inputs (e.g., text, select, etc.)
       setFormData({
@@ -83,9 +90,23 @@ function FormPage() {
     ตัวแทนจัดจำหน่าย: 'ตัวแทนจัดจำหน่าย',
   };
 
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check if accepted_terms are accepted
+    if (!formData.accepted_terms) {  // Changed 'accept' to 'accepted_terms'
+      Swal.fire({
+        title: 'Error!',
+        text: 'You must agree to the accepted_terms and conditions.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      return; // Stop form submission
+    }
+
+    // Map the boolean value of accepted_terms to "ยอมรับ" or "ไม่ยอมรับ"
+    const acceptedTermsValue = formData.accepted_terms ? "ยอมรับ" : "ไม่ยอมรับ";
 
     // Prepare selected data for the requirements field
     const selectedData = Object.keys(formData.requirement)
@@ -95,13 +116,14 @@ function FormPage() {
     // Join the selected requirements into a comma-separated string
     const selectedDataString = selectedData.join(', ');
 
-    // Create final form data object with selected requirements string
+    // Create final form data object with selected requirements string and the accepted_terms value
     const finalFormData = {
       ...formData,
       requirement: selectedDataString, // Pass the selected requirements string
+      accepted_terms: acceptedTermsValue, // Store accepted_terms as "ยอมรับ" or "ไม่ยอมรับ"
     };
 
-    console.log('Final Form Data:', finalFormData); // This will show the updated data with 'requirement'
+    console.log('Final Form Data:', finalFormData); // This will show the updated data with 'requirement' and 'accepted_terms'
 
     // Send email using EmailJS
     emailjs
@@ -129,11 +151,11 @@ function FormPage() {
               ต้องการให้พนักงานขายติดต่อกลับ: false,
               ตัวแทนจัดจำหน่าย: false,
             },
+            accepted_terms: false,
           });
         },
         (error) => {
           console.error('Error sending email:', error);
-          // You can show an error message to the user if the email failed
           Swal.fire({
             title: 'Error!',
             text: 'There was an issue sending the email. Please try again.',
@@ -143,17 +165,14 @@ function FormPage() {
         }
       );
 
-
-
     // Send the request to the backend
-    axios.post(`${process.env.REACT_APP_API}/createform`, finalFormData, {
-    })
+    axios.post(`${process.env.REACT_APP_API}/createform`, finalFormData, {})
       .then((response) => {
         console.log(response.data);
         if (response.data.status === 'ok') {
           Swal.fire({
             title: 'Success!',
-            text: 'Form submit successfully!',
+            text: 'Form submitted successfully!',
             icon: 'success',
             confirmButtonText: 'OK',
           });
@@ -387,6 +406,16 @@ function FormPage() {
                 cols="50"
                 className="border w-[100%] px-3 py-1 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300" />
             </div>
+
+            <div className="pt-4">
+              <label htmlFor="accepted_terms">
+
+                <input type="checkbox" name="accepted_terms" id="accepted_terms" className="mr-2" checked={formData.accepted_terms} // Use the boolean value directly for the checkbox
+                  onChange={handleChange} required />
+                <span className="font-bold">{t('formpage.p41')}</span>
+              </label>
+            </div>
+
 
             {/* Submit Button */}
             <div className="flex justify-center pt-5">

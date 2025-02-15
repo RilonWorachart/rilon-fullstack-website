@@ -162,7 +162,8 @@
         "p37": "Authorized Dealer",
         "p38": "Others",
         "p39": "Cancel",
-        "p40": "Send Request"
+        "p40": "Send Request",
+        "p41": "Allow us to store your information for contact purposes."
     },
     "admin": {
         "p1": "Admin Login",
@@ -183,9 +184,9 @@
         "p16": "Position",
         "p17": "Province",
         "p18": "Urgent",
-        "p19": "Requirement",
-        "p20": "Message",
-        "p21": "Create time",
+        "p19": "Information requirement",
+        "p20": "Other message",
+        "p21": "Submitted time",
         "p22": "Create",
         "p23": "Log out",
         "p24": "Back",
@@ -195,7 +196,7 @@
         "p28": "Delete",
         "p29": "Edit Product",
         "p30": "Product Information",
-        "p31": "Rilon ID",
+        "p31": "Product No.",
         "p32": "Name (English)",
         "p33": "Name (Thai)",
         "p34": "Brand",
@@ -223,7 +224,8 @@
         "p56": "Manage Searchwords",
         "p57": "Add Brand",
         "p58": "Add Searchword",
-        "p59": "Model"
+        "p59": "Model",
+        "p60": "Agree to collect the form data"
     },
     "pagination" :{
         "prev":"Back",
