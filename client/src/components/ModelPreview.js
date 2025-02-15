@@ -60,7 +60,7 @@ const ModelPreview = ({ modelPath }) => {
         <directionalLight position={[5, 5, 5]} intensity={1.0} />
 
         {/* Model rendering */}
-        {model && <primitive object={model} position={[5, 0, 3]} scale={[4, 4, 4]} />}
+        {model && <primitive object={model} position={[5, 0, 5]} scale={[50, 50, 50]} />}
 
         {/* Controls for Orbiting around the model */}
         <OrbitControls />
