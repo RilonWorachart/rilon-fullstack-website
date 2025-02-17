@@ -653,7 +653,7 @@ function AdminEditItemPage() {
                     <div className="pt-8 flex justify-center">
                         <button
                             type="submit"
-                            className="text-[14px] overflow-hidden truncate bg-[#5E993E] border border-[#5E993E] text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300"
+                            className="text-[14px] overflow-hidden truncate bg-[#5E993E] border border-[#5E993E] text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300"
                         >
                             {t('admin.p43')}
                         </button>
