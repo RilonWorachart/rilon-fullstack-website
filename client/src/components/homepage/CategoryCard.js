@@ -14,11 +14,11 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
 
   return (
     <div
-      className={`shadow-md z-0 bg-white ${itemType === "type2" ? "my-2 sm:flex sm:h-[275px] h-[470px]" : "flex flex-col h-[470px] max-w-[350px] mx-[auto] sm:mx-[0px]"}`}
+      className={`shadow-md z-0 bg-white ${itemType === "type2" ? "md:flex my-2 md:h-[295px] w-[295px] mx-[auto] md:w-full md:mx-[0px]" : "h-[500px] w-[295px] mx-[auto] sm:mx-[0px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/category/${ID}`} className={`flex ${itemType === "type2" ? "sm:w-[375px] h-[65%] sm:h-[100%]" : "h-[65%] sm:h-[55%]"}`}>
+      <Link to={`/category/${ID}`} className={`flex ${itemType === "type2" ? "h-[295px] w-[295px] min-w-[295px]" : "h-[295px]"}`}>
         <div className={`bg-black overflow-hidden flex justify-center my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
             className={`transition-transform duration-300 transform overflow-hidden w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
@@ -28,7 +28,7 @@ function CategoryCard({ ID, picture_1, name_th, description_th, name_en, descrip
         </div>
       </Link>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "sm:w-[70%] sm:my-[auto] " : "my-[auto]"}`}>
+      <div className={`px-5 py-5 flex flex-col justify-center ${itemType === "type2" ? "sm:my-[auto] " : "my-[auto] h-[205px]"}`}>
         <div className="">
           <p className="text-[24px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           {/* Sliding effect only for type1 */}

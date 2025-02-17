@@ -68,11 +68,11 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
 
   return (
     <div
-      className={`shadow-md relative z-0 bg-white ${itemType === "type2" ? "sm:flex my-2 sm:h-[275px] h-[470px]" : "h-[470px] max-w-[350px] mx-[auto] sm:mx-[0px]"}`}
+      className={`shadow-md relative z-0 bg-white ${itemType === "type2" ? "md:flex my-2 md:h-[295px] w-[295px] mx-[auto] md:w-full md:mx-[0px]" : "h-[500px] w-[295px] mx-[auto] sm:mx-[0px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "sm:w-[375px] h-[55%] sm:h-[100%]" : "h-[55%]"}`}>
+      <Link to={`/item/${ID}`} className={`flex ${itemType === "type2" ? "h-[295px] w-[295px] min-w-[295px]" : "h-[295px]"}`}>
         <div className={`bg-white overflow-hidden flex my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
             className={`transition-transform duration-300 transform w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
@@ -82,7 +82,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
         </div>
       </Link>
 
-      <div className={`px-5 py-3 ${itemType === "type2" ? "sm:w-[70%] sm:my-[auto] " : "my-[auto]"}`}>
+      <div className={`px-5 py-3 ${itemType === "type2" ? "sm:my-[auto] md:mx-[auto]" : "my-[auto]"}`}>
         <div className="">
           <p className="text-[24px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           <p className="text-[14px] uppercase pb-[15px]">
@@ -106,7 +106,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
         </div>
 
         <div className={`${itemType === "type2" ? "items-center" : "absolute bottom-[10px] left-0 right-0 px-4"}`}>
-          <div className={`${itemType === "type2" ? "" : "flex justify-between items-center"}`}>
+          <div className={`${itemType === "type2" ? "" : "flex justify-between items-center h-[40px]"}`}>
             {searchword_id && (
               <Link
                 to={`/catalog/keyword/${searchwordData?.name_th}`}

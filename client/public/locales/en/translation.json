@@ -163,7 +163,7 @@
         "p38": "Others",
         "p39": "Cancel",
         "p40": "Send Request",
-        "p41": "Allow us to store your information for contact purposes."
+        "p41": "By filling out the information above, I consent to [Company/Website Name] collecting my personal data for the purpose of contacting me and providing additional information about products"
     },
     "admin": {
         "p1": "Admin Login",

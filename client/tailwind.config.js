@@ -9,6 +9,8 @@ module.exports = {
         'plex-sans-thai': ['IBM Plex Sans Thai', 'sans-serif'], // Add IBM Plex Sans Thai font here
       },
       screens: {
+        '2sm': '840px',
+        '2md': '1240px',
         '3xl': '1600px',  // Or whatever value you want for your 3xl breakpoint
         '4xl': '1800px',
       },

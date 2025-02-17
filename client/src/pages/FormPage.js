@@ -412,7 +412,7 @@ function FormPage() {
 
                 <input type="checkbox" name="accepted_terms" id="accepted_terms" className="mr-2" checked={formData.accepted_terms} // Use the boolean value directly for the checkbox
                   onChange={handleChange} required />
-                <span className="font-bold">{t('formpage.p41')}</span>
+                <span className="">{t('formpage.p41')}</span>
               </label>
             </div>
 

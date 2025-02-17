@@ -162,14 +162,14 @@ function ItemListbyCategory() {
           </div>
         )
       }
-      <div className={`mb-[40px] mx-[20px] transition-transform duration-500 ease-in-out ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px]'}`}
+      <div className={`mb-[40px] sm:mx-[20px] transition-transform duration-500 ease-in-out ${itemType === "type2" ? '' : 'grid grid-cols-1 2sm:grid-cols-2 2md:grid-cols-3 2xl:grid-cols-4 gap-[20px]'}`}
         // style={{
         //   transform: `translateY(${100 - scrollEffect}%)`
         // }}
       >
         {productData.map((item) => {
           return (
-            <div className=""
+            <div className="mx-[auto]"
             >
               <ItemCard key={item.ID} picture_1={item.picture_1} picture_2={item.picture_2} ID={item.ID} name_th={item.name_th}
                 description_th={item.description_th} searchword_id={item.searchword_id} brand_id={item.brand_id}
