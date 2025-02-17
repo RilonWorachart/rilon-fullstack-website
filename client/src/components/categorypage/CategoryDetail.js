@@ -7,7 +7,7 @@ import SearchKeyButton from '../SearchKeyButton';
 import ItemListbyCategory from './ItemListbyCategory'
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { TbCircleLetterLFilled } from "react-icons/tb";
+import { BsBagHeartFill } from "react-icons/bs";
 import { SiShopee } from "react-icons/si";
 
 function CategoryDetail() {
@@ -46,7 +46,7 @@ function CategoryDetail() {
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex justify-end mx-[10%] max-w-[1400px] 2xl:mx-[auto]">
                 <SearchKeyButton />
             </div>
 
@@ -90,7 +90,7 @@ function CategoryDetail() {
                         </a>
                         <a href="https://www.lazada.co.th/shop/jw-jingweitip/?spm=a2o4m.pdp_revamp.seller.1.7ecf41f8hb1o3I&itemId=4370282627&channelSource=pdp">
                             <div className="p-1.5 mr-1.5 text-[18px] bg-white border border-[#0F146D] text-[#0F146D] rounded-full hover:bg-[#0F146D] hover:text-white transition duration-300">
-                                <TbCircleLetterLFilled />
+                                <BsBagHeartFill />
                             </div>
                         </a>
                         <a href="https://shopee.co.th/wprachrt">

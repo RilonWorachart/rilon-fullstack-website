@@ -139,28 +139,28 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
 
   return (
     <div
-      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2" : "h-[500px] max-w-[350px] mx-[auto] sm:mx-[0px]"}`}
+      className={`shadow-md z-0 overflow-hidden ${itemType === "type2" ? "md:flex my-2  w-[295px] md:w-[auto] mx-[auto] md:w-[100%] md:mx-[0px]" : "h-[550px] w-[295px] mx-[auto] sm:mx-[0px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
       {/* Image Section */}
-      <div className={`bg-white overflow-hidden flex ${itemType === "type2" ? "md:w-[30%]" : "h-[53%]"}`}>
+      <div className={`bg-white overflow-hidden flex ${itemType === "type2" ? "" : "h-[295px]"}`}>
         <img
-          className={`transition-transform duration-300 transform ${itemType === "type2" ? "sm:w-full md:mx-[auto] md:my-[auto]" : "w-full h-full"} ${isActive ? 'scale-110 opacity-75' : ''}`}
+          className={`transition-transform duration-300 transform ${itemType === "type2" ? "w-[295px] h-[295px] md:mx-[auto] md:my-[auto]" : "w-full h-full"} ${isActive ? 'scale-110 opacity-75' : ''}`}
           src={`${process.env.REACT_APP_API}${picture_1}`}
           alt={name_th}
         />
       </div>
 
       {/* Content Section */}
-      <div className={`px-5 py-4 ${itemType === "type2" ? "md:w-[70%]" : "flex flex-col justify-between h-[47%]"}`}>
+      <div className={`px-5 py-4 ${itemType === "type2" ? "flex flex-col justify-between md:max-w-[70%] " : "flex flex-col justify-between h-[255px]"}`}>
         <div className="">
           <p className="text-[28px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
-          <p className={`text-[14px] uppercase ${itemType === "type2" ? "w-full" : ""}`}>
+          <p className={`text-[14px] uppercase ${itemType === "type2" ? "w-[100%]" : ""}`}>
             {currentLang === 'th' ? brandData.name_th : brandData.name_en}
           </p>
           <p
-            className={`text-[14px] text-[#E5B22C] line-clamp-2 overflow-hidden pt-2 ${itemType === "type2" ? "w-full" : ""}`}
+            className={`text-[14px] text-[#E5B22C] line-clamp-2 overflow-hidden pt-2 ${itemType === "type2" ? "w-[100%]" : ""}`}
           >
             {currentLang === 'th' ? description_th : description_en}
           </p>
@@ -169,7 +169,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
           {
             picture_2 && (
               <img
-                className={`h-[40%] w-[40%] 2xl:h-[25%] 2xl:w-[25%] my-[10px] mx-[auto] ${itemType === "type2" ? "" : "hidden"}`}
+                className={`max-h-[500px] my-[10px] mx-[auto] ${itemType === "type2" ? "" : "hidden"}`}
                 src={`${process.env.REACT_APP_API}${picture_2}`}
                 alt={name_th}
               />
@@ -192,7 +192,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
           )}
 
           {/* Buttons Section */}
-          <div className={`flex justify-center mt-2 ${itemType === "type2" ? "mx-[auto]" : ""}`}>
+          <div className={`flex justify-center mt-2 max-w-[295px]  ${itemType === "type2" ? "" : ""}`}>
             <Link to={`/adminedit/${ID}`} className="w-[45%]">
               <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-full">
                 {t('admin.p27')}

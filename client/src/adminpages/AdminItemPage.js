@@ -179,25 +179,10 @@ function AdminItemPage() {
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="flex justify-end mx-[10%] 2xl:mx-[20%]">
-          <div className="flex items-center border-[1px] border-lightgray py-1 px-3 mt-[30px] rounded-full text-[#6C757D]">
-            <input
-              type="text"
-              placeholder={t('categorypage.p4')}
-              className="flex-grow p-1 border-none outline-none rounded-l-full"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button onClick={() => handleSearchTermClick()}>
-              <FaSearch />
-            </button>
-          </div>
-        </div>
 
         {/* Product Category Filter */}
         <div>
-          <div className="mx-[10%] 2xl:mx-[20%]">
+          <div className="mx-[10%] 2xl:mx-[20%] mt-[50px]">
             <div>
               <h1 className="pt-2 text-[30px] text-center">
                 {t('itempage.p6')}
@@ -246,10 +231,26 @@ function AdminItemPage() {
           </div>
         </div>
 
+        {/* Search Bar */}
+        <div className="flex justify-end mx-[10%] 2xl:mx-[auto] max-w-[1300px]">
+          <div className="flex items-center border-[1px] border-lightgray py-1 px-3 mt-[30px] rounded-full text-[#6C757D]">
+            <input
+              type="text"
+              placeholder={t('categorypage.p4')}
+              className="flex-grow p-1 border-none outline-none rounded-l-full"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button onClick={() => handleSearchTermClick()}>
+              <FaSearch />
+            </button>
+          </div>
+        </div>
+
         {/* Toggle View Button */}
         {
           (totalPages !== 0) && (
-            <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#0079A9] flex justify-between items-center">
+            <div className="mx-[10%] 2xl:mx-[auto] max-w-[1300px] my-[20px] text-[#0079A9] flex justify-between items-center">
               <div className="text-[24px]">
                 <p className="text-[#C1C1C1] font-light ">{t('pagination.page')} <span className="">{page} /{totalPages}</span></p>
               </div>
@@ -262,27 +263,29 @@ function AdminItemPage() {
         }
 
         {/* Item Grid */}
-        <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 4xl:grid-cols-4 gap-[20px]'}`}>
+        <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] ${itemType === "type2" ? '' : 'grid grid-cols-1 2sm:grid-cols-2 2md:grid-cols-3 4xl:grid-cols-4 gap-[20px]'}`}>
           {productData.map((item) => (
-            <AdminItemCard
-              key={item.ID}
-              item={item}
-              category_id={item.category_id}
-              ID={item.ID}
-              picture_1={item.picture_1}
-              picture_2={item.picture_2}
-              name_th={item.name_th}
-              description_th={item.description_th}
-              search_word_th={item.search_word_th}
-              brand_th={item.brand_th}
-              name_en={item.name_en}
-              description_en={item.description_en}
-              search_word_en={item.search_word_en}
-              brand_en={item.brand_en}
-              itemType={itemType}
-              searchword_id={item.searchword_id}
-              brand_id={item.brand_id}
-            />
+            <div className="mx-[auto]">
+              <AdminItemCard
+                key={item.ID}
+                item={item}
+                category_id={item.category_id}
+                ID={item.ID}
+                picture_1={item.picture_1}
+                picture_2={item.picture_2}
+                name_th={item.name_th}
+                description_th={item.description_th}
+                search_word_th={item.search_word_th}
+                brand_th={item.brand_th}
+                name_en={item.name_en}
+                description_en={item.description_en}
+                search_word_en={item.search_word_en}
+                brand_en={item.brand_en}
+                itemType={itemType}
+                searchword_id={item.searchword_id}
+                brand_id={item.brand_id}
+              />
+            </div>
           ))}
         </div>
 

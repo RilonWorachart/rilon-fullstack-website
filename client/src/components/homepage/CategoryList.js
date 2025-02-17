@@ -80,14 +80,14 @@ function CategoryList() {
 
   return (
     <div ref={divRef} className="bg-[#ECF4F7] py-[50px] overflow-hidden">
-      <div className="flex justify-end">
+      <div className="flex justify-end mx-[10%] 2xl:mx-[auto] max-w-[1300px]">
         <SearchKeyButton />
       </div>
-      <div className="mx-[10%] my-[20px] 2xl:mx-[20%] text-[#0079A9] text-[30px] flex justify-end items-center">
+      <div className="my-[20px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] text-[#0079A9] text-[30px] flex justify-end items-center">
         <CgMenuGridR className="hover:text-[#E2B22C] mr-1 cursor-pointer" onClick={() => setItemType("type1")} />
         <TfiMenuAlt className="hover:text-[#E2B22C] cursor-pointer" onClick={() => setItemType("type2")} />
       </div>
-      <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%] transition-transform duration-500 ease-in-out ${itemType === "type2" ? '' : 'grid grid-cols-1 2sm:grid-cols-2 2md:grid-cols-3 4xl:grid-cols-4 gap-[20px]'} }`}
+      <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] transition-transform duration-500 ease-in-out ${itemType === "type2" ? '' : 'grid grid-cols-1 category1:grid-cols-2 category2:grid-cols-3 4xl:grid-cols-4 gap-[20px]'} }`}
         style={{
           transform: `translateY(${100 - scrollEffect}%)`
         }}>
