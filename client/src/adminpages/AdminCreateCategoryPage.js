@@ -191,19 +191,19 @@ const AdminCreateItemPage = () => {
     <div className="min-h-screen font-plex-sans-thai">
       <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
         <p className="py-1">
-          <a href="/" className="hover:text-[#00007E]">{t('categorypage.p1')}</a><span> » </span>
-          <a href="/adminpanel" className="hover:text-[#00007E]">{t('admin.p5')}</a> <span> » </span>
-          <Link to="/admincategory"><span className="hover:text-[#00007E]">{t('admin.p47')}</span></Link>
+          <a href="/" className="hover:text-[#EEE185]">{t('categorypage.p1')}</a><span> » </span>
+          <a href="/adminpanel" className="hover:text-[#EEE185]">{t('admin.p5')}</a> <span> » </span>
+          <Link to="/admincategory"><span className="hover:text-[#EEE185]">{t('admin.p47')}</span></Link>
           <span> » </span>
           <span>{t('admin.p54')}</span>
         </p>
         <div className="flex">
           <Link to="/admincategory">
-            <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px]">
+            <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px]">
               {t('admin.p24')}
             </button>
           </Link>
-          <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300 w-[120px] ml-[10px]">
+          <button onClick={handleLogout} className="text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px] ml-[10px]">
             {t('admin.p23')}
           </button>
         </div>
@@ -297,7 +297,7 @@ const AdminCreateItemPage = () => {
           <div className="pt-8 flex justify-center">
             <button
               type="submit"
-              className="text-[14px] overflow-hidden truncate bg-[#5E993E] border border-[#5E993E] text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#42189F] hover:border hover:border-[#42189F] transition duration-300"
+              className="text-[14px] overflow-hidden truncate bg-[#5E993E] border border-[#5E993E] text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300"
             >
               {t('admin.p43')}
             </button>

@@ -13,6 +13,7 @@ module.exports = {
         'category2':'1160px',
         '2sm': '840px',
         '2md': '1240px',
+        'category3': '1450px',
         '3xl': '1600px',  // Or whatever value you want for your 3xl breakpoint
         '4xl': '1800px',
       },

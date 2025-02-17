@@ -87,7 +87,7 @@ function CategoryList() {
         <CgMenuGridR className="hover:text-[#E2B22C] mr-1 cursor-pointer" onClick={() => setItemType("type1")} />
         <TfiMenuAlt className="hover:text-[#E2B22C] cursor-pointer" onClick={() => setItemType("type2")} />
       </div>
-      <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] transition-transform duration-500 ease-in-out ${itemType === "type2" ? '' : 'grid grid-cols-1 category1:grid-cols-2 category2:grid-cols-3 4xl:grid-cols-4 gap-[20px]'} }`}
+      <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] transition-transform duration-500 ease-in-out ${itemType === "type2" ? '' : 'grid grid-cols-1 category1:grid-cols-2 category2:grid-cols-3 2xl:grid-cols-4 gap-[20px]'} }`}
         style={{
           transform: `translateY(${100 - scrollEffect}%)`
         }}>

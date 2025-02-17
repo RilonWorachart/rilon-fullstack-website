@@ -77,13 +77,6 @@ function AdminCategoryPage() {
     }, 1000);
   };
 
-
-  // Toggle between grid and list views
-  const toggleItemType = () => {
-    setItemType((prevType) => (prevType === "type1" ? "type2" : "type1"));
-  };
-
-
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
@@ -97,7 +90,7 @@ function AdminCategoryPage() {
             <span> » </span>
             <span className="">{t('admin.p47')}</span>
           </p>
-          <div className="flex">
+          <div className="flex max-w-[295px]">
             <Link to="/admincreatecategory">
               <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px]">
                 {t('admin.p54')}
@@ -118,28 +111,30 @@ function AdminCategoryPage() {
 
 
         {/* Toggle View Button */}
-        <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#0079A9] flex justify-between items-center">
+        <div className="mx-[10%] 2xl:mx-[auto] max-w-[1300px] my-[20px] text-[#0079A9] flex justify-between items-center">
           <div></div>
           <div className="flex text-[30px]">
-            <CgMenuGridR className="hover:text-[#EEE185] mr-1 cursor-pointer" onClick={toggleItemType} />
-            <TfiMenuAlt className="hover:text-[#EEE185] cursor-pointer" onClick={toggleItemType} />
+            <CgMenuGridR className="hover:text-[#EEE185] mr-1 cursor-pointer" onClick={() => setItemType("type1")} />
+            <TfiMenuAlt className="hover:text-[#EEE185] cursor-pointer" onClick={() => setItemType("type2")}/>
           </div>
         </div>
 
 
         {/* Item Grid */}
-        <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 4xl:grid-cols-4 gap-[20px]'}`}>
+        <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] ${itemType === "type2" ? '' : 'grid grid-cols-1 category1:grid-cols-2 category2:grid-cols-3 2xl:grid-cols-4 gap-[20px]'}`}>
           {categoryData.map((item) => (
-            <AdminCategoryCard
-              key={item.ID}
-              ID={item.ID}
-              picture_1={item.picture_1}
-              name_th={item.name_th}
-              description_th={item.description_th}
-              name_en={item.name_en}
-              description_en={item.description_en}
-              itemType={itemType}
-            />
+            <div className="mx-[auto]">
+              <AdminCategoryCard
+                key={item.ID}
+                ID={item.ID}
+                picture_1={item.picture_1}
+                name_th={item.name_th}
+                description_th={item.description_th}
+                name_en={item.name_en}
+                description_en={item.description_en}
+                itemType={itemType}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { FaSearch } from "react-icons/fa";
+import { ClipLoader } from 'react-spinners';
 
 function AdminItemPage() {
   const [productData, setProductData] = useState([]);
@@ -145,19 +146,18 @@ function AdminItemPage() {
     }
   };
 
-  // Toggle between grid and list views
-  const toggleItemType = () => {
-    setItemType((prevType) => (prevType === "type1" ? "type2" : "type1"));
-  };
-
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center py-[200px]">
+        <ClipLoader color="#3498db" loading={true} size={50} />
+      </div>
+    );
   }
 
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
-        <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
+        <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between items-center">
           <p className="py-1">
             <Link to="/">
               <span className="hover:text-[#EEE185]">{t('categorypage.p1')}</span>
@@ -167,7 +167,7 @@ function AdminItemPage() {
             <span> » </span>
             <span className="">{t('admin.p7')}</span>
           </p>
-          <div className="flex">
+          <div className="flex justify-start items-center">
             <Link to="/admincreate">
               <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[120px]">
                 {t('admin.p22')}
@@ -255,15 +255,15 @@ function AdminItemPage() {
                 <p className="text-[#C1C1C1] font-light ">{t('pagination.page')} <span className="">{page} /{totalPages}</span></p>
               </div>
               <div className="flex text-[30px]">
-                <CgMenuGridR className="hover:text-[#EEE185] mr-1 cursor-pointer" onClick={toggleItemType} />
-                <TfiMenuAlt className="hover:text-[#EEE185] cursor-pointer" onClick={toggleItemType} />
+                <CgMenuGridR className="hover:text-[#EEE185] mr-1 cursor-pointer" onClick={() => setItemType("type1")} />
+                <TfiMenuAlt className="hover:text-[#EEE185] cursor-pointer" onClick={() => setItemType("type2")} />
               </div>
             </div>
           )
         }
 
         {/* Item Grid */}
-        <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] ${itemType === "type2" ? '' : 'grid grid-cols-1 2sm:grid-cols-2 2md:grid-cols-3 4xl:grid-cols-4 gap-[20px]'}`}>
+        <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] ${itemType === "type2" ? '' : 'grid grid-cols-1 category1:grid-cols-2 category2:grid-cols-3 2xl:grid-cols-4 gap-[20px]'}`}>
           {productData.map((item) => (
             <div className="mx-[auto]">
               <AdminItemCard

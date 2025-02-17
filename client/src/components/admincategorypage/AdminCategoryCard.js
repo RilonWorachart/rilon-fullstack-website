@@ -61,11 +61,11 @@ function AdminCategoryCard({ ID, picture_1, name_th, description_th, name_en, de
 
   return (
     <div
-      className={`shadow-md z-0 ${itemType === "type2" ? "my-2 sm:flex sm:h-[275px] h-[470px]" : "flex flex-col h-[470px] max-w-[350px] mx-[auto] sm:mx-[0px]"}`}
+      className={`shadow-md z-0 ${itemType === "type2" ? "md:flex my-2 md:h-[295px] w-[295px] mx-[auto] md:w-full md:mx-[0px]" : "h-[470px] w-[295px] mx-[auto] sm:mx-[0px]"}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
     >
-      <div className={`flex ${itemType === "type2" ? "sm:w-[375px] h-[65%] sm:h-[100%]" : "h-[65%] sm:h-[55%]"}`}>
+      <div className={`flex ${itemType === "type2" ? "h-[295px] w-[295px] min-w-[295px]" : "h-[295px]"}`}>
         <div className={`bg-black overflow-hidden flex justify-center my-[auto] mx-[auto] h-[100%] w-[100%] ${itemType === "type2" ? "" : ""}`}>
           <img
             className={`transition-transform duration-300 transform overflow-hidden w-full h-full ${itemType === "type2" ? "" : ""} ${isActive ? 'scale-110 opacity-75' : ''}`}
@@ -75,7 +75,7 @@ function AdminCategoryCard({ ID, picture_1, name_th, description_th, name_en, de
         </div>
       </div>
 
-      <div className={`px-5 py-5 ${itemType === "type2" ? "sm:w-[80%] my-[auto]" : "my-[auto]"}`}>
+      <div className={`px-5 py-5 flex flex-col ${itemType === "type2" ? "my-[auto] py-[auto] " : "my-[auto]"}`}>
         <div className="">
           <p className="text-[24px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           {/* Sliding effect only for type1 */}
@@ -95,7 +95,7 @@ function AdminCategoryCard({ ID, picture_1, name_th, description_th, name_en, de
         </div>
 
         <div className={`${itemType === "type2" ? "items-center" : "py-2"}`}>
-          <div className={`flex justify-center items-center  ${itemType === "type2" ? "my-4" : "my-1"}`}>
+          <div className={`flex items-center max-w-[295px] ${itemType === "type2" ? "my-4" : "my-1 justify-center"}`}>
             <Link to={`/admineditcategory/${ID}`} className="w-[45%]">
               <button className="text-[14px] overflow-hidden truncate bg-[#5E993E] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-full">
                 {t('admin.p27')}
