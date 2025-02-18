@@ -82,7 +82,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
         </div>
       </Link>
 
-      <div className={`px-5 py-3 ${itemType === "type2" ? "sm:my-[auto] md:mx-[auto]" : "my-[auto]"}`}>
+      <div className={`px-5 py-3 ${itemType === "type2" ? "sm:my-[auto]" : "my-[auto]"}`}>
         <div className="">
           <p className="text-[24px] text-[#0079A9] truncate">{currentLang === 'th' ? name_th : name_en}</p>
           <p className="text-[14px] uppercase pb-[15px]">

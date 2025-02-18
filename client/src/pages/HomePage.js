@@ -100,14 +100,17 @@ function HomePage() {
                 <div ref={section2Ref}></div>
                 <CategoryList />
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="#ECF4F7" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,42.7C960,53,1200,75,1320,85.3L1440,96L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 120" class="w-full h-auto">
+                    <path fill="#ECF4F7" fill-opacity="1" d="M0,160L120,154.7C240,149,480,139,720,122.7C960,107,1200,85,1320,74.7L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+                </svg>
+                {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="#ECF4F7" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,42.7C960,53,1200,75,1320,85.3L1440,96L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
 
                 <CategorySearch />
 
 
                 <div ref={section3Ref}></div>
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 1440 100"><path fill="#0079A9" fill-opacity="1" d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20 1440 100"><path fill="#0079A9" fill-opacity="1" d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 <RecommendProductList />
 
                 <Dealer />
