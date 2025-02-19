@@ -28,7 +28,7 @@ export const login = async (req, res, next) => {
         status: "ok",
         message: "Login success",
         token,
-        id: users[0].id,
+        // id: users[0].id,
       });
     } else {
       return res.json({ status: "error", message: "Login failed" });
@@ -62,7 +62,7 @@ export const authen = async (req, res, next) => {
 
     // Verify the token using the secret key
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-
+    
     // Attach the decoded data (user info) to the request for use in subsequent handlers
     req.user = decoded;
 

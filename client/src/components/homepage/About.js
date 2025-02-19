@@ -12,31 +12,31 @@ function About() {
     const { t } = useTranslation();
 
     useEffect(() => {
-        // Store the ref value in a variable before observing it
         const currentDivRef = divRef.current;
-
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
+                    // Only update state when entering the viewport
                     if (entry.isIntersecting) {
-                        setInView(true); // Set inView to true when the component is in the viewport
+                        setInView(true);
+                    } else {
+                        setInView(false); // Optional: reset state when leaving the viewport
                     }
                 });
             },
-            { threshold: 0.2 } // Trigger when 50% of the element is visible
+            { threshold: 0.2 }
         );
 
         if (currentDivRef) {
-            observer.observe(currentDivRef); // Observe the target div
+            observer.observe(currentDivRef);
         }
 
         return () => {
-            // Use the variable to ensure it's accessed correctly during cleanup
             if (currentDivRef) {
-                observer.unobserve(currentDivRef); // Clean up observer on unmount
+                observer.unobserve(currentDivRef);
             }
         };
-    }, []); // Empty dependency array to set up observer once
+    }, []); // The observer only needs to be initialized once, so no dependencies here.
 
 
 
@@ -55,7 +55,7 @@ function About() {
 
     const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
 
-    
+
     return (
         <div ref={divRef} className="py-[50px] px-[10%] text-center overflow-hidden ">
             <div className="2xl:flex 2xl:items-center 2xl:justify-center 2xl:gap-x-[100px]"

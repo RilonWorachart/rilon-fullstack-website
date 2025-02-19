@@ -21,6 +21,8 @@ function Dealer() {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         setInView(true); // Set inView to true when the component is in the viewport
+                    } else {
+                        setInView(false); // Optional: reset state when leaving the viewport
                     }
                 });
             },

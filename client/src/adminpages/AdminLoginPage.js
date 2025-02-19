@@ -37,7 +37,7 @@ function AdminLoginPage() {
       // Handle response data
       if (response.data.status === "ok") {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("id", response.data.id);
+        // localStorage.setItem("id", response.data.id);
         Swal.fire({
           title: 'Success!',
           text: 'Login successfully!',

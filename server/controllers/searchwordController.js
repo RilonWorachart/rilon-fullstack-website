@@ -3,7 +3,7 @@ import { promisePool } from "../db.js";  // Corrected import
 export const getallSearchword = async (req, res, next) => {
   try {
     // Execute the query using promisePool
-    const [rows] = await promisePool.execute("SELECT * FROM searchwords");
+    const [rows] = await promisePool.execute("SELECT * FROM searchwords ORDER BY name_th desc");
 
     if (rows.length === 0) {
       return res.json({ status: "error", message: "No searchword found" });

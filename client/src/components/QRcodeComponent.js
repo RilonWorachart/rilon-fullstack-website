@@ -17,7 +17,9 @@ function QRcodeComponent() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setInView(true); // Set inView to true when the component is in the viewport
-          }
+          } else {
+            setInView(false); // Optional: reset state when leaving the viewport
+        }
         });
       },
       { threshold: 0.2 } // Trigger when 50% of the element is visible

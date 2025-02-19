@@ -1,55 +1,55 @@
-import React from 'react'
-import { useEffect, useState, useRef } from 'react'
-import { useTranslation } from 'react-i18next';
+import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 function Ebook() {
     const { t } = useTranslation();
-        const [scrollPosition, setScrollPosition] = useState(0);
-        const [inView, setInView] = useState(false);
-        const divRef = useRef(null);
-    
-        useEffect(() => {
-            const currentDivRef = divRef.current;
-    
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            setInView(true);
-                        }
-                    });
-                },
-                { threshold: 0.2 } 
-            );
-    
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [inView, setInView] = useState(false);
+    const divRef = useRef(null);
+
+    useEffect(() => {
+        const currentDivRef = divRef.current;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    // Only update state when entering the viewport
+                    if (entry.isIntersecting) {
+                        setInView(true);
+                    } else {
+                        setInView(false); // Optional: reset state when leaving the viewport
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        if (currentDivRef) {
+            observer.observe(currentDivRef);
+        }
+
+        return () => {
             if (currentDivRef) {
-                observer.observe(currentDivRef); 
+                observer.unobserve(currentDivRef);
             }
-    
-            return () => {
-                if (currentDivRef) {
-                    observer.unobserve(currentDivRef);
-                }
-            };
-        }, []);
-    
-    
-        useEffect(() => {
-            const handleScroll = () => {
-                setScrollPosition(window.scrollY); 
-            };
-    
-            window.addEventListener('scroll', handleScroll);
-    
-            return () => {
-                window.removeEventListener('scroll', handleScroll);
-            };
-        }, []);
-    
-    
-        const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
+        };
+    }, []); // The observer only needs to be initialized once, so no dependencies here.
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []); // Scroll listener will be triggered on every scroll event.
+
+    const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
+
     return (
-        <div ref={divRef} className="text-center w-[100%] 4xl:px-[20%] py-[100px] flex justify-center md:justify-end md:items-center background2 bg-fixed bg-cover">
+        <div ref={divRef} className="text-center w-[100%] 4xl:px-[20%] py-[100px] flex justify-center md:justify-end md:items-center background2 bg-fixed bg-cover overflow-hidden">
             <div className="bg-black w-[60%] md:w-[40%] py-[50px] px-[20px] transition-transform duration-500 ease-in-out"
                 style={{
                     transform: `translateX(${100 - scrollEffect}%)`, // Move from off-screen to in-screen
@@ -67,7 +67,7 @@ function Ebook() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Ebook
+export default Ebook;
