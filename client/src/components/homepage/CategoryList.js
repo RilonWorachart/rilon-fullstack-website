@@ -10,17 +10,15 @@ function CategoryList() {
   const [itemType, setItemType] = useState("type1");
   const [scrollPosition, setScrollPosition] = useState(0);
   const [inView, setInView] = useState(false);
+  const [isFlexColumn, setIsFlexColumn] = useState(window.innerWidth < 760);  // Set initial state based on window width
   const divRef = useRef(null);
-  const isFlexColumn = window.innerWidth < 760;
 
   // Fetching category data
   useEffect(() => {
-    console.log("Fetching category data..."); // Debugging fetch
     const fetchAllCategory = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
         const result = response.data;
-        // console.log("Category data fetched:", result); // Debugging result
         setCategoryData(result.data);
       } catch (error) {
         console.error("Error fetching category data:", error);
@@ -29,14 +27,25 @@ function CategoryList() {
     fetchAllCategory();
   }, []); // Only fetch once on component mount
 
+  // Handle window resize to update isFlexColumn state dynamically
+  useEffect(() => {
+    const handleResize = () => {
+      setIsFlexColumn(window.innerWidth < 760); // Update state on resize
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // Empty dependency array ensures the resize event listener is only set once
+
   // Intersection Observer
   useEffect(() => {
-    // console.log("Setting up IntersectionObserver..."); // Debugging observer setup
     const currentDivRef = divRef.current;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // console.log("Element is in view!"); // Debugging when the element is in view
           setInView(true);
         } else {
           setInView(false); // Optional: reset state when leaving the viewport
@@ -46,21 +55,18 @@ function CategoryList() {
 
     if (currentDivRef) {
       observer.observe(currentDivRef);
-      // console.log("Observer started...");
     }
 
     return () => {
-      if (currentDivRef && observer) {
-        // console.log("Cleaning up observer...");
+      if (currentDivRef) {
         observer.unobserve(currentDivRef);
       }
     };
-  }, []); // Only set up observer once
+  }, []);
 
-  // Scroll position
+  // Scroll position handler
   useEffect(() => {
     const handleScroll = () => {
-      // console.log("Scroll position changed:", window.scrollY); // Debugging scroll position
       setScrollPosition(window.scrollY);
     };
     window.addEventListener('scroll', handleScroll);
@@ -71,11 +77,6 @@ function CategoryList() {
   }, []);
 
   const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
-
-  // console.log("categoryData:", categoryData);
-  // console.log("itemType:", itemType);
-  // console.log("scrollPosition:", scrollPosition);
-  // console.log("inView:", inView);
 
   return (
     <div ref={divRef} className="bg-[#ECF4F7] py-[50px] overflow-hidden">
@@ -88,7 +89,8 @@ function CategoryList() {
       </div>
       <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] transition-transform duration-500 ease-in-out ${itemType === "type2" ? '' : 'grid grid-cols-1 category1:grid-cols-2 category2:grid-cols-3 2xl:grid-cols-4 gap-[20px]'}`}
         style={{
-          transform: `${isFlexColumn ? `translateX(${100 - scrollEffect}%)` : `translateY(${100 - scrollEffect}%)`}`
+          // Avoid scroll effect transformation for small screens
+          transform: `${isFlexColumn ? '' : `translateY(${100 - scrollEffect}%)`}`
         }}>
         {categoryData.map((item) => (
           <div key={item.ID} className="mx-[auto]">

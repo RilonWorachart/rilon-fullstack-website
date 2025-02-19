@@ -66,7 +66,7 @@ function CatalogKeywordPage() {
   return (
     <>
       <div className="min-h-screen font-plex-sans-thai">
-        <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 ">
+        <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between items-center">
           <p className="py-1">
             <Link to="/">
               <span className="hover:text-[#EEE185]">{t('categorypage.p1')}</span>
@@ -78,30 +78,32 @@ function CatalogKeywordPage() {
         </div>
 
 
-        <div className="flex justify-end">
+        <div className="flex justify-end mx-[10%] 2xl:mx-[auto] max-w-[1300px]">
           <SearchKeyButton />
         </div>
 
 
         {
           (totalPages !== 0) && (
-            <div className="mx-[10%] 2xl:mx-[20%] my-[20px] text-[#E2B22C] flex justify-between items-center">
+            <div className="mx-[10%] 2xl:mx-[auto] max-w-[1300px] my-[20px] text-[#0079A9] flex justify-between items-center">
               <div className="text-[24px]">
                 <p className="text-[#C1C1C1] font-light ">{t('pagination.page')} <span className="">{page} /{totalPages}</span></p>
               </div>
-              <div className="my-[20px] text-[#E2B22C] text-[30px] flex justify-end items-center">
-                <CgMenuGridR className="hover:text-[#00009F] mr-1" onClick={() => setItemType("type1")} />
-                <TfiMenuAlt className="hover:text-[#00009F] " onClick={() => setItemType("type2")} />
+              <div className="my-[20px] text-[30px] flex justify-end items-center">
+                <CgMenuGridR className="hover:text-[#EEE185] cursor-pointer mr-1" onClick={() => setItemType("type1")} />
+                <TfiMenuAlt className="hover:text-[#EEE185] cursor-pointer" onClick={() => setItemType("type2")} />
               </div>
             </div>
           )
         }
-        <div className={`mb-[40px] mx-[10%] 2xl:mx-[20%] ${itemType === "type2" ? '' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-[20px]'} }`}>
+        <div className={`mb-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] ${itemType === "type2" ? '' : 'grid grid-cols-1 category1:grid-cols-2 category2:grid-cols-3 2xl:grid-cols-4 gap-[20px]'} }`}>
           {productData.map((item) => {
             return (
-              <ItemCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} category_id={item.category_id}
-                description_th={item.description_th} name_en={item.name_en} description_en={item.description_en} brand_id={item.brand_id} searchword_id={item.searchword_id} itemType={itemType}
-              />
+              <div className="mx-[auto]">
+                <ItemCard key={item.ID} picture_1={item.picture_1} ID={item.ID} name_th={item.name_th} category_id={item.category_id}
+                  description_th={item.description_th} name_en={item.name_en} description_en={item.description_en} brand_id={item.brand_id} searchword_id={item.searchword_id} itemType={itemType}
+                />
+              </div>
             )
           })}
         </div>

@@ -16,6 +16,7 @@ import SliderJingweitip from '../components/homepage/SliderJingweitip';
 import About from '../components/homepage/About';
 import Service from '../components/homepage/Service';
 import Company from '../components/homepage/Company';
+import Title from '../components/homepage/Title';
 import { FaFacebookF, FaGlobe, FaInstagram, FaLine, FaPhoneAlt, FaYoutube, FaMapMarkerAlt } from "react-icons/fa";
 import { MdBusinessCenter, MdMail } from "react-icons/md";
 import { SiShopee } from "react-icons/si";
@@ -43,10 +44,7 @@ function HomePage() {
         <>
             <div className="min-h-screen font-plex-sans-thai ">
                 <SliderTop />
-                <div className="px-[10%] 4xl:px-[20%] py-[20px] text-center text-white bg-[#0079A9]">
-                    <h1 className="text-[34px] text-white">{t('homepage.h1')}</h1>
-                    <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#E2B22C]" />
-                </div>
+                <Title />
                 <div className="px-[10%] 4xl:px-[20%] py-[50px] aligns-center justify-center  ">
                     <div className="py-1 flex flex-wrap">
                         <FaPhoneAlt className="mt-[2px] mr-4" />
@@ -101,7 +99,6 @@ function HomePage() {
                 <CategoryList />
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1440 120"><path fill="#ECF4F7" fill-opacity="1" d="M0,128L120,144C240,160,480,192,720,192C960,192,1200,160,1320,144L1440,128L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
-
                 <CategorySearch />
 
 
