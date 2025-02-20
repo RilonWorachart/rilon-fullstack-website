@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useScroll } from './ScrollContext.js';
 import { Link } from 'react-router-dom'
 import { FaSortDown } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -7,7 +6,6 @@ import Sidebar from './Sidebar.js';
 import { useTranslation } from 'react-i18next';
 
 function Header() {
-  const { navigateAndScroll } = useScroll();
   const { t, i18n } = useTranslation();
   const [isActive, setIsActive] = useState(false);
   const [isActiveSidebar, setIsActiveSidebar] = useState(false);
@@ -71,18 +69,26 @@ function Header() {
               <button className="" >{t('header.homepage')}</button>
             </div>
           </Link>
-          <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "aboutus" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("aboutus")}>
-            <button className="" onClick={() => navigateAndScroll(0)}>{t('header.aboutme')}</button>
-          </div>
-          <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "catelog" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("catelog")}>
-            <button className="" onClick={() => navigateAndScroll(1)}>{t('header.catelog')}</button>
-          </div>
-          <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "recommend" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("recommend")}>
-            <button className="" onClick={() => navigateAndScroll(2)}>{t('header.recommend')}</button>
-          </div>
-          <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "contactus" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("contactus")}>
-            <button className="" onClick={() => navigateAndScroll(3)}>{t('header.contactus')}</button>
-          </div>
+          <Link to="/#target2">
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "catelog" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("catelog")}>
+              <button className="">{t('header.catelog')}</button>
+            </div>
+          </Link>
+          <Link to="/#target1">
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "aboutus" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("aboutus")}>
+              <button className="">{t('header.aboutme')}</button>
+            </div>
+          </Link>
+          <Link to="/#target3">
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "recommend" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("recommend")}>
+              <button className="" >{t('header.recommend')}</button>
+            </div>
+          </Link>
+          <Link to="/#target4">
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "contactus" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("contactus")}>
+              <button className="">{t('header.contactus')}</button>
+            </div>
+          </Link>
           <Link to="/requestform">
             <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "moreinfo" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("moreinfo")}>
               <button className="" >{t('header.moreinfo')}</button>

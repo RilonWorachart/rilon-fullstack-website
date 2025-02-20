@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import Footer from '../components/Footer'
 import CategorySearch from '../components/CategorySearch'
-import { useScroll } from '../components/header/ScrollContext';
 import RecommendProductList from '../components/homepage/RecommendProductList'
 import Contact from '../components/Contact'
 import QRcodeComponent from '../components/QRcodeComponent'
@@ -22,22 +21,39 @@ import { MdBusinessCenter, MdMail } from "react-icons/md";
 import { SiShopee } from "react-icons/si";
 import { BsBagHeartFill } from "react-icons/bs";
 import { useTranslation } from 'react-i18next';
-
+import { useLocation } from 'react-router-dom'
 
 
 
 function HomePage() {
-    const { setSectionRefs } = useScroll();
-    const section1Ref = useRef(null);
-    const section2Ref = useRef(null);
-    const section3Ref = useRef(null);
-    const section4Ref = useRef(null);
     const { t } = useTranslation();
+    const location = useLocation();
 
+    // Function to scroll to the target element based on the hash
+    const scrollToTarget = (targetId) => {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            // Adjusting for fixed header by adding an offset (for example, 100px)
+            const headerOffset = 50; // Adjust this value based on your header height
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+            });
+        }
+    };
 
     useEffect(() => {
-        setSectionRefs([section1Ref.current, section2Ref.current, section3Ref.current, section4Ref.current]);
-    }, [setSectionRefs]);
+        const hash = location.hash.substring(1); // Get hash without '#'
+        if (hash) {
+            // Wait for the page layout to be ready and then scroll
+            setTimeout(() => {
+                scrollToTarget(hash);
+            }, 100); // Slight delay to ensure content is loaded
+        }
+    }, [location]); // Re-run when the location (including hash) changes
 
 
     return (
@@ -95,14 +111,14 @@ function HomePage() {
                     </div >
                 </div >
 
-                <div ref={section2Ref}></div>
+                <div id="target2"></div>
                 <CategoryList />
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1440 120"><path fill="#ECF4F7" fill-opacity="1" d="M0,128L120,144C240,160,480,192,720,192C960,192,1200,160,1320,144L1440,128L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
                 <CategorySearch />
 
 
-                <div ref={section3Ref}></div>
+                <div id="target3"></div>
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20 1440 100"><path fill="#0079A9" fill-opacity="1" d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 <RecommendProductList />
@@ -112,11 +128,11 @@ function HomePage() {
                 <Company />
 
 
-                <div ref={section1Ref}></div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 170" class="w-full h-auto">
                     <path fill="#FFD600" fill-opacity="1" d="M0,160L120,154.7C240,149,480,139,720,122.7C960,107,1200,85,1320,74.7L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
                 </svg>
 
+                <div id="target1"></div>
                 <About />
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 170"><path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
@@ -124,7 +140,7 @@ function HomePage() {
                 <Riloninverter />
 
                 <div className="bg-[#0079A9]">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 </div>
 
                 <Service />
@@ -198,7 +214,7 @@ function HomePage() {
                 <LastAdvertise />
 
 
-                <div ref={section4Ref}></div>
+                <div id="target4"></div>
 
                 <div className="xl:my-[100px] 4xl:px-[20%] xl:px-[10%] xl:flex xl:justify-between">
                     <div className="my-[50px] xl:my-[0px]  xl:w-[50%] px-[10%] xl:p-[0%]">

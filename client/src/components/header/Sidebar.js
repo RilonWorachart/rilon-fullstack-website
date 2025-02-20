@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { FaSortDown } from "react-icons/fa";
 import { Link } from 'react-router-dom'
-import { useScroll } from './ScrollContext.js';
 import i18next from "i18next";
 import { useTranslation } from 'react-i18next';
 
 
 function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLang, setSelectedPic }) {
-    const { navigateAndScroll } = useScroll();
     const { t } = useTranslation();
 
     const handleChangeLanguage = (language) => {
@@ -22,7 +20,6 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
     }
 
     const handleSidebar = (num) => {
-        navigateAndScroll(num)
         setIsActiveSidebar(false)
     }
 
@@ -51,38 +48,44 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                             <button>{t('header.homepage')}</button>
                         </div>
                     </Link>
-                    <div
-                        className="hover:text-[#0079A9]"
-                        onClick={() => {
-                            handleSidebar(0)
-                        }}
-                    >
-                        <button>{t('header.aboutme')}</button>
-                    </div>
-                    <div
-                        className="hover:text-[#0079A9]"
-                        onClick={() => {
-                            handleSidebar(1)
-                        }}
-                    >
-                        <button>{t('header.catelog')}</button>
-                    </div>
-                    <div
-                        className="hover:text-[#0079A9]"
-                        onClick={() => {
-                            handleSidebar(2)
-                        }}
-                    >
-                        <button>{t('header.recommend')}</button>
-                    </div>
-                    <div
-                        className="hover:text-[#0079A9]"
-                        onClick={() => {
-                            handleSidebar(3)
-                        }}
-                    >
-                        <button>{t('header.contactus')}</button>
-                    </div>
+                    <Link to="/#target2">
+                        <div
+                            className="hover:text-[#0079A9]"
+                            onClick={() => {
+                                handleSidebar(1)
+                            }}
+                        >
+                            <button>{t('header.catelog')}</button>
+                        </div></Link>
+                    <Link to="/#target1">
+                        <div
+                            className="hover:text-[#0079A9]"
+                            onClick={() => {
+                                handleSidebar(0)
+                            }}
+                        >
+                            <button>{t('header.aboutme')}</button>
+                        </div></Link>
+                    <Link to="/#target3">
+                        <div
+                            className="hover:text-[#0079A9]"
+                            onClick={() => {
+                                handleSidebar(2)
+                            }}
+                        >
+                            <button>{t('header.recommend')}</button>
+                        </div></Link>
+                    <Link to="/#target4">
+                        <div
+                            className="hover:text-[#0079A9]"
+                            onClick={() => {
+                                handleSidebar(3)
+                            }}
+                        >
+                            <button>{t('header.contactus')}</button>
+                        </div>
+                    </Link>
+
 
                     <Link to="/requestform">
                         <div className={``}>
