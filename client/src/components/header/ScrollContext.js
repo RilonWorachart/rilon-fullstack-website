@@ -1,5 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createContext, useState, useEffect, useContext } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const ScrollContext = createContext();
 
@@ -9,7 +9,9 @@ export const useScroll = () => {
 
 export const ScrollProvider = ({ children }) => {
   const [sectionRefs, setSectionRefs] = useState([]);
+  const [indexToScroll, setIndexToScroll] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (index) => {
     if (sectionRefs[index]) {
@@ -20,15 +22,31 @@ export const ScrollProvider = ({ children }) => {
     }
   };
 
+  // Effect to handle page load and scrolling after navigation
+  useEffect(() => {
+    if (indexToScroll !== null) {
+      // Delay scrolling to allow the page to load after navigation
+      const timeoutId = setTimeout(() => {
+        scrollToSection(indexToScroll);
+        setIndexToScroll(null); // Reset index after scrolling
+      }, 500); // Adjust the delay if needed
+
+      return () => clearTimeout(timeoutId); // Cleanup timeout on component unmount or change
+    }
+  }, [indexToScroll]);
+
+  // Effect to ensure scroll behavior when location changes
+  useEffect(() => {
+    if (indexToScroll !== null) {
+      // Scroll to the section after navigation completes
+      scrollToSection(indexToScroll);
+      setIndexToScroll(null); // Reset the section to scroll to
+    }
+  }, [location, indexToScroll]);
 
   const navigateAndScroll = (index) => {
-    // Navigate to the Home page first
-    navigate('/');
-    
-    // After navigation, scroll to the specific section
-    setTimeout(() => {
-      scrollToSection(index);
-    }, 500);  // Wait for the page to load before scrolling (adjust time as needed)
+    setIndexToScroll(index); // Set the section to scroll to
+    navigate('/'); // Navigate to the homepage or desired route
   };
 
   return (

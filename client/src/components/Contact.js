@@ -79,7 +79,7 @@ function Contact() {
                             <FaYoutube />
                         </div>
                     </a>
-                    <a href="https://www.rilon-riland.com/">
+                    <a href="https://www.rilonthailand.com/">
                         <div className="bg-[#15A2F2] p-1.5 mr-2 text-white rounded-full hover:bg-[#58A0D6]">
                             <FaGlobe />
                         </div>

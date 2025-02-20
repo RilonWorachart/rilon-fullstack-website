@@ -3,7 +3,6 @@ import { useScroll } from './ScrollContext.js';
 import { Link } from 'react-router-dom'
 import { FaSortDown } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-// import LanguageSwitcher from './LanguageSwitcher.js';
 import Sidebar from './Sidebar.js';
 import { useTranslation } from 'react-i18next';
 
@@ -51,13 +50,13 @@ function Header() {
   return (
     <div className="font-plex-sans-thai bg-[#FFD600] text-[#0079A9] fixed w-full top-0 left-0 z-50">
       <div
-          style={{
-            height: "4px",
-            backgroundColor: "#0079A9",
-            width: `${scrollPercent}%`,
-            transition: "width 0.2s ease-in-out",
-          }}
-        />
+        style={{
+          height: "4px",
+          backgroundColor: "#0079A9",
+          width: `${scrollPercent}%`,
+          transition: "width 0.2s ease-in-out",
+        }}
+      />
       <div className="px-[10%] py-[11px] flex items-center justify-between">
         <div className="w-[20%]">
           <Link to="/">
@@ -138,12 +137,11 @@ function Header() {
 
         <div className="text-black text-[20px] hover:cursor-pointer xl:hidden">
           <GiHamburgerMenu onClick={() => setIsActiveSidebar(true)} className="text-[#0079A9]" />
-          {isActiveSidebar && (
-            <>
-              <div className="fixed inset-0 bg-black opacity-50 z-40" style={{ right: '280px' }}></div>
-              <Sidebar setIsActiveSidebar={setIsActiveSidebar} selectedLang={selectedLang} selectedPic={selectedPic} setSelectedLang={setSelectedLang} setSelectedPic={setSelectedPic} />
-            </>
-          )}
+          <div className={`fixed top-0 right-0 w-[280px] h-full text-white transform 
+          ${isActiveSidebar ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}
+          >
+            <Sidebar setIsActiveSidebar={setIsActiveSidebar} selectedLang={selectedLang} selectedPic={selectedPic} setSelectedLang={setSelectedLang} setSelectedPic={setSelectedPic} />
+          </div>
 
         </div>
       </div>

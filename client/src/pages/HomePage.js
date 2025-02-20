@@ -79,7 +79,7 @@ function HomePage() {
                         <a href="https://www.youtube.com/@rilon_thailand" className="bg-[#F60000] p-1.5 mr-2 text-white rounded-full hover:bg-[#FC4949]">
                             <FaYoutube />
                         </a>
-                        <a href="https://www.rilon-riland.com/" className="bg-[#15A2F2] p-1.5 mr-2 text-white rounded-full hover:bg-[#58A0D6]">
+                        <a href="https://www.rilonthailand.com/" className="bg-[#15A2F2] p-1.5 mr-2 text-white rounded-full hover:bg-[#58A0D6]">
                             <FaGlobe />
                         </a>
                         <a href="https://www.lazada.co.th/shop/jw-jingweitip/?spm=a2o4m.pdp_revamp.seller.1.7ecf41f8hb1o3I&itemId=4370282627&channelSource=pdp">
@@ -111,11 +111,12 @@ function HomePage() {
 
                 <Company />
 
+
+                <div ref={section1Ref}></div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 170" class="w-full h-auto">
                     <path fill="#FFD600" fill-opacity="1" d="M0,160L120,154.7C240,149,480,139,720,122.7C960,107,1200,85,1320,74.7L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
                 </svg>
 
-                <div ref={section1Ref}></div>
                 <About />
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 170"><path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
@@ -196,8 +197,11 @@ function HomePage() {
 
                 <LastAdvertise />
 
-                <div ref={section4Ref} className="xl:py-[100px] 4xl:px-[20%] xl:px-[10%] xl:flex xl:justify-between">
-                    <div className="xl:w-[50%] px-[10%] py-[50px] xl:p-[0%]">
+
+                <div ref={section4Ref}></div>
+
+                <div className="xl:my-[100px] 4xl:px-[20%] xl:px-[10%] xl:flex xl:justify-between">
+                    <div className="my-[50px] xl:my-[0px]  xl:w-[50%] px-[10%] xl:p-[0%]">
                         <div className="py-3 flex flex-wrap">
                             <MdBusinessCenter className="mt-[2px] mr-4" />
                             <p className="text-[#0079A9]">{t('homepage.p24')}</p>
