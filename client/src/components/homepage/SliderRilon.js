@@ -21,7 +21,7 @@ function SliderRilon() {
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
                 <img src='/images/page_images/argon.jpg' alt="argon" className="w-full flex-shrink-0"></img>
-                <img src='/images/page_images/CO2.jpg' alt="co2" className="w-full flex-shrink-0"></img>
+                <img src='/images/page_images/co2.jpg' alt="co2" className="w-full flex-shrink-0"></img>
                 <img src='/images/page_images/plusma.jpg' alt="plusma" className="w-full flex-shrink-0"></img>
                 <img src='/images/page_images/rotate.jpg' alt="rotate" className="w-full flex-shrink-0"></img>
             </div>

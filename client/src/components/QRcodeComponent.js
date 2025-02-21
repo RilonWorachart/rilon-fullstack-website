@@ -60,21 +60,21 @@ function QRcodeComponent() {
         style={{
           transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
         }}>
-        <img src='/images/page_images/Line1.png' alt="line1" className="py-4 px-[auto] px-4"></img>
+        <img src='/images/page_images/line1.png' alt="line1" className="py-4 px-[auto] px-4"></img>
         <p className="text-center text-white pb-4 text-[22px]">095-961-9901</p>
       </div>
       <div className="bg-[#E2B22C] rounded-lg my-[10px] lg:my-[0px] lg:mx-[10px] transition-transform duration-500 ease-in-out"
         style={{
           transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
         }}>
-        <img src='/images/page_images/Line2.png' alt="line2" className="py-4 px-[auto] px-4"></img>
+        <img src='/images/page_images/line2.png' alt="line2" className="py-4 px-[auto] px-4"></img>
         <p className="text-center text-white pb-4 text-[22px]">089-660-9609</p>
       </div>
       <div className="bg-[#0079A9] rounded-lg my-[10px] lg:my-[0px] lg:mx-[10px] transition-transform duration-500 ease-in-out"
         style={{
           transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
         }}>
-        <img src='/images/page_images/Line3.png' alt="line3" className="py-4 px-[auto] px-4"></img>
+        <img src='/images/page_images/line3.png' alt="line3" className="py-4 px-[auto] px-4"></img>
         <p className="text-center text-white pb-4 text-[22px]">081-694-5000</p>
       </div>
     </div>
