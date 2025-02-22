@@ -13,7 +13,8 @@ const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '..', 'public', 'uploads'));  // Absolute path to uploads folder
+        // cb(null, path.join(__dirname, '..', 'public', 'uploads'));  // Absolute path to uploads folder
+        cb(null, path.join(__dirname, 'api', 'uploads'));
     },
     filename: function (req, file, cb) {
         const ext = path.extname(file.originalname); // Get the file extension
