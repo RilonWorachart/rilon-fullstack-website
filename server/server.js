@@ -11,14 +11,24 @@ import brandRoutes from './routes/brandRoutes.js';
 import searchwordRoutes from './routes/searchwordRoutes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import helmet from 'helmet';
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); 
 
-
 const app = express();
+
+// CORS configuration
+const corsOptions = {
+  origin: 'https://www.rilonthailand.com',  // Frontend domain allowed to access the backend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Allowed headers
+};
+
+app.use(cors(corsOptions));  // Apply the CORS middleware
+app.use(helmet());
 app.use(express.json());
-app.use(cors());
+
 
 // Define your routes
 app.use('/api', productRoutes);

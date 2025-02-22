@@ -20,21 +20,21 @@ function Contact() {
                 <div className="py-3 flex flex-wrap">
                     <FaPhoneAlt className="mt-[2px] mr-4" />
                     <p>
-                        <span className="text-[#E2B22C] hover:text-[#0079A9]">081-694-5000</span>,
-                        <span className="text-[#E2B22C] hover:text-[#0079A9]"> 081-697-7000</span>,
+                        <span className="text-[#E2B22C] hover:text-[#0079A9]">081-697-7000</span>,
+                        <span className="text-[#E2B22C] hover:text-[#0079A9]"> 081-694-5000</span>,
                         <span className="text-[#E2B22C] hover:text-[#0079A9]"> 095-961-9901</span>,
                         <span className="text-[#E2B22C] hover:text-[#0079A9]"> 098-426-6953</span>,
                         <span className="text-[#E2B22C] hover:text-[#0079A9]"> 089-660-9609</span>,
                         <span className="text-[#E2B22C] hover:text-[#0079A9]"> 094-695-5599</span>
                     </p>
                 </div>
-                <div className="py-3 flex flex-wrap">
+                {/* <div className="py-3 flex flex-wrap">
                     <FaFax className="mt-[2px] mr-4" />
                     <p>
                         <span className="text-[#E2B22C] hover:text-[#0079A9]">0-2922-2832</span>,
                         <span className="text-[#E2B22C] hover:text-[#0079A9]"> 0-2595-8518</span>
                     </p>
-                </div>
+                </div> */}
                 <div className="py-3 flex flex-wrap">
                     <MdMail className="mt-[2px] mr-4" />
                     <p><a href="mailto:janenyrilon_jingwei@hotmail.com" className="text-[#E2B22C] hover:text-[#0079A9]"> janenyrilon_jingwei@hotmail.com</a>,

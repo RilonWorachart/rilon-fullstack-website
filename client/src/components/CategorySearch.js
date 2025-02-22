@@ -33,7 +33,7 @@ function CategorySearch() {
   useEffect(() => {
     fetchAllBrandData()
     fetchAllSearchwordData()
-  }, [brandData, searchwordData])
+  }, [])
 
 
   return (

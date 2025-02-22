@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();  // Load environment variables from .env file
 
+
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
@@ -13,6 +14,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0
 });
+
 
 // Export the promise-based pool for async/await usage
 export const promisePool = pool.promise();

@@ -64,8 +64,8 @@ function HomePage() {
                 <div className="px-[10%] 4xl:px-[20%] py-[50px] aligns-center justify-center  ">
                     <div className="py-1 flex flex-wrap">
                         <FaPhoneAlt className="mt-[2px] mr-4" />
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">08-1694-5000</p>,
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;08-1697-7000 (office)</p>,
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">08-1697-7000 (office)</p>,
+                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;08-1694-5000</p>,
                         <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;09-5961-9901 </p>,
                         <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;098-426-6953</p>,
                         <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;089-660-9609</p>,
@@ -139,8 +139,8 @@ function HomePage() {
 
                 <Riloninverter />
 
-                <div className="bg-[#0079A9]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                <div className="bg-[#0079A9] py-[0px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 222"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 </div>
 
                 <Service />
