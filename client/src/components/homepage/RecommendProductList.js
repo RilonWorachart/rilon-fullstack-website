@@ -12,7 +12,7 @@ function RecommendProductList() {
 
   const fetchRecommendProduct = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallrecommendproduct`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallrecommendproduct`);
       const result = response.data;
       setRecommendProductData(result.data);
     } catch (error) {

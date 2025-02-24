@@ -11,7 +11,7 @@ function CategorySearch() {
 
   const fetchAllBrandData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallbrand`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallbrand`);
       const result = response.data;
       setBrandData(result.data);
     } catch (error) {
@@ -22,7 +22,7 @@ function CategorySearch() {
 
   const fetchAllSearchwordData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallsearchword`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallsearchword`);
       const result = response.data;
       setSearchwordData(result.data);
     } catch (error) {

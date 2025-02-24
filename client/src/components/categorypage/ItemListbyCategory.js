@@ -34,7 +34,7 @@ function ItemListbyCategory() {
     };
     try {
       // Use Axios to send the GET request
-      const response = await axios.get(`${process.env.REACT_APP_API}/getfilterproduct`, { params });
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getfilterproduct`, { params });
       const result = response.data;
       setProductData(result.data);
       setTotalPages(result.pagination.totalPages); // Set total pages from the response
@@ -48,7 +48,7 @@ function ItemListbyCategory() {
 
   const fetchAllBrandData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallbrand`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallbrand`);
       const result = response.data;
       setBrandData(result.data);
     } catch (error) {

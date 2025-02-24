@@ -16,7 +16,7 @@ function RelateItem() {
   // Fetch product data by ID
   const fetchProductById = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getproductbyid?id=${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getproductbyid?id=${id}`);
       const result = response.data;
       if (result && result.data) {
         setProductData(result.data);
@@ -32,7 +32,7 @@ function RelateItem() {
   const fetchAllProductByCategory = async (categoryId) => {
     if (!categoryId) return; // Guard clause
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getproductbycategory/?category_id=${categoryId}`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getproductbycategory/?category_id=${categoryId}`);
       const result = response.data;
       setAllCategoryProductData(result.data || []);
     } catch (error) {

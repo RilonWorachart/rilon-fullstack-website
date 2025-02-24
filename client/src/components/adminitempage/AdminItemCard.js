@@ -22,7 +22,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
   const fetchCategoryData = async () => {
     if (category_id) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${category_id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API}/api/getcategorybyid?id=${category_id}`);
         const result = response.data;
         if (result && result.data && result.data.length > 0) {
           setCategoryData(result.data[0]);
@@ -42,7 +42,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
   const fetchBrandData = async () => {
     if (brand_id) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API}/getbrandbyid?id=${brand_id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API}/api/getbrandbyid?id=${brand_id}`);
         const result = response.data;
         if (result && result.data && result.data.length > 0) {
           setBrandData(result.data[0]);
@@ -61,7 +61,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
   const fetchSearchwordData = async () => {
     if (searchword_id) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API}/getsearchwordbyid?id=${searchword_id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API}/api/getsearchwordbyid?id=${searchword_id}`);
         const result = response.data;
         if (result && result.data && result.data.length > 0) {
           setSearchwordData(result.data[0]);
@@ -90,7 +90,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
   // Handle delete
   const handledelete = () => {
     axios
-      .delete(`${process.env.REACT_APP_API}/deleteproduct?id=${ID}`, {
+      .delete(`${process.env.REACT_APP_API}/api/deleteproduct?id=${ID}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,

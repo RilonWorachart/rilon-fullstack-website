@@ -13,12 +13,12 @@ function AdminCategoryCard({ ID, picture_1, name_th, description_th, name_en, de
 
 
   useEffect(() => {
-    // console.log(`${process.env.REACT_APP_API}/uploads/${picture_1}`)
+    // console.log(`${process.env.REACT_APP_API}/api/uploads/${picture_1}`)
   })
 
   const handledelete = () => {
     axios
-      .delete(`${process.env.REACT_APP_API}/deletecategory?id=${ID}`, {
+      .delete(`${process.env.REACT_APP_API}/api/deletecategory?id=${ID}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,

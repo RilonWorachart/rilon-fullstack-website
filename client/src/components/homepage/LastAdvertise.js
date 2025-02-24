@@ -58,7 +58,7 @@ function LastAdvertise() {
     return (
         <div ref={divRef} className="bg-cover bg-fixed bg-center background3 md:flex md:flex-row flex-col px-[10%] 4xl:px-[20%] py-[100px] md:justify-between overflow-hidden">
             <div
-                className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out"
+                className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out rounded-lg"
                 style={{
                     transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(${100 - scrollEffect}%)`}`
                 }}
@@ -66,13 +66,13 @@ function LastAdvertise() {
                 <img
                     src="/images/page_images/WeldingMC.png"
                     alt="weldingMC"
-                    className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
+                    className="w-[100%]"
                 />
                 <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h18')}</h1>
                 <p className="px-4 pb-8">{t('homepage.p21')}</p>
             </div>
             <div
-                className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out"
+                className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out rounded-lg"
                 style={{
                     transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(${100 - scrollEffect}%)`}`
                 }}
@@ -80,13 +80,13 @@ function LastAdvertise() {
                 <img
                     src="/images/page_images/TorchSerPana.png"
                     alt="torchserpana"
-                    className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
+                    className="w-[100%]"
                 />
                 <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h19')}</h1>
                 <p className="px-4 pb-8">{t('homepage.p22')}</p>
             </div>
             <div
-                className="bg-white md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out"
+                className="bg-white md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out rounded-lg"
                 style={{
                     transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(${100 - scrollEffect}%)`}`
                 }}
@@ -94,7 +94,7 @@ function LastAdvertise() {
                 <img
                     src="/images/page_images/Robot.png"
                     alt="robot"
-                    className="w-[100%] transition-transform duration-300 ease-in-out transform hover:scale-110"
+                    className="w-[100%]"
                 />
                 <h1 className="text-[20px] text-center p-4 text-[#0079A9]">{t('homepage.h20')}</h1>
                 <p className="px-4 pb-8">{t('homepage.p23')}</p>

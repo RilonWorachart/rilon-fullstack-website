@@ -63,7 +63,7 @@ function Service() {
                 }}>
                 <h1 className="text-[28px]">DEALER</h1>
                 <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
-                    <img src='/images/page_images/Dealer.jpg' alt="dealer" className="h-full w-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                    <img src='/images/page_images/Dealer.jpg' alt="dealer" className="h-full w-full object-cover "></img>
                 </div>
                 <p>{t('homepage.p3')}</p>
             </div>
@@ -73,7 +73,7 @@ function Service() {
                 }}>
                 <h1 className="text-[28px]">HIGHER EFFICIENCY</h1>
                 <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
-                    <img src='/images/page_images/HighEfficiency.jpg' alt="efficiency" className="h-full w-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                    <img src='/images/page_images/HighEfficiency.jpg' alt="efficiency" className="h-full w-full object-cover"></img>
                 </div>
                 <p>{t('homepage.p4')}</p>
             </div>
@@ -83,7 +83,7 @@ function Service() {
                 }}>
                 <h1 className="text-[28px]" >WARANTY SERVICE</h1>
                 <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
-                    <img src='/images/page_images/WarantyService.jpg' alt="service" className="h-full w-full  object-cover transition-transform duration-300 ease-in-out transform hover:scale-110"></img>
+                    <img src='/images/page_images/WarantyService.jpg' alt="service" className="h-full w-full  object-cover"></img>
                 </div>
                 <p>{t('homepage.p5')}</p>
             </div>

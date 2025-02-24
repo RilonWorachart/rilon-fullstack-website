@@ -17,7 +17,7 @@ function CategoryList() {
   useEffect(() => {
     const fetchAllCategory = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
+        const response = await axios.get(`${process.env.REACT_APP_API}/api/getallcategory`);
         const result = response.data;
         setCategoryData(result.data);
       } catch (error) {

@@ -15,7 +15,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
   const fetchBrandData = async () => {
     if (brand_id) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API}/getbrandbyid?id=${brand_id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API}/api/getbrandbyid?id=${brand_id}`);
         const result = response.data;
         if (result && result.data && result.data.length > 0) {
           setBrandData(result.data[0]);
@@ -33,7 +33,7 @@ function ItemCard({ ID, picture_1, name_th, description_th, name_en, description
   const fetchSearchwordData = async () => {
     if (searchword_id) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API}/getsearchwordbyid?id=${searchword_id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API}/api/getsearchwordbyid?id=${searchword_id}`);
         const result = response.data;
         if (result && result.data && result.data.length > 0) {
           setSearchwordData(result.data[0]);

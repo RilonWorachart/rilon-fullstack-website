@@ -19,7 +19,7 @@ function CategoryDetail() {
     const fetchCategoryById = async () => {
         try {
             // Use Axios to send the GET request
-            const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${id}`)
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getcategorybyid?id=${id}`)
             const result = response.data;
             setProductData(result.data[0]);
         } catch (error) {

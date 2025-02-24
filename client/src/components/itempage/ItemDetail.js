@@ -25,7 +25,7 @@ function ItemDetail() {
     // Fetch product data by ID
     const fetchProductById = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getproductbyid?id=${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getproductbyid?id=${id}`);
             // console.log("Product Response:", response.data);
             const result = response.data;
             if (result && result.data) {
@@ -42,7 +42,7 @@ function ItemDetail() {
     const fetchCategoryData = async () => {
         if (productData?.category_id) {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${productData.category_id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API}/api/getcategorybyid?id=${productData.category_id}`);
                 const result = response.data;
                 if (result && result.data && result.data.length > 0) {
                     setCategoryData(result.data[0]);
@@ -61,7 +61,7 @@ function ItemDetail() {
     const fetchBrandData = async () => {
         if (productData?.brand_id) {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API}/getbrandbyid?id=${productData.brand_id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API}/api/getbrandbyid?id=${productData.brand_id}`);
                 const result = response.data;
                 if (result && result.data && result.data.length > 0) {
                     setBrandData(result.data[0]);
@@ -81,7 +81,7 @@ function ItemDetail() {
     const fetchSearchwordData = async () => {
         if (productData?.searchword_id) {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API}/getsearchwordbyid?id=${productData.searchword_id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API}/api/getsearchwordbyid?id=${productData.searchword_id}`);
                 const result = response.data;
                 if (result && result.data && result.data.length > 0) {
                     setSearchwordData(result.data[0]);
