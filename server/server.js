@@ -20,13 +20,14 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: 'https://www.rilonthailand.com',  // Frontend domain allowed to access the backend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'],  // Allowed headers
+  origin: '*',  // Allow all origins (for testing purposes, use specific origins for production)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
+
 app.use(cors(corsOptions));  // Apply the CORS middleware
-app.use(helmet());
+// app.use(helmet());
 app.use(express.json());
 
 
@@ -39,9 +40,10 @@ app.use('/api', recommendProductRoutes)
 app.use('/api', brandRoutes)
 app.use('/api', searchwordRoutes)
 
-const uploadsPath = path.join(__dirname, 'public', 'uploads');
-// const uploadsPath = path.join(__dirname, 'uploads');
-app.use('/api/uploads', express.static(uploadsPath));
+
+// const uploadsPath = path.join(__dirname, 'public', 'uploads');
+const uploadsPath = path.join(__dirname, 'uploads');
+app.use('/uploads', express.static(uploadsPath));
 
 app.listen(3001, function () {
   console.log("Server listening on port 3001");

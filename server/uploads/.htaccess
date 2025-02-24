@@ -9,6 +9,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_METHOD} OPTIONS
-    RewriteCond %{REQUEST_URI} ^/api/uploads/
+    RewriteCond %{REQUEST_URI} ^/uploads/
     RewriteRule ^(.*)$ - [R=200,L]
 </IfModule>
