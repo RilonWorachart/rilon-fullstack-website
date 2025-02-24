@@ -15,7 +15,7 @@ function AdminEditCategoryPage() {
         if (token) {
             axios
                 .post(
-                    `${process.env.REACT_APP_API}/authen`,
+                    `${process.env.REACT_APP_API}/api/authen`,
                     {}, // Empty body, since it's a POST request with only Authorization header
                     {
                         headers: {
@@ -46,7 +46,7 @@ function AdminEditCategoryPage() {
 
     const fetchCategoryById = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getcategorybyid?id=${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getcategorybyid?id=${id}`);
             const result = response.data;
             setCategoryData(result.data[0]);
         } catch (error) {
@@ -117,7 +117,7 @@ function AdminEditCategoryPage() {
         }
 
         // Send the request to the backend
-        axios.put(`${process.env.REACT_APP_API}/editcategory`, formDataToSend, {
+        axios.put(`${process.env.REACT_APP_API}/api/editcategory`, formDataToSend, {
             headers: {
                 "Content-Type": "multipart/form-data", // Important for file uploads
                 "Authorization": "Bearer " + localStorage.getItem("token"),

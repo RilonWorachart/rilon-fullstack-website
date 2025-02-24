@@ -22,7 +22,7 @@ function AdminSearchwordPage() {
         if (token) {
             axios
                 .post(
-                    `${process.env.REACT_APP_API}/authen`,
+                    `${process.env.REACT_APP_API}/api/authen`,
                     {}, // Empty body, since it's a POST request with only Authorization header
                     {
                         headers: {
@@ -61,7 +61,7 @@ function AdminSearchwordPage() {
     const fetchAllSearchword = async () => {
         try {
             // Use Axios to send the GET request
-            const response = await axios.get(`${process.env.REACT_APP_API}/getallsearchword`, {
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getallsearchword`, {
             });
 
             const result = response.data;
@@ -108,7 +108,7 @@ function AdminSearchwordPage() {
 
 
         // Send the request to the backend
-        axios.post(`${process.env.REACT_APP_API}/createsearchword`, formDataToSend, {
+        axios.post(`${process.env.REACT_APP_API}/api/createsearchword`, formDataToSend, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("token"),
@@ -170,7 +170,7 @@ function AdminSearchwordPage() {
         const token = localStorage.getItem("token");
 
         axios
-            .delete(`${process.env.REACT_APP_API}/deletesearchword?id=${ID}`, {
+            .delete(`${process.env.REACT_APP_API}/api/deletesearchword?id=${ID}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,

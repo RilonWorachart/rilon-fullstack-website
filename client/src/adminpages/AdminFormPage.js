@@ -16,7 +16,7 @@ function AdminFormPage() {
     if (token) {
       axios
         .post(
-          `${process.env.REACT_APP_API}/authen`,
+          `${process.env.REACT_APP_API}/api/authen`,
           {}, // Empty body, since it's a POST request with only Authorization header
           {
             headers: {
@@ -68,7 +68,7 @@ function AdminFormPage() {
         }, 1000);
       }
 
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallform`, {
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallform`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,  // Add the token to the header

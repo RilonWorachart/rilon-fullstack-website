@@ -19,7 +19,7 @@ function AdminCategoryPage() {
     if (token) {
       axios
         .post(
-          `${process.env.REACT_APP_API}/authen`,
+          `${process.env.REACT_APP_API}/api/authen`,
           {},
           {
             headers: {
@@ -55,7 +55,7 @@ function AdminCategoryPage() {
 
   const fetchAllCategoryData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallcategory`);
       const result = response.data;
       setCategoryData(result.data);
     } catch (error) {

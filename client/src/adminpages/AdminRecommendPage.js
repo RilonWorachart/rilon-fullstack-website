@@ -22,7 +22,7 @@ function AdminRecommendPage() {
         if (token) {
             axios
                 .post(
-                    `${process.env.REACT_APP_API}/authen`,
+                    `${process.env.REACT_APP_API}/api/authen`,
                     {}, // Empty body, since it's a POST request with only Authorization header
                     {
                         headers: {
@@ -61,7 +61,7 @@ function AdminRecommendPage() {
     const fetchRecommendProduct = async () => {
         try {
             // Use Axios to send the GET request
-            const response = await axios.get(`${process.env.REACT_APP_API}/getallrecommendproduct`, {
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getallrecommendproduct`, {
             });
 
             const result = response.data;
@@ -120,7 +120,7 @@ function AdminRecommendPage() {
 
 
         // Send the request to the backend
-        axios.post(`${process.env.REACT_APP_API}/createrecommendproduct`, formDataToSend, {
+        axios.post(`${process.env.REACT_APP_API}/api/createrecommendproduct`, formDataToSend, {
             headers: {
                 "Content-Type": "multipart/form-data", // Important for file uploads
                 "Authorization": "Bearer " + localStorage.getItem("token"),
@@ -193,7 +193,7 @@ function AdminRecommendPage() {
         const token = localStorage.getItem("token");
 
         axios
-            .delete(`${process.env.REACT_APP_API}/deleterecommendproduct?id=${ID}`, {
+            .delete(`${process.env.REACT_APP_API}/api/deleterecommendproduct?id=${ID}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,

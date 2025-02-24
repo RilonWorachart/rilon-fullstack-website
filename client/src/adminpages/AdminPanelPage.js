@@ -20,7 +20,7 @@ function AdminPanelPage() {
         if (token) {
             axios
                 .post(
-                    `${process.env.REACT_APP_API}/authen`,
+                    `${process.env.REACT_APP_API}/api/authen`,
                     {}, // Empty body, since it's a POST request with only Authorization header
                     {
                         headers: {

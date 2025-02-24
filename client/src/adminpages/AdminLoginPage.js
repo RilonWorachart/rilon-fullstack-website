@@ -30,7 +30,7 @@ function AdminLoginPage() {
     try {
       // Send data to the server using axios
       const response = await axios.post(
-        `${process.env.REACT_APP_API}/login`,
+        `${process.env.REACT_APP_API}/api/login`,
         jsonData, // Send the jsonData directly (axios automatically sets Content-Type to application/json)
       );
 

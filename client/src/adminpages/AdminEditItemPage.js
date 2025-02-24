@@ -20,7 +20,7 @@ function AdminEditItemPage() {
 
     const fetchAllBrandData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getallbrand`);
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getallbrand`);
             const result = response.data;
             setBrandData(result.data);
         } catch (error) {
@@ -30,7 +30,7 @@ function AdminEditItemPage() {
 
     const fetchAllSearchwordData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getallsearchword`);
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getallsearchword`);
             const result = response.data;
             setSearchwordData(result.data);
         } catch (error) {
@@ -45,7 +45,7 @@ function AdminEditItemPage() {
         if (token) {
             axios
                 .post(
-                    `${process.env.REACT_APP_API}/authen`,
+                    `${process.env.REACT_APP_API}/api/authen`,
                     {}, // Empty body, since it's a POST request with only Authorization header
                     {
                         headers: {
@@ -80,7 +80,7 @@ function AdminEditItemPage() {
 
     const fetchProductById = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getproductbyid?id=${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getproductbyid?id=${id}`);
             const result = response.data;
             setProductData(result.data);
         } catch (error) {
@@ -133,7 +133,7 @@ function AdminEditItemPage() {
 
     const fetchAllCategoryData = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getallcategory`);
             const result = response.data;
             setCategoryData(result.data); // Set category data as an array
         } catch (error) {
@@ -199,7 +199,7 @@ function AdminEditItemPage() {
         }
 
         // Send the request to the backend
-        axios.put(`${process.env.REACT_APP_API}/editproduct`, formDataToSend, {
+        axios.put(`${process.env.REACT_APP_API}/api/editproduct`, formDataToSend, {
             headers: {
                 "Content-Type": "multipart/form-data", // Important for file uploads
                 "Authorization": "Bearer " + localStorage.getItem("token"),
@@ -321,7 +321,7 @@ function AdminEditItemPage() {
 
     const handleDeletePicture2 = () => {
         axios
-            .delete(`${process.env.REACT_APP_API}/deleteproductpicture2?id=${id}`, {
+            .delete(`${process.env.REACT_APP_API}/api/deleteproductpicture2?id=${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -363,7 +363,7 @@ function AdminEditItemPage() {
 
     const handleDeleteModel = () => {
         axios
-            .delete(`${process.env.REACT_APP_API}/deleteproductmodel?id=${id}`, {
+            .delete(`${process.env.REACT_APP_API}/api/deleteproductmodel?id=${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,

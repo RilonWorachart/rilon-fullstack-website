@@ -14,7 +14,7 @@ const AdminCreateItemPage = () => {
     if (token) {
       axios
         .post(
-          `${process.env.REACT_APP_API}/authen`,
+          `${process.env.REACT_APP_API}/api/authen`,
           {}, // Empty body, since it's a POST request with only Authorization header
           {
             headers: {
@@ -84,7 +84,7 @@ const AdminCreateItemPage = () => {
     }
 
     // Send the request to the backend
-    axios.post(`${process.env.REACT_APP_API}/createcategory`, formDataToSend, {
+    axios.post(`${process.env.REACT_APP_API}/api/createcategory`, formDataToSend, {
       headers: {
         "Content-Type": "multipart/form-data", // Important for file uploads
         "Authorization": "Bearer " + localStorage.getItem("token"),

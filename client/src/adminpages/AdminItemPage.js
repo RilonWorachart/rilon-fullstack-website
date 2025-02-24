@@ -34,7 +34,7 @@ function AdminItemPage() {
     if (token) {
       axios
         .post(
-          `${process.env.REACT_APP_API}/authen`,
+          `${process.env.REACT_APP_API}/api/authen`,
           {},
           {
             headers: {
@@ -79,7 +79,7 @@ function AdminItemPage() {
         page,
       };
 
-      const response = await axios.get(`${process.env.REACT_APP_API}/getfilterproduct`, { params });
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getfilterproduct`, { params });
       const result = response.data;
       setProductData(result.data);
       setTotalPages(result.pagination.totalPages); // Set total pages from the response
@@ -92,7 +92,7 @@ function AdminItemPage() {
 
   const fetchAllCategoryData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallcategory`);
       const result = response.data;
       setCategoryData(result.data);
     } catch (error) {
@@ -102,7 +102,7 @@ function AdminItemPage() {
 
   const fetchAllBrandData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallbrand`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallbrand`);
       const result = response.data;
       setBrandData(result.data);
     } catch (error) {

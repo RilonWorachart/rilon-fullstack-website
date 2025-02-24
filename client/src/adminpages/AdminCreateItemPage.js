@@ -15,7 +15,7 @@ const AdminCreateItemPage = () => {
 
   const fetchAllBrandData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallbrand`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallbrand`);
       const result = response.data;
       setBrandData(result.data);
     } catch (error) {
@@ -25,7 +25,7 @@ const AdminCreateItemPage = () => {
 
   const fetchAllSearchwordData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallsearchword`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallsearchword`);
       const result = response.data;
       setSearchwordData(result.data);
     } catch (error) {
@@ -38,7 +38,7 @@ const AdminCreateItemPage = () => {
     if (token) {
       axios
         .post(
-          `${process.env.REACT_APP_API}/authen`,
+          `${process.env.REACT_APP_API}/api/authen`,
           {}, // Empty body, since it's a POST request with only Authorization header
           {
             headers: {
@@ -87,7 +87,7 @@ const AdminCreateItemPage = () => {
 
   const fetchAllCategoryData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallcategory`);
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallcategory`);
       const result = response.data;
       setCategoryData(result.data); // Set category data as an array
     } catch (error) {
@@ -142,7 +142,7 @@ const AdminCreateItemPage = () => {
     }
 
     // Send the request to the backend
-    axios.post(`${process.env.REACT_APP_API}/createproduct`, formDataToSend, {
+    axios.post(`${process.env.REACT_APP_API}/api/createproduct`, formDataToSend, {
       headers: {
         "Content-Type": "multipart/form-data", // Important for file uploads
         "Authorization": "Bearer " + localStorage.getItem("token"),
