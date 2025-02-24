@@ -65,8 +65,8 @@ export const deleteCategory = async (req, res, next) => {
     const productData = categoryData[0]; // Assuming your category data is in this array
 
     if (productData.picture_1) {
-      // const picture_1_Path = path.join(__dirname, '..', 'public', productData.picture_1); // Adjust path as needed
-      const picture_1_Path = path.join(__dirname, '..', productData.picture_1); // Adjust path as needed
+      const picture_1_Path = path.join(__dirname, '..', 'public', productData.picture_1); // Adjust path as needed
+      // const picture_1_Path = path.join(__dirname, '..', productData.picture_1); // Adjust path as needed
 
       // Check if the image file exists and delete it
       fs.unlink(picture_1_Path, (err) => {
@@ -171,8 +171,8 @@ export const editCategory = async (req, res, next) => {
 
     // Only delete the old picture if there's a new one uploaded
     if (picture_1 && oldPicture1) {
-      // const oldPicturePath1 = path.join(__dirname, '..', 'public', oldPicture1); // Ensure correct path
-      const oldPicturePath1 = path.join(__dirname, '..', oldPicture1); 
+      const oldPicturePath1 = path.join(__dirname, '..', 'public', oldPicture1); // Ensure correct path
+      // const oldPicturePath1 = path.join(__dirname, '..', oldPicture1); 
       console.log('Attempting to delete old Picture 1 at:', oldPicturePath1);
 
       try {

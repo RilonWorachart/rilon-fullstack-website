@@ -73,7 +73,7 @@ function Service() {
                 }}>
                 <h1 className="text-[28px]">HIGHER EFFICIENCY</h1>
                 <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
-                    <img src='/images/page_images/HighEfficiency.jpg' alt="efficiency" className="h-full w-full object-cover"></img>
+                    <img src='/images/page_images/HighEfficiency.JPG' alt="efficiency" className="h-full w-full object-cover"></img>
                 </div>
                 <p>{t('homepage.p4')}</p>
             </div>

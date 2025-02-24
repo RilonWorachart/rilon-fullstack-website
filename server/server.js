@@ -39,8 +39,8 @@ app.use('/api', recommendProductRoutes)
 app.use('/api', brandRoutes)
 app.use('/api', searchwordRoutes)
 
-// const uploadsPath = path.join(__dirname, 'public', 'uploads');
-const uploadsPath = path.join(__dirname, 'api', 'uploads');
+const uploadsPath = path.join(__dirname, 'public', 'uploads');
+// const uploadsPath = path.join(__dirname, 'uploads');
 app.use('/api/uploads', express.static(uploadsPath));
 
 app.listen(3001, function () {

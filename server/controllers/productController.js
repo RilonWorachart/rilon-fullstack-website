@@ -76,8 +76,8 @@ export const deleteProduct = async (req, res, next) => {
 
 
         if (productData.picture_1) {
-            // const picture_1_Path = path.join(__dirname, '..', 'public', productData.picture_1); // Adjust path as needed
-            const picture_1_Path = path.join(__dirname, '..', productData.picture_1);
+            const picture_1_Path = path.join(__dirname, '..', 'public', productData.picture_1); // Adjust path as needed
+            // const picture_1_Path = path.join(__dirname, '..', productData.picture_1);
 
             // Check if the image file exists and delete it
             fs.unlink(picture_1_Path, (err) => {
@@ -90,8 +90,8 @@ export const deleteProduct = async (req, res, next) => {
         }
 
         if (productData.picture_2) {
-            // const picture_2_Path = path.join(__dirname, '..', 'public', productData.picture_2); // Adjust path as needed
-            const picture_2_Path = path.join(__dirname, '..', productData.picture_2); 
+            const picture_2_Path = path.join(__dirname, '..', 'public', productData.picture_2); // Adjust path as needed
+            // const picture_2_Path = path.join(__dirname, '..', productData.picture_2); 
 
             // Check if the image file exists and delete it
             fs.unlink(picture_2_Path, (err) => {
@@ -105,8 +105,8 @@ export const deleteProduct = async (req, res, next) => {
 
 
         if (productData.model) {
-            // const model_Path = path.join(__dirname, '..', 'public', productData.model); // Adjust path as needed
-            const model_Path = path.join(__dirname, '..', productData.model);
+            const model_Path = path.join(__dirname, '..', 'public', productData.model); // Adjust path as needed
+            // const model_Path = path.join(__dirname, '..', productData.model);
 
             // Check if the image file exists and delete it
             fs.unlink(model_Path, (err) => {
@@ -296,8 +296,8 @@ export const editProduct = async (req, res, next) => {
 
             // Delete old picture 1 only if a new one is provided
             if (picture_1 && oldPicture1) {
-                // const oldPicturePath1 = path.join(__dirname, '..', 'public', oldPicture1); // Correct path for deletion
-                const oldPicturePath1 = path.join(__dirname, '..', oldPicture1);
+                const oldPicturePath1 = path.join(__dirname, '..', 'public', oldPicture1); // Correct path for deletion
+                // const oldPicturePath1 = path.join(__dirname, '..', oldPicture1);
                 console.log('Attempting to delete old Picture 1 at:', oldPicturePath1);
                 try {
                     await deleteFileWithRetry(oldPicturePath1);
@@ -314,8 +314,8 @@ export const editProduct = async (req, res, next) => {
 
             // Delete old picture 2 only if a new one is provided
             if (picture_2 && oldPicture2) {
-                // const oldPicturePath2 = path.join(__dirname, '..', 'public', oldPicture2); // Correct path for deletion
-                const oldPicturePath2 = path.join(__dirname, '..', oldPicture2);
+                const oldPicturePath2 = path.join(__dirname, '..', 'public', oldPicture2); // Correct path for deletion
+                // const oldPicturePath2 = path.join(__dirname, '..', oldPicture2);
                 console.log('Attempting to delete old Picture 2 at:', oldPicturePath2);
                 try {
                     await deleteFileWithRetry(oldPicturePath2);
@@ -332,8 +332,8 @@ export const editProduct = async (req, res, next) => {
 
             // Delete old model only if a new one is provided
             if (model && oldModel) {
-                // const oldModelPath = path.join(__dirname, '..', 'public', oldModel); // Correct path for deletion
-                const oldModelPath = path.join(__dirname, '..', oldModel);
+                const oldModelPath = path.join(__dirname, '..', 'public', oldModel); // Correct path for deletion
+                // const oldModelPath = path.join(__dirname, '..', oldModel);
                 console.log('Attempting to delete old Model at:', oldModelPath);
                 try {
                     await deleteFileWithRetry(oldModelPath);
@@ -542,8 +542,8 @@ export const deleteProductPicture2 = async (req, res, next) => {
         const productData = product[0];
 
         if (productData.picture_2) {
-            // const picture_2_Path = path.join(__dirname, '..', 'public', productData.picture_2); // Adjust path as needed
-            const picture_2_Path = path.join(__dirname, '..', productData.picture_2);
+            const picture_2_Path = path.join(__dirname, '..', 'public', productData.picture_2); // Adjust path as needed
+            // const picture_2_Path = path.join(__dirname, '..', productData.picture_2);
 
             // Check if the image file exists and delete it
             fs.unlink(picture_2_Path, (err) => {
@@ -593,8 +593,8 @@ export const deleteProductModel = async (req, res, next) => {
 
 
         if (productData.model) {
-            // const model_Path = path.join(__dirname, '..', 'public', productData.model); // Adjust path as needed
-            const model_Path = path.join(__dirname, '..', productData.model);
+            const model_Path = path.join(__dirname, '..', 'public', productData.model); // Adjust path as needed
+            // const model_Path = path.join(__dirname, '..', productData.model);
 
             // Check if the image file exists and delete it
             fs.unlink(model_Path, (err) => {

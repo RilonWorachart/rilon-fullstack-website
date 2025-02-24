@@ -61,7 +61,7 @@ function Ebook() {
                         <img
                             src="/images/page_images/Book.png"
                             alt="book"
-                            className="w-[350px] 2xl:w-[450px] border-4 border-transparent hover:border-red-500 transition-all duration-300"
+                            className="w-[350px] 2xl:w-[450px] border-4 border-transparent hover:border-red-500 hover:scale-105 transition-all duration-300"
                         />
                     </a>
                 </div>
