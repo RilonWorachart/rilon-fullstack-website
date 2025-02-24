@@ -166,7 +166,7 @@ function FormPage() {
       );
 
     // Send the request to the backend
-    axios.post(`${process.env.REACT_APP_API}/createform`, finalFormData, {})
+    axios.post(`${process.env.REACT_APP_API}/api/createform`, finalFormData, {})
       .then((response) => {
         console.log(response.data);
         if (response.data.status === 'ok') {

@@ -28,7 +28,7 @@ function CatalogKeywordPage() {
   const fetchAllProductByfilter = async () => {
     try {
       // Use Axios to send the GET request
-      const response = await axios.get(`${process.env.REACT_APP_API}/getallcatelog`, {
+      const response = await axios.get(`${process.env.REACT_APP_API}/api/getallcatelog`, {
         params: {
           key,
           page: page,
