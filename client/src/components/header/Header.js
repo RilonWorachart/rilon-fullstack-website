@@ -89,11 +89,11 @@ function Header() {
               <button className="">{t('header.contactus')}</button>
             </div>
           </Link>
-          {/* <Link to="/requestform">
+          <Link to="/requestform">
             <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "moreinfo" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("moreinfo")}>
               <button className="" >{t('header.moreinfo')}</button>
             </div>
-          </Link> */}
+          </Link>
         </div>
 
         <div className="w-[20%] justify-end" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>

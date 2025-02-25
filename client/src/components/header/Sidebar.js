@@ -87,11 +87,11 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                     </Link>
 
 
-                    {/* <Link to="/requestform">
+                    <Link to="/requestform">
                         <div className={``}>
                             <button className="hover:text-[#0079A9]" >{t('header.moreinfo')}</button>
                         </div>
-                    </Link> */}
+                    </Link>
 
 
                     <div className="w-[100%] flex justify-center items-center" onMouseEnter={() => setIsActiveLangSidebar(true)} onMouseLeave={() => setIsActiveLangSidebar(false)}>
