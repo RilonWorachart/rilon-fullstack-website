@@ -1,7 +1,6 @@
 import { promisePool } from "../db.js";
 
 
-
 export const getallForm = async (req, res, next) => {
     try {
         const [rows] = await promisePool.execute("SELECT * FROM forms");
@@ -11,6 +10,7 @@ export const getallForm = async (req, res, next) => {
         res.json({ status: "error", message: err.message });
     }
 };
+
 
 
 export const createForm = async (req, res, next) => {
@@ -39,4 +39,3 @@ export const createForm = async (req, res, next) => {
         res.status(500).json({ status: "error", message: "Failed to create Form" });
     }
 };
-

@@ -131,31 +131,30 @@ function AdminFormPage() {
 
         <div className="pb-[40px] pt-[20px]">
           <h1 className="pt-2 text-[30px] text-center">
-          {t('admin.p6')}
+            {t('admin.p6')}
           </h1>
           <div className="text-[#E2B22C] h-[3px] w-[60px] mx-[auto] bg-[#E2B22C]" />
         </div>
 
         <div className="mx-3 xl:mx-24 overflow-x-auto">
-
-          <table class="bg-white border border-gray-300 rounded-lg shadow-lg w-[100%]">
-            <thead class="bg-gray-200">
-              <tr className="">
-                <th class="py-2 px-4 text-left">{t('admin.p8')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p9')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p10')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p11')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p12')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p13')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p14')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p15')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p16')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p17')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p18')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p19')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p20')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p60')}</th>
-                <th class="py-2 px-4 text-left">{t('admin.p21')}</th>
+          <table className="bg-white border border-gray-300 rounded-lg shadow-lg w-full">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="py-3 px-4 text-left">{t('admin.p8')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p9')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p10')}</th>
+                <th className="py-3 px-4 text-left min-w-[200px]">{t('admin.p11')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p12')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p13')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p14')}</th>
+                <th className="py-3 px-4 text-left min-w-[200px]">{t('admin.p15')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p16')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p17')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p18')}</th>
+                <th className="py-3 px-4 text-left min-w-[250px]">{t('admin.p19')}</th> {/* Fixed width */}
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p20')}</th>
+                <th className="py-3 px-4 text-left min-w-[150px]">{t('admin.p60')}</th>
+                <th className="py-3 px-4 text-left min-w-[200px]">{t('admin.p21')}</th>
               </tr>
             </thead>
             <tbody>
@@ -172,7 +171,7 @@ function AdminFormPage() {
                   <td className="py-2 px-4">{data.position}</td>
                   <td className="py-2 px-4">{data.province}</td>
                   <td className="py-2 px-4">{data.time}</td>
-                  <td className="py-2 px-4">{data.requirement}</td>
+                  <td className="py-2 px-4">{data.requirement}</td> {/* Fixed width */}
                   <td className="py-2 px-4">{data.message}</td>
                   <td className="py-2 px-4">{data.accepted_terms}</td>
                   <td className="py-2 px-4">{moment(data.create_time).format('YYYY-MM-DD HH:mm:ss')}</td>
@@ -180,7 +179,6 @@ function AdminFormPage() {
               ))}
             </tbody>
           </table>
-
         </div>
       </div>
       <Footer />
