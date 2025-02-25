@@ -23,7 +23,7 @@ function Service() {
                     }
                 });
             },
-            { threshold: 0.4 } // Trigger when 50% of the element is visible
+            { threshold: 0.2 } // Trigger when 50% of the element is visible
         );
 
         if (currentDivRef) {
@@ -62,7 +62,7 @@ function Service() {
                     transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
                 }}>
                 <h1 className="text-[28px]">DEALER</h1>
-                <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
+                <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-80 h-80 lg:w-64 lg:h-64 2xl:w-80 2xl:h-80">
                     <img src='/images/page_images/Dealer.jpg' alt="dealer" className="h-full w-full object-cover "></img>
                 </div>
                 <p>{t('homepage.p3')}</p>
@@ -72,7 +72,7 @@ function Service() {
                     transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
                 }}>
                 <h1 className="text-[28px]">HIGHER EFFICIENCY</h1>
-                <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
+                <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-80 h-80 lg:w-64 lg:h-64 2xl:w-80 2xl:h-80">
                     <img src='/images/page_images/HighEfficiency.JPG' alt="efficiency" className="h-full w-full object-cover"></img>
                 </div>
                 <p>{t('homepage.p4')}</p>
@@ -82,7 +82,7 @@ function Service() {
                     transform: `${isFlexColumn ? `translateY(${100 - scrollEffect}%)` : `translateX(-${100 - scrollEffect}%)`}`
                 }}>
                 <h1 className="text-[28px]" >WARANTY SERVICE</h1>
-                <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-96 h-96 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96">
+                <div className="mt-4 mb-6 mx-auto rounded-[50%] object-cover overflow-hidden border-solid border-8 border-[#0079A9] w-80 h-80 lg:w-64 lg:h-64 2xl:w-80 2xl:h-80">
                     <img src='/images/page_images/WarantyService.jpg' alt="service" className="h-full w-full  object-cover"></img>
                 </div>
                 <p>{t('homepage.p5')}</p>
