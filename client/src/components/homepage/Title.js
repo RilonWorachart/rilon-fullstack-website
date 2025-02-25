@@ -23,7 +23,7 @@ function Title() {
 
     return (
         <div className="px-[10%] 4xl:px-[20%] py-[20px] text-center text-white bg-[#0079A9]">
-            <h1 className="text-[34px] text-white">{t('homepage.h1')}</h1>
+            <h1 className="text-[26px] lg:text-[34px] text-white">{t('homepage.h1')}</h1>
             <div className="text-[#E2B22C] h-[4px] w-[60px] text-center mx-auto bg-[#E2B22C]" />
         </div>
     )

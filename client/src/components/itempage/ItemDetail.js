@@ -133,7 +133,7 @@ function ItemDetail() {
                 <h2 className="py-1 text-[20px]">{t('itempage.p4')}</h2>
             </div>
 
-            <div className="flex justify-end mx-[10%] max-w-[1400px] 2xl:mx-[auto]">
+            <div className="flex justify-end mx-[10%] mt-[30px] max-w-[1400px] 2xl:mx-[auto]">
                 <SearchKeyButton />
             </div>
 

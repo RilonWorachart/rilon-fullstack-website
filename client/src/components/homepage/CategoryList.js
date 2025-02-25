@@ -3,7 +3,9 @@ import axios from 'axios';
 import CategoryCard from './CategoryCard.js';
 import { CgMenuGridR } from "react-icons/cg";
 import { TfiMenuAlt } from "react-icons/tfi";
+import { BiSolidCategory } from "react-icons/bi";
 import SearchKeyButton from '../SearchKeyButton.js';
+import { useTranslation } from 'react-i18next';
 
 function CategoryList() {
   const [categoryData, setCategoryData] = useState([]);
@@ -12,6 +14,7 @@ function CategoryList() {
   const [inView, setInView] = useState(false);
   const [isFlexColumn, setIsFlexColumn] = useState(window.innerWidth < 760);  // Set initial state based on window width
   const divRef = useRef(null);
+  const { t, i18n } = useTranslation();
 
   // Fetching category data
   useEffect(() => {
@@ -80,7 +83,11 @@ function CategoryList() {
 
   return (
     <div ref={divRef} className="bg-[#ECF4F7] py-[50px] overflow-hidden">
-      <div className="flex justify-end mx-[10%] 2xl:mx-[auto] max-w-[1300px]">
+      <div className="flex justify-between items-center mx-[10%] 2xl:mx-[auto] max-w-[1300px]">
+        <div className="flex items-center text-[30px] text-black ">
+          <BiSolidCategory className="text-[32px]"/>
+          <p className="hidden sm:flex font-semibold ml-[10px]">{t('homepage.p29')}</p>
+        </div>
         <SearchKeyButton />
       </div>
       <div className="my-[20px] mx-[10%] 2xl:mx-[auto] max-w-[1300px] text-[#0079A9] text-[30px] flex justify-end items-center transition-transform">

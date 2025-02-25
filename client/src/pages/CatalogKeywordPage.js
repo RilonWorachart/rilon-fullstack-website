@@ -78,7 +78,7 @@ function CatalogKeywordPage() {
         </div>
 
 
-        <div className="flex justify-end mx-[10%] 2xl:mx-[auto] max-w-[1300px]">
+        <div className="flex justify-end mt-[40px] mx-[10%] 2xl:mx-[auto] max-w-[1300px]">
           <SearchKeyButton />
         </div>
 

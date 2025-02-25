@@ -61,28 +61,34 @@ function HomePage() {
             <div className="min-h-screen font-plex-sans-thai ">
                 <SliderTop />
                 <Title />
-                <div className="px-[10%] 4xl:px-[20%] py-[50px] aligns-center justify-center  ">
-                    <div className="py-1 flex flex-wrap">
-                        <FaPhoneAlt className="mt-[2px] mr-4" />
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">08-1697-7000 (office)</p>,
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;08-1694-5000</p>,
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;09-5961-9901 </p>,
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;098-426-6953</p>,
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;089-660-9609</p>,
-                        <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;094-695-5599</p>
+                <div className="mx-[10%] 2xl:mx-[auto] max-w-[1300px] py-[50px] aligns-center justify-center  ">
+                    <div className="py-1 flex justify-start items-center">
+                        <FaPhoneAlt className="mt-[2px] mr-4 min-w-[25px]" />
+                        <div className="flex flex-wrap">
+                            <p className="text-[#E2B22C] hover:text-[#0079A9]">08-1697-7000 (office)</p>,
+                            <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;08-1694-5000</p>,
+                            <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;09-5961-9901</p>,
+                            <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;098-426-6953</p>,
+                            <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;089-660-9609</p>,
+                            <p className="text-[#E2B22C] hover:text-[#0079A9]">&nbsp;094-695-5599</p>
+                        </div>
                     </div>
-                    <div className=" py-1 flex flex-wrap">
-                        <MdMail className="mt-[2px] mr-4" />
-                        <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:janenyrilon_jingwei@hotmail.com">janenyrilon_jingwei@hotmail.com</a>,
-                        <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:worachart_soi@hotmail.com">&nbsp;worachart_soi@hotmail.com</a>,
-                        <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:worachartgroup@gmail.com">&nbsp;worachartgroup@gmail.com</a>
+
+                    <div className="py-1 flex justify-start items-center">
+                        <MdMail className="mt-[2px] mr-4 min-w-[25px]" />
+                        <div className="flex flex-wrap">
+                            <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:janenyrilon_jingwei@hotmail.com">janenyrilon_jingwei@hotmail.com</a>,
+                            <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:worachart_soi@hotmail.com">&nbsp;worachart_soi@hotmail.com</a>,
+                            <a className="text-[#E2B22C] hover:text-[#0079A9]" href="mailto:worachartgroup@gmail.com">&nbsp;worachartgroup@gmail.com</a>
+                        </div>
                     </div>
-                    <div className="py-1 flex flex-wrap">
-                        <FaMapMarkerAlt className="mt-[2px] mr-4" />
+
+                    <div className="py-1 flex justify-start items-center">
+                        <FaMapMarkerAlt className="mt-[2px] mr-4 min-w-[25px]" />
                         <p className="text-[#0079A9]">{t('homepage.address')}</p>
                     </div>
 
-                    <div className="py-2 pr-2 flex text-[16px] ">
+                    <div className="pt-4 pr-2 flex text-[16px] ">
                         <a href="https://page.line.me/156vctty?openQrModal=true" className="bg-[#02B92E] p-1.5 mr-2  text-white rounded-full hover:bg-[#49D249]">
                             <FaLine />
                         </a>
@@ -135,17 +141,17 @@ function HomePage() {
                 <div id="target1"></div>
                 <About />
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 170"><path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1400 155"><path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
 
                 <Riloninverter />
 
-                <div className="bg-[#0079A9] py-[0px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 222"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                <div className="bg-[#0079A9] py-[0px] my-[0px] ">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1440 231"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 </div>
 
                 <Service />
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 220"><path fill="#FFD600" fill-opacity="1" d="M0,128L120,122.7C240,117,480,107,720,128C960,149,1200,203,1320,229.3L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 250"><path fill="#FFD600" fill-opacity="1" d="M0,128L120,122.7C240,117,480,107,720,128C960,149,1200,203,1320,229.3L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
 
                 <div className="mx-[10%] 4xl:mx-[20%] pt-[50px] pb-[50px]">
                     <div className="text-center 4xl:px-[20%]">
@@ -218,8 +224,8 @@ function HomePage() {
 
                 <div className="xl:my-[100px] 4xl:px-[20%] xl:px-[10%] xl:flex xl:justify-between">
                     <div className="my-[50px] xl:my-[0px]  xl:w-[50%] px-[10%] xl:p-[0%]">
-                        <div className="py-3 flex flex-wrap">
-                            <MdBusinessCenter className="mt-[2px] mr-4" />
+                        <div className="py-3 flex justify-start items-center">
+                            <MdBusinessCenter className="mt-[2px] mr-4 min-w-[25px]" />
                             <p className="text-[#0079A9]">{t('homepage.p24')}</p>
                         </div>
                         <Contact />
