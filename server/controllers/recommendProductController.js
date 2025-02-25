@@ -33,8 +33,7 @@ export const deleterecommendProduct = async (req, res, next) => {
 
         const productData = product[0];
         if (productData.image) {
-            const image_Path = path.join(__dirname, '..', 'public', productData.image); // Adjust path as needed
-            // const image_Path = path.join(__dirname, '..', productData.image); 
+            const image_Path = path.join(__dirname, '..', productData.image); 
 
             // Check if the image file exists and delete it
             fs.unlink(image_Path, (err) => {
