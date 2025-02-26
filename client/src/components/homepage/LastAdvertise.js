@@ -56,7 +56,7 @@ function LastAdvertise() {
     const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
     
     return (
-        <div ref={divRef} className="bg-cover bg-fixed bg-center background3 md:flex md:flex-row flex-col px-[10%] 4xl:px-[20%] py-[100px] md:justify-between overflow-hidden">
+        <div ref={divRef} className="section bg-cover bg-fixed bg-center background3 md:flex md:flex-row flex-col px-[10%] 4xl:px-[20%] py-[100px] md:justify-between overflow-hidden">
             <div
                 className="bg-white mb-10 md:mb-0 md:w-[30%] overflow-hidden transition-transform duration-500 ease-in-out rounded-lg"
                 style={{

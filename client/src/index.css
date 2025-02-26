@@ -4,59 +4,72 @@
 @tailwind utilities;
 
 
+/* Custom CSS for iOS fix */
+@layer base {
+  @supports (-webkit-overflow-scrolling: touch) {
+    .section {
+      background-attachment: scroll !important;
+    }
+  }
+}
+
+
+.background {
+  background-image: url('../public/images/page_images/background1.JPG');
+  background-size: cover;
+  background-position: center;
+}
+
+
+.background2 {
+  background-image: url('../public/images/page_images/background2.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.background3 {
+  background-image: url('../public/images/page_images/background3.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+
+
 svg {
   margin-top: -1px;
   margin-bottom: -1px;
   padding: 0;
-  display: block; /* Ensures there’s no inline-block spacing issue */
+  display: block;
+  /* Ensures there’s no inline-block spacing issue */
 }
-
-
-
-.background {
-    background-image: url('../public/images/page_images/background12.JPG');
-    background-size: cover;
-    background-position: center;
-  }
-
-
-  .background2 {
-    background-image: url('../public/images/page_images/background2.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-
-  .background3 {
-    background-image: url('../public/images/page_images/background3.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-
 
 
 .images-wrapper {
   display: flex;
-  width: auto; /* Let the width adjust based on content */
-  animation: slide 15s linear infinite; /* Animate the wrapper to slide horizontally */
+  width: auto;
+  /* Let the width adjust based on content */
+  animation: slide 15s linear infinite;
+  /* Animate the wrapper to slide horizontally */
 }
 
 .image {
-  width: 200px; /* Set image width */
-  margin-right: 20px; /* Consistent space between images */
-  flex-shrink: 0; /* Prevent images from shrinking */
+  width: 200px;
+  /* Set image width */
+  margin-right: 20px;
+  /* Consistent space between images */
+  flex-shrink: 0;
+  /* Prevent images from shrinking */
 }
 
 /* Default keyframes for screens smaller than lg (mobile, tablet) */
 @keyframes slide {
   0% {
-    transform: translateX(0); /* Start position: all images visible */
+    transform: translateX(0);
+    /* Start position: all images visible */
   }
+
   100% {
-    transform: translateX(-660px); /* Move the entire group of images off screen */
+    transform: translateX(-660px);
+    /* Move the entire group of images off screen */
   }
 }
-
-
-
-

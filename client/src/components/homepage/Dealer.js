@@ -59,7 +59,7 @@ function Dealer() {
     const scrollEffect = inView ? Math.min(scrollPosition / 3, 100) : 0;
 
     return (
-        <div ref={divRef} className="px-[10%] 4xl:px-[20%] text-center py-[100px] background bg-fixed bg-cover overflow-hidden">
+        <div ref={divRef} className="section px-[10%] 4xl:px-[20%] text-center py-[100px] background bg-fixed bg-cover overflow-hidden">
             <div className="pb-[50px]">
                 <h1 className="text-[34px] text-[#F4D016]">
                     {t('homepage.h2')}
