@@ -64,7 +64,7 @@ function LastAdvertise() {
                 }}
             >
                 <img
-                    src="/images/page_images/WeldingMC.JPG"
+                    src="/images/page_images/WeldingMC.jpg"
                     alt="weldingMC"
                     className="w-[100%]"
                 />
@@ -78,7 +78,7 @@ function LastAdvertise() {
                 }}
             >
                 <img
-                    src="/images/page_images/TorchSerPana.JPG"
+                    src="/images/page_images/TorchSerPana.jpg"
                     alt="torchserpana"
                     className="w-[100%]"
                 />

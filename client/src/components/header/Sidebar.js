@@ -120,7 +120,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                                     alt="THA Flag"
                                                     className="w-6 h-4 mr-1.5"
                                                 />
-                                                {t('header.langth')}
+                                                <p>{t('header.langth')}</p>
                                             </div>
 
 
@@ -133,7 +133,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                                     alt="UK Flag"
                                                     className="w-6 h-4 mr-1.5"
                                                 />
-                                                {t('header.langeng')}
+                                                <p>{t('header.langeng')}</p>
                                             </div>
                                         </div>
 

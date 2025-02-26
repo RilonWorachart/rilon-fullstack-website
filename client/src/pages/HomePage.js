@@ -159,7 +159,7 @@ function HomePage() {
                     <path fill="#FFD600" fillOpacity="1" d="M0,128L120,122.7C240,117,480,107,720,128C960,149,1200,203,1320,229.3L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
                 </svg>
 
-                <div className="mx-[10%] 4xl:mx-[20%] pt-[50px] pb-[50px]">
+                <div className="mx-[10%] 4xl:mx-[20%] pb-[50px]">
                     <div className="text-center 4xl:px-[20%]">
                         <p className="text-[30px] text-center ">{t('homepage.h10')}</p>
                         <div className="text-[#E2B22C] h-[3px] w-[60px] text-center mx-[auto] bg-[#0079A9]" />

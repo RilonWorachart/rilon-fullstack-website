@@ -120,7 +120,7 @@ function Header() {
                         alt="THA Flag"
                         className="w-6 h-4 mr-1.5"
                       />
-                      {t('header.langth')}
+                      <p className="h-4 mt-1">{t('header.langth')}</p>
                     </div>
 
                     <div
@@ -132,7 +132,7 @@ function Header() {
                         alt="UK Flag"
                         className="w-6 h-4 mr-1.5"
                       />
-                      {t('header.langeng')}
+                      <p>{t('header.langeng')}</p>
                     </div>
                   </div>
                 </div>
