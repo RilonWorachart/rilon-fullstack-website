@@ -134,24 +134,30 @@ function HomePage() {
                 <Company />
 
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 170" class="w-full h-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 170" className="w-full h-auto">
                     <path fill="#FFD600" fill-opacity="1" d="M0,160L120,154.7C240,149,480,139,720,122.7C960,107,1200,85,1320,74.7L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
                 </svg>
 
                 <div id="target1"></div>
                 <About />
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1400 155"><path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 158" className="w-full h-auto">
+                    <path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                </svg>
 
-                <Riloninverter />
+                <Riloninverter className="w-full h-auto my-[-1px]" />
 
-                <div className="bg-[#0079A9] py-[0px] my-[0px] ">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 5 1440 231"><path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                <div className="bg-[#0079A9] w-full h-auto my-[-1px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 230" className="w-full h-auto">
+                        <path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                    </svg>
                 </div>
 
-                <Service />
+                <Service className="h-auto my-[-2px]" />
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 250"><path fill="#FFD600" fill-opacity="1" d="M0,128L120,122.7C240,117,480,107,720,128C960,149,1200,203,1320,229.3L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+                <svg className="w-full h-auto " xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 255">
+                    <path fill="#FFD600" fill-opacity="1" d="M0,128L120,122.7C240,117,480,107,720,128C960,149,1200,203,1320,229.3L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+                </svg>
 
                 <div className="mx-[10%] 4xl:mx-[20%] pt-[50px] pb-[50px]">
                     <div className="text-center 4xl:px-[20%]">
@@ -225,7 +231,7 @@ function HomePage() {
                 <div className="xl:my-[100px] 4xl:px-[20%] xl:px-[10%] xl:flex xl:justify-between">
                     <div className="my-[50px] xl:my-[0px]  xl:w-[50%] px-[10%] xl:p-[0%]">
                         <div className="py-3 flex justify-start items-center">
-                            <MdBusinessCenter className="mt-[2px] mr-4 min-w-[25px]" />
+                            <MdBusinessCenter className="mr-4 min-w-[25px]" />
                             <p className="text-[#0079A9]">{t('homepage.p24')}</p>
                         </div>
                         <Contact />

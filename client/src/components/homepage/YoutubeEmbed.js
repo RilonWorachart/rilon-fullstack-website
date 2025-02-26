@@ -9,7 +9,7 @@ function YouTubeEmbed() {
         frameborder="0" 
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen
-        className="w-[100%] h-[300px] lg:h-[500px] 2xl:w-[850px]"
+        className="h-[250px] sm:h-[325px] md:h-[395px] w-[700px]"
       ></iframe>
     </div>
   );

@@ -84,7 +84,9 @@ function RelateItem() {
 
   // Function to calculate slides per view based on screen width
   function getSlidesPerView() {
-    if (window.innerWidth >= 1440) return 4;
+    if (window.innerWidth >= 2100) return 4;
+    if (window.innerWidth >= 1800) return 3;
+    if (window.innerWidth >= 1600) return 4;
     if (window.innerWidth >= 1024) return 3;
     if (window.innerWidth >= 768) return 2;
     return 1;
@@ -126,21 +128,21 @@ function RelateItem() {
           {allCategoryProductData.map((item) => (
             <div
               key={item.ID}
-              className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4"
+              className="flex-none w-full sm:w-1/2 xl:w-1/3 3xl:w-1/4 4xl:w-1/3 5xl:w-1/4 p-4 px-[auto]"
               style={{ flexBasis: `${100 / slidesPerView}%` }}
             >
-              <ItemCard
-                picture_1={item.picture_1}
-                ID={item.ID}
-                name_th={item.name_th}
-                category_id={item.category_id}
-                description_th={item.description_th}
-                name_en={item.name_en}
-                description_en={item.description_en}
-                itemType={'type1'}
-                searchword_id = {item.searchword_id}
-                brand_id = {item.brand_id}
-              />
+                <ItemCard
+                  picture_1={item.picture_1}
+                  ID={item.ID}
+                  name_th={item.name_th}
+                  category_id={item.category_id}
+                  description_th={item.description_th}
+                  name_en={item.name_en}
+                  description_en={item.description_en}
+                  itemType={'type1'}
+                  searchword_id = {item.searchword_id}
+                  brand_id = {item.brand_id}
+                />
             </div>
           ))}
         </div>

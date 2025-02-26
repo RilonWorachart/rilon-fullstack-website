@@ -4,6 +4,15 @@
 @tailwind utilities;
 
 
+svg {
+  margin-top: -1px;
+  margin-bottom: -1px;
+  padding: 0;
+  display: block; /* Ensures there’s no inline-block spacing issue */
+}
+
+
+
 .background {
     background-image: url('../public/images/page_images/background12.JPG');
     background-size: cover;
