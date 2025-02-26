@@ -6,9 +6,9 @@ function YouTubeEmbed() {
       <iframe 
         src="https://www.youtube.com/embed/FmiUK2iUI5I" 
         title="YouTube video player"
-        frameborder="0" 
+        frameBorder="0" 
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
+        allowFullScreen
         className="h-[250px] sm:h-[325px] md:h-[395px] w-[700px]"
       ></iframe>
     </div>

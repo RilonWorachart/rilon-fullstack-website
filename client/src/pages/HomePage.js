@@ -120,13 +120,13 @@ function HomePage() {
                 <div id="target2"></div>
                 <CategoryList />
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1440 120"><path fill="#ECF4F7" fill-opacity="1" d="M0,128L120,144C240,160,480,192,720,192C960,192,1200,160,1320,144L1440,128L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1440 120"><path fill="#ECF4F7" fillOpacity="1" d="M0,128L120,144C240,160,480,192,720,192C960,192,1200,160,1320,144L1440,128L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
                 <CategorySearch />
 
 
                 <div id="target3"></div>
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20 1440 100"><path fill="#0079A9" fill-opacity="1" d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20 1440 100"><path fill="#0079A9" fillOpacity="1" d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
                 <RecommendProductList />
 
                 <Dealer />
@@ -135,28 +135,28 @@ function HomePage() {
 
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 170" className="w-full h-auto">
-                    <path fill="#FFD600" fill-opacity="1" d="M0,160L120,154.7C240,149,480,139,720,122.7C960,107,1200,85,1320,74.7L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+                    <path fill="#FFD600" fillOpacity="1" d="M0,160L120,154.7C240,149,480,139,720,122.7C960,107,1200,85,1320,74.7L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
                 </svg>
 
                 <div id="target1"></div>
                 <About />
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 158" className="w-full h-auto">
-                    <path fill="#0079A9" fill-opacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                    <path fill="#0079A9" fillOpacity="1" d="M0,32L120,32C240,32,480,32,720,48C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
                 </svg>
 
                 <Riloninverter className="w-full h-auto my-[-1px]" />
 
                 <div className="bg-[#0079A9] w-full h-auto my-[-1px]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 230" className="w-full h-auto">
-                        <path fill="#FFD600" fill-opacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+                        <path fill="#FFD600" fillOpacity="1" d="M0,192L120,186.7C240,181,480,171,720,144C960,117,1200,75,1320,53.3L1440,32L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
                     </svg>
                 </div>
 
                 <Service className="h-auto my-[-2px]" />
 
                 <svg className="w-full h-auto " xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1440 255">
-                    <path fill="#FFD600" fill-opacity="1" d="M0,128L120,122.7C240,117,480,107,720,128C960,149,1200,203,1320,229.3L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
+                    <path fill="#FFD600" fillOpacity="1" d="M0,128L120,122.7C240,117,480,107,720,128C960,149,1200,203,1320,229.3L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path>
                 </svg>
 
                 <div className="mx-[10%] 4xl:mx-[20%] pt-[50px] pb-[50px]">
@@ -168,26 +168,26 @@ function HomePage() {
                     <div className="py-[30px] 4xl:px-[20%] ">
                         <div className="py-[10px]">
                             <p className="font-bold py-2 text-[#0079A9]">{t('homepage.h11')}</p>
-                            <ul class="list-disc pl-6 space-y-2 py-2">
+                            <ul className="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p10')}</li>
                                 <li>{t('homepage.p11')}</li>
                             </ul>
                         </div>
                         <div className="py-[10px]">
                             <p className="font-bold py-2 text-[#0079A9]">{t('homepage.p9')}</p>
-                            <ul class="list-disc pl-6 space-y-2 py-2">
+                            <ul className="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p12')}</li>
                             </ul>
                         </div>
                         <div className="py-[10px]">
                             <p className="font-bold py-2 text-[#0079A9]">{t('homepage.h12')}</p>
-                            <ul class="list-disc pl-6 space-y-2 py-2">
+                            <ul className="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p13')}</li>
                             </ul>
                         </div>
                         <div className="py-[10px]">
                             <p className="font-bold py-2 text-[#0079A9]">{t('homepage.h13')}</p>
-                            <ul class="list-disc pl-6 space-y-2 py-2">
+                            <ul className="list-disc pl-6 space-y-2 py-2">
                                 <li>{t('homepage.p14')}</li>
                             </ul>
 

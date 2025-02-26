@@ -10,7 +10,7 @@ function Footer() {
     return (
         <>
             
-            <div class="px-2 py-8 bg-[#FFD600] text-[#0079A9] text-center">
+            <div className="px-2 py-8 bg-[#FFD600] text-[#0079A9] text-center">
                 <div className="flex justify-center py-[22px]">
                     <img src='/images/page_images/logo-w.png' alt="logo" className="w-[75px]"></img>
                 </div>
@@ -52,7 +52,7 @@ function Footer() {
                     </p>
                 </div>
             </div>
-            <div class="bg-white text-center py-2 text-[12px]">
+            <div className="bg-white text-center py-2 text-[12px]">
                 <p>© 2568 <span className="text-[#E2B22C] hover:text-[#00007E]">{t('footer.p4')}</span></p>
                 <p>All rights reserved.</p>
             </div>
