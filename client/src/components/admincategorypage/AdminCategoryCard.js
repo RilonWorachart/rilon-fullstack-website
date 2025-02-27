@@ -11,11 +11,6 @@ function AdminCategoryCard({ ID, picture_1, name_th, description_th, name_en, de
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
-
-  useEffect(() => {
-    // console.log(`${process.env.REACT_APP_API}/api/uploads/${picture_1}`)
-  })
-
   const handleDelete = () => {
     Swal.fire({
       title: 'Are you sure?',
