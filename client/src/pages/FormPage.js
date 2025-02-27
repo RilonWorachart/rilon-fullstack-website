@@ -423,7 +423,7 @@ function FormPage() {
               <Link to={`/`}>
                 <button type="button" className="py-1 px-2 mx-2 text-[#DC3545] border border-[#DC3545] hover:text-white hover:bg-[#DC3545]  transition duration-300">{t('formpage.p39')}</button>
               </Link>
-              {/* <input type="submit" value={t('formpage.p40')} className="py-1 px-2 text-[#28A745] border border-[#28A745] hover:text-white hover:bg-[#28A745] cursor-pointer transition duration-300" /> */}
+              <input type="submit" value={t('formpage.p40')} className="py-1 px-2 text-[#28A745] border border-[#28A745] hover:text-white hover:bg-[#28A745] cursor-pointer transition duration-300" />
             </div>
           </form>
         </div>

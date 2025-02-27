@@ -21,7 +21,7 @@ export const login = async (req, res, next) => {
       const token = jwt.sign(
         { fname: users[0].fname },  // Changed from email to fname (if needed)
         process.env.SECRET_KEY,
-        { expiresIn: "9h" }
+        { expiresIn: "2h" }
       );
 
       return res.json({

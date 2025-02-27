@@ -1,18 +1,5 @@
 import { promisePool } from "../db.js";
 
-
-export const getallForm = async (req, res, next) => {
-    try {
-        const [rows] = await promisePool.execute("SELECT * FROM forms");
-
-        res.json({ status: "ok", data: rows });
-    } catch (err) {
-        res.json({ status: "error", message: err.message });
-    }
-};
-
-
-
 export const createForm = async (req, res, next) => {
     const {
         product, name, tel, line,
@@ -24,7 +11,6 @@ export const createForm = async (req, res, next) => {
     if (!email || !name || !accepted_terms) {
         return res.status(400).json({ status: "error", message: "Missing required fields" });
     }
-
 
     try {
         await promisePool.execute(

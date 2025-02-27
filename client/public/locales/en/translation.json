@@ -226,7 +226,9 @@
         "p57": "Add Brand",
         "p58": "Add Searchword",
         "p59": "Model",
-        "p60": "Agree to collect the form data"
+        "p60": "Agree to collect the form data",
+        "p61": "Manage Youtube video",
+        "p62": "Youtube"
     },
     "pagination" :{
         "prev":"Back",

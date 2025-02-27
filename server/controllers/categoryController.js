@@ -7,7 +7,16 @@ export const getallCategory = async (req, res, next) => {
   try {
     // Execute the query using promisePool
     const [rows] = await promisePool.execute(`
-      SELECT * FROM categories ORDER BY CASE WHEN ID = 19 THEN 1 ELSE 0 END, name_th DESC;
+      SELECT * FROM categories ORDER BY CASE
+        WHEN ID = 8 THEN 1
+        WHEN ID = 6 THEN 2
+        WHEN ID = 1 THEN 3
+        WHEN ID = 7 THEN 4
+        WHEN ID = 10 THEN 5
+        WHEN ID = 13 THEN 6
+        WHEN ID = 19 THEN 100
+        ELSE 7
+      END, name_th DESC;
     `);
 
     // Check if there are any categories
@@ -170,7 +179,7 @@ export const editCategory = async (req, res, next) => {
 
     // Only delete the old picture if there's a new one uploaded
     if (picture_1 && oldPicture1) {
-      const oldPicturePath1 = path.join(__dirname, '..', oldPicture1); 
+      const oldPicturePath1 = path.join(__dirname, '..', oldPicture1);
       console.log('Attempting to delete old Picture 1 at:', oldPicturePath1);
 
       try {
