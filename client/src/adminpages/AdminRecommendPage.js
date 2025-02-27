@@ -189,47 +189,58 @@ function AdminRecommendPage() {
     };
 
 
-    const handledelete = (ID) => {
+    const handleDelete = (ID) => {
         const token = localStorage.getItem("token");
 
-        axios
-            .delete(`${process.env.REACT_APP_API}/api/deleterecommendproduct?id=${ID}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                if (response.data.status === "ok") {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Deleted successfully!',
-                        icon: 'success',
-                        confirmButtonText: 'OK',
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .delete(`${process.env.REACT_APP_API}/api/deleterecommendproduct?id=${ID}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                    })
+                    .then((response) => {
+                        if (response.data.status === "ok") {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Deleted successfully!',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                            });
+                            setTimeout(() => {
+                                navigate(0);
+                            }, 1000);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error deleting product", error.response ? error.response.data : error);
+                        if (error.response && error.response.status === 401) {
+                            Swal.fire({
+                                title: 'Unauthorized!',
+                                text: 'Please login to continue.',
+                                icon: 'warning',
+                                confirmButtonText: 'OK',
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Something went wrong. Please try again later.',
+                                icon: 'error',
+                                confirmButtonText: 'OK',
+                            });
+                        }
                     });
-                    setTimeout(() => {
-                        navigate(0);
-                    }, 1000);
-                }
-            })
-            .catch((error) => {
-                console.error("Error deleting product", error.response ? error.response.data : error);
-                if (error.response && error.response.status === 401) {
-                    Swal.fire({
-                        title: 'Unauthorized!',
-                        text: 'Please login to continue.',
-                        icon: 'warning',
-                        confirmButtonText: 'OK',
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Something went wrong. Please try again later.',
-                        icon: 'error',
-                        confirmButtonText: 'OK',
-                    });
-                }
-            });
+            }
+        })
     };
 
     const [image_PreviewUrl, setimage_PreviewUrl] = useState(null);
@@ -237,18 +248,18 @@ function AdminRecommendPage() {
     useEffect(() => {
         // Create object URLs for the image previews only if they are valid files
         if (formData.image && formData.image instanceof File) {
-          setimage_PreviewUrl(URL.createObjectURL(formData.image));
+            setimage_PreviewUrl(URL.createObjectURL(formData.image));
         } else {
-          setimage_PreviewUrl(null); // Reset preview if image is not a valid File
+            setimage_PreviewUrl(null); // Reset preview if image is not a valid File
         }
-    
+
         // Cleanup URLs on component unmount or when the file changes
         return () => {
-          if (image_PreviewUrl) {
-            URL.revokeObjectURL(image_PreviewUrl);
-          }
+            if (image_PreviewUrl) {
+                URL.revokeObjectURL(image_PreviewUrl);
+            }
         };
-      }, [formData]);  // Trigger effect whenever formData changes
+    }, [formData]);  // Trigger effect whenever formData changes
 
 
 
@@ -360,7 +371,7 @@ function AdminRecommendPage() {
                                         <img className="md:w-[200px]" src={`${process.env.REACT_APP_API}${data.image}`} alt={data.name} />
                                     </td>
                                     <td className="py-2 px-4 text-[#EE0003] text-[30px] text-center">
-                                        <button className="hover:text-[#872325]" onClick={() => handledelete(data.id)}>
+                                        <button className="hover:text-[#872325]" onClick={() => handleDelete(data.id)}>
                                             <FaMinusSquare />
                                         </button>
                                     </td>

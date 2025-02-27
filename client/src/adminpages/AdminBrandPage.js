@@ -169,44 +169,55 @@ function AdminBrandPage() {
     const handledelete = (ID) => {
         const token = localStorage.getItem("token");
 
-        axios
-            .delete(`${process.env.REACT_APP_API}/api/deletebrand?id=${ID}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                if (response.data.status === "ok") {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Deleted successfully!',
-                        icon: 'success',
-                        confirmButtonText: 'OK',
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .delete(`${process.env.REACT_APP_API}/api/deletebrand?id=${ID}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                    })
+                    .then((response) => {
+                        if (response.data.status === "ok") {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Deleted successfully!',
+                                icon: 'success',
+                                confirmButtonText: 'OK',
+                            });
+                            setTimeout(() => {
+                                navigate(0);
+                            }, 1000);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error deleting product", error.response ? error.response.data : error);
+                        if (error.response && error.response.status === 401) {
+                            Swal.fire({
+                                title: 'Unauthorized!',
+                                text: 'Please login to continue.',
+                                icon: 'warning',
+                                confirmButtonText: 'OK',
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Something went wrong. Please try again later.',
+                                icon: 'error',
+                                confirmButtonText: 'OK',
+                            });
+                        }
                     });
-                    setTimeout(() => {
-                        navigate(0);
-                    }, 1000);
-                }
-            })
-            .catch((error) => {
-                console.error("Error deleting product", error.response ? error.response.data : error);
-                if (error.response && error.response.status === 401) {
-                    Swal.fire({
-                        title: 'Unauthorized!',
-                        text: 'Please login to continue.',
-                        icon: 'warning',
-                        confirmButtonText: 'OK',
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Something went wrong. Please try again later.',
-                        icon: 'error',
-                        confirmButtonText: 'OK',
-                    });
-                }
-            });
+            }
+        })
     };
 
 

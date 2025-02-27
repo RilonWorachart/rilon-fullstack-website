@@ -88,46 +88,62 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
 
 
   // Handle delete
-  const handledelete = () => {
-    axios
-      .delete(`${process.env.REACT_APP_API}/api/deleteproduct?id=${ID}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.status === "ok") {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Deleted successfully!',
-            icon: 'success',
-            confirmButtonText: 'OK',
+  const handleDelete = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed with delete if confirmed
+        axios
+          .delete(`${process.env.REACT_APP_API}/api/deleteproduct?id=${ID}`, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((response) => {
+            if (response.data.status === "ok") {
+              Swal.fire({
+                title: 'Success!',
+                text: 'Deleted successfully!',
+                icon: 'success',
+                confirmButtonText: 'OK',
+              });
+              setTimeout(() => {
+                navigate(0);
+              }, 1000);
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting product", error.response ? error.response.data : error);
+            if (error.response && error.response.status === 401) {
+              Swal.fire({
+                title: 'Unauthorized!',
+                text: 'Please login to continue.',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+              });
+            } else {
+              Swal.fire({
+                title: 'Error!',
+                text: 'Something went wrong. Please try again later.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              });
+            }
           });
-          setTimeout(() => {
-            navigate(0);
-          }, 1000);
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting product", error.response ? error.response.data : error);
-        if (error.response && error.response.status === 401) {
-          Swal.fire({
-            title: 'Unauthorized!',
-            text: 'Please login to continue.',
-            icon: 'warning',
-            confirmButtonText: 'OK',
-          });
-        } else {
-          Swal.fire({
-            title: 'Error!',
-            text: 'Something went wrong. Please try again later.',
-            icon: 'error',
-            confirmButtonText: 'OK',
-          });
-        }
-      });
+      } else {
+        // Do nothing if canceled
+        console.log("Deletion canceled");
+      }
+    });
   };
+
 
   if (!categoryData || !brandData) {
     return (
@@ -181,7 +197,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
         {/* Additional Info Section */}
         <div className={`${itemType === "type2" ? "items-center" : ""}`}>
           <div className={`text-[#E5B22C] truncate pt-2 flex items-center ${itemType === "type2" ? "w-full" : ""}`}>
-            <BiSolidCategory className="mr-1 w-[24px]"/>
+            <BiSolidCategory className="mr-1 w-[24px]" />
             <span className="text-[14px]">{currentLang === 'th' ? categoryData.name_th : categoryData.name_en}</span>
           </div>
           {searchword_id && searchwordData && (
@@ -199,7 +215,7 @@ function AdminItemCard({ ID, picture_1, picture_2, name_th, description_th, name
               </button>
             </Link>
             <button
-              onClick={() => handledelete()}
+              onClick={() => handleDelete()}
               className="ml-[2%] text-[14px] overflow-hidden truncate bg-[#EE0003] border text-white py-1 px-4 rounded-lg hover:bg-white hover:text-[#0079A9] hover:border hover:border-[#0079A9] transition duration-300 w-[45%]"
             >
               {t('admin.p28')}
