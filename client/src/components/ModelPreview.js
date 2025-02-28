@@ -63,7 +63,18 @@ const ModelPreview = ({ modelPath }) => {
         {model && <primitive object={model} position={[5, 0, 5]} scale={[50, 50, 50]} />}
 
         {/* Controls for Orbiting around the model */}
-        <OrbitControls />
+        <OrbitControls 
+           enableZoom={true}         // Enable zooming
+           enablePan={true}          // Enable panning
+           maxDistance={15}         // Max zoom-out distance
+           minDistance={2}          // Min zoom-in distance
+           rotateSpeed={0.8}         // Speed of rotation
+           zoomSpeed={0.5}           // Speed of zooming
+           panSpeed={0.3}            // Speed of panning
+           enableDamping={true}      // Enable smooth damping
+           dampingFactor={0.25}      // Damping factor for smooth control
+           target={[3, 3, 3]}       // Point to rotate around  
+        />
       </Canvas>
     </div>
   );

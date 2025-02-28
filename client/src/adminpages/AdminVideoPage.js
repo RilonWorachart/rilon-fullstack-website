@@ -223,7 +223,6 @@ function AdminVideoPage() {
                                 {t('admin.p27')}
                             </button>
                         </div>
-
                     </form>
                 </div>
 
