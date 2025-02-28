@@ -229,7 +229,8 @@
         "p59": "โมเดล",
         "p60": "ยอมรับให้บันทึกข้อมูล",
         "p61": "จัดการวีดีโอ",
-        "p62": "Youtube"
+        "p62": "Youtube",
+        "p63": "ตัวอย่างลิงค์: https://www.youtube.com/embed/FmiUK2iUI5I (Youtube -> เเชร์ -> ฝัง -> src)"
     },
     "pagination": {
         "prev": "กลับ",

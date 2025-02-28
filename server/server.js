@@ -21,8 +21,8 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: '*',  // Allow all origins (for testing purposes, use specific origins for production)
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: 'http://localhost:3000',  // Allow all origins (for testing purposes, use specific origins for production)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 

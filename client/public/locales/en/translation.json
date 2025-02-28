@@ -228,7 +228,8 @@
         "p59": "Model",
         "p60": "Agree to collect the form data",
         "p61": "Manage Youtube video",
-        "p62": "Youtube"
+        "p62": "Youtube",
+        "p63": "Example Link: https://www.youtube.com/embed/FmiUK2iUI5I (Youtube -> share -> embed -> src)"
     },
     "pagination" :{
         "prev":"Back",

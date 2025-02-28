@@ -203,7 +203,7 @@ function AdminVideoPage() {
                 <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] pb-10">
                     <form className="pt-6" onSubmit={handleSubmit}>
                         <div className="pt-4 flex justify-center items-center">
-                            <label htmlFor="youtube_url" className="font-semibold py-1 w-[150px] mr-[20px]">{t('admin.p62')}<span className="text-[#DC3545]">*</span></label><br />
+                            <label htmlFor="youtube_url" className="font-semibold py-1 w-[100px] mr-[20px]">{t('admin.p62')}<span className="text-[#DC3545]">*</span></label><br />
                             <input
                                 type="text"
                                 id="youtube_url"
@@ -211,9 +211,10 @@ function AdminVideoPage() {
                                 value={formData.youtube_url}
                                 onChange={handleChange}
                                 required
-                                className="border w-[100%] py-1.5 pl-3 my-1 rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
+                                className="py-1.5 pl-3 border w-full rounded-md focus:outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500/50 transition duration-300"
                             />
                         </div>
+                        <p className="text-[#808080] mt-2 text-[12px] md:ml-[110px]">{t('admin.p63')}</p>
                         <div className="pt-8 flex justify-center">
                             <button
                                 type="submit"
@@ -233,7 +234,7 @@ function AdminVideoPage() {
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         className="h-[250px] sm:h-[325px] md:h-[395px] w-[700px] border-none"
-                        referrerpolicy="strict-origin-when-cross-origin"
+                        referrerPolicy="strict-origin-when-cross-origin"
                     ></iframe>
                 </div>
             </div >

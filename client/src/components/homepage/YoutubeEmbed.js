@@ -27,7 +27,7 @@ function YouTubeEmbed() {
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         className="h-[250px] sm:h-[325px] md:h-[395px] w-[700px] border-none"
-        referrerpolicy="strict-origin-when-cross-origin"
+        referrerPolicy="no-referrer"
       ></iframe>
     </div>
   );

@@ -34,9 +34,9 @@ const Model = ({ modelPath }) => {
               }
 
               // You can also apply other textures, such as normal maps, roughness maps, etc.
-              // if (child.material.normalMap) {
-              //   child.material.normalMap = textureLoader.load(child.material.normalMap);
-              // }
+              if (child.material.normalMap) {
+                child.material.normalMap = textureLoader.load(child.material.normalMap);
+              }
 
               // Ensure the material uses proper settings for rendering
               child.material.needsUpdate = true;
@@ -71,10 +71,11 @@ const Model = ({ modelPath }) => {
       <Canvas
         className="w-full h-full"
         camera={{ position: [10, 10, 10], fov: 75 }}
+        style={{ background: '#FFFFFF' }}
       >
         {/* 13-15cm */}
         {/* Lighting Setup */}
-        <ambientLight intensity={2} />
+        <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         <directionalLight position={[5, 5, 5]} intensity={2.0} />
 
@@ -82,7 +83,18 @@ const Model = ({ modelPath }) => {
         {model && <primitive object={model} position={[5, 0, 5]} scale={[50, 50, 50]} />}
         
         {/* Controls for Orbiting around the model */}
-        <OrbitControls />
+        <OrbitControls 
+           enableZoom={true}         // Enable zooming
+           enablePan={true}          // Enable panning
+           maxDistance={15}         // Max zoom-out distance
+           minDistance={2}          // Min zoom-in distance
+           rotateSpeed={0.8}         // Speed of rotation
+           zoomSpeed={0.5}           // Speed of zooming
+           panSpeed={0.3}            // Speed of panning
+           enableDamping={true}      // Enable smooth damping
+           dampingFactor={0.25}      // Damping factor for smooth control
+           target={[3, 3, 3]}       // Point to rotate around        
+        />
       </Canvas>
     </div>
   );
