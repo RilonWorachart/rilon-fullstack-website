@@ -67,8 +67,6 @@ function Header() {
             <img src='/images/page_images/logo-w.png' alt="logo" className="h-[58px] min-w-[40px]"></img>
           </Link>
         </div>
-
-
         <div className="px-2 py-2 hidden lg:flex lg:items-center lg:justify-between w-[60%] max-w-[600px]">
           <Link to="/">
             <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "home" ? "border-[#0079A9] text-[#0079A9]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("home")}>
@@ -166,7 +164,7 @@ function Header() {
         </div>
 
         <div className="text-black text-[20px] hover:cursor-pointer lg:hidden">
-          <GiHamburgerMenu onClick={() => setIsActiveSidebar(true)} className="text-[#0079A9]" />
+          <GiHamburgerMenu onClick={() => setIsActiveSidebar(true)} className="text-[#0079A9] text-[24px]" />
           <div className={`fixed top-0 right-0 w-[280px] h-full text-white transform 
           ${isActiveSidebar ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}
           >

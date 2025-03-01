@@ -1,18 +1,35 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function SliderRilon() {
+    const [banner, setBanner] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const fetchBanner = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getbannerrilon`);
+            const result = response.data;
+            setBanner(result.data);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
 
     useEffect(() => {
+        fetchBanner();
+    }, []);
+
+    useEffect(() => {
+        if (banner.length === 0) return;
+
         const intervalId = setInterval(() => {
             setCurrentIndex((prevIndex) =>
-                prevIndex === 4 - 1 ? 0 : prevIndex + 1
+                prevIndex === banner.length - 1 ? 0 : prevIndex + 1
             );
         }, 3000);
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [banner]);
 
     return (
         <div className="4xl:mx-[20%] overflow-hidden">
@@ -20,10 +37,9 @@ function SliderRilon() {
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-                <img src='/images/page_images/argon.jpg' alt="argon" className="w-full flex-shrink-0"></img>
-                <img src='/images/page_images/co2.jpg' alt="co2" className="w-full flex-shrink-0"></img>
-                <img src='/images/page_images/plusma.jpg' alt="plusma" className="w-full flex-shrink-0"></img>
-                <img src='/images/page_images/rotate.jpg' alt="rotate" className="w-full flex-shrink-0"></img>
+                {banner.map((item) => (
+                    <img src={`${process.env.REACT_APP_API}${item.banner_path}`} className="w-full bg-[#111215]" alt={`bannerRilon_${item.id}`}></img>
+                ))}
             </div>
         </div>
     )

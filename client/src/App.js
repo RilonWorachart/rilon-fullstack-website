@@ -20,6 +20,7 @@ import AdminSearchwordPage from "./adminpages/AdminSearchWordPage.js";
 import AdminVideoPage from "./adminpages/AdminVideoPage.js";
 import FixedButton from "./components/FixedButton.js";
 import Header from "./components/header/Header.js";
+import AdminBannerPage from "./adminpages/AdminBannerPage.js";
 import ScrollToTop from "./utils/ScrollToTop.js";
 import { I18nextProvider } from 'react-i18next'; // Provides the i18n instance to your app
 import i18n from './i18n'; // Import your i18n configuration
@@ -49,6 +50,7 @@ function App() {
             <Route path="/adminbrand" element={<AdminBrandPage />} />
             <Route path="/adminsearchword" element={<AdminSearchwordPage />} />
             <Route path="/adminvideo" element={<AdminVideoPage />} />
+            <Route path="/adminbanner" element={<AdminBannerPage />} />
           </Routes>
       </BrowserRouter>
     </I18nextProvider>

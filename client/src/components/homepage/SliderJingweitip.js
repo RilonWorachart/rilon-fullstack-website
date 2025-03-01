@@ -1,18 +1,36 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function SliderJingweitip() {
+    const [banner, setBanner] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const fetchBanner = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API}/api/getbannerjw`);
+            const result = response.data;
+            setBanner(result.data);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
 
     useEffect(() => {
+        fetchBanner();
+    }, []);
+
+    useEffect(() => {
+        if (banner.length === 0) return;
+
         const intervalId = setInterval(() => {
             setCurrentIndex((prevIndex) =>
-                prevIndex === 4 - 1 ? 0 : prevIndex + 1
+                prevIndex === banner.length - 1 ? 0 : prevIndex + 1
             );
         }, 3000);
 
         return () => clearInterval(intervalId);
-    }, []);
+
+    }, [banner]);
 
     return (
         <div className="4xl:mx-[20%] overflow-hidden">
@@ -20,10 +38,9 @@ function SliderJingweitip() {
                 className="flex transition-transform duration-500 ease-in-out pt-[20px]"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-                <img src="/images/page_images/jingweitip.jpg" alt="torch" className="w-[100%]"></img>
-                <img src='/images/page_images/jingweitip2.jpg' alt="equipment" className="w-[100%]"></img>
-                <img src='/images/page_images/jingweitip3.jpg' alt="jingweitip" className="w-[100%]"></img>
-                <img src='/images/page_images/wp.jpg' alt="wp" className="w-[100%]"></img>
+                {banner.map((item) => (
+                    <img src={`${process.env.REACT_APP_API}${item.banner_path}`} className="w-full bg-[#111215]" alt={`bannerJW_${item.id}`}></img>
+                ))}
             </div>
         </div>
     )

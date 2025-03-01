@@ -10,6 +10,7 @@ import recommendProductRoutes from './routes/recommendProductRoutes.js';
 import brandRoutes from './routes/brandRoutes.js';
 import searchwordRoutes from './routes/searchwordRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
+import bannerRoutes from './routes/bannerRoutes.js'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import helmet from 'helmet';
@@ -41,6 +42,7 @@ app.use('/api', recommendProductRoutes)
 app.use('/api', brandRoutes)
 app.use('/api', searchwordRoutes)
 app.use('/api', videoRoutes)
+app.use('/api', bannerRoutes)
 
 
 // const uploadsPath = path.join(__dirname, 'public', 'uploads');

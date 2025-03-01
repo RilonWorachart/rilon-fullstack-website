@@ -50,7 +50,7 @@ function Ebook() {
 
     return (
         <div ref={divRef} className="section text-center w-[100%] 4xl:px-[20%] py-[100px] flex justify-center md:justify-end md:items-center background2 bg-fixed bg-cover overflow-hidden">
-            <div className="bg-black w-[80%] md:w-[40%] py-[50px] px-[20px] transition-transform duration-500 ease-in-out"
+            <div className="bg-black w-[80%] md:w-[40%] 2xl:w-[600px] py-[50px] px-[20px] transition-transform duration-500 ease-in-out"
                 style={{
                     transform: `translateX(${100 - scrollEffect}%)`, // Move from off-screen to in-screen
                 }}

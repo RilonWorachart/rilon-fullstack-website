@@ -294,9 +294,9 @@ function AdminSearchwordPage() {
                     </form>
                 </div>
 
-                <hr className="md:mx-[10%] 2xl:mx-[20%]" />
+                <hr className="mx-[10%] max-w-[1400px] 2xl:mx-[auto]" />
 
-                <div className="overflow-x-auto md:px-[10%] 2xl:px-[20%] mb-[50px]">
+                <div className="mx-[10%] max-w-[1400px] 2xl:mx-[auto] mb-[50px]">
                     <div className="pb-[40px] pt-[30px]">
                         <h1 className="pt-2 text-[30px] text-center">
                             {t('admin.p56')}

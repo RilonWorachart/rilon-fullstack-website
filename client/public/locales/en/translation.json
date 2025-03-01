@@ -229,7 +229,11 @@
         "p60": "Agree to collect the form data",
         "p61": "Manage Youtube video",
         "p62": "Youtube",
-        "p63": "Example Link: https://www.youtube.com/embed/FmiUK2iUI5I (Youtube -> share -> embed -> src)"
+        "p63": "Example Link: https://www.youtube.com/embed/FmiUK2iUI5I (Youtube -> share -> embed -> src)",
+        "p64": "Manage Banner",
+        "p65": "Manage Main Banner",
+        "p66": "Manage Rilon Banner",
+        "p67": "Manage JW Banner"
     },
     "pagination" :{
         "prev":"Back",

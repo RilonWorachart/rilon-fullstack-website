@@ -9,6 +9,7 @@ import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { MdRecommend } from "react-icons/md";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { IoLogoYoutube } from "react-icons/io";
+import { FaSign } from "react-icons/fa";
 
 
 function AdminPanelPage() {
@@ -124,6 +125,12 @@ function AdminPanelPage() {
                             <div className="flex items-center mb-3 mx-[auto] w-full py-1 px-4 text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#0079A9] hover:text-[#0079A9] transition duration-300 cursor-pointer">
                                 <IoLogoYoutube />
                                 <span className="ml-4">{t('admin.p61')}</span>
+                            </div>
+                        </Link>
+                        <Link to="/adminbanner">
+                            <div className="flex items-center mb-3 mx-[auto] w-full py-1 px-4 text-white bg-[#E2B22C] border border-[#E2B22C] rounded-md hover:bg-white hover:border-[#0079A9] hover:text-[#0079A9] transition duration-300 cursor-pointer">
+                                <FaSign />
+                                <span className="ml-4">{t('admin.p64')}</span>
                             </div>
                         </Link>
                     </div>
