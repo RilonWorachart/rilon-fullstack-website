@@ -4,6 +4,12 @@ import { FaSortDown } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from './Sidebar.js';
 import { useTranslation } from 'react-i18next';
+import { FaHome } from "react-icons/fa";
+import { BiSolidCategory } from "react-icons/bi";
+import { FaUsers } from "react-icons/fa";
+import { AiFillLike } from "react-icons/ai";
+import { MdContactPhone } from "react-icons/md";
+import { IoIosInformationCircle } from "react-icons/io";
 
 function Header() {
   const { t, i18n } = useTranslation();
@@ -55,50 +61,68 @@ function Header() {
           transition: "width 0.2s ease-in-out",
         }}
       />
-      <div className="px-[10%] py-[11px] flex items-center justify-between">
-        <div className="w-[20%]">
+      <div className="px-10 xl:px-24 py-[11px] flex items-center justify-between">
+        <div className="min-w-[20%]">
           <Link to="/">
-            <img src='/images/page_images/logo-w.png' alt="logo" className="w-[60px] h-[45px]"></img>
+            <img src='/images/page_images/logo-w.png' alt="logo" className="h-[58px] min-w-[40px]"></img>
           </Link>
         </div>
 
 
-        <div className="px-2 py-2 hidden xl:flex lg:items-between lg:justify-between w-[60%] max-w-[600px]">
+        <div className="px-2 py-2 hidden lg:flex lg:items-center lg:justify-between w-[60%] max-w-[600px]">
           <Link to="/">
-            <div className={`border-b-2 hover:border-b-2 hover:border-[#3AB4F3] ${toggleMenu === "home" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("home")}>
-              <button className="" >{t('header.homepage')}</button>
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "home" ? "border-[#0079A9] text-[#0079A9]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("home")}>
+              <button className="">
+                <FaHome className="mx-[auto] text-[22px]" />
+                <p className="text-[14px]">{t('header.homepage')}</p>
+              </button>
             </div>
           </Link>
           <Link to="/#target2">
-            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "catelog" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("catelog")}>
-              <button className="">{t('header.catelog')}</button>
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "catelog" ? "border-[#0079A9] text-[#0079A9]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("catelog")}>
+              <button className="">
+                <BiSolidCategory className="mx-[auto] text-[22px]" />
+                <p className="text-[14px]">{t('header.catelog')}</p>
+              </button>
             </div>
           </Link>
           <Link to="/#target1">
-            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "aboutus" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("aboutus")}>
-              <button className="">{t('header.aboutme')}</button>
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "aboutus" ? "border-[#0079A9] text-[#0079A9]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("aboutus")}>
+              <button className="">
+                <FaUsers className="mx-[auto] text-[22px]" />
+                <p className="text-[14px]">{t('header.aboutme')}</p>
+              </button>
             </div>
           </Link>
           <Link to="/#target3">
-            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "recommend" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("recommend")}>
-              <button className="" >{t('header.recommend')}</button>
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "recommend" ? "border-[#0079A9] text-[#0079A9]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("recommend")}>
+              <button className="">
+                <AiFillLike className="mx-[auto] text-[22px]"/>
+                <p className="text-[14px]">{t('header.recommend')}</p>
+              </button>
             </div>
           </Link>
           <Link to="/#target4">
-            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "contactus" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("contactus")}>
-              <button className="">{t('header.contactus')}</button>
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "contactus" ? "border-[#0079A9] text-[#0079A9]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("contactus")}>
+              <button className="">
+                <MdContactPhone className="mx-[auto] text-[22px]"/>
+                <p className="text-[14px]">{t('header.contactus')}</p>
+              </button>
             </div>
           </Link>
           <Link to="/requestform">
-            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "moreinfo" ? "border-[#3AB4F3] text-[#3AB4F3]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("moreinfo")}>
-              <button className="" >{t('header.moreinfo')}</button>
+            <div className={`border-b-2 hover:border-b-2 hover:border-[#0079A9] ${toggleMenu === "moreinfo" ? "border-[#0079A9] text-[#0079A9]" : "border-[#FFD600]"}`} onClick={() => setToggleMenu("moreinfo")}>
+              <button className="">
+                <IoIosInformationCircle className="mx-[auto] text-[22px]"/>
+                <p className="text-[14px]">{t('header.moreinfo')}</p>
+              </button>
             </div>
           </Link>
         </div>
 
         <div className="w-[20%] justify-end" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
           <div className="relative">
-            <div className="hidden xl:flex justify-end text-[#0079A9] hover:text-[#0079A9]">
+            <div className="hidden lg:flex justify-end text-[#0079A9] hover:text-[#0079A9]">
               <img
                 src={selectedPic}
                 alt="Selected Flag"
@@ -141,7 +165,7 @@ function Header() {
           </div>
         </div>
 
-        <div className="text-black text-[20px] hover:cursor-pointer xl:hidden">
+        <div className="text-black text-[20px] hover:cursor-pointer lg:hidden">
           <GiHamburgerMenu onClick={() => setIsActiveSidebar(true)} className="text-[#0079A9]" />
           <div className={`fixed top-0 right-0 w-[280px] h-full text-white transform 
           ${isActiveSidebar ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}

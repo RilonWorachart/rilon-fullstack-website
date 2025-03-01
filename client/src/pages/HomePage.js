@@ -58,7 +58,7 @@ function HomePage() {
 
     return (
         <>
-            <div className="min-h-screen font-plex-sans-thai ">
+            <div className="min-h-screen font-plex-sans-thai mt-[84px]">
                 <SliderTop />
                 <Title />
                 <div className="mx-[10%] 2xl:mx-[auto] max-w-[1300px] py-[50px] aligns-center justify-center  ">

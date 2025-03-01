@@ -3,6 +3,12 @@ import { FaSortDown } from "react-icons/fa";
 import { Link } from 'react-router-dom'
 import i18next from "i18next";
 import { useTranslation } from 'react-i18next';
+import { FaHome } from "react-icons/fa";
+import { BiSolidCategory } from "react-icons/bi";
+import { FaUsers } from "react-icons/fa";
+import { AiFillLike } from "react-icons/ai";
+import { MdContactPhone } from "react-icons/md";
+import { IoIosInformationCircle } from "react-icons/io";
 
 
 function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLang, setSelectedPic }) {
@@ -37,7 +43,7 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                 >
                     &times;
                 </button>
-                <div className="flex flex-col items-center justify-center space-y-4 h-[100%] text-[18px]">
+                <div className="flex flex-col items-center justify-center space-y-6 h-[100%] text-[18px]">
                     <Link to="/">
                         <div
                             className="hover:text-[#0079A9]"
@@ -45,7 +51,10 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                 setIsActiveSidebar(false)
                             }}
                         >
-                            <button>{t('header.homepage')}</button>
+                            <button> 
+                                <FaHome className="mx-[auto] text-[24px]"/>
+                                <p className="text-[14px]">{t('header.homepage')}</p>
+                            </button>
                         </div>
                     </Link>
                     <Link to="/#target2">
@@ -55,8 +64,12 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                 handleSidebar(1)
                             }}
                         >
-                            <button>{t('header.catelog')}</button>
-                        </div></Link>
+                            <button> 
+                                <BiSolidCategory className="mx-[auto] text-[24px]"/>
+                                <p className="text-[14px]">{t('header.catelog')}</p>
+                            </button>
+                        </div>
+                    </Link>
                     <Link to="/#target1">
                         <div
                             className="hover:text-[#0079A9]"
@@ -64,8 +77,12 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                 handleSidebar(0)
                             }}
                         >
-                            <button>{t('header.aboutme')}</button>
-                        </div></Link>
+                            <button> 
+                                <FaUsers className="mx-[auto] text-[24px]"/>
+                                <p className="text-[14px]">{t('header.aboutme')}</p>
+                            </button>
+                        </div>
+                    </Link>
                     <Link to="/#target3">
                         <div
                             className="hover:text-[#0079A9]"
@@ -73,8 +90,12 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                 handleSidebar(2)
                             }}
                         >
-                            <button>{t('header.recommend')}</button>
-                        </div></Link>
+                            <button>
+                                <AiFillLike className="mx-[auto] text-[24px]"/>
+                                <p className="text-[14px]">{t('header.recommend')}</p>
+                            </button>
+                        </div>
+                    </Link>
                     <Link to="/#target4">
                         <div
                             className="hover:text-[#0079A9]"
@@ -82,15 +103,19 @@ function Sidebar({ setIsActiveSidebar, selectedLang, selectedPic, setSelectedLan
                                 handleSidebar(3)
                             }}
                         >
-                            <button>{t('header.contactus')}</button>
+                            <button> 
+                                <MdContactPhone className="mx-[auto] text-[24px]"/>
+                                <p className="text-[14px]">{t('header.contactus')}</p>
+                            </button>
                         </div>
                     </Link>
 
 
-                    <Link to="/requestform">
-                        <div className={``}>
-                            <button className="hover:text-[#0079A9]" >{t('header.moreinfo')}</button>
-                        </div>
+                    <Link to="/requestform">                
+                            <button className="hover:text-[#0079A9]" >
+                                <IoIosInformationCircle className="mx-[auto] text-[24px]"/>
+                                <p className="text-[14px]">{t('header.moreinfo')}</p>
+                            </button>
                     </Link>
 
 

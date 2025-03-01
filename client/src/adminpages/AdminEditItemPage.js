@@ -405,7 +405,7 @@ function AdminEditItemPage() {
 
     return (
         <div className="min-h-screen font-plex-sans-thai">
-            <div className="mt-[70px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between md:items-center">
+            <div className="mt-[84px] px-10 xl:px-24 py-3 bg-[#0079A9] text-white md:flex md:justify-between md:items-center">
                 <p className="py-1">
                     <a href="/" className="hover:text-[#EEE185]">{t('categorypage.p1')}</a><span> » </span>
                     <a href="/adminpanel" className="hover:text-[#EEE185]">{t('admin.p5')}</a> <span> » </span>

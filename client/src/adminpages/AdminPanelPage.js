@@ -71,7 +71,7 @@ function AdminPanelPage() {
 
     return (
         <div className="min-h-screen font-plex-sans-thai bg-[#f4f4f4]">
-            <div className="pt-[80px] bg-[#0079A9] text-white px-3 xl:px-24 py-3 md:flex md:justify-between">
+            <div className="mt-[84px] px-10 xl:px-24 py-3 bg-[#0079A9] text-white md:flex md:justify-between">
                 <p className="py-1">
                     <Link to="/">
                         <span className="hover:text-[#EEE185]">{t('categorypage.p1')}</span>
